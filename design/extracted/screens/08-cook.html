@@ -1,0 +1,52 @@
+      <sc-if value="{{ s.cook }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:874px;padding:66px 20px 34px;box-sizing:border-box;display:flex;flex-direction:column;animation:fu-in .4s ease both">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div sc-camel-on-click="{{ nav.recipe }}" style="width:38px;height:38px;border-radius:99px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(16px);border:.5px solid var(--gl,rgba(255,255,255,.14))">
+            <svg width="12" height="12" sc-camel-view-box="0 0 12 12" fill="none"><path d="M1 1l10 10M11 1 1 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="color:var(--t2,rgba(255,238,226,.62))"></path></svg>
+          </div>
+          <div style="font:600 13px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.02em;color:var(--t2,rgba(255,238,226,.62))">{{ t.stepOf }} {{ cookN }} {{ t.of }} {{ cookTotal }}</div>
+          <div style="width:38px;height:38px;border-radius:99px;display:flex;align-items:center;justify-content:center;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(16px);border:.5px solid var(--gl,rgba(255,255,255,.14))">
+            <svg width="15" height="15" sc-camel-view-box="0 0 16 16" fill="none"><path d="M8 1.6a6.4 6.4 0 1 0 0 12.8A6.4 6.4 0 0 0 8 1.6ZM8 4.6v3.7l2.4 1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" style="color:var(--t2,rgba(255,238,226,.62))"></path></svg>
+          </div>
+        </div>
+
+        <div style="margin-top:26px;position:relative;align-self:center;width:214px;height:214px;display:flex;align-items:center;justify-content:center">
+          <svg width="214" height="214" sc-camel-view-box="0 0 214 214" style="position:absolute;transform:rotate(-90deg)">
+            <circle cx="107" cy="107" r="88" fill="none" stroke="var(--hr,rgba(255,255,255,.10))" stroke-width="10"></circle>
+            <circle cx="107" cy="107" r="88" fill="none" stroke="var(--acc,#FF6A2B)" stroke-width="10" stroke-linecap="round" stroke-dasharray="553" stroke-dashoffset="{{ cookDash }}" style="transition:stroke-dashoffset 1s linear;filter:drop-shadow(0 0 12px rgba(255,106,43,.5))"></circle>
+          </svg>
+          <div style="position:relative;text-align:center">
+            <div style="font:200 54px/1 -apple-system,system-ui;letter-spacing:-2px;font-variant-numeric:tabular-nums;color:var(--tx,#FFF6EE)">{{ cookTime }}</div>
+            <div style="margin-top:8px;font:600 9.5px/1.4 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.12em;text-transform:uppercase;color:var(--t3,rgba(255,238,226,.36));max-width:130px;margin-left:auto;margin-right:auto">{{ t.timerLabel }}</div>
+          </div>
+        </div>
+
+        <div style="margin-top:30px;font:400 26px/1.32 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-.7px;color:var(--tx,#FFF6EE)">{{ cookText }}</div>
+
+        <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:7px;padding:9px 13px;border-radius:999px;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(14px);border:.5px solid var(--gl,rgba(255,255,255,.14))">
+            <span style="width:6px;height:6px;border-radius:9px;background:#F0B33C"></span>
+            <span style="font:500 13px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ t.tipDry }}</span>
+          </div>
+        </div>
+
+        <div style="margin-top:auto;display:flex;gap:6px;padding:24px 0 18px">
+          <sc-for list="{{ dots }}" as="o" hint-placeholder-count="9">
+            <div sc-camel-on-click="{{ o.go }}" style="flex:1;height:4px;border-radius:9px;cursor:pointer;position:relative;background:var(--hr,rgba(255,255,255,.10))">
+              <sc-if value="{{ o.on }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;border-radius:9px;background:var(--acc,#FF6A2B)"></span></sc-if>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:10px">
+          <div sc-camel-on-click="{{ toggleRun }}" style="width:60px;height:58px;border-radius:19px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+            <sc-if value="{{ running }}" hint-placeholder-val="{{ true }}">
+              <svg width="14" height="16" sc-camel-view-box="0 0 14 16" fill="none"><rect x="1" y="1" width="4" height="14" rx="1.4" fill="currentColor" style="color:var(--tx,#FFF6EE)"></rect><rect x="9" y="1" width="4" height="14" rx="1.4" fill="currentColor" style="color:var(--tx,#FFF6EE)"></rect></svg>
+            </sc-if>
+            <sc-if value="{{ paused }}" hint-placeholder-val="{{ false }}">
+              <svg width="14" height="16" sc-camel-view-box="0 0 13 15" fill="none"><path d="M2 1.6v11.8L12 7.5 2 1.6Z" fill="currentColor" style="color:var(--tx,#FFF6EE)"></path></svg>
+            </sc-if>
+          </div>
+          <div sc-camel-on-click="{{ nextStep }}" style="flex:1;height:58px;border-radius:19px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:linear-gradient(160deg,var(--acc,#FF6A2B),#DE3A18);box-shadow:0 12px 30px rgba(255,80,30,.36),inset 0 1px 0 rgba(255,255,255,.42);font:600 17px -apple-system,system-ui,'Noto Sans Ethiopic';color:#fff">{{ nextLabel }}</div>
+        </div>
+      </div>
+      </sc-if>

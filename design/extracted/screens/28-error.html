@@ -1,0 +1,11 @@
+      <sc-if value="{{ s.error }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:874px;padding:74px 26px 40px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:fu-in .4s ease both">
+        <div style="width:88px;height:88px;border-radius:28px;display:flex;align-items:center;justify-content:center;background:var(--fld,rgba(255,255,255,.08));border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+          <svg width="36" height="44" sc-camel-view-box="0 0 13 16" fill="none" style="opacity:.35"><path d="M6.5 0C7.9 3 6.6 4.4 5.7 5.5c-.9 1.1-1 2.4-.1 3.2.5.4.4-1 .9-1.9.5.9 1.2 1.3 1.3 2.6.9-.6 1-1.6.9-2.4 1.5 1.1 2.3 2.7 2.3 4.3 0 2.5-2 4.7-4.5 4.7S2 13.8 2 11.3C2 7.7 6.1 6.6 6.5 0Z" fill="currentColor" style="color:var(--t2,rgba(255,238,226,.62))"></path></svg>
+        </div>
+        <div style="margin-top:24px;text-align:center;font:700 29px/1.1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-1px;color:var(--tx,#FFF6EE)">{{ t.errH1 }}</div>
+        <div style="margin-top:12px;text-align:center;font:400 15.5px/1.55 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ t.errSub }}</div>
+        <div sc-camel-on-click="{{ nav.recipe }}" style="margin-top:28px;width:100%;height:54px;border-radius:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:linear-gradient(160deg,var(--acc,#FF6A2B),#DE3A18);box-shadow:0 12px 30px rgba(255,80,30,.34),inset 0 1px 0 rgba(255,255,255,.42);font:600 16.5px -apple-system,system-ui,'Noto Sans Ethiopic';color:#fff">{{ t.retry }}</div>
+        <div sc-camel-on-click="{{ nav.home }}" style="margin-top:11px;width:100%;height:50px;border-radius:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));font:600 15.5px -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">{{ t.errBack }}</div>
+      </div>
+      </sc-if>

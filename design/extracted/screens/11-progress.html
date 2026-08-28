@@ -1,0 +1,73 @@
+      <sc-if value="{{ s.progress }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:70px 0 130px;animation:fu-in .4s ease both">
+        <div style="padding:0 20px;display:flex;align-items:center;gap:18px">
+          <div style="position:relative;width:112px;height:112px;flex:none;display:flex;align-items:center;justify-content:center">
+            <svg width="112" height="112" sc-camel-view-box="0 0 112 112" style="position:absolute;transform:rotate(-90deg)">
+              <circle cx="56" cy="56" r="50" fill="none" stroke="var(--hr,rgba(255,255,255,.10))" stroke-width="7"></circle>
+              <circle cx="56" cy="56" r="50" fill="none" stroke="var(--acc,#FF6A2B)" stroke-width="7" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="54" style="filter:drop-shadow(0 0 10px rgba(255,106,43,.45))"></circle>
+            </svg>
+            <div style="text-align:center">
+              <div style="font:700 30px/1 -apple-system,system-ui;letter-spacing:-1.2px;color:var(--tx,#FFF6EE)">12</div>
+              <div style="margin-top:3px;font:600 8.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.14em;color:var(--t3,rgba(255,238,226,.36))">LEVEL</div>
+            </div>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="font:700 25px/1.08 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-.9px;color:var(--tx,#FFF6EE)">{{ t.lvlName }}</div>
+            <sc-if value="{{ xp }}" hint-placeholder-val="{{ true }}">
+              <div style="margin-top:7px;font:600 13px/1 -apple-system,system-ui;font-variant-numeric:tabular-nums;color:var(--t2,rgba(255,238,226,.62))">{{ t.xpOf }}</div>
+            </sc-if>
+            <div style="margin-top:11px;display:flex;gap:6px">
+              <div style="display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:8px;background:var(--g1,rgba(255,255,255,.07));border:.5px solid var(--gl,rgba(255,255,255,.14));font:600 11.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">
+                <svg width="10" height="10" sc-camel-view-box="0 0 24 24" fill="none"><path d="M9 3 3 5.4v15.2L9 18l6 2.6 6-2.4V3l-6 2.4L9 3ZM9 3v15M15 5.4v15.2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>6/9</div>
+              <div style="display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:8px;background:var(--g1,rgba(255,255,255,.07));border:.5px solid var(--gl,rgba(255,255,255,.14));font:600 11.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">
+                <svg width="10" height="10" sc-camel-view-box="0 0 16 16" fill="none"><path d="M8 1.4 9.9 5.6l4.6.5-3.4 3.1.9 4.5L8 11.5l-4 2.2.9-4.5L1.5 6.1l4.6-.5L8 1.4Z" fill="currentColor"></path></svg>14/42</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin:22px 20px 0;display:flex;gap:9px">
+          <div style="flex:1;padding:14px 12px;border-radius:18px;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);-webkit-backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+            <div style="font:700 24px/1 -apple-system,system-ui;letter-spacing:-1px;color:var(--tx,#FFF6EE)">47</div>
+            <div style="margin-top:6px;font:500 11px/1.3 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t3,rgba(255,238,226,.36))">{{ t.stDishes }}</div>
+          </div>
+          <div sc-camel-on-click="{{ nav.streak }}" style="flex:1;padding:14px 12px;border-radius:18px;cursor:pointer;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+            <div style="font:700 24px/1 -apple-system,system-ui;letter-spacing:-1px;color:var(--acc,#FF6A2B)">12</div>
+            <div style="margin-top:6px;font:500 11px/1.3 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t3,rgba(255,238,226,.36))">{{ t.stStreak }}</div>
+          </div>
+          <div sc-camel-on-click="{{ nav.map }}" style="flex:1;padding:14px 12px;border-radius:18px;cursor:pointer;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+            <div style="font:700 24px/1 -apple-system,system-ui;letter-spacing:-1px;color:var(--tx,#FFF6EE)">6</div>
+            <div style="margin-top:6px;font:500 11px/1.3 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t3,rgba(255,238,226,.36))">{{ t.stRegions }}</div>
+          </div>
+        </div>
+
+        <div style="margin:24px 20px 12px;display:flex;align-items:baseline;justify-content:space-between">
+          <div style="font:700 20px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-.6px;color:var(--tx,#FFF6EE)">{{ t.masteryH }}</div>
+          <div sc-camel-on-click="{{ nav.mastery }}" style="font:500 13.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';cursor:pointer;color:var(--acc,#FF6A2B)">{{ t.viewAll }}</div>
+        </div>
+        <div style="margin:0 20px;border-radius:22px;overflow:hidden;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);-webkit-backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18)),var(--sh,0 14px 34px rgba(0,0,0,.45))">
+          <sc-for list="{{ mast }}" as="m" hint-placeholder-count="3">
+            <div style="padding:13px 16px;display:flex;align-items:center;gap:13px;border-bottom:.5px solid var(--hr,rgba(255,255,255,.10))">
+              <div style="flex:1;min-width:0">
+                <div style="font:600 14.5px/1.2 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">{{ m.name }}</div>
+                <div style="margin-top:8px;height:5px;border-radius:9px;overflow:hidden;background:var(--hr,rgba(255,255,255,.10))"><div style="{{ m.bar }}"></div></div>
+              </div>
+              <div style="font:700 13px/1 -apple-system,system-ui;font-variant-numeric:tabular-nums;color:var(--t2,rgba(255,238,226,.62))">{{ m.pct }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="margin:24px 20px 12px;font:700 20px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-.6px;color:var(--tx,#FFF6EE)">{{ t.thisWeekH }}</div>
+        <div style="margin:0 20px;padding:18px 16px 14px;border-radius:22px;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+          <div style="height:96px;display:flex;align-items:flex-end;gap:9px">
+            <sc-for list="{{ weekBars }}" as="w" hint-placeholder-count="7">
+              <div style="flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end"><div style="{{ w.bar }}"></div></div>
+            </sc-for>
+          </div>
+          <div style="margin-top:9px;display:flex;gap:9px">
+            <sc-for list="{{ weekBars }}" as="w" hint-placeholder-count="7">
+              <div style="flex:1;text-align:center;font:600 10.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t3,rgba(255,238,226,.36))">{{ w.d }}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      </sc-if>

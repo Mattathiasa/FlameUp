@@ -1,0 +1,979 @@
+{
+  "screenGroups": [
+    {
+      "en": "Core loop",
+      "am": "ዋና ሂደት",
+      "screens": [
+        {
+          "id": "splash",
+          "en": "Launch",
+          "am": "ማስጀመሪያ"
+        },
+        {
+          "id": "welcome",
+          "en": "Welcome",
+          "am": "እንኳን ደህና መጡ"
+        },
+        {
+          "id": "skill",
+          "en": "Skill level",
+          "am": "የክህሎት ደረጃ"
+        },
+        {
+          "id": "taste",
+          "en": "Taste profile",
+          "am": "የጣዕም ምርጫ"
+        },
+        {
+          "id": "home",
+          "en": "Today",
+          "am": "ዛሬ"
+        },
+        {
+          "id": "search",
+          "en": "Search",
+          "am": "ፍለጋ"
+        },
+        {
+          "id": "recipe",
+          "en": "Recipe",
+          "am": "አዘገጃጀት"
+        },
+        {
+          "id": "cook",
+          "en": "Cook mode",
+          "am": "የማብሰያ ሁነታ"
+        },
+        {
+          "id": "done",
+          "en": "Finished",
+          "am": "ተጠናቀቀ"
+        },
+        {
+          "id": "rate",
+          "en": "Rate it",
+          "am": "ደረጃ ስጥ"
+        }
+      ]
+    },
+    {
+      "en": "Progress",
+      "am": "እድገት",
+      "screens": [
+        {
+          "id": "progress",
+          "en": "Your kitchen",
+          "am": "ኩሽናህ"
+        },
+        {
+          "id": "mastery",
+          "en": "Mastery",
+          "am": "ብቃት"
+        },
+        {
+          "id": "achv",
+          "en": "Achievements",
+          "am": "ስኬቶች"
+        },
+        {
+          "id": "quests",
+          "en": "Quests",
+          "am": "ተልእኮዎች"
+        },
+        {
+          "id": "streak",
+          "en": "Streak",
+          "am": "ተከታታይ ቀናት"
+        }
+      ]
+    },
+    {
+      "en": "Culture",
+      "am": "ባህል",
+      "screens": [
+        {
+          "id": "map",
+          "en": "Taste Ethiopia",
+          "am": "ኢትዮጵያን ቅመሱ"
+        },
+        {
+          "id": "region",
+          "en": "Region",
+          "am": "ክልል"
+        },
+        {
+          "id": "grandma",
+          "en": "Grandma’s Kitchen",
+          "am": "የአያት ኩሽና"
+        },
+        {
+          "id": "upload",
+          "en": "Family recipe",
+          "am": "የቤተሰብ አዘገጃጀት"
+        }
+      ]
+    },
+    {
+      "en": "Social",
+      "am": "ማህበራዊ",
+      "screens": [
+        {
+          "id": "feed",
+          "en": "Feed",
+          "am": "ልጥፎች"
+        },
+        {
+          "id": "friends",
+          "en": "Friends",
+          "am": "ጓደኞች"
+        },
+        {
+          "id": "challenges",
+          "en": "Challenges",
+          "am": "ውድድሮች"
+        },
+        {
+          "id": "leader",
+          "en": "Leaderboard",
+          "am": "የደረጃ ሰንጠረዥ"
+        }
+      ]
+    },
+    {
+      "en": "Utility",
+      "am": "መገልገያ",
+      "screens": [
+        {
+          "id": "saved",
+          "en": "Favorites",
+          "am": "ተወዳጆች"
+        },
+        {
+          "id": "shop",
+          "en": "Shopping list",
+          "am": "የግብይት ዝርዝር"
+        },
+        {
+          "id": "planner",
+          "en": "Meal planner",
+          "am": "የምግብ እቅድ"
+        },
+        {
+          "id": "settings",
+          "en": "Settings",
+          "am": "ቅንብሮች"
+        }
+      ]
+    },
+    {
+      "en": "System states",
+      "am": "የሥርዓት ሁኔታዎች",
+      "screens": [
+        {
+          "id": "error",
+          "en": "Error",
+          "am": "ስህተት"
+        },
+        {
+          "id": "offline",
+          "en": "Offline",
+          "am": "ከመስመር ውጭ"
+        },
+        {
+          "id": "empty",
+          "en": "Empty",
+          "am": "ባዶ"
+        }
+      ]
+    }
+  ],
+  "tabs": [
+    {
+      "screen": "home",
+      "labelKey": "tabToday",
+      "iconPath": "M3 10.4 10 4l7 6.4V17H3z"
+    },
+    {
+      "screen": "search",
+      "labelKey": "tabExplore",
+      "iconPath": "M9 15.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13ZM13.8 13.8 17.5 17.5"
+    },
+    {
+      "screen": "recipe",
+      "labelKey": "tabCook",
+      "iconPath": "M4 8.5h12M5 8.5v6a2.5 2.5 0 0 0 2.5 2.5h5A2.5 2.5 0 0 0 15 14.5v-6M7 5.5c0-1 1-1.5 1-2.5M10 5.5c0-1 1-1.5 1-2.5M13 5.5c0-1 1-1.5 1-2.5"
+    },
+    {
+      "screen": "feed",
+      "labelKey": "tabComm",
+      "iconPath": "M7.5 9a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2ZM13.4 9.4a2.1 2.1 0 1 0 0-4.2 2.1 2.1 0 0 0 0 4.2ZM2.6 16.4c0-2.7 2.2-4.4 4.9-4.4s4.9 1.7 4.9 4.4M13.6 12.2c2 .2 3.8 1.5 3.8 4.2"
+    },
+    {
+      "screen": "progress",
+      "labelKey": "tabYou",
+      "iconPath": "M10 9.6a3.3 3.3 0 1 0 0-6.6 3.3 3.3 0 0 0 0 6.6ZM3.8 17c0-3.2 2.8-5 6.2-5s6.2 1.8 6.2 5"
+    }
+  ],
+  "screensWithoutTabs": [
+    "cook",
+    "done",
+    "error",
+    "offline",
+    "rate",
+    "skill",
+    "splash",
+    "taste",
+    "welcome"
+  ],
+  "dishes": {
+    "doro": {
+      "en": "Doro Wat",
+      "am": "ዶሮ ወጥ",
+      "se": "Chicken · berbere · 12 spices",
+      "sa": "ዶሮ · በርበሬ · 12 ቅመሞች",
+      "min": 120,
+      "xp": 240,
+      "lv": [
+        "Advanced",
+        "ከፍተኛ"
+      ],
+      "a": "#8E1B0F",
+      "b": "#E0522A"
+    },
+    "shiro": {
+      "en": "Shiro",
+      "am": "ሽሮ",
+      "se": "Chickpea flour · garlic · kibbeh",
+      "sa": "የሽምብራ ዱቄት · ነጭ ሽንኩርት",
+      "min": 35,
+      "xp": 90,
+      "lv": [
+        "Beginner",
+        "ጀማሪ"
+      ],
+      "a": "#9A5A12",
+      "b": "#E8A33C"
+    },
+    "tibs": {
+      "en": "Tibs",
+      "am": "ጥብስ",
+      "se": "Beef · rosemary · awaze",
+      "sa": "የበሬ ሥጋ · ጽጌረዳ · አዋዜ",
+      "min": 30,
+      "xp": 110,
+      "lv": [
+        "Beginner",
+        "ጀማሪ"
+      ],
+      "a": "#5C2A12",
+      "b": "#B4652C"
+    },
+    "misir": {
+      "en": "Misir Wat",
+      "am": "ምስር ወጥ",
+      "se": "Red lentils · berbere",
+      "sa": "ቀይ ምስር · በርበሬ",
+      "min": 45,
+      "xp": 100,
+      "lv": [
+        "Beginner",
+        "ጀማሪ"
+      ],
+      "a": "#7E1E14",
+      "b": "#D14A2A"
+    },
+    "injera": {
+      "en": "Injera",
+      "am": "እንጀራ",
+      "se": "Teff · three-day ferment",
+      "sa": "ጤፍ · የሦስት ቀን ማሸት",
+      "min": 4320,
+      "xp": 400,
+      "lv": [
+        "Advanced",
+        "ከፍተኛ"
+      ],
+      "a": "#6B5330",
+      "b": "#C7A56A"
+    },
+    "kitfo": {
+      "en": "Kitfo",
+      "am": "ክትፎ",
+      "se": "Minced beef · mitmita · ayib",
+      "sa": "የተከተፈ ሥጋ · ሚጥሚጣ · አይብ",
+      "min": 20,
+      "xp": 150,
+      "lv": [
+        "Medium",
+        "መካከለኛ"
+      ],
+      "a": "#6E1220",
+      "b": "#C0334A"
+    },
+    "gomen": {
+      "en": "Gomen",
+      "am": "ጎመን",
+      "se": "Collards · ginger · garlic",
+      "sa": "ጎመን · ዝንጅብል · ነጭ ሽንኩርት",
+      "min": 25,
+      "xp": 70,
+      "lv": [
+        "Beginner",
+        "ጀማሪ"
+      ],
+      "a": "#1E5A34",
+      "b": "#4FA766"
+    },
+    "buna": {
+      "en": "Buna Ceremony",
+      "am": "የቡና ሥነ ሥርዓት",
+      "se": "Roast · grind · three rounds",
+      "sa": "ማቁላት · መፍጨት · ሦስት ዙር",
+      "min": 90,
+      "xp": 180,
+      "lv": [
+        "Medium",
+        "መካከለኛ"
+      ],
+      "a": "#3B2416",
+      "b": "#8B5E3C"
+    },
+    "beyay": {
+      "en": "Beyaynetu",
+      "am": "በያይነቱ",
+      "se": "Seven fasting dishes, one plate",
+      "sa": "ሰባት የጾም ምግቦች በአንድ ሰሃን",
+      "min": 150,
+      "xp": 320,
+      "lv": [
+        "Advanced",
+        "ከፍተኛ"
+      ],
+      "a": "#6A4A12",
+      "b": "#CBA23F"
+    },
+    "firfir": {
+      "en": "Firfir",
+      "am": "ፍርፍር",
+      "se": "Torn injera · awaze · kibbeh",
+      "sa": "የተቀደደ እንጀራ · አዋዜ",
+      "min": 20,
+      "xp": 80,
+      "lv": [
+        "Beginner",
+        "ጀማሪ"
+      ],
+      "a": "#7C3312",
+      "b": "#D2762F"
+    },
+    "kik": {
+      "en": "Kik Alicha",
+      "am": "ክክ አልጫ",
+      "se": "Split peas · turmeric",
+      "sa": "ክክ · እርድ",
+      "min": 50,
+      "xp": 85,
+      "lv": [
+        "Beginner",
+        "ጀማሪ"
+      ],
+      "a": "#8A7A18",
+      "b": "#DCC845"
+    },
+    "dulet": {
+      "en": "Dulet",
+      "am": "ዱለት",
+      "se": "Tripe · liver · mitmita",
+      "sa": "ጨጓራ · ጉበት · ሚጥሚጣ",
+      "min": 35,
+      "xp": 160,
+      "lv": [
+        "Medium",
+        "መካከለኛ"
+      ],
+      "a": "#4A1520",
+      "b": "#93304A"
+    }
+  },
+  "doroWatIngredients": [
+    {
+      "en": "Red onions",
+      "am": "ቀይ ሽንኩርት",
+      "qtyEn": "4 large",
+      "qtyAm": "4 ትልቅ"
+    },
+    {
+      "en": "Niter kibbeh",
+      "am": "ንጥር ቅቤ",
+      "qtyEn": "½ cup",
+      "qtyAm": "½ ኩባያ"
+    },
+    {
+      "en": "Berbere",
+      "am": "በርበሬ",
+      "qtyEn": "¾ cup",
+      "qtyAm": "¾ ኩባያ"
+    },
+    {
+      "en": "Chicken, jointed",
+      "am": "የተከፋፈለ ዶሮ",
+      "qtyEn": "1.5 kg",
+      "qtyAm": "1.5 ኪ.ግ"
+    },
+    {
+      "en": "Garlic",
+      "am": "ነጭ ሽንኩርት",
+      "qtyEn": "8 cloves",
+      "qtyAm": "8 ቅንጣት"
+    },
+    {
+      "en": "Ginger",
+      "am": "ዝንጅብል",
+      "qtyEn": "2 in",
+      "qtyAm": "2 ኢንች"
+    },
+    {
+      "en": "Eggs, boiled",
+      "am": "የተቀቀለ እንቁላል",
+      "qtyEn": "6",
+      "qtyAm": "6"
+    },
+    {
+      "en": "Lemon",
+      "am": "ሎሚ",
+      "qtyEn": "1",
+      "qtyAm": "1"
+    }
+  ],
+  "doroWatSteps": [
+    {
+      "en": "Dice four red onions as fine as you can stand. No oil yet.",
+      "am": "አራት ቀይ ሽንኩርት በተቻለ መጠን በጥሩ ይክተፉ። ገና ዘይት አይጨመርም።"
+    },
+    {
+      "en": "Dry-cook them in a bare pan until they collapse and darken.",
+      "am": "በባዶ ድስት እስኪለሰልሱና እስኪጠቁሩ ድረስ በደረቁ ያብስሏቸው።"
+    },
+    {
+      "en": "Add the niter kibbeh. Let it melt all the way through.",
+      "am": "ንጥር ቅቤውን ይጨምሩ። ሙሉ በሙሉ እንዲቀልጥ ያድርጉ።"
+    },
+    {
+      "en": "Stir in the berbere and cook it out — eight minutes, low.",
+      "am": "በርበሬውን ይጨምሩና ያብስሉት — ስምንት ደቂቃ፣ በዝቅተኛ እሳት።"
+    },
+    {
+      "en": "Add garlic and ginger paste. It should smell sharp, not raw.",
+      "am": "ነጭ ሽንኩርትና ዝንጅብል ይጨምሩ። ሽታው ጥሬ ሳይሆን ጥርት ያለ ይሁን።"
+    },
+    {
+      "en": "Add the chicken and turn every piece until it is coated.",
+      "am": "ዶሮውን ይጨምሩና እያንዳንዱ ቁራጭ እስኪለበስ ድረስ ይገልብጡ።"
+    },
+    {
+      "en": "Simmer 45 minutes. Add water only if the pan catches.",
+      "am": "ለ45 ደቂቃ ያንተከትኩ። ውሃ የሚጨመረው ድስቱ ሲይዝ ብቻ ነው።"
+    },
+    {
+      "en": "Score the boiled eggs and slide them in whole.",
+      "am": "የተቀቀሉትን እንቁላሎች ተልትለው ሙሉውን ይጨምሩ።"
+    },
+    {
+      "en": "Rest ten minutes. Serve on injera with ayib.",
+      "am": "ለአሥር ደቂቃ ያሳርፉ። ከአይብ ጋር በእንጀራ ያቅርቡ።"
+    }
+  ],
+  "mastery": [
+    {
+      "en": "Wat & stews",
+      "am": "ወጥና ድልህ",
+      "percent": 72,
+      "color": "#E0522A",
+      "tier": 3
+    },
+    {
+      "en": "Fasting table",
+      "am": "የጾም ማዕድ",
+      "percent": 86,
+      "color": "#4FA766",
+      "tier": 4
+    },
+    {
+      "en": "Tibs & grills",
+      "am": "ጥብስና ጥቡስ",
+      "percent": 58,
+      "color": "#B4652C",
+      "tier": 2
+    },
+    {
+      "en": "Spice blends",
+      "am": "የቅመም ውህዶች",
+      "percent": 45,
+      "color": "#F0B33C",
+      "tier": 2
+    },
+    {
+      "en": "Injera & teff",
+      "am": "እንጀራና ጤፍ",
+      "percent": 34,
+      "color": "#C7A56A",
+      "tier": 1
+    },
+    {
+      "en": "Buna ceremony",
+      "am": "የቡና ሥነ ሥርዓት",
+      "percent": 20,
+      "color": "#8B5E3C",
+      "tier": 1
+    }
+  ],
+  "achievements": [
+    {
+      "en": "First Flame",
+      "am": "የመጀመሪያ እሳት",
+      "earned": true,
+      "color": "#FF6A2B"
+    },
+    {
+      "en": "Onion Patience",
+      "am": "የሽንኩርት ትዕግሥት",
+      "earned": true,
+      "color": "#F0B33C"
+    },
+    {
+      "en": "Seven on a Plate",
+      "am": "ሰባት በአንድ ሰሃን",
+      "earned": true,
+      "color": "#4FA766"
+    },
+    {
+      "en": "Mitmita Survivor",
+      "am": "የሚጥሚጣ ተራፊ",
+      "earned": true,
+      "color": "#C0301C"
+    },
+    {
+      "en": "Region Runner",
+      "am": "የክልል ሯጭ",
+      "earned": true,
+      "color": "#8B5E3C"
+    },
+    {
+      "en": "Three-Day Ferment",
+      "am": "የሦስት ቀን ማሸት",
+      "earned": false,
+      "color": "#C7A56A"
+    },
+    {
+      "en": "Three Rounds",
+      "am": "ሦስት ዙር ቡና",
+      "earned": false,
+      "color": "#6B4B2A"
+    },
+    {
+      "en": "Grandma Approved",
+      "am": "አያት አጸደቀችው",
+      "earned": false,
+      "color": "#93304A"
+    },
+    {
+      "en": "Thirty-Day Fire",
+      "am": "የ30 ቀን እሳት",
+      "earned": false,
+      "color": "#DE3A18"
+    }
+  ],
+  "quests": [
+    {
+      "groupKey": "qDaily",
+      "en": "Cook one fasting dish",
+      "am": "አንድ የጾም ምግብ ያብስሉ",
+      "progress": 2,
+      "goal": 3,
+      "xp": 60,
+      "color": "#2E9E5B"
+    },
+    {
+      "groupKey": "qDaily",
+      "en": "Photograph what you made",
+      "am": "የሠሩትን ፎቶ ያንሱ",
+      "progress": 0,
+      "goal": 1,
+      "xp": 20,
+      "color": "#F0B33C"
+    },
+    {
+      "groupKey": "qWeekly",
+      "en": "Three regions in seven days",
+      "am": "በሰባት ቀናት ሦስት ክልሎች",
+      "progress": 1,
+      "goal": 3,
+      "xp": 200,
+      "color": "#FF6A2B"
+    },
+    {
+      "groupKey": "qSeason",
+      "en": "Twelve fasting dishes",
+      "am": "አሥራ ሁለት የጾም ምግቦች",
+      "progress": 7,
+      "goal": 12,
+      "xp": 500,
+      "color": "#8B5E3C"
+    }
+  ],
+  "regions": [
+    {
+      "en": "Gurage",
+      "am": "ጉራጌ",
+      "exploredPercent": 68,
+      "colorA": "#1E5A34",
+      "colorB": "#4FA766"
+    },
+    {
+      "en": "Amhara",
+      "am": "አማራ",
+      "exploredPercent": 54,
+      "colorA": "#8E1B0F",
+      "colorB": "#E0522A"
+    },
+    {
+      "en": "Tigray",
+      "am": "ትግራይ",
+      "exploredPercent": 31,
+      "colorA": "#6B5330",
+      "colorB": "#C7A56A"
+    },
+    {
+      "en": "Oromia",
+      "am": "ኦሮሚያ",
+      "exploredPercent": 22,
+      "colorA": "#5C2A12",
+      "colorB": "#B4652C"
+    },
+    {
+      "en": "Harar",
+      "am": "ሐረር",
+      "exploredPercent": 12,
+      "colorA": "#6A4A12",
+      "colorB": "#CBA23F"
+    },
+    {
+      "en": "Sidama",
+      "am": "ሲዳማ",
+      "exploredPercent": 8,
+      "colorA": "#3B2416",
+      "colorB": "#8B5E3C"
+    },
+    {
+      "en": "Afar",
+      "am": "አፋር",
+      "exploredPercent": 0,
+      "colorA": "#4A1520",
+      "colorB": "#93304A"
+    },
+    {
+      "en": "Somali",
+      "am": "ሶማሌ",
+      "exploredPercent": 0,
+      "colorA": "#8A7A18",
+      "colorB": "#DCC845"
+    }
+  ],
+  "elders": [
+    {
+      "nameEn": "Emahoy Tsehay, 74",
+      "nameAm": "እማሆይ ጸሐይ፣ 74",
+      "placeEn": "Gondar",
+      "placeAm": "ጎንደር",
+      "topicEn": "Doro wat, the four-onion way",
+      "topicAm": "ዶሮ ወጥ፣ በአራት ሽንኩርት",
+      "length": "18 min",
+      "colorA": "#6B4B2A",
+      "colorB": "#C79A5E"
+    },
+    {
+      "nameEn": "Ayelech, 81",
+      "nameAm": "አየለች፣ 81",
+      "placeEn": "Butajira",
+      "placeAm": "ቡታጅራ",
+      "topicEn": "Scraping enset for kocho",
+      "topicAm": "እንሰት ለቆጮ መፋቅ",
+      "length": "26 min",
+      "colorA": "#1E5A34",
+      "colorB": "#4FA766"
+    },
+    {
+      "nameEn": "W/ro Almaz, 68",
+      "nameAm": "ወ/ሮ አልማዝ፣ 68",
+      "placeEn": "Mekelle",
+      "placeAm": "መቀሌ",
+      "topicEn": "Teff sourdough she keeps alive",
+      "topicAm": "ሕያው የምታደርገው የጤፍ እርሾ",
+      "length": "12 min",
+      "colorA": "#6B5330",
+      "colorB": "#C7A56A"
+    },
+    {
+      "nameEn": "Zeyneba, 77",
+      "nameAm": "ዘይነባ፣ 77",
+      "placeEn": "Harar",
+      "placeAm": "ሐረር",
+      "topicEn": "Coffee husk tea and the long roast",
+      "topicAm": "የቡና ገለባ ሻይና ረጅሙ ቁላት",
+      "length": "21 min",
+      "colorA": "#3B2416",
+      "colorB": "#8B5E3C"
+    }
+  ],
+  "feed": [
+    {
+      "whoEn": "Selam T.",
+      "whoAm": "ሰላም ት.",
+      "dishEn": "Doro Wat",
+      "dishAm": "ዶሮ ወጥ",
+      "bodyEn": "First time the eggs did not crack. Four hours.",
+      "bodyAm": "እንቁላሎቹ ያልተሰነጠቁበት የመጀመሪያ ጊዜ። አራት ሰዓት።",
+      "ago": "2h",
+      "likes": 48,
+      "dishColorA": "#8E1B0F",
+      "dishColorB": "#E0522A",
+      "avatarColor": "#6B4B2A"
+    },
+    {
+      "whoEn": "Dawit M.",
+      "whoAm": "ዳዊት ም.",
+      "dishEn": "Beyaynetu",
+      "dishAm": "በያይነቱ",
+      "bodyEn": "Whole fasting plate for eleven people. Send help.",
+      "bodyAm": "ለአሥራ አንድ ሰው ሙሉ የጾም ማዕድ። እርዱኝ።",
+      "ago": "5h",
+      "likes": 126,
+      "dishColorA": "#6A4A12",
+      "dishColorB": "#CBA23F",
+      "avatarColor": "#1E5A34"
+    },
+    {
+      "whoEn": "Hanna G.",
+      "whoAm": "ሃና ግ.",
+      "dishEn": "Injera",
+      "dishAm": "እንጀራ",
+      "bodyEn": "Day three of the ferment. It finally smells right.",
+      "bodyAm": "የማሸት ሦስተኛ ቀን። በመጨረሻ ሽታው ትክክል ሆነ።",
+      "ago": "9h",
+      "likes": 73,
+      "dishColorA": "#6B5330",
+      "dishColorB": "#C7A56A",
+      "avatarColor": "#93304A"
+    },
+    {
+      "whoEn": "Yonas A.",
+      "whoAm": "ዮናስ አ.",
+      "dishEn": "Kitfo",
+      "dishAm": "ክትፎ",
+      "bodyEn": "My aunt says too much mitmita. My aunt is wrong.",
+      "bodyAm": "አክስቴ ሚጥሚጣው በዛ ትላለች። አክስቴ ተሳስታለች።",
+      "ago": "1d",
+      "likes": 201,
+      "dishColorA": "#6E1220",
+      "dishColorB": "#C0334A",
+      "avatarColor": "#3B2416"
+    }
+  ],
+  "friends": [
+    {
+      "en": "Selam T.",
+      "am": "ሰላም ት.",
+      "streak": 12,
+      "added": true,
+      "avatarColor": "#6B4B2A"
+    },
+    {
+      "en": "Dawit M.",
+      "am": "ዳዊት ም.",
+      "streak": 31,
+      "added": true,
+      "avatarColor": "#1E5A34"
+    },
+    {
+      "en": "Hanna G.",
+      "am": "ሃና ግ.",
+      "streak": 7,
+      "added": true,
+      "avatarColor": "#93304A"
+    },
+    {
+      "en": "Meron K.",
+      "am": "ሜሮን ክ.",
+      "streak": 0,
+      "added": false,
+      "avatarColor": "#8B5E3C"
+    },
+    {
+      "en": "Tsion B.",
+      "am": "ጽዮን ብ.",
+      "streak": 19,
+      "added": false,
+      "avatarColor": "#4A1520"
+    },
+    {
+      "en": "Abebe W.",
+      "am": "አበበ ወ.",
+      "streak": 3,
+      "added": false,
+      "avatarColor": "#6B5330"
+    }
+  ],
+  "leaderboard": [
+    {
+      "en": "Dawit M.",
+      "am": "ዳዊት ም.",
+      "xp": 4820,
+      "avatarColor": "#1E5A34"
+    },
+    {
+      "en": "Selam T.",
+      "am": "ሰላም ት.",
+      "xp": 4390,
+      "avatarColor": "#6B4B2A"
+    },
+    {
+      "en": "Tsion B.",
+      "am": "ጽዮን ብ.",
+      "xp": 3980,
+      "avatarColor": "#4A1520"
+    },
+    {
+      "en": "Liya (you)",
+      "am": "ልያ (እርስዎ)",
+      "xp": 2480,
+      "avatarColor": "#E0522A"
+    },
+    {
+      "en": "Hanna G.",
+      "am": "ሃና ግ.",
+      "xp": 2110,
+      "avatarColor": "#93304A"
+    },
+    {
+      "en": "Yonas A.",
+      "am": "ዮናስ አ.",
+      "xp": 1870,
+      "avatarColor": "#8B5E3C"
+    },
+    {
+      "en": "Abebe W.",
+      "am": "አበበ ወ.",
+      "xp": 1240,
+      "avatarColor": "#6B5330"
+    }
+  ],
+  "shoppingList": [
+    {
+      "aisleKey": "aisleSpice",
+      "en": "Berbere",
+      "am": "በርበሬ",
+      "qtyEn": "¾ cup",
+      "qtyAm": "¾ ኩባያ"
+    },
+    {
+      "aisleKey": "aisleSpice",
+      "en": "Mitmita",
+      "am": "ሚጥሚጣ",
+      "qtyEn": "2 tbsp",
+      "qtyAm": "2 የሾርባ ማንኪያ"
+    },
+    {
+      "aisleKey": "aisleSpice",
+      "en": "Teff flour",
+      "am": "የጤፍ ዱቄት",
+      "qtyEn": "2 kg",
+      "qtyAm": "2 ኪ.ግ"
+    },
+    {
+      "aisleKey": "aisleFresh",
+      "en": "Red onions",
+      "am": "ቀይ ሽንኩርት",
+      "qtyEn": "4 large",
+      "qtyAm": "4 ትልቅ"
+    },
+    {
+      "aisleKey": "aisleFresh",
+      "en": "Garlic",
+      "am": "ነጭ ሽንኩርት",
+      "qtyEn": "2 heads",
+      "qtyAm": "2 ራስ"
+    },
+    {
+      "aisleKey": "aisleFresh",
+      "en": "Ginger",
+      "am": "ዝንጅብል",
+      "qtyEn": "1 hand",
+      "qtyAm": "1 እጅ"
+    },
+    {
+      "aisleKey": "aisleFresh",
+      "en": "Collard greens",
+      "am": "ጎመን",
+      "qtyEn": "1 bunch",
+      "qtyAm": "1 ነዶ"
+    },
+    {
+      "aisleKey": "aisleMeat",
+      "en": "Chicken",
+      "am": "ዶሮ",
+      "qtyEn": "1.5 kg",
+      "qtyAm": "1.5 ኪ.ግ"
+    },
+    {
+      "aisleKey": "aisleMeat",
+      "en": "Niter kibbeh",
+      "am": "ንጥር ቅቤ",
+      "qtyEn": "½ cup",
+      "qtyAm": "½ ኩባያ"
+    },
+    {
+      "aisleKey": "aisleMeat",
+      "en": "Ayib",
+      "am": "አይብ",
+      "qtyEn": "250 g",
+      "qtyAm": "250 ግ"
+    }
+  ],
+  "mealPlan": [
+    {
+      "en": "Mon",
+      "am": "ሰኞ",
+      "dish": "shiro"
+    },
+    {
+      "en": "Tue",
+      "am": "ማክሰኞ",
+      "dish": null
+    },
+    {
+      "en": "Wed",
+      "am": "ረቡዕ",
+      "dish": "misir"
+    },
+    {
+      "en": "Thu",
+      "am": "ሐሙስ",
+      "dish": "gomen"
+    },
+    {
+      "en": "Fri",
+      "am": "ዓርብ",
+      "dish": "beyay"
+    },
+    {
+      "en": "Sat",
+      "am": "ቅዳሜ",
+      "dish": "doro"
+    },
+    {
+      "en": "Sun",
+      "am": "እሁድ",
+      "dish": null
+    }
+  ]
+}

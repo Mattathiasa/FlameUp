@@ -1,0 +1,10 @@
+      <sc-if value="{{ s.empty }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:874px;padding:74px 26px 130px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:fu-in .4s ease both">
+        <div style="width:88px;height:88px;border-radius:28px;display:flex;align-items:center;justify-content:center;background:var(--fld,rgba(255,255,255,.08));border:1px dashed var(--gl,rgba(255,255,255,.24))">
+          <svg width="26" height="32" sc-camel-view-box="0 0 14 17" fill="none"><path d="M2 1.6h10v13.2L7 11.2l-5 3.6V1.6Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" style="color:var(--t3,rgba(255,238,226,.36))"></path></svg>
+        </div>
+        <div style="margin-top:24px;text-align:center;font:700 27px/1.12 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-1px;color:var(--tx,#FFF6EE)">{{ t.empH1 }}</div>
+        <div style="margin-top:12px;text-align:center;font:400 15.5px/1.55 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ t.empSub }}</div>
+        <div sc-camel-on-click="{{ nav.search }}" style="margin-top:26px;padding:0 24px;height:52px;border-radius:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18));font:600 16px -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--acc,#FF6A2B)">{{ t.empCta }}</div>
+      </div>
+      </sc-if>

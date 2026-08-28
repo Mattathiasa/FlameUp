@@ -1,0 +1,47 @@
+      <sc-if value="{{ s.challenges }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:70px 20px 130px;animation:fu-in .4s ease both">
+        <div style="font:700 33px/1.05 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-1.2px;color:var(--tx,#FFF6EE)">{{ t.chH1 }}</div>
+        <div style="margin-top:20px;border-radius:26px;overflow:hidden;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);-webkit-backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18)),var(--sh,0 14px 34px rgba(0,0,0,.45))">
+          <div style="height:170px;position:relative;background:linear-gradient(150deg,#6A4A12,#CBA23F 62%,#4FA766)">
+            <div style="position:absolute;inset:0;background:radial-gradient(120% 80% at 20% 8%,rgba(255,255,255,.28),transparent 58%)"></div>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),transparent 60%)"></div>
+            <div style="position:absolute;left:14px;top:14px;display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;background:rgba(0,0,0,.34);backdrop-filter:blur(10px);border:.5px solid rgba(255,255,255,.22)">
+              <span style="width:6px;height:6px;border-radius:9px;background:#FF3B1F;box-shadow:0 0 8px #FF3B1F"></span>
+              <span style="font:600 9.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.11em;color:#fff">{{ t.chLive }}</span>
+            </div>
+          </div>
+          <div style="padding:17px 17px 19px">
+            <div style="font:700 23px/1.12 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-.8px;color:var(--tx,#FFF6EE)">{{ t.chTitle }}</div>
+            <div style="margin-top:9px;font:400 14.5px/1.5 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ t.chBody }}</div>
+            <div style="margin-top:15px;display:flex;align-items:center;gap:10px">
+              <div style="display:flex">
+                <span style="width:28px;height:28px;border-radius:99px;background:linear-gradient(150deg,#6B4B2A,rgba(0,0,0,.35));border:2px solid var(--scr,#14100E)"></span>
+                <span style="width:28px;height:28px;border-radius:99px;margin-left:-10px;background:linear-gradient(150deg,#1E5A34,rgba(0,0,0,.35));border:2px solid var(--scr,#14100E)"></span>
+                <span style="width:28px;height:28px;border-radius:99px;margin-left:-10px;background:linear-gradient(150deg,#93304A,rgba(0,0,0,.35));border:2px solid var(--scr,#14100E)"></span>
+                <span style="width:28px;height:28px;border-radius:99px;margin-left:-10px;background:linear-gradient(150deg,#8B5E3C,rgba(0,0,0,.35));border:2px solid var(--scr,#14100E)"></span>
+              </div>
+              <span style="font:500 12.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ t.joined }}</span>
+            </div>
+            <div sc-camel-on-click="{{ nav.feed }}" style="margin-top:16px;height:52px;border-radius:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:linear-gradient(160deg,var(--acc,#FF6A2B),#DE3A18);box-shadow:0 12px 28px rgba(255,80,30,.34),inset 0 1px 0 rgba(255,255,255,.42);font:600 16px -apple-system,system-ui,'Noto Sans Ethiopic';color:#fff">{{ t.join }}</div>
+          </div>
+        </div>
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+          <div style="padding:14px 15px;border-radius:20px;display:flex;align-items:center;gap:13px;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+            <div style="width:48px;height:48px;border-radius:14px;flex:none;background:linear-gradient(150deg,#7C3312,#D2762F)"></div>
+            <div style="flex:1">
+              <div style="font:600 9.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.12em;color:var(--t3,rgba(255,238,226,.36))">{{ t.chPast }}</div>
+              <div style="margin-top:6px;font:600 15.5px/1.2 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">Firfir before sunrise</div>
+            </div>
+            <div style="padding:5px 10px;border-radius:8px;background:rgba(240,179,60,.14);border:.5px solid rgba(240,179,60,.3);font:700 11.5px/1 -apple-system,system-ui;color:#F0B33C">#7</div>
+          </div>
+          <div style="padding:14px 15px;border-radius:20px;display:flex;align-items:center;gap:13px;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+            <div style="width:48px;height:48px;border-radius:14px;flex:none;background:linear-gradient(150deg,#3B2416,#8B5E3C)"></div>
+            <div style="flex:1">
+              <div style="font:600 9.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.12em;color:var(--t3,rgba(255,238,226,.36))">{{ t.chPast }}</div>
+              <div style="margin-top:6px;font:600 15.5px/1.2 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">Three rounds of buna</div>
+            </div>
+            <div style="padding:5px 10px;border-radius:8px;background:rgba(46,158,91,.16);border:.5px solid rgba(46,158,91,.34);font:700 11.5px/1 -apple-system,system-ui;color:#2E9E5B">#2</div>
+          </div>
+        </div>
+      </div>
+      </sc-if>

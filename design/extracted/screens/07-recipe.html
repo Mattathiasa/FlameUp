@@ -1,0 +1,104 @@
+      <sc-if value="{{ s.recipe }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:0 0 132px;animation:fu-in .4s ease both">
+        <div style="height:340px;position:relative;background:linear-gradient(160deg,#8E1B0F 0%,#E0522A 58%,#F0B33C 118%)">
+          <div style="position:absolute;inset:0;background:radial-gradient(120% 74% at 22% 8%,rgba(255,255,255,.30),transparent 58%)"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,var(--scr,#14100E) 2%,rgba(0,0,0,.42) 34%,transparent 62%)"></div>
+          <div style="position:absolute;top:60px;left:16px;right:16px;display:flex;justify-content:space-between">
+            <div sc-camel-on-click="{{ nav.search }}" style="width:40px;height:40px;border-radius:99px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,.26);backdrop-filter:blur(16px) saturate(1.8);-webkit-backdrop-filter:blur(16px) saturate(1.8);border:.5px solid rgba(255,255,255,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)">
+              <svg width="9" height="15" sc-camel-view-box="0 0 8 14" fill="none"><path d="M7 1 1 7l6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
+            <div style="display:flex;gap:9px">
+              <div sc-camel-on-click="{{ nav.saved }}" style="width:40px;height:40px;border-radius:99px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,.26);backdrop-filter:blur(16px) saturate(1.8);border:.5px solid rgba(255,255,255,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)">
+                <svg width="14" height="17" sc-camel-view-box="0 0 14 17" fill="none"><path d="M2 1.6h10v13.2L7 11.2l-5 3.6V1.6Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+              </div>
+              <div sc-camel-on-click="{{ nav.shop }}" style="width:40px;height:40px;border-radius:99px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,.26);backdrop-filter:blur(16px) saturate(1.8);border:.5px solid rgba(255,255,255,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.3)">
+                <svg width="16" height="16" sc-camel-view-box="0 0 18 18" fill="none"><path d="M1.5 2h2.2l2 9.4h8.3l1.7-6.6H5.2M7 15.4a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM13 15.4a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </div>
+            </div>
+          </div>
+          <div style="position:absolute;left:20px;right:20px;bottom:18px">
+            <div style="display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(0,0,0,.3);backdrop-filter:blur(10px);border:.5px solid rgba(255,255,255,.22);font:600 9.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85)">Amhara · አማራ</div>
+            <div style="margin-top:9px;font:700 38px/1.02 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-1.5px;color:#fff">{{ recipeTitle }}</div>
+            <div style="margin-top:7px;font:400 14px/1.4 -apple-system,system-ui,'Noto Sans Ethiopic';color:rgba(255,255,255,.72)">{{ recipeSub }}</div>
+          </div>
+        </div>
+
+        <div style="margin:16px 20px 0;display:flex;gap:9px">
+          <div style="flex:1;padding:12px 10px;border-radius:16px;text-align:center;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+            <div style="font:700 17px/1 -apple-system,system-ui;color:var(--tx,#FFF6EE)">2h</div>
+            <div style="margin-top:5px;font:500 10px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.06em;color:var(--t3,rgba(255,238,226,.36))">{{ t.timeLbl }}</div>
+          </div>
+          <div style="flex:1;padding:12px 10px;border-radius:16px;text-align:center;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+            <div style="display:flex;justify-content:center;gap:3px;height:17px;align-items:center">
+              <svg width="11" height="14" sc-camel-view-box="0 0 13 16" fill="none"><path d="M6.5 0C7.9 3 6.6 4.4 5.7 5.5c-.9 1.1-1 2.4-.1 3.2.5.4.4-1 .9-1.9.5.9 1.2 1.3 1.3 2.6.9-.6 1-1.6.9-2.4 1.5 1.1 2.3 2.7 2.3 4.3 0 2.5-2 4.7-4.5 4.7S2 13.8 2 11.3C2 7.7 6.1 6.6 6.5 0Z" fill="#FF6A2B"></path></svg>
+              <svg width="11" height="14" sc-camel-view-box="0 0 13 16" fill="none"><path d="M6.5 0C7.9 3 6.6 4.4 5.7 5.5c-.9 1.1-1 2.4-.1 3.2.5.4.4-1 .9-1.9.5.9 1.2 1.3 1.3 2.6.9-.6 1-1.6.9-2.4 1.5 1.1 2.3 2.7 2.3 4.3 0 2.5-2 4.7-4.5 4.7S2 13.8 2 11.3C2 7.7 6.1 6.6 6.5 0Z" fill="#FF6A2B"></path></svg>
+              <svg width="11" height="14" sc-camel-view-box="0 0 13 16" fill="none"><path d="M6.5 0C7.9 3 6.6 4.4 5.7 5.5c-.9 1.1-1 2.4-.1 3.2.5.4.4-1 .9-1.9.5.9 1.2 1.3 1.3 2.6.9-.6 1-1.6.9-2.4 1.5 1.1 2.3 2.7 2.3 4.3 0 2.5-2 4.7-4.5 4.7S2 13.8 2 11.3C2 7.7 6.1 6.6 6.5 0Z" fill="#FF6A2B"></path></svg>
+            </div>
+            <div style="margin-top:5px;font:500 10px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.06em;color:var(--t3,rgba(255,238,226,.36))">{{ t.heatLbl }}</div>
+          </div>
+          <div style="flex:1;padding:12px 10px;border-radius:16px;text-align:center;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+            <div style="font:700 17px/1 -apple-system,system-ui;color:var(--tx,#FFF6EE)">{{ t.serves }}</div>
+            <div style="margin-top:5px;font:500 10px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.06em;color:var(--t3,rgba(255,238,226,.36))">{{ t.yieldLbl }}</div>
+          </div>
+        </div>
+
+        <div style="margin:18px 20px 0;display:flex;padding:3px;border-radius:14px;background:var(--fld,rgba(255,255,255,.08));border:.5px solid var(--gl,rgba(255,255,255,.14))">
+          <div sc-camel-on-click="{{ setIng }}" style="flex:1;position:relative;padding:9px 0;text-align:center;border-radius:11px;cursor:pointer;font:600 13.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">
+            <sc-if value="{{ rTab.ing }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;inset:0;border-radius:11px;background:var(--g2,rgba(255,255,255,.12));border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:0 2px 8px rgba(0,0,0,.18)"></span></sc-if>
+            <span style="position:relative">{{ t.ingredients }}</span>
+          </div>
+          <div sc-camel-on-click="{{ setSteps }}" style="flex:1;position:relative;padding:9px 0;text-align:center;border-radius:11px;cursor:pointer;font:600 13.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">
+            <sc-if value="{{ rTab.steps }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;border-radius:11px;background:var(--g2,rgba(255,255,255,.12));border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:0 2px 8px rgba(0,0,0,.18)"></span></sc-if>
+            <span style="position:relative">{{ t.steps }}</span>
+          </div>
+          <div sc-camel-on-click="{{ setStory }}" style="flex:1;position:relative;padding:9px 0;text-align:center;border-radius:11px;cursor:pointer;font:600 13.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">
+            <sc-if value="{{ rTab.story }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;border-radius:11px;background:var(--g2,rgba(255,255,255,.12));border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:0 2px 8px rgba(0,0,0,.18)"></span></sc-if>
+            <span style="position:relative">{{ t.story }}</span>
+          </div>
+        </div>
+
+        <sc-if value="{{ rTab.ing }}" hint-placeholder-val="{{ true }}">
+        <div style="margin:14px 20px 0;border-radius:22px;overflow:hidden;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);-webkit-backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18)),var(--sh,0 14px 34px rgba(0,0,0,.45))">
+          <sc-for list="{{ ings }}" as="g" hint-placeholder-count="8">
+            <div sc-camel-on-click="{{ g.pick }}" style="display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;border-bottom:.5px solid var(--hr,rgba(255,255,255,.10))">
+              <div style="width:22px;height:22px;border-radius:99px;flex:none;position:relative;border:1.5px solid var(--t3,rgba(255,238,226,.36));display:flex;align-items:center;justify-content:center">
+                <sc-if value="{{ g.on }}" hint-placeholder-val="{{ false }}">
+                  <span style="position:absolute;inset:-1.5px;border-radius:99px;background:var(--acc,#FF6A2B);display:flex;align-items:center;justify-content:center">
+                    <svg width="11" height="8" sc-camel-view-box="0 0 12 9" fill="none"><path d="M1 4.4 4.3 7.7 11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                  </span>
+                </sc-if>
+              </div>
+              <div style="flex:1;font:500 15.5px/1.25 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">{{ g.name }}</div>
+              <div style="font:500 14px/1.25 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ g.qty }}</div>
+            </div>
+          </sc-for>
+          <div sc-camel-on-click="{{ nav.shop }}" style="padding:14px 16px;display:flex;align-items:center;gap:9px;cursor:pointer">
+            <svg width="15" height="15" sc-camel-view-box="0 0 16 16" fill="none"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="color:var(--acc,#FF6A2B)"></path></svg>
+            <span style="font:600 15px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--acc,#FF6A2B)">{{ t.addAll }}</span>
+          </div>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ rTab.steps }}" hint-placeholder-val="{{ false }}">
+        <div style="margin:14px 20px 0;display:flex;flex-direction:column;gap:9px">
+          <sc-for list="{{ stepList }}" as="p" hint-placeholder-count="4">
+            <div style="display:flex;gap:12px;padding:14px 15px;border-radius:18px;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+              <div style="width:24px;height:24px;border-radius:8px;flex:none;display:flex;align-items:center;justify-content:center;background:var(--g2,rgba(255,255,255,.12));font:700 12px/1 -apple-system,system-ui;color:var(--t2,rgba(255,238,226,.62))">{{ p.n }}</div>
+              <div style="flex:1;font:400 15px/1.45 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">{{ p.text }}</div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ rTab.story }}" hint-placeholder-val="{{ false }}">
+        <div style="margin:14px 20px 0;padding:20px 18px;border-radius:22px;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18)),var(--sh,0 14px 34px rgba(0,0,0,.45))">
+          <div style="font:400 16px/1.62 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">{{ t.storyBody }}</div>
+          <div sc-camel-on-click="{{ nav.grandma }}" style="margin-top:16px;display:flex;align-items:center;gap:10px;padding-top:15px;border-top:.5px solid var(--hr,rgba(255,255,255,.10));cursor:pointer">
+            <div style="width:34px;height:34px;border-radius:99px;flex:none;background:linear-gradient(150deg,#6B4B2A,#C79A5E)"></div>
+            <div style="flex:1;font:500 13.5px/1.35 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ t.taughtBy }}</div>
+            <svg width="7" height="12" sc-camel-view-box="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--t3,rgba(255,238,226,.36))"></path></svg>
+          </div>
+        </div>
+        </sc-if>
+      </div>
+      </sc-if>

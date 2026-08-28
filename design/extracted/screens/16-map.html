@@ -1,0 +1,28 @@
+      <sc-if value="{{ s.map }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:70px 0 130px;animation:fu-in .4s ease both">
+        <div style="padding:0 20px">
+          <div style="font:700 33px/1.05 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-1.2px;color:var(--tx,#FFF6EE)">{{ t.mapH1 }}</div>
+          <div style="margin-top:10px;font:400 15px/1.5 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ t.mapSub }}</div>
+        </div>
+        <div style="margin:20px 20px 0;height:176px;border-radius:24px;position:relative;overflow:hidden;background:var(--fld,rgba(255,255,255,.08));border:1px dashed var(--gl,rgba(255,255,255,.24));display:flex;align-items:center;justify-content:center">
+          <div style="position:absolute;inset:0;background:radial-gradient(90% 70% at 50% 40%,rgba(46,158,91,.14),transparent 70%)"></div>
+          <div style="position:relative;text-align:center">
+            <svg width="30" height="30" sc-camel-view-box="0 0 24 24" fill="none" style="opacity:.5"><path d="M9 3 3 5.4v15.2L9 18l6 2.6 6-2.4V3l-6 2.4L9 3ZM9 3v15M15 5.4v15.2" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" style="color:var(--t3,rgba(255,238,226,.36))"></path></svg>
+            <div style="margin-top:9px;font:600 10px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.13em;color:var(--t3,rgba(255,238,226,.36))">{{ t.mapPh }}</div>
+          </div>
+        </div>
+        <div style="margin:14px 20px 0;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <sc-for list="{{ regs }}" as="r" hint-placeholder-count="8">
+            <div sc-camel-on-click="{{ r.go }}" style="height:110px;border-radius:20px;position:relative;overflow:hidden;cursor:pointer;background:{{ r.tile }};border:.5px solid var(--gl,rgba(255,255,255,.14))">
+              <div style="position:absolute;inset:0;background:radial-gradient(120% 80% at 22% 8%,rgba(255,255,255,.26),transparent 58%)"></div>
+              <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent 60%)"></div>
+              <sc-if value="{{ r.dim }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;background:rgba(10,8,7,.62);backdrop-filter:saturate(.3)"></span></sc-if>
+              <div style="position:absolute;left:13px;bottom:12px;right:13px">
+                <div style="font:700 18px/1.05 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-.5px;color:#fff">{{ r.name }}</div>
+                <div style="margin-top:4px;font:500 11px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:rgba(255,255,255,.68)">{{ r.pct }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>

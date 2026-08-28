@@ -1,0 +1,37 @@
+      <sc-if value="{{ s.upload }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:70px 20px 130px;animation:fu-in .4s ease both">
+        <div style="font:700 31px/1.06 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-1.1px;color:var(--tx,#FFF6EE)">{{ t.uploadH1 }}</div>
+        <div style="margin-top:10px;font:400 15px/1.5 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ t.uploadSub }}</div>
+
+        <div style="margin-top:20px;height:150px;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer;background:var(--fld,rgba(255,255,255,.08));border:1px dashed var(--gl,rgba(255,255,255,.24))">
+          <svg width="26" height="23" sc-camel-view-box="0 0 20 18" fill="none"><path d="M2.6 5.2h3l1.3-2.4h6.2l1.3 2.4h3v10H2.6v-10Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" style="color:var(--t3,rgba(255,238,226,.36))"></path><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.4" style="color:var(--t3,rgba(255,238,226,.36))"></circle></svg>
+          <span style="font:500 13px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t3,rgba(255,238,226,.36))">{{ t.fPhoto }}</span>
+        </div>
+
+        <div style="margin-top:14px;display:flex;flex-direction:column;gap:10px">
+          <div style="padding:13px 15px;border-radius:16px;background:var(--fld,rgba(255,255,255,.08));border:.5px solid var(--gl,rgba(255,255,255,.14))">
+            <div style="font:600 10px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.11em;text-transform:uppercase;color:var(--t3,rgba(255,238,226,.36))">{{ t.fName }}</div>
+            <div style="margin-top:8px;font:400 16.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">Dulet</div>
+          </div>
+          <div style="padding:13px 15px;border-radius:16px;background:var(--fld,rgba(255,255,255,.08));border:.5px solid var(--gl,rgba(255,255,255,.14))">
+            <div style="font:600 10px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.11em;text-transform:uppercase;color:var(--t3,rgba(255,238,226,.36))">{{ t.fNameAm }}</div>
+            <div style="margin-top:8px;font:400 16.5px/1 'Noto Sans Ethiopic',system-ui;color:var(--tx,#FFF6EE)">ዱለት</div>
+          </div>
+          <div style="padding:13px 15px;border-radius:16px;background:var(--fld,rgba(255,255,255,.08));border:.5px solid var(--gl,rgba(255,255,255,.14))">
+            <div style="font:600 10px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.11em;text-transform:uppercase;color:var(--t3,rgba(255,238,226,.36))">{{ t.fWho }}</div>
+            <div style="margin-top:8px;font:400 16.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t3,rgba(255,238,226,.36))">{{ t.fWhoP }}</div>
+          </div>
+          <div style="padding:13px 15px 15px;border-radius:16px;background:var(--fld,rgba(255,255,255,.08));border:.5px solid var(--gl,rgba(255,255,255,.14))">
+            <div style="font:600 10px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.11em;text-transform:uppercase;color:var(--t3,rgba(255,238,226,.36))">{{ t.fSteps }}</div>
+            <div style="margin-top:9px;font:400 15.5px/1.5 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t3,rgba(255,238,226,.36))">{{ t.fStepsP }}</div>
+            <div style="margin-top:13px;display:flex;align-items:center;gap:8px">
+              <svg width="14" height="14" sc-camel-view-box="0 0 16 16" fill="none"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="color:var(--acc,#FF6A2B)"></path></svg>
+              <span style="font:600 14.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--acc,#FF6A2B)">{{ t.addStep }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div sc-camel-on-click="{{ nav.feed }}" style="margin-top:18px;height:56px;border-radius:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:linear-gradient(160deg,var(--acc,#FF6A2B),#DE3A18);box-shadow:0 12px 30px rgba(255,80,30,.36),inset 0 1px 0 rgba(255,255,255,.42);font:600 17px -apple-system,system-ui,'Noto Sans Ethiopic';color:#fff">{{ t.uploadCta }}</div>
+        <div style="margin-top:12px;text-align:center;font:400 12.5px/1.5 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t3,rgba(255,238,226,.36))">{{ t.uploadNote }}</div>
+      </div>
+      </sc-if>

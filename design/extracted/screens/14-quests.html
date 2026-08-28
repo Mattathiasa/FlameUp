@@ -1,0 +1,22 @@
+      <sc-if value="{{ s.quests }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:70px 20px 130px;animation:fu-in .4s ease both">
+        <div style="font:700 31px/1.08 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-1.1px;color:var(--tx,#FFF6EE)">{{ t.questsH1 }}</div>
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:11px">
+          <sc-for list="{{ quests }}" as="q" hint-placeholder-count="4">
+            <div style="padding:17px 16px;border-radius:22px;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);-webkit-backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18)),var(--sh,0 14px 34px rgba(0,0,0,.45))">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+                <div style="font:600 9.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.13em;color:{{ q.col }}">{{ q.group }}</div>
+                <sc-if value="{{ xp }}" hint-placeholder-val="{{ true }}">
+                  <div style="padding:4px 8px;border-radius:7px;background:rgba(240,179,60,.14);border:.5px solid rgba(240,179,60,.3);font:700 10.5px/1 -apple-system,system-ui;color:#F0B33C">{{ q.xpv }}</div>
+                </sc-if>
+              </div>
+              <div style="margin-top:9px;font:600 17.5px/1.2 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-.45px;color:var(--tx,#FFF6EE)">{{ q.name }}</div>
+              <div style="margin-top:13px;display:flex;align-items:center;gap:11px">
+                <div style="flex:1;height:6px;border-radius:9px;overflow:hidden;background:var(--hr,rgba(255,255,255,.10))"><div style="{{ q.bar }}"></div></div>
+                <div style="font:700 12.5px/1 -apple-system,system-ui;font-variant-numeric:tabular-nums;color:var(--t2,rgba(255,238,226,.62))">{{ q.count }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>

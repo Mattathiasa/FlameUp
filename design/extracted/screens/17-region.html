@@ -1,0 +1,32 @@
+      <sc-if value="{{ s.region }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:0 0 130px;animation:fu-in .4s ease both">
+        <div style="height:300px;position:relative;background:linear-gradient(160deg,#1E5A34 0%,#4FA766 56%,#F0B33C 116%)">
+          <div style="position:absolute;inset:0;background:radial-gradient(120% 74% at 22% 8%,rgba(255,255,255,.28),transparent 58%)"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,var(--scr,#14100E) 2%,rgba(0,0,0,.4) 36%,transparent 64%)"></div>
+          <div sc-camel-on-click="{{ nav.map }}" style="position:absolute;top:60px;left:16px;width:40px;height:40px;border-radius:99px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(0,0,0,.26);backdrop-filter:blur(16px) saturate(1.8);-webkit-backdrop-filter:blur(16px) saturate(1.8);border:.5px solid rgba(255,255,255,.24)">
+            <svg width="9" height="15" sc-camel-view-box="0 0 8 14" fill="none"><path d="M7 1 1 7l6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          </div>
+          <div style="position:absolute;left:20px;right:20px;bottom:16px">
+            <div style="font:600 9.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.13em;color:rgba(255,255,255,.7)">{{ t.regionEyebrow }}</div>
+            <div style="margin-top:8px;font:700 42px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-1.8px;color:#fff">{{ t.regionTitle }}</div>
+          </div>
+        </div>
+        <div style="margin:16px 20px 0;padding:19px 18px;border-radius:22px;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);-webkit-backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18)),var(--sh,0 14px 34px rgba(0,0,0,.45));font:400 15.5px/1.6 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">{{ t.regionBody }}</div>
+        <div style="margin:22px 20px 12px;font:700 20px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-.6px;color:var(--tx,#FFF6EE)">{{ t.dishesFrom }}</div>
+        <div style="margin:0 20px;display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ regionDishes }}" as="d" hint-placeholder-count="3">
+            <div sc-camel-on-click="{{ d.go }}" style="display:flex;align-items:center;gap:13px;padding:12px;border-radius:20px;cursor:pointer;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+              <div style="width:58px;height:58px;border-radius:15px;flex:none;position:relative;overflow:hidden;background:{{ d.tile }}">
+                <div style="position:absolute;inset:0;background:radial-gradient(120% 80% at 24% 12%,rgba(255,255,255,.3),transparent 58%)"></div>
+              </div>
+              <div style="flex:1;min-width:0">
+                <div style="font:600 16.5px/1.15 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-.4px;color:var(--tx,#FFF6EE)">{{ d.title }}</div>
+                <div style="margin-top:5px;font:400 12.5px/1.35 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62));white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ d.sub }}</div>
+              </div>
+              <svg width="7" height="12" sc-camel-view-box="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--t3,rgba(255,238,226,.36))"></path></svg>
+            </div>
+          </sc-for>
+        </div>
+        <div sc-camel-on-click="{{ nav.recipe }}" style="margin:18px 20px 0;height:54px;border-radius:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:linear-gradient(160deg,var(--acc,#FF6A2B),#DE3A18);box-shadow:0 12px 30px rgba(255,80,30,.34),inset 0 1px 0 rgba(255,255,255,.42);font:600 16.5px -apple-system,system-ui,'Noto Sans Ethiopic';color:#fff">{{ t.cookOne }}</div>
+      </div>
+      </sc-if>

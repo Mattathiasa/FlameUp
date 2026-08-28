@@ -1,0 +1,26 @@
+      <sc-if value="{{ s.grandma }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:70px 20px 130px;animation:fu-in .4s ease both">
+        <div style="font:700 31px/1.06 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-1.1px;color:var(--tx,#FFF6EE)">{{ t.grandmaH1 }}</div>
+        <div style="margin-top:10px;font:400 15px/1.5 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ t.grandmaSub }}</div>
+        <div style="margin-top:22px;display:flex;flex-direction:column;gap:13px">
+          <sc-for list="{{ elders }}" as="e" hint-placeholder-count="4">
+            <div style="border-radius:24px;overflow:hidden;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);-webkit-backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18)),var(--sh,0 14px 34px rgba(0,0,0,.45))">
+              <div style="height:150px;position:relative;background:{{ e.tile }}">
+                <div style="position:absolute;inset:0;background:radial-gradient(120% 80% at 22% 10%,rgba(255,255,255,.26),transparent 58%)"></div>
+                <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),transparent 58%)"></div>
+                <div style="position:absolute;left:12px;top:12px;padding:4px 8px;border-radius:7px;background:rgba(0,0,0,.32);backdrop-filter:blur(8px);font:600 8px/1 -apple-system,system-ui;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8)">video</div>
+                <div style="position:absolute;right:12px;bottom:12px;padding:5px 9px;border-radius:8px;background:rgba(0,0,0,.36);backdrop-filter:blur(8px);font:600 11px/1 -apple-system,system-ui;color:#fff">{{ e.len }}</div>
+                <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:99px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.2);backdrop-filter:blur(14px) saturate(1.8);border:.5px solid rgba(255,255,255,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.5)">
+                  <svg width="15" height="17" sc-camel-view-box="0 0 13 15" fill="none" style="margin-left:3px"><path d="M2 1.6v11.8L12 7.5 2 1.6Z" fill="#fff"></path></svg>
+                </div>
+              </div>
+              <div style="padding:14px 15px 16px">
+                <div style="font:600 17px/1.15 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-.4px;color:var(--tx,#FFF6EE)">{{ e.name }}</div>
+                <div style="margin-top:5px;font:400 13.5px/1.4 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ e.what }}</div>
+                <div style="margin-top:9px;font:500 11.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.06em;color:var(--t3,rgba(255,238,226,.36))">{{ e.place }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>

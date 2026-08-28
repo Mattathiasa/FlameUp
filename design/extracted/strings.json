@@ -1,0 +1,826 @@
+{
+  "tagline": {
+    "en": "Cook your way through Ethiopia.",
+    "am": "ኢትዮጵያን በማብሰል ይቅመሱ።"
+  },
+  "warming": {
+    "en": "WARMING THE PAN",
+    "am": "ድስቱ እየሞቀ ነው"
+  },
+  "welcomeH1": {
+    "en": "Every dish is a place you’ve been.",
+    "am": "እያንዳንዱ ምግብ የሄዱበት ቦታ ነው።"
+  },
+  "welcomeSub": {
+    "en": "Learn the wat, the ferment, the ceremony — one flame at a time, from the people who cook it at home.",
+    "am": "ወጡን፣ ማሸቱን፣ ሥነ ሥርዓቱን ይማሩ — በቤት ውስጥ ከሚያበስሉት ሰዎች፣ በአንድ ነበልባል ጊዜ።"
+  },
+  "getStarted": {
+    "en": "Light the first flame",
+    "am": "የመጀመሪያውን እሳት አብሩ"
+  },
+  "haveAccount": {
+    "en": "I already have an account",
+    "am": "አካውንት አለኝ"
+  },
+  "skillH1": {
+    "en": "How well do you know the kitchen?",
+    "am": "ኩሽናውን ምን ያህል ያውቁታል?"
+  },
+  "skillSub": {
+    "en": "We’ll set the pace of your first ten dishes.",
+    "am": "የመጀመሪያዎቹን አሥር ምግቦች ፍጥነት እናስተካክላለን።"
+  },
+  "tasteH1": {
+    "en": "How much heat can you take?",
+    "am": "ምን ያህል ቅመም ይችላሉ?"
+  },
+  "tasteSub": {
+    "en": "Berbere is a spectrum, not a switch.",
+    "am": "በርበሬ ደረጃ አለው እንጂ አንድ ዓይነት አይደለም።"
+  },
+  "heatLevel": {
+    "en": "HEAT TOLERANCE",
+    "am": "የቅመም መጠን"
+  },
+  "dietary": {
+    "en": "ANYTHING WE SHOULD KNOW?",
+    "am": "ማወቅ ያለብን ነገር አለ?"
+  },
+  "skip": {
+    "en": "Skip",
+    "am": "ዝለል"
+  },
+  "back": {
+    "en": "Back",
+    "am": "ተመለስ"
+  },
+  "continue": {
+    "en": "Continue",
+    "am": "ቀጥል"
+  },
+  "startCooking": {
+    "en": "Start cooking",
+    "am": "ማብሰል ጀምር"
+  },
+  "greeting": {
+    "en": "Selam, good evening",
+    "am": "ሰላም፣ እንደምን አመሸህ"
+  },
+  "userName": {
+    "en": "Liya",
+    "am": "ልያ"
+  },
+  "pickUp": {
+    "en": "PICK UP WHERE YOU LEFT",
+    "am": "ካቆሙበት ይቀጥሉ"
+  },
+  "doroWat": {
+    "en": "Doro Wat · step 3 of 9",
+    "am": "ዶሮ ወጥ · ደረጃ 3 ከ9"
+  },
+  "questTitle": {
+    "en": "Today’s quest: cook one fasting dish",
+    "am": "የዛሬ ተልእኮ፡ አንድ የጾም ምግብ ያብስሉ"
+  },
+  "questSub": {
+    "en": "2 of 3 done this week",
+    "am": "በዚህ ሳምንት 2 ከ3 ተጠናቋል"
+  },
+  "cookTonight": {
+    "en": "Cook tonight",
+    "am": "ዛሬ ማታ ያብስሉ"
+  },
+  "seeAll": {
+    "en": "See all",
+    "am": "ሁሉንም ይመልከቱ"
+  },
+  "fromRegion": {
+    "en": "Where it comes from",
+    "am": "ከየት እንደመጣ"
+  },
+  "thisWeek": {
+    "en": "THIS WEEK’S REGION",
+    "am": "የዚህ ሳምንት ክልል"
+  },
+  "gurageTitle": {
+    "en": "Gurage — kitfo, kocho, and the long grind",
+    "am": "ጉራጌ — ክትፎ፣ ቆጮ፣ እና ረጅሙ ውቅጣ"
+  },
+  "tabToday": {
+    "en": "Today",
+    "am": "ዛሬ"
+  },
+  "tabExplore": {
+    "en": "Explore",
+    "am": "አስስ"
+  },
+  "tabCook": {
+    "en": "Cook",
+    "am": "አብስል"
+  },
+  "tabComm": {
+    "en": "Community",
+    "am": "ማህበረሰብ"
+  },
+  "tabYou": {
+    "en": "You",
+    "am": "መገለጫ"
+  },
+  "beginner": {
+    "en": "Beginner",
+    "am": "ጀማሪ"
+  },
+  "inter": {
+    "en": "Getting there",
+    "am": "መካከለኛ"
+  },
+  "adv": {
+    "en": "I grew up on this",
+    "am": "ያደግኩበት ነው"
+  },
+  "beginnerS": {
+    "en": "I can boil water and follow instructions.",
+    "am": "ውሃ አፍልቼ መመሪያ መከተል እችላለሁ።"
+  },
+  "interS": {
+    "en": "I’ve made shiro and it went fine.",
+    "am": "ሽሮ ሠርቻለሁ፤ ጥሩ ሆኖ ነበር።"
+  },
+  "advS": {
+    "en": "Teach me the fifty-year techniques.",
+    "am": "የሃምሳ ዓመቱን ዘዴ አስተምሩኝ።"
+  },
+  "h1": {
+    "en": "Mild",
+    "am": "ለስላሳ"
+  },
+  "h2": {
+    "en": "Warm",
+    "am": "ሞቅ ያለ"
+  },
+  "h3": {
+    "en": "Medium",
+    "am": "መካከለኛ"
+  },
+  "h4": {
+    "en": "Hot",
+    "am": "ቃጠሎ"
+  },
+  "h5": {
+    "en": "Mitmita",
+    "am": "ሚጥሚጣ"
+  },
+  "dFast": {
+    "en": "Fasting / vegan",
+    "am": "ጾም / ቪጋን"
+  },
+  "dGluten": {
+    "en": "No gluten",
+    "am": "ግሉተን የለም"
+  },
+  "dDairy": {
+    "en": "No dairy",
+    "am": "ወተት የለም"
+  },
+  "dMeat": {
+    "en": "Meat lover",
+    "am": "ሥጋ ወዳጅ"
+  },
+  "dRaw": {
+    "en": "Raw dishes ok",
+    "am": "ጥሬ ምግብ ችግር የለም"
+  },
+  "dQuick": {
+    "en": "Under 30 min",
+    "am": "ከ30 ደቂቃ በታች"
+  },
+  "searchPh": {
+    "en": "Search dishes, regions, spices",
+    "am": "ምግቦችን፣ ክልሎችን፣ ቅመሞችን ይፈልጉ"
+  },
+  "fAll": {
+    "en": "All",
+    "am": "ሁሉም"
+  },
+  "fFast": {
+    "en": "Fasting",
+    "am": "ጾም"
+  },
+  "fQuick": {
+    "en": "Under 30m",
+    "am": "ከ30ደቂቃ በታች"
+  },
+  "fTigray": {
+    "en": "Tigray",
+    "am": "ትግራይ"
+  },
+  "fHot": {
+    "en": "Mitmita hot",
+    "am": "ሚጥሚጣ"
+  },
+  "fNew": {
+    "en": "New to me",
+    "am": "አዲስ ለእኔ"
+  },
+  "results": {
+    "en": "24 dishes",
+    "am": "24 ምግቦች"
+  },
+  "ingredients": {
+    "en": "Ingredients",
+    "am": "ግብዓቶች"
+  },
+  "steps": {
+    "en": "Steps",
+    "am": "ደረጃዎች"
+  },
+  "story": {
+    "en": "Story",
+    "am": "ታሪክ"
+  },
+  "addAll": {
+    "en": "Add all to list",
+    "am": "ሁሉንም ወደ ዝርዝር"
+  },
+  "serves": {
+    "en": "Serves 6",
+    "am": "ለ6 ሰው"
+  },
+  "storyBody": {
+    "en": "Doro wat is what you make when someone is worth a whole day. Four onions, cooked dry until they give up their water — that is the whole secret, and it cannot be hurried. In much of Ethiopia it is the dish that ends a fast, carried to the table whole, the eggs scored so the sauce gets inside.",
+    "am": "ዶሮ ወጥ የሚሠራው አንድ ሰው ሙሉ ቀን የሚያስወጣ ሲሆን ነው። አራት ሽንኩርት፣ ውሃቸውን እስኪለቁ ድረስ በደረቁ ይበስላሉ — ሚስጥሩ ይህ ብቻ ነው፣ ማፋጠንም አይቻልም። በአብዛኛው ኢትዮጵያ ጾም የሚፈታበት ምግብ ነው፤ እንቁላሎቹ ወጡ እንዲገባባቸው ተተልትለው ይቀርባሉ።"
+  },
+  "stepOf": {
+    "en": "Step",
+    "am": "ደረጃ"
+  },
+  "of": {
+    "en": "of",
+    "am": "ከ"
+  },
+  "pause": {
+    "en": "Pause",
+    "am": "አቁም"
+  },
+  "resume": {
+    "en": "Resume",
+    "am": "ቀጥል"
+  },
+  "nextStep": {
+    "en": "Next step",
+    "am": "ቀጣይ ደረጃ"
+  },
+  "finish": {
+    "en": "Finish dish",
+    "am": "ምግቡን ጨርስ"
+  },
+  "timerLabel": {
+    "en": "ONIONS, DRY-COOKING",
+    "am": "ሽንኩርት፣ በደረቁ እየበሰለ"
+  },
+  "doneH1": {
+    "en": "Doro Wat, done.",
+    "am": "ዶሮ ወጥ፣ ተጠናቀቀ።"
+  },
+  "doneSub": {
+    "en": "Four hours of onion patience. That is the hard one out of the way.",
+    "am": "አራት ሰዓት የሽንኩርት ትዕግሥት። ከባዱ አልፏል።"
+  },
+  "levelNow": {
+    "en": "Level 12 · Wot Wanderer",
+    "am": "ደረጃ 12 · የወጥ መንገደኛ"
+  },
+  "toNext": {
+    "en": "520 XP to Level 13",
+    "am": "520 XP ወደ ደረጃ 13"
+  },
+  "unlocked": {
+    "en": "NEW BADGE",
+    "am": "አዲስ ባጅ"
+  },
+  "badgeName": {
+    "en": "Onion Patience",
+    "am": "የሽንኩርት ትዕግሥት"
+  },
+  "badgeSub": {
+    "en": "Dry-cooked onions for a full 15 minutes without cheating.",
+    "am": "ሽንኩርትን ሙሉ 15 ደቂቃ በደረቁ አበሰሉ።"
+  },
+  "rateIt": {
+    "en": "Rate it",
+    "am": "ደረጃ ስጥ"
+  },
+  "share": {
+    "en": "Share",
+    "am": "አጋራ"
+  },
+  "rateH1": {
+    "en": "How did it turn out?",
+    "am": "እንዴት ሆነ?"
+  },
+  "rateSub": {
+    "en": "Only you and your friends see this.",
+    "am": "እርስዎና ጓደኞችዎ ብቻ ያዩታል።"
+  },
+  "noteP": {
+    "en": "What would you do differently next time?",
+    "am": "በሚቀጥለው ጊዜ ምን ይለውጣሉ?"
+  },
+  "addPhoto": {
+    "en": "Add a photo",
+    "am": "ፎቶ ጨምር"
+  },
+  "postToComm": {
+    "en": "Post to community",
+    "am": "ወደ ማህበረሰብ ለጥፍ"
+  },
+  "submit": {
+    "en": "Save and finish",
+    "am": "አስቀምጥና ጨርስ"
+  },
+  "timeLbl": {
+    "en": "TOTAL TIME",
+    "am": "ጠቅላላ ጊዜ"
+  },
+  "heatLbl": {
+    "en": "HEAT",
+    "am": "ቅመም"
+  },
+  "yieldLbl": {
+    "en": "YIELD",
+    "am": "ብዛት"
+  },
+  "taughtBy": {
+    "en": "Taught by Emahoy Tsehay, 74, Gondar",
+    "am": "ያስተማሩት እማሆይ ጸሐይ፣ 74፣ ጎንደር"
+  },
+  "tipDry": {
+    "en": "No oil until the onions give up",
+    "am": "ሽንኩርቱ ውሃውን እስኪለቅ ዘይት የለም"
+  },
+  "r1": {
+    "en": "Rough",
+    "am": "ደካማ"
+  },
+  "r2": {
+    "en": "Edible",
+    "am": "የሚበላ"
+  },
+  "r3": {
+    "en": "Solid",
+    "am": "ጥሩ"
+  },
+  "r4": {
+    "en": "Proud of it",
+    "am": "ኮራሁበት"
+  },
+  "r5": {
+    "en": "Grandma would nod",
+    "am": "አያት ትስማማለች"
+  },
+  "lvlName": {
+    "en": "Wot Wanderer",
+    "am": "የወጥ መንገደኛ"
+  },
+  "lvlNo": {
+    "en": "LEVEL 12",
+    "am": "ደረጃ 12"
+  },
+  "xpOf": {
+    "en": "2,480 / 3,000 XP",
+    "am": "2,480 / 3,000 XP"
+  },
+  "stDishes": {
+    "en": "Dishes cooked",
+    "am": "የበሰሉ ምግቦች"
+  },
+  "stStreak": {
+    "en": "Day streak",
+    "am": "ተከታታይ ቀናት"
+  },
+  "stRegions": {
+    "en": "Regions tasted",
+    "am": "የተቀመሱ ክልሎች"
+  },
+  "masteryH": {
+    "en": "Mastery",
+    "am": "ብቃት"
+  },
+  "viewAll": {
+    "en": "View all",
+    "am": "ሁሉንም ይመልከቱ"
+  },
+  "thisWeekH": {
+    "en": "This week",
+    "am": "በዚህ ሳምንት"
+  },
+  "masteryH1": {
+    "en": "What your hands know",
+    "am": "እጆችዎ የሚያውቁት"
+  },
+  "masterySub": {
+    "en": "Mastery climbs when you repeat a technique, not when you finish a recipe.",
+    "am": "ብቃት የሚያድገው አንድን ዘዴ ሲደጋግሙ ነው እንጂ አዘገጃጀት ሲጨርሱ አይደለም።"
+  },
+  "tier": {
+    "en": "Tier",
+    "am": "ደረጃ"
+  },
+  "achvH1": {
+    "en": "Achievements",
+    "am": "ስኬቶች"
+  },
+  "achvSub": {
+    "en": "14 of 42 earned",
+    "am": "42 ውስጥ 14 ተገኝቷል"
+  },
+  "locked": {
+    "en": "Locked",
+    "am": "ተቆልፏል"
+  },
+  "questsH1": {
+    "en": "Quests",
+    "am": "ተልእኮዎች"
+  },
+  "qDaily": {
+    "en": "TODAY",
+    "am": "ዛሬ"
+  },
+  "qWeekly": {
+    "en": "THIS WEEK",
+    "am": "በዚህ ሳምንት"
+  },
+  "qSeason": {
+    "en": "FASTING SEASON",
+    "am": "የጾም ወቅት"
+  },
+  "streakH1": {
+    "en": "12 days on the fire",
+    "am": "12 ቀናት በእሳት ላይ"
+  },
+  "streakSub": {
+    "en": "Best run: 21 days, last Lent.",
+    "am": "ምርጥ ሩጫ፡ 21 ቀናት፣ ባለፈው ጾም።"
+  },
+  "freeze": {
+    "en": "2 freeze days left",
+    "am": "2 የእረፍት ቀናት ቀርተዋል"
+  },
+  "freezeSub": {
+    "en": "Miss a day without losing the flame.",
+    "am": "ነበልባሉን ሳያጡ አንድ ቀን ማሳለፍ ይችላሉ።"
+  },
+  "mapH1": {
+    "en": "Taste Ethiopia",
+    "am": "ኢትዮጵያን ቅመሱ"
+  },
+  "mapSub": {
+    "en": "Nine regions, nine ways to cook the same grain.",
+    "am": "ዘጠኝ ክልሎች፣ አንዱን እህል የማብሰያ ዘጠኝ መንገዶች።"
+  },
+  "mapPh": {
+    "en": "MAP · REGION SHAPES",
+    "am": "ካርታ · የክልል ቅርጾች"
+  },
+  "explored": {
+    "en": "explored",
+    "am": "ተዳሷል"
+  },
+  "regionEyebrow": {
+    "en": "REGION 04 OF 09",
+    "am": "ክልል 04 ከ09"
+  },
+  "regionTitle": {
+    "en": "Gurage",
+    "am": "ጉራጌ"
+  },
+  "regionBody": {
+    "en": "Gurage cooking is built on the enset plant — false banana — scraped, buried, and fermented for months before it becomes kocho. Nothing here is fast. Kitfo is the exception that proves it: raw, warm with mitmita, eaten the day the cow is slaughtered.",
+    "am": "የጉራጌ ምግብ በእንሰት ላይ የተመሠረተ ነው — ተፍቆ፣ ተቀብሮ፣ ለወራት ካሸተ በኋላ ቆጮ ይሆናል። እዚህ ምንም ነገር አይቻኮልም። ክትፎ ግን ልዩ ነው፡ ጥሬ፣ በሚጥሚጣ ሞቅ ያለ፣ ላም በታረደችበት ቀን የሚበላ።"
+  },
+  "dishesFrom": {
+    "en": "Dishes from here",
+    "am": "ከዚህ የመጡ ምግቦች"
+  },
+  "cookOne": {
+    "en": "Cook a Gurage dish",
+    "am": "የጉራጌ ምግብ ያብስሉ"
+  },
+  "grandmaH1": {
+    "en": "Grandma’s Kitchen",
+    "am": "የአያት ኩሽና"
+  },
+  "grandmaSub": {
+    "en": "Recorded in home kitchens, unedited, with the pauses left in.",
+    "am": "በቤት ኩሽናዎች የተቀረጸ፣ ያልተስተካከለ፣ ዝምታውም እንዳለ።"
+  },
+  "watch": {
+    "en": "Watch",
+    "am": "ይመልከቱ"
+  },
+  "uploadH1": {
+    "en": "Add your family’s recipe",
+    "am": "የቤተሰብዎን አዘገጃጀት ያክሉ"
+  },
+  "uploadSub": {
+    "en": "Someone taught you. Write it down before it goes.",
+    "am": "አንድ ሰው አስተምሮዎታል። ከመጥፋቱ በፊት ይጻፉት።"
+  },
+  "fName": {
+    "en": "Dish name",
+    "am": "የምግቡ ስም"
+  },
+  "fNameAm": {
+    "en": "Name in Amharic",
+    "am": "ስሙ በአማርኛ"
+  },
+  "fWho": {
+    "en": "Who taught you?",
+    "am": "ማን አስተማረዎት?"
+  },
+  "fWhoP": {
+    "en": "Grandmother, Mekelle",
+    "am": "አያት፣ መቀሌ"
+  },
+  "fSteps": {
+    "en": "Steps",
+    "am": "ደረጃዎች"
+  },
+  "fStepsP": {
+    "en": "Write it the way they said it.",
+    "am": "እንደተናገሩት ይጻፉት።"
+  },
+  "addStep": {
+    "en": "Add a step",
+    "am": "ደረጃ ጨምር"
+  },
+  "fPhoto": {
+    "en": "Photo of the dish",
+    "am": "የምግቡ ፎቶ"
+  },
+  "uploadCta": {
+    "en": "Send to the kitchen",
+    "am": "ወደ ኩሽናው ላክ"
+  },
+  "uploadNote": {
+    "en": "Reviewed by two cooks from that region before it goes live.",
+    "am": "ከዚያ ክልል በሁለት ምግብ አብሳዮች ተገምግሞ ይለቀቃል።"
+  },
+  "feedH1": {
+    "en": "Community",
+    "am": "ማህበረሰብ"
+  },
+  "feedSub": {
+    "en": "Sixty-one people cooked tonight.",
+    "am": "ስድሳ አንድ ሰዎች ዛሬ ማታ አብስለዋል።"
+  },
+  "friendsH1": {
+    "en": "Friends",
+    "am": "ጓደኞች"
+  },
+  "invite": {
+    "en": "Invite someone to cook with you",
+    "am": "አብሮዎት እንዲያበስል ይጋብዙ"
+  },
+  "inviteSub": {
+    "en": "Streaks last longer in pairs.",
+    "am": "ተከታታይ ቀናት በጥንድ ይረዝማሉ።"
+  },
+  "add": {
+    "en": "Add",
+    "am": "ጨምር"
+  },
+  "following": {
+    "en": "Following",
+    "am": "ተከታታይ"
+  },
+  "chH1": {
+    "en": "Challenges",
+    "am": "ውድድሮች"
+  },
+  "chLive": {
+    "en": "LIVE · ENDS IN 2 DAYS",
+    "am": "በቀጥታ · በ2 ቀን ያበቃል"
+  },
+  "chTitle": {
+    "en": "Cook the whole fasting plate",
+    "am": "ሙሉውን የጾም ማዕድ ያብስሉ"
+  },
+  "chBody": {
+    "en": "Seven dishes, one injera, photographed together. Judged by three cooks from Addis.",
+    "am": "ሰባት ምግቦች፣ አንድ እንጀራ፣ አብረው ተነስተው። በሦስት የአዲስ አበባ ምግብ አብሳዮች ይገመገማል።"
+  },
+  "join": {
+    "en": "Join the challenge",
+    "am": "ውድድሩን ይቀላቀሉ"
+  },
+  "joined": {
+    "en": "312 joined",
+    "am": "312 ተቀላቅለዋል"
+  },
+  "chPast": {
+    "en": "FINISHED",
+    "am": "ተጠናቋል"
+  },
+  "lbH1": {
+    "en": "Leaderboard",
+    "am": "የደረጃ ሰንጠረዥ"
+  },
+  "lbFriends": {
+    "en": "Friends",
+    "am": "ጓደኞች"
+  },
+  "lbGlobal": {
+    "en": "Global",
+    "am": "ዓለም አቀፍ"
+  },
+  "lbRegion": {
+    "en": "Addis",
+    "am": "አዲስ አበባ"
+  },
+  "savedH1": {
+    "en": "Favorites",
+    "am": "ተወዳጆች"
+  },
+  "savedSub": {
+    "en": "12 saved · 3 collections",
+    "am": "12 ተቀምጠዋል · 3 ስብስቦች"
+  },
+  "colFast": {
+    "en": "Fasting nights",
+    "am": "የጾም ምሽቶች"
+  },
+  "colQuick": {
+    "en": "Weeknight fast",
+    "am": "የሳምንት ፈጣን"
+  },
+  "colBig": {
+    "en": "When family comes",
+    "am": "ቤተሰብ ሲመጣ"
+  },
+  "shopH1": {
+    "en": "Shopping list",
+    "am": "የግብይት ዝርዝር"
+  },
+  "shopSub": {
+    "en": "For Doro Wat and two more",
+    "am": "ለዶሮ ወጥና ለሁለት ተጨማሪ"
+  },
+  "aisleSpice": {
+    "en": "SPICE & DRY",
+    "am": "ቅመምና ደረቅ"
+  },
+  "aisleFresh": {
+    "en": "FRESH",
+    "am": "ትኩስ"
+  },
+  "aisleMeat": {
+    "en": "MEAT & DAIRY",
+    "am": "ሥጋና ወተት"
+  },
+  "clearDone": {
+    "en": "Clear checked",
+    "am": "የተመረጡትን አጽዳ"
+  },
+  "planH1": {
+    "en": "Meal planner",
+    "am": "የምግብ እቅድ"
+  },
+  "planSub": {
+    "en": "Drag a dish onto a night.",
+    "am": "ምግብን ወደ አንድ ምሽት ይጎትቱ።"
+  },
+  "planEmpty": {
+    "en": "Nothing planned",
+    "am": "ምንም አልታቀደም"
+  },
+  "setH1": {
+    "en": "Settings",
+    "am": "ቅንብሮች"
+  },
+  "setAccount": {
+    "en": "ACCOUNT",
+    "am": "አካውንት"
+  },
+  "setApp": {
+    "en": "APPEARANCE",
+    "am": "አቀራረብ"
+  },
+  "setKitchen": {
+    "en": "KITCHEN",
+    "am": "ኩሽና"
+  },
+  "setAbout": {
+    "en": "ABOUT",
+    "am": "ስለ እኛ"
+  },
+  "setProfile": {
+    "en": "Liya Bekele",
+    "am": "ልያ በቀለ"
+  },
+  "setProfileSub": {
+    "en": "Level 12 · Addis Ababa",
+    "am": "ደረጃ 12 · አዲስ አበባ"
+  },
+  "setTheme": {
+    "en": "Theme",
+    "am": "ገጽታ"
+  },
+  "setDarkL": {
+    "en": "Dark",
+    "am": "ጨለማ"
+  },
+  "setLightL": {
+    "en": "Light",
+    "am": "ብርሃን"
+  },
+  "setLang": {
+    "en": "Language",
+    "am": "ቋንቋ"
+  },
+  "setUnits": {
+    "en": "Units",
+    "am": "መለኪያ"
+  },
+  "setUnitsV": {
+    "en": "Metric",
+    "am": "ሜትሪክ"
+  },
+  "setNotif": {
+    "en": "Timers & reminders",
+    "am": "ሰዓት ቆጣሪና ማስታወሻ"
+  },
+  "setHeat": {
+    "en": "Default heat",
+    "am": "መደበኛ ቅመም"
+  },
+  "setOffline": {
+    "en": "Downloaded recipes",
+    "am": "የወረዱ አዘገጃጀቶች"
+  },
+  "setOfflineV": {
+    "en": "18 dishes",
+    "am": "18 ምግቦች"
+  },
+  "setPrivacy": {
+    "en": "Who sees my cooking",
+    "am": "ማብሰሌን ማን ያያል"
+  },
+  "setPrivacyV": {
+    "en": "Friends",
+    "am": "ጓደኞች"
+  },
+  "setCredits": {
+    "en": "Cooks and elders",
+    "am": "አብሳዮችና አዛውንቶች"
+  },
+  "setVersion": {
+    "en": "Version 2.4",
+    "am": "ስሪት 2.4"
+  },
+  "errH1": {
+    "en": "That flame went out.",
+    "am": "ያ ነበልባል ጠፍቷል።"
+  },
+  "errSub": {
+    "en": "We could not load the recipe. Your timer is still running in the background.",
+    "am": "አዘገጃጀቱን መጫን አልቻልንም። ሰዓት ቆጣሪዎ ግን አሁንም እየሠራ ነው።"
+  },
+  "retry": {
+    "en": "Try again",
+    "am": "እንደገና ይሞክሩ"
+  },
+  "errBack": {
+    "en": "Back to Today",
+    "am": "ወደ ዛሬ ተመለስ"
+  },
+  "offH1": {
+    "en": "You are offline",
+    "am": "ከመስመር ውጭ ነዎት"
+  },
+  "offSub": {
+    "en": "Eighteen recipes are on this phone, including everything you started this week.",
+    "am": "አሥራ ስምንት አዘገጃጀቶች በዚህ ስልክ ላይ አሉ፤ በዚህ ሳምንት የጀመሩትን ሁሉንም ጨምሮ።"
+  },
+  "offCta": {
+    "en": "Cook from downloads",
+    "am": "ከወረዱት ያብስሉ"
+  },
+  "offBanner": {
+    "en": "OFFLINE · CACHED",
+    "am": "ከመስመር ውጭ · የተቀመጠ"
+  },
+  "empH1": {
+    "en": "Nothing saved yet",
+    "am": "ገና ምንም አልተቀመጠም"
+  },
+  "empSub": {
+    "en": "Tap the bookmark on any recipe and it lands here, ready offline.",
+    "am": "በማንኛውም አዘገጃጀት ላይ ምልክቱን ይንኩ፤ እዚህ ይመጣል፣ ከመስመር ውጭም ዝግጁ ይሆናል።"
+  },
+  "empCta": {
+    "en": "Find something to cook",
+    "am": "የሚያበስሉት ይፈልጉ"
+  }
+}

@@ -1,0 +1,24 @@
+      <sc-if value="{{ s.planner }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:70px 20px 130px;animation:fu-in .4s ease both">
+        <div style="font:700 33px/1.05 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-1.2px;color:var(--tx,#FFF6EE)">{{ t.planH1 }}</div>
+        <div style="margin-top:8px;font:500 13.5px/1.4 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ t.planSub }}</div>
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:9px">
+          <sc-for list="{{ plan }}" as="p" hint-placeholder-count="7">
+            <div sc-camel-on-click="{{ p.go }}" style="position:relative;padding:12px;border-radius:20px;display:flex;align-items:center;gap:13px;cursor:pointer;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+              <sc-if value="{{ p.today }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:-1px;border-radius:21px;border:1.5px solid var(--acc,#FF6A2B)"></span></sc-if>
+              <div style="position:relative;width:44px;text-align:center;font:700 12.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:.02em;color:var(--t2,rgba(255,238,226,.62))">{{ p.day }}</div>
+              <div style="position:relative;width:52px;height:52px;border-radius:14px;flex:none;overflow:hidden;background:{{ p.tile }};border:.5px solid var(--gl,rgba(255,255,255,.14))"></div>
+              <div style="position:relative;flex:1;min-width:0">
+                <sc-if value="{{ p.has }}" hint-placeholder-val="{{ true }}">
+                  <div style="font:600 16px/1.15 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-.35px;color:var(--tx,#FFF6EE)">{{ p.name }}</div>
+                  <div style="margin-top:4px;font:400 12px/1.3 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62));white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.sub }}</div>
+                </sc-if>
+                <sc-if value="{{ p.empty }}" hint-placeholder-val="{{ false }}">
+                  <div style="font:500 15px/1.15 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t3,rgba(255,238,226,.36))">{{ p.name }}</div>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>

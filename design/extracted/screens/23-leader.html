@@ -1,0 +1,38 @@
+      <sc-if value="{{ s.leader }}" hint-placeholder-val="{{ false }}">
+      <div style="padding:70px 20px 130px;animation:fu-in .4s ease both">
+        <div style="font:700 33px/1.05 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-1.2px;color:var(--tx,#FFF6EE)">{{ t.lbH1 }}</div>
+        <div style="margin-top:16px;display:flex;padding:3px;border-radius:14px;background:var(--fld,rgba(255,255,255,.08));border:.5px solid var(--gl,rgba(255,255,255,.14))">
+          <sc-for list="{{ lbTabs }}" as="b" hint-placeholder-count="3">
+            <div sc-camel-on-click="{{ b.pick }}" style="flex:1;position:relative;padding:9px 0;text-align:center;border-radius:11px;cursor:pointer;font:600 13.5px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">
+              <sc-if value="{{ b.on }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;border-radius:11px;background:var(--g2,rgba(255,255,255,.12));border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:0 2px 8px rgba(0,0,0,.18)"></span></sc-if>
+              <span style="position:relative">{{ b.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="margin-top:26px;display:flex;align-items:flex-end;gap:10px">
+          <sc-for list="{{ podium }}" as="p" hint-placeholder-count="3">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:9px">
+              <div style="width:52px;height:52px;border-radius:99px;position:relative;background:{{ p.av }};box-shadow:0 0 0 2.5px {{ p.ring }}"></div>
+              <div style="text-align:center;font:600 12.5px/1.25 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">{{ p.who }}</div>
+              <div style="width:100%;height:{{ p.h }};border-radius:16px 16px 0 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));border-bottom:none;box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+                <div style="font:700 21px/1 -apple-system,system-ui;color:{{ p.ring }}">{{ p.rank }}</div>
+                <div style="font:600 11px/1 -apple-system,system-ui;font-variant-numeric:tabular-nums;color:var(--t2,rgba(255,238,226,.62))">{{ p.xpv }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="border-radius:0 0 22px 22px;overflow:hidden;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:var(--sh,0 14px 34px rgba(0,0,0,.45))">
+          <sc-for list="{{ lbRows }}" as="r" hint-placeholder-count="4">
+            <div style="padding:12px 15px;display:flex;align-items:center;gap:12px;position:relative;border-top:.5px solid var(--hr,rgba(255,255,255,.10))">
+              <sc-if value="{{ r.me }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;background:rgba(255,106,43,.12);border-left:2.5px solid var(--acc,#FF6A2B)"></span></sc-if>
+              <div style="position:relative;width:20px;text-align:center;font:700 13px/1 -apple-system,system-ui;color:var(--t3,rgba(255,238,226,.36))">{{ r.rank }}</div>
+              <div style="position:relative;width:36px;height:36px;border-radius:99px;flex:none;background:{{ r.av }}"></div>
+              <div style="position:relative;flex:1;font:600 15px/1.2 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">{{ r.who }}</div>
+              <div style="position:relative;font:600 13px/1 -apple-system,system-ui;font-variant-numeric:tabular-nums;color:var(--t2,rgba(255,238,226,.62))">{{ r.xpv }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      </sc-if>

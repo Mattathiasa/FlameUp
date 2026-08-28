@@ -1,0 +1,37 @@
+      <sc-if value="{{ s.rate }}" hint-placeholder-val="{{ false }}">
+      <div style="min-height:874px;padding:74px 20px 34px;box-sizing:border-box;display:flex;flex-direction:column;animation:fu-in .4s ease both">
+        <div style="font:700 31px/1.1 -apple-system,system-ui,'Noto Sans Ethiopic';letter-spacing:-1.1px;color:var(--tx,#FFF6EE)">{{ t.rateH1 }}</div>
+        <div style="margin-top:9px;font:400 15px/1.5 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t2,rgba(255,238,226,.62))">{{ t.rateSub }}</div>
+
+        <div style="margin-top:26px;padding:22px 18px;border-radius:22px;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);-webkit-backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18)),var(--sh,0 14px 34px rgba(0,0,0,.45))">
+          <div style="display:flex;justify-content:space-between;gap:6px">
+            <sc-for list="{{ pips }}" as="p" hint-placeholder-count="5">
+              <div sc-camel-on-click="{{ p.pick }}" style="flex:1;height:56px;border-radius:15px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--fld,rgba(255,255,255,.08));border:.5px solid var(--gl,rgba(255,255,255,.14))">
+                <svg width="20" height="25" sc-camel-view-box="0 0 13 16" fill="none"><path d="M6.5 0C7.9 3 6.6 4.4 5.7 5.5c-.9 1.1-1 2.4-.1 3.2.5.4.4-1 .9-1.9.5.9 1.2 1.3 1.3 2.6.9-.6 1-1.6.9-2.4 1.5 1.1 2.3 2.7 2.3 4.3 0 2.5-2 4.7-4.5 4.7S2 13.8 2 11.3C2 7.7 6.1 6.6 6.5 0Z" fill="{{ p.fill }}"></path></svg>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:14px;text-align:center;font:600 17px/1 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--acc,#FF6A2B)">{{ rateWord }}</div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:11px">
+          <div style="width:96px;height:96px;border-radius:20px;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;cursor:pointer;background:var(--fld,rgba(255,255,255,.08));border:1px dashed var(--gl,rgba(255,255,255,.24))">
+            <svg width="20" height="18" sc-camel-view-box="0 0 20 18" fill="none"><path d="M2.6 5.2h3l1.3-2.4h6.2l1.3 2.4h3v10H2.6v-10Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" style="color:var(--t3,rgba(255,238,226,.36))"></path><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5" style="color:var(--t3,rgba(255,238,226,.36))"></circle></svg>
+            <span style="font:500 11px/1.2 -apple-system,system-ui,'Noto Sans Ethiopic';text-align:center;color:var(--t3,rgba(255,238,226,.36))">{{ t.addPhoto }}</span>
+          </div>
+          <div style="flex:1;height:96px;border-radius:20px;padding:14px 15px;box-sizing:border-box;background:var(--fld,rgba(255,255,255,.08));border:.5px solid var(--gl,rgba(255,255,255,.14));font:400 14.5px/1.45 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--t3,rgba(255,238,226,.36))">{{ t.noteP }}</div>
+        </div>
+
+        <div sc-camel-on-click="{{ togglePost }}" style="margin-top:12px;padding:15px 17px;border-radius:20px;display:flex;align-items:center;gap:12px;cursor:pointer;background:var(--g1,rgba(255,255,255,.07));backdrop-filter:blur(var(--blur,20px)) saturate(1.7);border:.5px solid var(--gl,rgba(255,255,255,.14));box-shadow:inset 0 1px 0 var(--in,rgba(255,255,255,.18))">
+          <div style="flex:1;font:500 15.5px/1.2 -apple-system,system-ui,'Noto Sans Ethiopic';color:var(--tx,#FFF6EE)">{{ t.postToComm }}</div>
+          <div style="width:51px;height:31px;border-radius:99px;position:relative;background:var(--hr,rgba(255,255,255,.10));border:.5px solid var(--gl,rgba(255,255,255,.14))">
+            <sc-if value="{{ post }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;border-radius:99px;background:#2E9E5B"></span></sc-if>
+            <span style="position:absolute;top:2px;left:2px;width:27px;height:27px;border-radius:99px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.28)">
+              <sc-if value="{{ post }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;inset:0;border-radius:99px;background:#fff;transform:translateX(20px)"></span></sc-if>
+            </span>
+          </div>
+        </div>
+
+        <div sc-camel-on-click="{{ nav.home }}" style="margin-top:auto;height:56px;border-radius:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:linear-gradient(160deg,var(--acc,#FF6A2B),#DE3A18);box-shadow:0 12px 30px rgba(255,80,30,.36),inset 0 1px 0 rgba(255,255,255,.42);font:600 17px -apple-system,system-ui,'Noto Sans Ethiopic';color:#fff">{{ t.submit }}</div>
+      </div>
+      </sc-if>
