@@ -18,6 +18,8 @@ import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import * as logger from 'firebase-functions/logger';
 
+export { askAssistant } from './assistant';
+
 import {
   awardsForCook,
   dayKey,

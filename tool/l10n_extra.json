@@ -283,5 +283,29 @@
   "resumeCooking": {
     "en": "Resume cooking",
     "am": "ማብሰል ቀጥል"
+  },
+  "assistantHint": {
+    "en": "Ask about a substitution, a step, or why something went wrong.",
+    "am": "ስለ አማራጭ ግብዓት፣ ስለ አንድ ደረጃ፣ ወይም አንድ ነገር ለምን እንደተሳሳተ ይጠይቁ።"
+  },
+  "assistantPlaceholder": {
+    "en": "Ask a question",
+    "am": "ጥያቄ ይጠይቁ"
+  },
+  "claimRecipe": {
+    "en": "FROM THIS RECIPE",
+    "am": "ከዚህ አዘገጃጀት"
+  },
+  "claimTradition": {
+    "en": "COMMON PRACTICE",
+    "am": "የተለመደ አሠራር"
+  },
+  "claimSuggestion": {
+    "en": "AI SUGGESTION",
+    "am": "የAI ሐሳብ"
+  },
+  "askAssistant": {
+    "en": "Ask",
+    "am": "ጠይቅ"
   }
 }

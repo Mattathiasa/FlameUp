@@ -74,7 +74,18 @@ class AppLocalizationsAm extends AppLocalizations {
   String get appName => 'ፍሌም አፕ';
 
   @override
-  String get authErrorAccountExistsDifferentCredential => 'በሌላ ዘዴ አስቀድመው ተመዝግበዋል።';
+  String get askAssistant => 'ጠይቅ';
+
+  @override
+  String get assistantHint =>
+      'ስለ አማራጭ ግብዓት፣ ስለ አንድ ደረጃ፣ ወይም አንድ ነገር ለምን እንደተሳሳተ ይጠይቁ።';
+
+  @override
+  String get assistantPlaceholder => 'ጥያቄ ይጠይቁ';
+
+  @override
+  String get authErrorAccountExistsDifferentCredential =>
+      'በሌላ ዘዴ አስቀድመው ተመዝግበዋል።';
 
   @override
   String get authErrorCredentialInUse => 'እነዚያ መረጃዎች የሌላ አካውንት ናቸው።';
@@ -131,7 +142,8 @@ class AppLocalizationsAm extends AppLocalizations {
   String get breakfast => 'ቁርስ';
 
   @override
-  String get chBody => 'ሰባት ምግቦች፣ አንድ እንጀራ፣ አብረው ተነስተው። በሦስት የአዲስ አበባ ምግብ አብሳዮች ይገመገማል።';
+  String get chBody =>
+      'ሰባት ምግቦች፣ አንድ እንጀራ፣ አብረው ተነስተው። በሦስት የአዲስ አበባ ምግብ አብሳዮች ይገመገማል።';
 
   @override
   String get chH1 => 'ውድድሮች';
@@ -144,6 +156,15 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get chTitle => 'ሙሉውን የጾም ማዕድ ያብስሉ';
+
+  @override
+  String get claimRecipe => 'ከዚህ አዘገጃጀት';
+
+  @override
+  String get claimSuggestion => 'የAI ሐሳብ';
+
+  @override
+  String get claimTradition => 'የተለመደ አሠራር';
 
   @override
   String get clearDone => 'የተመረጡትን አጽዳ';
@@ -215,7 +236,8 @@ class AppLocalizationsAm extends AppLocalizations {
   String get empH1 => 'ገና ምንም አልተቀመጠም';
 
   @override
-  String get empSub => 'በማንኛውም አዘገጃጀት ላይ ምልክቱን ይንኩ፤ እዚህ ይመጣል፣ ከመስመር ውጭም ዝግጁ ይሆናል።';
+  String get empSub =>
+      'በማንኛውም አዘገጃጀት ላይ ምልክቱን ይንኩ፤ እዚህ ይመጣል፣ ከመስመር ውጭም ዝግጁ ይሆናል።';
 
   @override
   String get errBack => 'ወደ ዛሬ ተመለስ';
@@ -482,7 +504,8 @@ class AppLocalizationsAm extends AppLocalizations {
   String get offH1 => 'ከመስመር ውጭ ነዎት';
 
   @override
-  String get offSub => 'አሥራ ስምንት አዘገጃጀቶች በዚህ ስልክ ላይ አሉ፤ በዚህ ሳምንት የጀመሩትን ሁሉንም ጨምሮ።';
+  String get offSub =>
+      'አሥራ ስምንት አዘገጃጀቶች በዚህ ስልክ ላይ አሉ፤ በዚህ ሳምንት የጀመሩትን ሁሉንም ጨምሮ።';
 
   @override
   String get orDivider => 'ወይም';
@@ -554,7 +577,8 @@ class AppLocalizationsAm extends AppLocalizations {
   String get rateSub => 'እርስዎና ጓደኞችዎ ብቻ ያዩታል።';
 
   @override
-  String get regionBody => 'የጉራጌ ምግብ በእንሰት ላይ የተመሠረተ ነው — ተፍቆ፣ ተቀብሮ፣ ለወራት ካሸተ በኋላ ቆጮ ይሆናል። እዚህ ምንም ነገር አይቻኮልም። ክትፎ ግን ልዩ ነው፡ ጥሬ፣ በሚጥሚጣ ሞቅ ያለ፣ ላም በታረደችበት ቀን የሚበላ።';
+  String get regionBody =>
+      'የጉራጌ ምግብ በእንሰት ላይ የተመሠረተ ነው — ተፍቆ፣ ተቀብሮ፣ ለወራት ካሸተ በኋላ ቆጮ ይሆናል። እዚህ ምንም ነገር አይቻኮልም። ክትፎ ግን ልዩ ነው፡ ጥሬ፣ በሚጥሚጣ ሞቅ ያለ፣ ላም በታረደችበት ቀን የሚበላ።';
 
   @override
   String get regionEyebrow => 'ክልል 04 ከ09';
@@ -719,7 +743,8 @@ class AppLocalizationsAm extends AppLocalizations {
   String get story => 'ታሪክ';
 
   @override
-  String get storyBody => 'ዶሮ ወጥ የሚሠራው አንድ ሰው ሙሉ ቀን የሚያስወጣ ሲሆን ነው። አራት ሽንኩርት፣ ውሃቸውን እስኪለቁ ድረስ በደረቁ ይበስላሉ — ሚስጥሩ ይህ ብቻ ነው፣ ማፋጠንም አይቻልም። በአብዛኛው ኢትዮጵያ ጾም የሚፈታበት ምግብ ነው፤ እንቁላሎቹ ወጡ እንዲገባባቸው ተተልትለው ይቀርባሉ።';
+  String get storyBody =>
+      'ዶሮ ወጥ የሚሠራው አንድ ሰው ሙሉ ቀን የሚያስወጣ ሲሆን ነው። አራት ሽንኩርት፣ ውሃቸውን እስኪለቁ ድረስ በደረቁ ይበስላሉ — ሚስጥሩ ይህ ብቻ ነው፣ ማፋጠንም አይቻልም። በአብዛኛው ኢትዮጵያ ጾም የሚፈታበት ምግብ ነው፤ እንቁላሎቹ ወጡ እንዲገባባቸው ተተልትለው ይቀርባሉ።';
 
   @override
   String get streakH1 => '12 ቀናት በእሳት ላይ';
@@ -788,7 +813,8 @@ class AppLocalizationsAm extends AppLocalizations {
   String get upgradeCta => 'አካውንቴን ፍጠር';
 
   @override
-  String get upgradeSubtitle => 'እንደ እንግዳ እያበሰሉ ነው። አካውንት ይጨምሩ፤ XP፣ ተከታታይ ቀናትና የተቀመጡ አዘገጃጀቶች አብረው ይመጣሉ።';
+  String get upgradeSubtitle =>
+      'እንደ እንግዳ እያበሰሉ ነው። አካውንት ይጨምሩ፤ XP፣ ተከታታይ ቀናትና የተቀመጡ አዘገጃጀቶች አብረው ይመጣሉ።';
 
   @override
   String get upgradeTitle => 'እድገትዎን ያስቀምጡ';
@@ -827,7 +853,8 @@ class AppLocalizationsAm extends AppLocalizations {
   String get welcomeH1 => 'እያንዳንዱ ምግብ የሄዱበት ቦታ ነው።';
 
   @override
-  String get welcomeSub => 'ወጡን፣ ማሸቱን፣ ሥነ ሥርዓቱን ይማሩ — በቤት ውስጥ ከሚያበስሉት ሰዎች፣ በአንድ ነበልባል ጊዜ።';
+  String get welcomeSub =>
+      'ወጡን፣ ማሸቱን፣ ሥነ ሥርዓቱን ይማሩ — በቤት ውስጥ ከሚያበስሉት ሰዎች፣ በአንድ ነበልባል ጊዜ።';
 
   @override
   String get xpOf => '2,480 / 3,000 XP';

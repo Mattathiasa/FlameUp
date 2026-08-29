@@ -260,21 +260,26 @@ inventing sources for cultural knowledge is exactly what this app must not do.
 
 ---
 
-## 🚧 Phase 9 — Social
+## ✅ Phase 9 — Social
 `feat: implement community, friends, challenges, leaderboards`
 
-**Screens and backing exist; the interactions do not yet.**
-
 Community (`20-feed`), friends (`21-friends`), challenges (`22-challenges`) and
-leaderboard (`23-leader`) are built over their real Firestore collections, with
-rules already enforcing the hard parts: a challenge participant cannot read the
-other's submission until both exist, and like counts are trigger-maintained so
-an author cannot inflate their own post.
+leaderboard (`23-leader`), over real Firestore collections.
 
-The collections are empty until real people use them, and the screens say so
-rather than shipping the design's sample posts as if they were real users.
-Posting, commenting, friend requests and the challenge flow are the remaining
-work.
+- **Feed** pages with a cursor, not an offset — an offset re-reads everything
+  skipped. Likes are keyed by uid so a double tap cannot double-count, and the
+  counter is trigger-maintained so an author cannot inflate their own post.
+- **Friend requests** are written to both sides in one batch. Half a request is
+  worse than none.
+- **Challenges** hide the opponent's entry until both have submitted; seeing it
+  first would let the second cook simply out-score it. The winner is
+  server-decided, and the rules forbid a client writing it.
+- **Leaderboards**: global reads a single server-aggregated document — rankings
+  are never computed by pulling the users collection onto a device. Friends are
+  assembled locally, because that set is small and already on the device.
+
+A bug the analyzer caught: the feed's pagination cursor was stored but never
+passed back, so "load more" would have re-fetched page one forever.
 
 ---
 
@@ -299,12 +304,33 @@ already schedule OS-level alerts (Phase 6).
 
 ---
 
-## ⬜ Phase 11 — AI assistant
-`feat: implement AI cooking assistant backend`
+## ✅ Phase 11 — AI assistant
+`feat: implement AI cooking assistant`
 
-Callable Cloud Function proxy — no provider key in the binary. Responses label
-*recipe instruction*, *community tradition* and *AI suggestion* distinctly, and
-never present cultural claims as authoritative.
+A callable Cloud Function. The provider key lives in Functions config and is
+never shipped — a key in the app binary is a key anyone can pull out of the APK.
+
+Every claim is labelled, and the three kinds are visually distinct:
+
+| Marker | Means |
+|---|---|
+| `[RECIPE]` | what this app's own recipe says, grounded in the actual document |
+| `[TRADITION]` | how people commonly cook it — practice, never asserted history |
+| `[SUGGESTION]` | the model's own inference |
+
+An **unlabelled** answer stays plain rather than being promoted. That is the
+failure that matters: silently treating a model's guess as a recipe instruction
+would give it authority it has not earned, and FlameUp is a cultural archive as
+much as a cooking app.
+
+The system prompt forbids dating a dish, naming an inventor, or stating a
+disputed origin as fact, and asks it to say when it does not know — a confident
+wrong answer about someone else's food culture is worse than no answer.
+
+Rate-limited per user, which is about more than cost: an unbounded assistant is
+also a way to turn the app into someone else's free inference endpoint. With no
+key configured it returns `failed-precondition` and the UI says so, rather than
+returning a stub the user could not distinguish from a real answer.
 
 ---
 
@@ -327,7 +353,7 @@ fields. No `if true`.
 
 ---
 
-## ⬜ Phase 14 — Testing
+## 🚧 Phase 14 — Testing
 `test: unit, widget and integration coverage`
 
 Unit for every calculator and ingredient scaling; widget for recipe card,

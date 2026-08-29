@@ -92,6 +92,18 @@
   "@appName": {
     "description": "Application copy"
   },
+  "askAssistant": "Ask",
+  "@askAssistant": {
+    "description": "Application copy"
+  },
+  "assistantHint": "Ask about a substitution, a step, or why something went wrong.",
+  "@assistantHint": {
+    "description": "Application copy"
+  },
+  "assistantPlaceholder": "Ask a question",
+  "@assistantPlaceholder": {
+    "description": "Application copy"
+  },
   "authErrorAccountExistsDifferentCredential": "You already signed up with a different method.",
   "@authErrorAccountExistsDifferentCredential": {
     "description": "Application copy"
@@ -187,6 +199,18 @@
   "chTitle": "Cook the whole fasting plate",
   "@chTitle": {
     "description": "Design prototype copy"
+  },
+  "claimRecipe": "FROM THIS RECIPE",
+  "@claimRecipe": {
+    "description": "Application copy"
+  },
+  "claimSuggestion": "AI SUGGESTION",
+  "@claimSuggestion": {
+    "description": "Application copy"
+  },
+  "claimTradition": "COMMON PRACTICE",
+  "@claimTradition": {
+    "description": "Application copy"
   },
   "clearDone": "Clear checked",
   "@clearDone": {

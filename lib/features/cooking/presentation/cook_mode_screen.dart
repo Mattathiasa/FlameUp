@@ -9,6 +9,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
+import '../../ai_assistant/presentation/assistant_sheet.dart';
 import '../../recipes/domain/recipe.dart';
 import '../../recipes/domain/recipe_providers.dart';
 import '../domain/cooking_controller.dart';
@@ -218,7 +219,17 @@ class _Header extends StatelessWidget {
                       .copyWith(color: palette.textSecondary),
                 ),
               ),
-              const SizedBox(width: 48),
+              // Questions come up mid-cook, so the assistant is one tap from
+              // the step rather than buried in a menu.
+              IconButton(
+                onPressed: () => AssistantSheet.show(
+                  context,
+                  recipeId: recipe.id,
+                  stepIndex: session.currentStep,
+                ),
+                icon: const Icon(Icons.help_outline),
+                tooltip: l10n.askAssistant,
+              ),
             ],
           ),
           const SizedBox(height: AppSpacing.md),
