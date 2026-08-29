@@ -6,6 +6,7 @@ import '../../features/auth/domain/auth_providers.dart';
 import '../../features/auth/presentation/auth_form_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
 import '../../features/auth/presentation/welcome_screen.dart';
+import '../../features/cooking/presentation/cook_mode_screen.dart';
 import '../../features/onboarding/domain/onboarding_providers.dart';
 import '../../features/onboarding/presentation/skill_screen.dart';
 import '../../features/onboarding/presentation/taste_screen.dart';
@@ -91,10 +92,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.cookMode,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (_, __) => const NotBuiltYet(
-          screen: 'cook mode',
-          designFile: '08-cook.html',
-          phase: 'Phase 6',
+        builder: (_, state) => CookModeScreen(
+          recipeId: state.pathParameters['recipeId']!,
         ),
       ),
       GoRoute(

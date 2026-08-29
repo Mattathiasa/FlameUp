@@ -172,19 +172,35 @@ fraction. `DishCard` and `DishListTile` are the two card shapes the design
 uses, both skipping the backdrop blur because a `BackdropFilter` per row is the
 most expensive thing in a scrolling list.
 
-## ⬜ Phase 6 — Cooking engine *(critical milestone)*
-`feat: implement cooking mode`
+## 🚧 Phase 6 — Cooking engine *(critical milestone)*
+`feat: implement cooking engine with wall-clock timers`
 
-Real `CookingSession` documents, step navigation, per-step timers, pause,
-resume, repeat, exit confirmation.
+**Engine, session model and cook mode done. The done/rate screens and local
+notifications are the remainder.**
 
-Timers store **wall-clock deadlines** and recompute on
-`AppLifecycleState.resumed`, with local notifications when they fire — never a
-naïve `Timer` tick that dies with the process. Kill the app mid-cook, reopen,
-resume exactly where you were. Fully offline; queued mutations replay with
-idempotency keys so XP cannot double-apply.
+**Timers store absolute deadlines, not remaining seconds.** A timer is then a
+subtraction against the wall clock, which stays correct whether the app was
+backgrounded, killed, or the phone was asleep. The one-second ticker in
+`CookingController` only triggers a repaint — it never *is* the timer, so a
+missed tick cannot make one wrong. Coming back from the background recomputes
+immediately rather than waiting for the next tick, so the number is right on
+the first frame the user sees.
 
----
+**Kill the app mid-cook and reopen it and the session resumes** — step, timers
+and all — because every change is written to disk before it is queued for the
+server. `resumableSessionProvider` surfaces it as the "pick up where you left"
+card on Today.
+
+**The idempotency key is minted when the session starts**, not when it
+completes, so a retry after a crash carries the same key and the server refuses
+a second XP grant. Completion records what happened; it does not award
+anything — the client is not trusted with progression.
+
+Pausing banks the remaining seconds and drops the deadline, because a paused
+clock is not running. Resuming sets a fresh deadline from the banked seconds.
+
+Leaving cook mode always asks first: backing out by accident would lose the
+thread of what you were doing.
 
 ## ⬜ Phase 7 — Gamification
 `feat: implement gamification engine`
