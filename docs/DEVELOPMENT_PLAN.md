@@ -135,20 +135,35 @@ newer build is dropped rather than crashed on.
 
 ---
 
-## ⬜ Phase 5 — Recipe engine
+## 🚧 Phase 5 — Recipe engine
 `feat: implement recipe engine`
 
-Models, `RecipeRepository` with pagination and offline cache, composite
-indexes, Discover/search/filters behind a `SearchService` interface, recipe
-detail with **serving-size scaling**, favourites, reviews, related recipes.
+**Models and data done; Discover and detail screens still to build.**
 
-`tool/seed_firestore.dart` builds 25+ Ethiopian recipes out from the design's
-12 plus the brief's list — Chechebsa, Genfo, Alicha Wot, Atakilt Wot, Bozena
-Shiro, Fosolia, Dulet and the rest — with ingredients, steps, difficulty, time,
-XP, region and a cultural story written as tradition rather than asserted
-history.
+- `Recipe`, `RecipeStep`, `Ingredient` with the brief's field set. Ingredient
+  `quantity` is **numeric**, not `"4 large"`, because serving-size scaling has
+  to multiply it; the display string is composed at render time and renders
+  fractions (`¾ cup`, not `0.75 cup`) because that is how a cook reads.
+- `RecipeRepository` reads offline-first through three layers: the **bundled
+  catalogue** (always present, so a first run is never empty even with no
+  network), the cache, then Firestore.
+- `RecipeQuery` is a value type that doubles as a cache key, so two identical
+  queries share one cache entry. Filters are pushed into indexed Firestore
+  queries; the same predicates run in-memory against the bundle offline. It is
+  never "download the collection and filter locally".
+- Text search uses a stored `searchTokens` array (`array-contains-any`), with
+  `SearchService` left as the seam for a dedicated backend later.
 
----
+**The catalogue: 25 recipes**, built by `tool/build_seed.py` from the design's
+12 plus 13 written for this project — Chechebsa, Genfo, Atakilt Wat, Bozena
+Shiro, Fosolia, Alicha Wat, Ayib, Awaze, Tihlo, Shorba, Kinche, Ful, Ambasha.
+Every one has full ingredients and steps **in both languages**, 97 of 115 steps
+carry a duration so cook mode can time them, and each has a cultural note
+written as *tradition rather than asserted history* — no dish is dated and no
+inventor is named.
+
+`tool/seed_firestore.dart` writes the same catalogue to Firestore or the
+emulator, keyed by recipe id so re-running updates rather than duplicates.
 
 ## ⬜ Phase 6 — Cooking engine *(critical milestone)*
 `feat: implement cooking mode`

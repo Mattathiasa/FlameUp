@@ -80,6 +80,7 @@ flutter:
 
   assets:
     - assets/design/
+    - assets/seed/
 
   fonts:
     - family: NotoSansEthiopic

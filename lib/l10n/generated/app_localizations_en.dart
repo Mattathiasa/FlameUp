@@ -62,12 +62,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appName => 'FlameUp';
 
   @override
-  String get authErrorAccountExistsDifferentCredential =>
-      'You already signed up with a different method.';
+  String get authErrorAccountExistsDifferentCredential => 'You already signed up with a different method.';
 
   @override
-  String get authErrorCredentialInUse =>
-      'Those credentials belong to another account.';
+  String get authErrorCredentialInUse => 'Those credentials belong to another account.';
 
   @override
   String get authErrorEmailInUse => 'An account already uses that email.';
@@ -82,23 +80,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authErrorInvalidEmail => 'That email address is not valid.';
 
   @override
-  String get authErrorOperationNotAllowed =>
-      'That sign-in method is not enabled.';
+  String get authErrorOperationNotAllowed => 'That sign-in method is not enabled.';
 
   @override
-  String get authErrorProviderAlreadyLinked =>
-      'That account is already linked.';
+  String get authErrorProviderAlreadyLinked => 'That account is already linked.';
 
   @override
-  String get authErrorRequiresRecentLogin =>
-      'Please sign in again to continue.';
+  String get authErrorRequiresRecentLogin => 'Please sign in again to continue.';
 
   @override
   String get authErrorSignedOut => 'You are signed out. Sign in to continue.';
 
   @override
-  String get authErrorTooManyRequests =>
-      'Too many attempts. Try again shortly.';
+  String get authErrorTooManyRequests => 'Too many attempts. Try again shortly.';
 
   @override
   String get authErrorUserDisabled => 'This account has been disabled.';
@@ -113,8 +107,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get badgeName => 'Onion Patience';
 
   @override
-  String get badgeSub =>
-      'Dry-cooked onions for a full 15 minutes without cheating.';
+  String get badgeSub => 'Dry-cooked onions for a full 15 minutes without cheating.';
 
   @override
   String get beginner => 'Beginner';
@@ -123,8 +116,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get beginnerS => 'I can boil water and follow instructions.';
 
   @override
-  String get chBody =>
-      'Seven dishes, one injera, photographed together. Judged by three cooks from Addis.';
+  String get chBody => 'Seven dishes, one injera, photographed together. Judged by three cooks from Addis.';
 
   @override
   String get chH1 => 'Challenges';
@@ -193,8 +185,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get doneH1 => 'Doro Wat, done.';
 
   @override
-  String get doneSub =>
-      'Four hours of onion patience. That is the hard one out of the way.';
+  String get doneSub => 'Four hours of onion patience. That is the hard one out of the way.';
 
   @override
   String get doroWat => 'Doro Wat · step 3 of 9';
@@ -206,8 +197,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get empH1 => 'Nothing saved yet';
 
   @override
-  String get empSub =>
-      'Tap the bookmark on any recipe and it lands here, ready offline.';
+  String get empSub => 'Tap the bookmark on any recipe and it lands here, ready offline.';
 
   @override
   String get errBack => 'Back to Today';
@@ -216,8 +206,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errH1 => 'That flame went out.';
 
   @override
-  String get errSub =>
-      'We could not load the recipe. Your timer is still running in the background.';
+  String get errSub => 'We could not load the recipe. Your timer is still running in the background.';
 
   @override
   String get errorBadResponse => 'We received an unexpected response.';
@@ -346,8 +335,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get grandmaH1 => 'Grandma’s Kitchen';
 
   @override
-  String get grandmaSub =>
-      'Recorded in home kitchens, unedited, with the pauses left in.';
+  String get grandmaSub => 'Recorded in home kitchens, unedited, with the pauses left in.';
 
   @override
   String get greeting => 'Selam, good evening';
@@ -446,8 +434,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get masteryH1 => 'What your hands know';
 
   @override
-  String get masterySub =>
-      'Mastery climbs when you repeat a technique, not when you finish a recipe.';
+  String get masterySub => 'Mastery climbs when you repeat a technique, not when you finish a recipe.';
 
   @override
   String get nextStep => 'Next step';
@@ -471,8 +458,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get offH1 => 'You are offline';
 
   @override
-  String get offSub =>
-      'Eighteen recipes are on this phone, including everything you started this week.';
+  String get offSub => 'Eighteen recipes are on this phone, including everything you started this week.';
 
   @override
   String get orDivider => 'or';
@@ -538,8 +524,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rateSub => 'Only you and your friends see this.';
 
   @override
-  String get regionBody =>
-      'Gurage cooking is built on the enset plant — false banana — scraped, buried, and fermented for months before it becomes kocho. Nothing here is fast. Kitfo is the exception that proves it: raw, warm with mitmita, eaten the day the cow is slaughtered.';
+  String get regionBody => 'Gurage cooking is built on the enset plant — false banana — scraped, buried, and fermented for months before it becomes kocho. Nothing here is fast. Kitfo is the exception that proves it: raw, warm with mitmita, eaten the day the cow is slaughtered.';
 
   @override
   String get regionEyebrow => 'REGION 04 OF 09';
@@ -689,8 +674,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get story => 'Story';
 
   @override
-  String get storyBody =>
-      'Doro wat is what you make when someone is worth a whole day. Four onions, cooked dry until they give up their water — that is the whole secret, and it cannot be hurried. In much of Ethiopia it is the dish that ends a fast, carried to the table whole, the eggs scored so the sauce gets inside.';
+  String get storyBody => 'Doro wat is what you make when someone is worth a whole day. Four onions, cooked dry until they give up their water — that is the whole secret, and it cannot be hurried. In much of Ethiopia it is the dish that ends a fast, carried to the table whole, the eggs scored so the sauce gets inside.';
 
   @override
   String get streakH1 => '12 days on the fire';
@@ -756,8 +740,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get upgradeCta => 'Create my account';
 
   @override
-  String get upgradeSubtitle =>
-      'You\'re cooking as a guest. Add an account and your XP, streak and saved recipes come with you.';
+  String get upgradeSubtitle => 'You\'re cooking as a guest. Add an account and your XP, streak and saved recipes come with you.';
 
   @override
   String get upgradeTitle => 'Save your progress';
@@ -769,8 +752,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get uploadH1 => 'Add your family’s recipe';
 
   @override
-  String get uploadNote =>
-      'Reviewed by two cooks from that region before it goes live.';
+  String get uploadNote => 'Reviewed by two cooks from that region before it goes live.';
 
   @override
   String get uploadSub => 'Someone taught you. Write it down before it goes.';
@@ -797,8 +779,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcomeH1 => 'Every dish is a place you’ve been.';
 
   @override
-  String get welcomeSub =>
-      'Learn the wat, the ferment, the ceremony — one flame at a time, from the people who cook it at home.';
+  String get welcomeSub => 'Learn the wat, the ferment, the ceremony — one flame at a time, from the people who cook it at home.';
 
   @override
   String get xpOf => '2,480 / 3,000 XP';

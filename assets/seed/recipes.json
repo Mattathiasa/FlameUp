@@ -1,0 +1,2895 @@
+{
+ "recipes": {
+  "doro": {
+   "title": "Doro Wat",
+   "titleAm": "ዶሮ ወጥ",
+   "subtitle": "Chicken · berbere · 12 spices",
+   "subtitleAm": "ዶሮ · በርበሬ · 12 ቅመሞች",
+   "story": "Doro wat is what you make when someone is worth a whole day. Four onions, cooked dry until they give up their water -- that is the whole secret, and it cannot be hurried. In much of Ethiopia it is the dish that ends a fast, carried to the table whole, the eggs scored so the sauce gets inside.",
+   "storyAm": "ዶሮ ወጥ የሚሠራው አንድ ሰው ሙሉ ቀን የሚያስወጣ ሲሆን ነው። አራት ሽንኩርት፣ ውሃቸውን እስኪለቁ ድረስ በደረቁ ይበስላሉ -- ሚስጥሩ ይህ ብቻ ነው፣ ማፋጠንም አይቻልም። በአብዛኛው ኢትዮጵያ ጾም የሚፈታበት ምግብ ነው፤ እንቁላሎቹ ወጡ እንዲገባባቸው ተተልትለው ይቀርባሉ።",
+   "regionId": "amhara",
+   "category": "wat",
+   "difficulty": 2,
+   "totalMinutes": 120,
+   "servings": 6,
+   "xpReward": 240,
+   "heatLevel": 4,
+   "tags": [
+    "wat",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Red onions",
+     "nameAm": "ቀይ ሽንኩርት",
+     "quantity": 4,
+     "unit": "large",
+     "unitAm": "ትልቅ",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Niter kibbeh",
+     "nameAm": "ንጥር ቅቤ",
+     "quantity": 0.5,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Berbere",
+     "nameAm": "በርበሬ",
+     "quantity": 0.75,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Chicken, jointed",
+     "nameAm": "የተከፋፈለ ዶሮ",
+     "quantity": 1.5,
+     "unit": "kg",
+     "unitAm": "ኪ.ግ",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Garlic",
+     "nameAm": "ነጭ ሽንኩርት",
+     "quantity": 8,
+     "unit": "cloves",
+     "unitAm": "ቅንጣት",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Ginger",
+     "nameAm": "ዝንጅብል",
+     "quantity": 2,
+     "unit": "in",
+     "unitAm": "ኢንች",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Eggs, boiled",
+     "nameAm": "የተቀቀለ እንቁላል",
+     "quantity": 6,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Lemon",
+     "nameAm": "ሎሚ",
+     "quantity": 1,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Dice four red onions as fine as you can stand. No oil yet.",
+     "textAm": "አራት ቀይ ሽንኩርት በተቻለ መጠን በጥሩ ይክተፉ። ገና ዘይት አይጨመርም።",
+     "optional": false
+    },
+    {
+     "index": 1,
+     "text": "Dry-cook them in a bare pan until they collapse and darken.",
+     "textAm": "በባዶ ድስት እስኪለሰልሱና እስኪጠቁሩ ድረስ በደረቁ ያብስሏቸው።",
+     "optional": false,
+     "durationSeconds": 900,
+     "tip": "No oil until the onions give up their water.",
+     "tipAm": "ሽንኩርቱ ውሃውን እስኪለቅ ዘይት የለም።"
+    },
+    {
+     "index": 2,
+     "text": "Add the niter kibbeh. Let it melt all the way through.",
+     "textAm": "ንጥር ቅቤውን ይጨምሩ። ሙሉ በሙሉ እንዲቀልጥ ያድርጉ።",
+     "optional": false,
+     "durationSeconds": 180
+    },
+    {
+     "index": 3,
+     "text": "Stir in the berbere and cook it out — eight minutes, low.",
+     "textAm": "በርበሬውን ይጨምሩና ያብስሉት — ስምንት ደቂቃ፣ በዝቅተኛ እሳት።",
+     "optional": false,
+     "durationSeconds": 480
+    },
+    {
+     "index": 4,
+     "text": "Add garlic and ginger paste. It should smell sharp, not raw.",
+     "textAm": "ነጭ ሽንኩርትና ዝንጅብል ይጨምሩ። ሽታው ጥሬ ሳይሆን ጥርት ያለ ይሁን።",
+     "optional": false,
+     "durationSeconds": 120
+    },
+    {
+     "index": 5,
+     "text": "Add the chicken and turn every piece until it is coated.",
+     "textAm": "ዶሮውን ይጨምሩና እያንዳንዱ ቁራጭ እስኪለበስ ድረስ ይገልብጡ።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 6,
+     "text": "Simmer 45 minutes. Add water only if the pan catches.",
+     "textAm": "ለ45 ደቂቃ ያንተከትኩ። ውሃ የሚጨመረው ድስቱ ሲይዝ ብቻ ነው።",
+     "optional": false,
+     "durationSeconds": 2700
+    },
+    {
+     "index": 7,
+     "text": "Score the boiled eggs and slide them in whole.",
+     "textAm": "የተቀቀሉትን እንቁላሎች ተልትለው ሙሉውን ይጨምሩ።",
+     "optional": false,
+     "durationSeconds": 120
+    },
+    {
+     "index": 8,
+     "text": "Rest ten minutes. Serve on injera with ayib.",
+     "textAm": "ለአሥር ደቂቃ ያሳርፉ። ከአይብ ጋር በእንጀራ ያቅርቡ።",
+     "optional": false,
+     "durationSeconds": 600
+    }
+   ],
+   "gradientA": "#8E1B0F",
+   "gradientB": "#E0522A",
+   "isFasting": false,
+   "isVegan": false,
+   "isGlutenFree": true,
+   "isDairyFree": false,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "shiro": {
+   "title": "Shiro",
+   "titleAm": "ሽሮ",
+   "subtitle": "Chickpea flour · garlic · kibbeh",
+   "subtitleAm": "የሽምብራ ዱቄት · ነጭ ሽንኩርት",
+   "story": "Ground chickpea flour cooked into a loose, savoury stew. The dish most often described as the everyday meal -- fast to make, and eaten across the country in both fasting and non-fasting versions.",
+   "storyAm": "የተፈጨ የሽምብራ ዱቄት ተቀቅሎ የሚሠራ ወጥ ነው። በየቀኑ የሚበላ ምግብ ተብሎ የሚጠራው ሲሆን በፍጥነት ይዘጋጃል፤ በጾምና ከጾም ውጭ በሁለቱም ይሠራል።",
+   "regionId": "amhara",
+   "category": "fasting",
+   "difficulty": 0,
+   "totalMinutes": 35,
+   "servings": 6,
+   "xpReward": 90,
+   "heatLevel": 2,
+   "tags": [
+    "fasting",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Shiro powder",
+     "nameAm": "የሽሮ ዱቄት",
+     "quantity": 1,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 1,
+     "unit": "large",
+     "unitAm": "ትልቅ",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Garlic",
+     "nameAm": "ነጭ ሽንኩርት",
+     "quantity": 4,
+     "unit": "cloves",
+     "unitAm": "ቅንጣት",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Oil",
+     "nameAm": "ዘይት",
+     "quantity": 0.25,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Water",
+     "nameAm": "ውሃ",
+     "quantity": 3,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Berbere",
+     "nameAm": "በርበሬ",
+     "quantity": 1,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "spice",
+     "optional": true
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Dice the onion fine and cook it down in oil.",
+     "textAm": "ሽንኩርቱን በጥሩ ከትፈው በዘይት ያብስሉት።",
+     "optional": false,
+     "durationSeconds": 600
+    },
+    {
+     "index": 1,
+     "text": "Add crushed garlic and cook another minute.",
+     "textAm": "የተወቀጠ ነጭ ሽንኩርት ጨምረው አንድ ደቂቃ ያብስሉ።",
+     "optional": false,
+     "durationSeconds": 60
+    },
+    {
+     "index": 2,
+     "text": "Whisk the shiro powder into cold water until smooth.",
+     "textAm": "የሽሮ ዱቄቱን በቀዝቃዛ ውሃ ለስላሳ እስኪሆን ያማስሉ።",
+     "optional": false,
+     "durationSeconds": 120
+    },
+    {
+     "index": 3,
+     "text": "Pour it in slowly, stirring the whole time.",
+     "textAm": "እያማሰሉ ቀስ ብለው ያፍሱት።",
+     "optional": false,
+     "durationSeconds": 180
+    },
+    {
+     "index": 4,
+     "text": "Simmer until it thickens and loses its raw taste.",
+     "textAm": "እስኪወፍርና ጥሬነቱ እስኪለቅ ያንተከትኩ።",
+     "optional": false,
+     "durationSeconds": 900
+    }
+   ],
+   "gradientA": "#9A5A12",
+   "gradientB": "#E8A33C",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": true,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "tibs": {
+   "title": "Tibs",
+   "titleAm": "ጥብስ",
+   "subtitle": "Beef · rosemary · awaze",
+   "subtitleAm": "የበሬ ሥጋ · ጽጌረዳ · አዋዜ",
+   "story": "Meat cut small and seared hard and fast, often finished at the table on a clay brazier so it keeps sizzling while it is eaten.",
+   "storyAm": "ሥጋው ትንሽ ተቆርጦ በከፍተኛ እሳት በፍጥነት ይጠበሳል፤ ብዙ ጊዜ በሸክላ ምድጃ ላይ እየተንተከተከ ማዕድ ላይ ይቀርባል።",
+   "regionId": "amhara",
+   "category": "tibs",
+   "difficulty": 0,
+   "totalMinutes": 30,
+   "servings": 6,
+   "xpReward": 110,
+   "heatLevel": 3,
+   "tags": [
+    "tibs",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Beef, cubed",
+     "nameAm": "የተከተፈ የበሬ ሥጋ",
+     "quantity": 700,
+     "unit": "g",
+     "unitAm": "ግራም",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 1,
+     "unit": "large",
+     "unitAm": "ትልቅ",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Rosemary",
+     "nameAm": "ጽጌረዳ",
+     "quantity": 2,
+     "unit": "sprigs",
+     "unitAm": "ቅርንጫፍ",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Niter kibbeh",
+     "nameAm": "ንጥር ቅቤ",
+     "quantity": 3,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Green chilli",
+     "nameAm": "ቃሪያ",
+     "quantity": 2,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Awaze",
+     "nameAm": "አዋዜ",
+     "quantity": 2,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "spice",
+     "optional": true
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Get the pan hot enough that the meat hisses on contact.",
+     "textAm": "ሥጋው ሲነካ ድምፅ እስኪያሰማ ድስቱን ያሙቁት።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 1,
+     "text": "Sear the beef in batches. Crowding it will steam it.",
+     "textAm": "ሥጋውን በየተራ ይጥበሱ። ቢበዛ በእንፋሎት ይበስላል።",
+     "optional": false,
+     "durationSeconds": 480
+    },
+    {
+     "index": 2,
+     "text": "Add kibbeh, onion, rosemary and chilli.",
+     "textAm": "ቅቤ፣ ሽንኩርት፣ ጽጌረዳና ቃሪያ ይጨምሩ።",
+     "optional": false,
+     "durationSeconds": 240
+    },
+    {
+     "index": 3,
+     "text": "Toss until the onion is just softened, no further.",
+     "textAm": "ሽንኩርቱ ልክ እስኪለሰልስ ብቻ ያማስሉ።",
+     "optional": false,
+     "durationSeconds": 180
+    }
+   ],
+   "gradientA": "#5C2A12",
+   "gradientB": "#B4652C",
+   "isFasting": false,
+   "isVegan": false,
+   "isGlutenFree": true,
+   "isDairyFree": false,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "misir": {
+   "title": "Misir Wat",
+   "titleAm": "ምስር ወጥ",
+   "subtitle": "Red lentils · berbere",
+   "subtitleAm": "ቀይ ምስር · በርበሬ",
+   "story": "Red lentils cooked down with berbere until they hold their shape on the spoon. A fasting-table anchor.",
+   "storyAm": "ቀይ ምስር በበርበሬ ተብስሎ በማንኪያ ላይ እስኪቆም ድረስ ይበስላል። የጾም ማዕድ ዋነኛ ምግብ ነው።",
+   "regionId": "amhara",
+   "category": "fasting",
+   "difficulty": 0,
+   "totalMinutes": 45,
+   "servings": 6,
+   "xpReward": 100,
+   "heatLevel": 3,
+   "tags": [
+    "fasting",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Red lentils",
+     "nameAm": "ቀይ ምስር",
+     "quantity": 2,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 2,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Berbere",
+     "nameAm": "በርበሬ",
+     "quantity": 0.25,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Garlic",
+     "nameAm": "ነጭ ሽንኩርት",
+     "quantity": 4,
+     "unit": "cloves",
+     "unitAm": "ቅንጣት",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Oil",
+     "nameAm": "ዘይት",
+     "quantity": 0.33,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Rinse the lentils until the water runs clear.",
+     "textAm": "ምስሩን ውሃው እስኪጠራ ያጠቡት።",
+     "optional": false,
+     "durationSeconds": 180
+    },
+    {
+     "index": 1,
+     "text": "Dry-cook the onions until they collapse and darken.",
+     "textAm": "ሽንኩርቱን እስኪለሰልስና እስኪጠቁር በደረቁ ያብስሉ።",
+     "optional": false,
+     "durationSeconds": 720
+    },
+    {
+     "index": 2,
+     "text": "Add oil and berbere and cook the spice out.",
+     "textAm": "ዘይትና በርበሬ ጨምረው ቅመሙን ያብስሉት።",
+     "optional": false,
+     "durationSeconds": 480
+    },
+    {
+     "index": 3,
+     "text": "Add lentils and water; simmer until thick.",
+     "textAm": "ምስርና ውሃ ጨምረው እስኪወፍር ያንተከትኩ።",
+     "optional": false,
+     "durationSeconds": 1800
+    }
+   ],
+   "gradientA": "#7E1E14",
+   "gradientB": "#D14A2A",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": true,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "injera": {
+   "title": "Injera",
+   "titleAm": "እንጀራ",
+   "subtitle": "Teff · three-day ferment",
+   "subtitleAm": "ጤፍ · የሦስት ቀን ማሸት",
+   "story": "Teff batter left to ferment for days, then poured in a spiral onto a hot mitad. The sourness comes from time, not from an ingredient -- which is why it cannot be hurried.",
+   "storyAm": "የጤፍ ሊጥ ለቀናት ካሸተ በኋላ በሙቅ ምጣድ ላይ በጥቅል ይፈስሳል። ጎምዛዛነቱ ከጊዜ እንጂ ከግብዓት አይመጣም -- ስለዚህ ማፋጠን አይቻልም።",
+   "regionId": "amhara",
+   "category": "bread",
+   "difficulty": 2,
+   "totalMinutes": 4320,
+   "servings": 6,
+   "xpReward": 400,
+   "heatLevel": 0,
+   "tags": [
+    "bread",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Teff flour",
+     "nameAm": "የጤፍ ዱቄት",
+     "quantity": 4,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Water",
+     "nameAm": "ውሃ",
+     "quantity": 5,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Ersho (starter)",
+     "nameAm": "እርሾ",
+     "quantity": 0.5,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": true
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Mix teff flour and water into a smooth batter.",
+     "textAm": "የጤፍ ዱቄትና ውሃ አዋህደው ለስላሳ ሊጥ ያድርጉ።",
+     "optional": false,
+     "durationSeconds": 600
+    },
+    {
+     "index": 1,
+     "text": "Cover loosely and leave it to ferment. Day one.",
+     "textAm": "በላላ ሸፍነው እንዲያሽት ይተዉት። አንደኛ ቀን።",
+     "optional": false
+    },
+    {
+     "index": 2,
+     "text": "Day two: it should smell sour and show bubbles.",
+     "textAm": "ሁለተኛ ቀን፡ ጎምዛዛ ሽታና አረፋ ሊኖረው ይገባል።",
+     "optional": false
+    },
+    {
+     "index": 3,
+     "text": "Day three: pour off the water that has risen on top.",
+     "textAm": "ሦስተኛ ቀን፡ ላይ የወጣውን ውሃ ያፍስሱ።",
+     "optional": false
+    },
+    {
+     "index": 4,
+     "text": "Cook a little absit, stir it back in, rest an hour.",
+     "textAm": "ትንሽ አብሲት አብስለው መልሰው ይቀላቅሉና አንድ ሰዓት ያሳርፉ።",
+     "optional": false,
+     "durationSeconds": 3600
+    },
+    {
+     "index": 5,
+     "text": "Pour in a spiral from the outside in onto a hot mitad.",
+     "textAm": "በሙቅ ምጣድ ላይ ከዳር ወደ መሃል በጥቅል ያፍሱ።",
+     "optional": false,
+     "durationSeconds": 180
+    },
+    {
+     "index": 6,
+     "text": "Cover until the eyes set. Do not turn it.",
+     "textAm": "ዓይኖቹ እስኪበስሉ ይሸፍኑ። አይገለብጡት።",
+     "optional": false,
+     "durationSeconds": 180
+    }
+   ],
+   "gradientA": "#6B5330",
+   "gradientB": "#C7A56A",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": true,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "kitfo": {
+   "title": "Kitfo",
+   "titleAm": "ክትፎ",
+   "subtitle": "Minced beef · mitmita · ayib",
+   "subtitleAm": "የተከተፈ ሥጋ · ሚጥሚጣ · አይብ",
+   "story": "Beef minced very fine and warmed -- not cooked -- through spiced butter and mitmita. Associated with Gurage cooking, and traditionally eaten the day the animal is slaughtered.",
+   "storyAm": "ሥጋው በጣም በጥሩ ተከትፎ በቅመም ቅቤና በሚጥሚጣ ይሞቃል እንጂ አይበስልም። ከጉራጌ ምግብ ጋር የተያያዘ ሲሆን በባህሉ እንስሳው በታረደበት ቀን ይበላል።",
+   "regionId": "gurage",
+   "category": "raw",
+   "difficulty": 1,
+   "totalMinutes": 20,
+   "servings": 6,
+   "xpReward": 150,
+   "heatLevel": 4,
+   "tags": [
+    "raw",
+    "gurage"
+   ],
+   "ingredients": [
+    {
+     "name": "Beef, very lean",
+     "nameAm": "በጣም ቀጭን የበሬ ሥጋ",
+     "quantity": 600,
+     "unit": "g",
+     "unitAm": "ግራም",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Niter kibbeh",
+     "nameAm": "ንጥር ቅቤ",
+     "quantity": 0.33,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Mitmita",
+     "nameAm": "ሚጥሚጣ",
+     "quantity": 2,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Ayib",
+     "nameAm": "አይብ",
+     "quantity": 200,
+     "unit": "g",
+     "unitAm": "ግራም",
+     "aisle": "meatDairy",
+     "optional": true
+    },
+    {
+     "name": "Gomen",
+     "nameAm": "ጎመን",
+     "quantity": 1,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "fresh",
+     "optional": true
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Mince the beef by hand, as fine as you can manage.",
+     "textAm": "ሥጋውን በእጅ በተቻለ መጠን በጥሩ ይክተፉት።",
+     "optional": false,
+     "durationSeconds": 900
+    },
+    {
+     "index": 1,
+     "text": "Warm the kibbeh until it is liquid but not hot.",
+     "textAm": "ቅቤውን እስኪቀልጥ ያሙቁት፤ ግን አይሞቅ።",
+     "optional": false,
+     "durationSeconds": 180
+    },
+    {
+     "index": 2,
+     "text": "Work the kibbeh and mitmita through the meat.",
+     "textAm": "ቅቤውንና ሚጥሚጣውን ከሥጋው ጋር ያዋህዱ።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 3,
+     "text": "Serve at once, with ayib and gomen alongside.",
+     "textAm": "ወዲያውኑ ከአይብና ከጎመን ጋር ያቅርቡ።",
+     "optional": false
+    }
+   ],
+   "gradientA": "#6E1220",
+   "gradientB": "#C0334A",
+   "isFasting": false,
+   "isVegan": false,
+   "isGlutenFree": true,
+   "isDairyFree": false,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "gomen": {
+   "title": "Gomen",
+   "titleAm": "ጎመን",
+   "subtitle": "Collards · ginger · garlic",
+   "subtitleAm": "ጎመን · ዝንጅብል · ነጭ ሽንኩርት",
+   "story": "Collard greens cooked slowly with ginger and garlic until they give up their bite.",
+   "storyAm": "ጎመን ከዝንጅብልና ከነጭ ሽንኩርት ጋር ጠንካራነቱን እስኪለቅ ድረስ በእርጋታ ይበስላል።",
+   "regionId": "gurage",
+   "category": "fasting",
+   "difficulty": 0,
+   "totalMinutes": 25,
+   "servings": 6,
+   "xpReward": 70,
+   "heatLevel": 1,
+   "tags": [
+    "fasting",
+    "gurage"
+   ],
+   "ingredients": [
+    {
+     "name": "Collard greens",
+     "nameAm": "ጎመን",
+     "quantity": 1,
+     "unit": "bunch",
+     "unitAm": "ነዶ",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 1,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Ginger",
+     "nameAm": "ዝንጅብል",
+     "quantity": 1,
+     "unit": "in",
+     "unitAm": "ኢንች",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Garlic",
+     "nameAm": "ነጭ ሽንኩርት",
+     "quantity": 4,
+     "unit": "cloves",
+     "unitAm": "ቅንጣት",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Oil",
+     "nameAm": "ዘይት",
+     "quantity": 3,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "pantry",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Strip the leaves from the stems and shred them.",
+     "textAm": "ቅጠሉን ከግንዱ ለይተው ይከትፉት።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 1,
+     "text": "Blanch briefly, then drain well.",
+     "textAm": "ለአጭር ጊዜ አፍልተው በደንብ ያጣሩት።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 2,
+     "text": "Soften onion, ginger and garlic in oil.",
+     "textAm": "ሽንኩርት፣ ዝንጅብልና ነጭ ሽንኩርት በዘይት ያለሰልሱ።",
+     "optional": false,
+     "durationSeconds": 420
+    },
+    {
+     "index": 3,
+     "text": "Add the greens and cook down slowly.",
+     "textAm": "ጎመኑን ጨምረው በእርጋታ ያብስሉት።",
+     "optional": false,
+     "durationSeconds": 1200
+    }
+   ],
+   "gradientA": "#1E5A34",
+   "gradientB": "#4FA766",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": true,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "buna": {
+   "title": "Buna Ceremony",
+   "titleAm": "የቡና ሥነ ሥርዓት",
+   "subtitle": "Roast · grind · three rounds",
+   "subtitleAm": "ማቁላት · መፍጨት · ሦስት ዙር",
+   "story": "The coffee ceremony: green beans roasted, ground and brewed in front of the people who will drink them, served in three rounds. It is not a fast process, and it is not meant to be.",
+   "storyAm": "የቡና ሥነ ሥርዓት፡ ጥሬ ቡና በሚጠጡት ሰዎች ፊት ተቁሎ፣ ተፈጭቶና ተፈልቶ በሦስት ዙር ይቀርባል። ፈጣን ሂደት አይደለም፤ እንዲሆንም አልታሰበም።",
+   "regionId": "sidama",
+   "category": "ceremony",
+   "difficulty": 1,
+   "totalMinutes": 90,
+   "servings": 6,
+   "xpReward": 180,
+   "heatLevel": 0,
+   "tags": [
+    "ceremony",
+    "sidama"
+   ],
+   "ingredients": [
+    {
+     "name": "Green coffee beans",
+     "nameAm": "ጥሬ ቡና",
+     "quantity": 1,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Water",
+     "nameAm": "ውሃ",
+     "quantity": 4,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Incense",
+     "nameAm": "ዕጣን",
+     "quantity": 1,
+     "unit": "piece",
+     "unitAm": "ቁራጭ",
+     "aisle": "pantry",
+     "optional": true
+    },
+    {
+     "name": "Sugar",
+     "nameAm": "ስኳር",
+     "quantity": 0,
+     "unit": "to taste",
+     "unitAm": "እንደ አስፈላጊነቱ",
+     "aisle": "pantry",
+     "optional": true
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Wash the green beans and set the incense burning.",
+     "textAm": "ጥሬ ቡናውን አጥበው ዕጣኑን ያጭሱ።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 1,
+     "text": "Roast the beans in a flat pan, shaking constantly.",
+     "textAm": "ቡናውን በጠፍጣፋ ምጣድ እያወዛወዙ ይቁሉት።",
+     "optional": false,
+     "durationSeconds": 900
+    },
+    {
+     "index": 2,
+     "text": "Carry the pan around so everyone takes the smoke.",
+     "textAm": "ሁሉም ጭሱን እንዲያገኝ ምጣዱን ያዙሩት።",
+     "optional": false,
+     "durationSeconds": 120
+    },
+    {
+     "index": 3,
+     "text": "Grind the roasted beans by hand.",
+     "textAm": "የተቆላውን ቡና በእጅ ይፍጩት።",
+     "optional": false,
+     "durationSeconds": 600
+    },
+    {
+     "index": 4,
+     "text": "Brew in the jebena and let it rise without boiling over.",
+     "textAm": "በጀበና አፍልተው ሳይፈስ እንዲወጣ ያድርጉ።",
+     "optional": false,
+     "durationSeconds": 900
+    },
+    {
+     "index": 5,
+     "text": "Pour the first round from a height, in one go.",
+     "textAm": "የመጀመሪያውን ዙር ከከፍታ በአንድ ጊዜ ያፍሱ።",
+     "optional": false
+    }
+   ],
+   "gradientA": "#3B2416",
+   "gradientB": "#8B5E3C",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": true,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "beyay": {
+   "title": "Beyaynetu",
+   "titleAm": "በያይነቱ",
+   "subtitle": "Seven fasting dishes, one plate",
+   "subtitleAm": "ሰባት የጾም ምግቦች በአንድ ሰሃን",
+   "story": "Not one dish but a plate of them -- shiro, misir, gomen, kik and more, arranged on injera so no two mouthfuls are the same. The fasting table at its fullest.",
+   "storyAm": "አንድ ምግብ ሳይሆን የብዙ ምግቦች ማዕድ ነው -- ሽሮ፣ ምስር፣ ጎመን፣ ክክና ሌሎችም በእንጀራ ላይ ተደርድረው ሁለት ጉርሻ አንድ ዓይነት እንዳይሆን። የጾም ማዕድ በሙላቱ።",
+   "regionId": "amhara",
+   "category": "fasting",
+   "difficulty": 2,
+   "totalMinutes": 150,
+   "servings": 6,
+   "xpReward": 320,
+   "heatLevel": 3,
+   "tags": [
+    "fasting",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Injera",
+     "nameAm": "እንጀራ",
+     "quantity": 4,
+     "unit": "large",
+     "unitAm": "ትልቅ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Shiro",
+     "nameAm": "ሽሮ",
+     "quantity": 1,
+     "unit": "portion",
+     "unitAm": "ድርሻ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Misir wat",
+     "nameAm": "ምስር ወጥ",
+     "quantity": 1,
+     "unit": "portion",
+     "unitAm": "ድርሻ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Gomen",
+     "nameAm": "ጎመን",
+     "quantity": 1,
+     "unit": "portion",
+     "unitAm": "ድርሻ",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Kik alicha",
+     "nameAm": "ክክ አልጫ",
+     "quantity": 1,
+     "unit": "portion",
+     "unitAm": "ድርሻ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Atakilt",
+     "nameAm": "አትክልት",
+     "quantity": 1,
+     "unit": "portion",
+     "unitAm": "ድርሻ",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Fosolia",
+     "nameAm": "ፎሶሊያ",
+     "quantity": 1,
+     "unit": "portion",
+     "unitAm": "ድርሻ",
+     "aisle": "fresh",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Plan backwards from serving time -- the slow dishes start first.",
+     "textAm": "ከማቅረቢያ ሰዓት ወደኋላ ያቅዱ -- ዘገምተኛዎቹ መጀመሪያ ይጀምራሉ።",
+     "optional": false
+    },
+    {
+     "index": 1,
+     "text": "Start misir and kik, which take the longest.",
+     "textAm": "ረጅም ጊዜ የሚወስዱትን ምስርና ክክ ይጀምሩ።",
+     "optional": false,
+     "durationSeconds": 2400
+    },
+    {
+     "index": 2,
+     "text": "Cook gomen and atakilt while those simmer.",
+     "textAm": "እነሱ እየተንተከተኩ ጎመንና አትክልት ያብስሉ።",
+     "optional": false,
+     "durationSeconds": 1800
+    },
+    {
+     "index": 3,
+     "text": "Make the shiro last, so it is still loose.",
+     "textAm": "ሽሮውን መጨረሻ ይሥሩ፤ እንዳይወፍር።",
+     "optional": false,
+     "durationSeconds": 900
+    },
+    {
+     "index": 4,
+     "text": "Lay injera and spoon each dish into its own place.",
+     "textAm": "እንጀራ አንጥፈው እያንዳንዱን ምግብ በየቦታው ያድርጉ።",
+     "optional": false,
+     "durationSeconds": 300
+    }
+   ],
+   "gradientA": "#6A4A12",
+   "gradientB": "#CBA23F",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": false,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "firfir": {
+   "title": "Firfir",
+   "titleAm": "ፍርፍር",
+   "subtitle": "Torn injera · awaze · kibbeh",
+   "subtitleAm": "የተቀደደ እንጀራ · አዋዜ",
+   "story": "Injera torn up and stirred through a spiced sauce -- the dish that turns yesterday's bread into today's breakfast.",
+   "storyAm": "እንጀራ ተቀዶ በቅመም መረቅ ይቀላቀላል -- የትናንቱን እንጀራ የዛሬ ቁርስ የሚያደርግ ምግብ ነው።",
+   "regionId": "amhara",
+   "category": "breakfast",
+   "difficulty": 0,
+   "totalMinutes": 20,
+   "servings": 6,
+   "xpReward": 80,
+   "heatLevel": 3,
+   "tags": [
+    "breakfast",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Injera",
+     "nameAm": "እንጀራ",
+     "quantity": 3,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 1,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Berbere",
+     "nameAm": "በርበሬ",
+     "quantity": 2,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Oil",
+     "nameAm": "ዘይት",
+     "quantity": 3,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Tomato",
+     "nameAm": "ቲማቲም",
+     "quantity": 1,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Tear the injera into small pieces.",
+     "textAm": "እንጀራውን ትንንሽ አድርገው ይቀዱት።",
+     "optional": false,
+     "durationSeconds": 180
+    },
+    {
+     "index": 1,
+     "text": "Cook onion in oil, then add berbere and tomato.",
+     "textAm": "ሽንኩርቱን በዘይት አብስለው በርበሬና ቲማቲም ይጨምሩ።",
+     "optional": false,
+     "durationSeconds": 480
+    },
+    {
+     "index": 2,
+     "text": "Toss the torn injera through until evenly coated.",
+     "textAm": "የተቀደደውን እንጀራ እኩል እስኪለበስ ይቀላቅሉ።",
+     "optional": false,
+     "durationSeconds": 240
+    }
+   ],
+   "gradientA": "#7C3312",
+   "gradientB": "#D2762F",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": false,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "kik": {
+   "title": "Kik Alicha",
+   "titleAm": "ክክ አልጫ",
+   "subtitle": "Split peas · turmeric",
+   "subtitleAm": "ክክ · እርድ",
+   "story": "Yellow split peas cooked with turmeric and no chilli -- the mild dish on a fasting plate that otherwise runs hot.",
+   "storyAm": "ክክ በእርድ ተብስሎ ያለ በርበሬ ይሠራል -- በሌላው ሁሉ በሚያቃጥል የጾም ማዕድ ላይ ለስላሳው ምግብ ነው።",
+   "regionId": "amhara",
+   "category": "fasting",
+   "difficulty": 0,
+   "totalMinutes": 50,
+   "servings": 6,
+   "xpReward": 85,
+   "heatLevel": 0,
+   "tags": [
+    "fasting",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Yellow split peas",
+     "nameAm": "ክክ",
+     "quantity": 2,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 1,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Turmeric",
+     "nameAm": "እርድ",
+     "quantity": 1,
+     "unit": "tsp",
+     "unitAm": "የሻይ ማንኪያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Garlic",
+     "nameAm": "ነጭ ሽንኩርት",
+     "quantity": 3,
+     "unit": "cloves",
+     "unitAm": "ቅንጣት",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Oil",
+     "nameAm": "ዘይት",
+     "quantity": 0.25,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Soak the split peas, then rinse them.",
+     "textAm": "ክኩን አጥልቀው ያጠቡት።",
+     "optional": false,
+     "durationSeconds": 1800
+    },
+    {
+     "index": 1,
+     "text": "Soften onion in oil with turmeric and garlic.",
+     "textAm": "ሽንኩርቱን ከእርድና ከነጭ ሽንኩርት ጋር በዘይት ያለሰልሱ።",
+     "optional": false,
+     "durationSeconds": 420
+    },
+    {
+     "index": 2,
+     "text": "Add peas and water; simmer until they break down.",
+     "textAm": "ክክና ውሃ ጨምረው እስኪፈርስ ያንተከትኩ።",
+     "optional": false,
+     "durationSeconds": 2400
+    }
+   ],
+   "gradientA": "#8A7A18",
+   "gradientB": "#DCC845",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": true,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "dulet": {
+   "title": "Dulet",
+   "titleAm": "ዱለት",
+   "subtitle": "Tripe · liver · mitmita",
+   "subtitleAm": "ጨጓራ · ጉበት · ሚጥሚጣ",
+   "story": "Finely chopped tripe, liver and lean meat, warmed through spiced butter and mitmita. Ordered by people who know exactly what they want.",
+   "storyAm": "ጨጓራ፣ ጉበትና ቀጭን ሥጋ በጥሩ ተከትፎ በቅመም ቅቤና በሚጥሚጣ ይሞቃል። የሚፈልጉትን በትክክል በሚያውቁ ሰዎች ይታዘዛል።",
+   "regionId": "gurage",
+   "category": "raw",
+   "difficulty": 1,
+   "totalMinutes": 35,
+   "servings": 6,
+   "xpReward": 160,
+   "heatLevel": 4,
+   "tags": [
+    "raw",
+    "gurage"
+   ],
+   "ingredients": [
+    {
+     "name": "Tripe",
+     "nameAm": "ጨጓራ",
+     "quantity": 300,
+     "unit": "g",
+     "unitAm": "ግራም",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Liver",
+     "nameAm": "ጉበት",
+     "quantity": 200,
+     "unit": "g",
+     "unitAm": "ግራም",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Lean beef",
+     "nameAm": "ቀጭን ሥጋ",
+     "quantity": 200,
+     "unit": "g",
+     "unitAm": "ግራም",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Niter kibbeh",
+     "nameAm": "ንጥር ቅቤ",
+     "quantity": 0.25,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Mitmita",
+     "nameAm": "ሚጥሚጣ",
+     "quantity": 2,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 1,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Clean the tripe thoroughly and chop everything very fine.",
+     "textAm": "ጨጓራውን በደንብ አጽድተው ሁሉንም በጣም በጥሩ ይክተፉ።",
+     "optional": false,
+     "durationSeconds": 1200
+    },
+    {
+     "index": 1,
+     "text": "Warm the kibbeh with onion until fragrant.",
+     "textAm": "ቅቤውን ከሽንኩርት ጋር ሽታው እስኪወጣ ያሙቁት።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 2,
+     "text": "Add the meats and warm through briefly.",
+     "textAm": "ሥጋዎቹን ጨምረው ለአጭር ጊዜ ያሙቁ።",
+     "optional": false,
+     "durationSeconds": 240
+    },
+    {
+     "index": 3,
+     "text": "Stir in mitmita and serve immediately.",
+     "textAm": "ሚጥሚጣ ጨምረው ወዲያውኑ ያቅርቡ።",
+     "optional": false
+    }
+   ],
+   "gradientA": "#4A1520",
+   "gradientB": "#93304A",
+   "isFasting": false,
+   "isVegan": false,
+   "isGlutenFree": true,
+   "isDairyFree": false,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "chechebsa": {
+   "title": "Chechebsa",
+   "titleAm": "ጨጨብሳ",
+   "subtitle": "Torn flatbread · niter kibbeh · berbere",
+   "subtitleAm": "የተቀደደ ቂጣ · ንጥር ቅቤ · በርበሬ",
+   "story": "A breakfast of torn flatbread tossed in spiced butter, eaten in many Oromo homes with yoghurt or honey alongside. It is quick by design -- the bread is made, torn and dressed in the same morning.",
+   "storyAm": "የተቀደደ ቂጣ በቅመም ቅቤ ተለውሶ የሚበላ ቁርስ ሲሆን በብዙ የኦሮሞ ቤቶች ከእርጎ ወይም ከማር ጋር ይቀርባል። በአንድ ጠዋት ተሠርቶ ተቀዶ ይዘጋጃል።",
+   "regionId": "oromia",
+   "category": "breakfast",
+   "difficulty": 0,
+   "totalMinutes": 25,
+   "servings": 6,
+   "xpReward": 70,
+   "heatLevel": 2,
+   "tags": [
+    "breakfast",
+    "oromia"
+   ],
+   "ingredients": [
+    {
+     "name": "Kita flatbread",
+     "nameAm": "ቂጣ",
+     "quantity": 1,
+     "unit": "large",
+     "unitAm": "ትልቅ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Niter kibbeh",
+     "nameAm": "ንጥር ቅቤ",
+     "quantity": 0.33,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Berbere",
+     "nameAm": "በርበሬ",
+     "quantity": 2,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Honey",
+     "nameAm": "ማር",
+     "quantity": 2,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "pantry",
+     "optional": true
+    },
+    {
+     "name": "Yoghurt",
+     "nameAm": "እርጎ",
+     "quantity": 0.5,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "meatDairy",
+     "optional": true
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Make a plain kita and let it cool enough to handle.",
+     "textAm": "ተራ ቂጣ ሠርተው እስኪበርድ ያቆዩት።",
+     "optional": false
+    },
+    {
+     "index": 1,
+     "text": "Tear it into rough pieces the size of a thumbnail.",
+     "textAm": "የጥፍር ያህል በሆነ መጠን ይቀዱት።",
+     "optional": false
+    },
+    {
+     "index": 2,
+     "text": "Melt the niter kibbeh in a wide pan over low heat.",
+     "textAm": "ንጥር ቅቤውን በሰፊ ድስት በዝቅተኛ እሳት ያቅልጡት።",
+     "optional": false,
+     "durationSeconds": 120
+    },
+    {
+     "index": 3,
+     "text": "Stir in the berbere and let it bloom without burning.",
+     "textAm": "በርበሬውን ጨምረው ሳይቃጠል እንዲፈታ ያድርጉ።",
+     "optional": false,
+     "durationSeconds": 90
+    },
+    {
+     "index": 4,
+     "text": "Toss the torn bread through until every piece is coated.",
+     "textAm": "የተቀደደውን ቂጣ እያንዳንዱ ቁራጭ እስኪለበስ ይቀላቅሉ።",
+     "optional": false,
+     "durationSeconds": 180
+    },
+    {
+     "index": 5,
+     "text": "Serve hot, with honey or yoghurt if you like.",
+     "textAm": "ሙቅ ሆኖ ከማር ወይም ከእርጎ ጋር ያቅርቡ።",
+     "optional": false
+    }
+   ],
+   "gradientA": "#8A4A16",
+   "gradientB": "#D98F3C",
+   "isFasting": false,
+   "isVegan": false,
+   "isGlutenFree": false,
+   "isDairyFree": false,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "genfo": {
+   "title": "Genfo",
+   "titleAm": "ገንፎ",
+   "subtitle": "Barley porridge · kibbeh well · berbere",
+   "subtitleAm": "የገብስ ገንፎ · የቅቤ ጉድጓድ · በርበሬ",
+   "story": "A stiff barley porridge shaped into a mound with a well of spiced butter in the middle. Often served to new mothers and on cold mornings, it is eaten from the outside in.",
+   "storyAm": "የገብስ ገንፎ ተከምሮ መሃሉ ላይ የቅመም ቅቤ ጉድጓድ ይሠራለታል። ብዙ ጊዜ ለወላድ እናቶችና በቀዝቃዛ ጠዋቶች የሚቀርብ ሲሆን ከዳር ወደ መሃል ይበላል።",
+   "regionId": "amhara",
+   "category": "breakfast",
+   "difficulty": 0,
+   "totalMinutes": 30,
+   "servings": 6,
+   "xpReward": 65,
+   "heatLevel": 1,
+   "tags": [
+    "breakfast",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Barley flour",
+     "nameAm": "የገብስ ዱቄት",
+     "quantity": 2,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Water",
+     "nameAm": "ውሃ",
+     "quantity": 3,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Niter kibbeh",
+     "nameAm": "ንጥር ቅቤ",
+     "quantity": 0.25,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Berbere",
+     "nameAm": "በርበሬ",
+     "quantity": 2,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Salt",
+     "nameAm": "ጨው",
+     "quantity": 0,
+     "unit": "to taste",
+     "unitAm": "እንደ አስፈላጊነቱ",
+     "aisle": "spice",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Bring the salted water to a rolling boil.",
+     "textAm": "የጨው ውሃውን አፍልተው ያፍሉት።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 1,
+     "text": "Add the barley flour all at once and stop stirring.",
+     "textAm": "የገብስ ዱቄቱን በአንድ ጊዜ ጨምረው ማማሰሉን ያቁሙ።",
+     "optional": false,
+     "durationSeconds": 60
+    },
+    {
+     "index": 2,
+     "text": "Cover and let it steam through.",
+     "textAm": "ሸፍነው በእንፋሎት እንዲበስል ያድርጉ።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 3,
+     "text": "Beat it hard with a wooden spoon until smooth and stiff.",
+     "textAm": "በእንጨት ማንኪያ ለስላሳና ጠጣር እስኪሆን ድረስ ይምቱት።",
+     "optional": false,
+     "durationSeconds": 240
+    },
+    {
+     "index": 4,
+     "text": "Shape into a mound and press a well into the centre.",
+     "textAm": "ክምር አድርገው መሃሉ ላይ ጉድጓድ ይሥሩ።",
+     "optional": false
+    },
+    {
+     "index": 5,
+     "text": "Melt the kibbeh with berbere and pour it into the well.",
+     "textAm": "ቅቤውን ከበርበሬ ጋር አቅልጠው ጉድጓዱ ውስጥ ያፍሱ።",
+     "optional": false,
+     "durationSeconds": 120
+    }
+   ],
+   "gradientA": "#7A6A2A",
+   "gradientB": "#C9B45C",
+   "isFasting": false,
+   "isVegan": false,
+   "isGlutenFree": false,
+   "isDairyFree": false,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "atakilt": {
+   "title": "Atakilt Wat",
+   "titleAm": "አትክልት ወጥ",
+   "subtitle": "Cabbage · carrot · potato · turmeric",
+   "subtitleAm": "ጥቅል ጎመን · ካሮት · ድንች · እርድ",
+   "story": "A gentle turmeric-yellow vegetable stew with no berbere at all, which is what makes it a fasting-table staple and a good first dish for anyone wary of heat.",
+   "storyAm": "በእርድ የሚቀላ ለስላሳ የአትክልት ወጥ ሲሆን በርበሬ አልያዘም። ለጾም ማዕድ ዋነኛ ሲሆን ቅመም ለሚፈሩ ሰዎችም ጥሩ መጀመሪያ ነው።",
+   "regionId": "amhara",
+   "category": "fasting",
+   "difficulty": 0,
+   "totalMinutes": 40,
+   "servings": 6,
+   "xpReward": 75,
+   "heatLevel": 0,
+   "tags": [
+    "fasting",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Cabbage",
+     "nameAm": "ጥቅል ጎመን",
+     "quantity": 0.5,
+     "unit": "head",
+     "unitAm": "ራስ",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Carrots",
+     "nameAm": "ካሮት",
+     "quantity": 3,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Potatoes",
+     "nameAm": "ድንች",
+     "quantity": 3,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 1,
+     "unit": "large",
+     "unitAm": "ትልቅ",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Turmeric",
+     "nameAm": "እርድ",
+     "quantity": 1,
+     "unit": "tsp",
+     "unitAm": "የሻይ ማንኪያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Garlic",
+     "nameAm": "ነጭ ሽንኩርት",
+     "quantity": 4,
+     "unit": "cloves",
+     "unitAm": "ቅንጣት",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Oil",
+     "nameAm": "ዘይት",
+     "quantity": 0.25,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Slice the onion and soften it in oil.",
+     "textAm": "ሽንኩርቱን ከትፈው በዘይት ያለሰልሱት።",
+     "optional": false,
+     "durationSeconds": 420
+    },
+    {
+     "index": 1,
+     "text": "Add garlic and turmeric and stir for a minute.",
+     "textAm": "ነጭ ሽንኩርትና እርድ ጨምረው ለአንድ ደቂቃ ያማስሉ።",
+     "optional": false,
+     "durationSeconds": 60
+    },
+    {
+     "index": 2,
+     "text": "Add carrots and potatoes cut into thick batons.",
+     "textAm": "ካሮትና ድንቹን ወፍራም አድርገው ቆርጠው ይጨምሩ።",
+     "optional": false,
+     "durationSeconds": 60
+    },
+    {
+     "index": 3,
+     "text": "Add the shredded cabbage and a splash of water.",
+     "textAm": "የተከተፈውን ጎመንና ትንሽ ውሃ ይጨምሩ።",
+     "optional": false,
+     "durationSeconds": 60
+    },
+    {
+     "index": 4,
+     "text": "Cover and cook low until everything is tender.",
+     "textAm": "ሸፍነው ሁሉም እስኪለሰልስ በዝቅተኛ እሳት ያብስሉ።",
+     "optional": false,
+     "durationSeconds": 1200
+    }
+   ],
+   "gradientA": "#6E7A18",
+   "gradientB": "#B9C64A",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": true,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "bozena": {
+   "title": "Bozena Shiro",
+   "titleAm": "ቦዘና ሽሮ",
+   "subtitle": "Shiro · shredded beef · berbere",
+   "subtitleAm": "ሽሮ · የተከተፈ ሥጋ · በርበሬ",
+   "story": "Shiro with meat stirred through it -- the version cooked when a fast has ended and there is dried beef in the house.",
+   "storyAm": "ሥጋ የተጨመረበት ሽሮ ሲሆን ጾም ሲፈታና በቤት ውስጥ ቋንጣ ሲኖር የሚሠራው ዓይነት ነው።",
+   "regionId": "amhara",
+   "category": "wat",
+   "difficulty": 1,
+   "totalMinutes": 50,
+   "servings": 6,
+   "xpReward": 130,
+   "heatLevel": 3,
+   "tags": [
+    "wat",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Shiro powder",
+     "nameAm": "የሽሮ ዱቄት",
+     "quantity": 1,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Dried beef (quanta)",
+     "nameAm": "ቋንጣ",
+     "quantity": 200,
+     "unit": "g",
+     "unitAm": "ግራም",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Niter kibbeh",
+     "nameAm": "ንጥር ቅቤ",
+     "quantity": 0.25,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 1,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Berbere",
+     "nameAm": "በርበሬ",
+     "quantity": 2,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Garlic",
+     "nameAm": "ነጭ ሽንኩርት",
+     "quantity": 4,
+     "unit": "cloves",
+     "unitAm": "ቅንጣት",
+     "aisle": "fresh",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Dry-cook the diced onion until it collapses.",
+     "textAm": "የተከተፈውን ሽንኩርት እስኪለሰልስ በደረቁ ያብስሉ።",
+     "optional": false,
+     "durationSeconds": 600
+    },
+    {
+     "index": 1,
+     "text": "Add kibbeh and berbere and cook the spice out.",
+     "textAm": "ቅቤና በርበሬ ጨምረው ቅመሙን ያብስሉት።",
+     "optional": false,
+     "durationSeconds": 480
+    },
+    {
+     "index": 2,
+     "text": "Add the shredded dried beef and turn it through.",
+     "textAm": "የተከተፈውን ቋንጣ ጨምረው ይገልብጡት።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 3,
+     "text": "Whisk the shiro powder into water, then pour it in slowly.",
+     "textAm": "የሽሮ ዱቄቱን በውሃ አማስለው ቀስ ብለው ያፍሱት።",
+     "optional": false,
+     "durationSeconds": 120
+    },
+    {
+     "index": 4,
+     "text": "Simmer, stirring, until it thickens and stops tasting raw.",
+     "textAm": "እያማሰሉ እስኪወፍርና ጥሬነቱ እስኪለቅ ያንተከትኩ።",
+     "optional": false,
+     "durationSeconds": 900
+    }
+   ],
+   "gradientA": "#7A3A12",
+   "gradientB": "#C97A32",
+   "isFasting": false,
+   "isVegan": false,
+   "isGlutenFree": true,
+   "isDairyFree": false,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "fosolia": {
+   "title": "Fosolia",
+   "titleAm": "ፎሶሊያ",
+   "subtitle": "Green beans · carrot · garlic",
+   "subtitleAm": "ፎሶሊያ · ካሮት · ነጭ ሽንኩርት",
+   "story": "Green beans and carrots cooked down with onion and garlic. A quiet dish that shares the fasting plate with louder ones.",
+   "storyAm": "ፎሶሊያና ካሮት ከሽንኩርትና ነጭ ሽንኩርት ጋር የሚበስል ነው። ጸጥ ያለ ምግብ ሲሆን በጾም ማዕድ ላይ ከሌሎች ጋር ይቀርባል።",
+   "regionId": "amhara",
+   "category": "fasting",
+   "difficulty": 0,
+   "totalMinutes": 25,
+   "servings": 6,
+   "xpReward": 60,
+   "heatLevel": 0,
+   "tags": [
+    "fasting",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Green beans",
+     "nameAm": "ፎሶሊያ",
+     "quantity": 500,
+     "unit": "g",
+     "unitAm": "ግራም",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Carrots",
+     "nameAm": "ካሮት",
+     "quantity": 2,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 1,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Garlic",
+     "nameAm": "ነጭ ሽንኩርት",
+     "quantity": 3,
+     "unit": "cloves",
+     "unitAm": "ቅንጣት",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Oil",
+     "nameAm": "ዘይት",
+     "quantity": 3,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "pantry",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Top and tail the beans; cut the carrots to match.",
+     "textAm": "የፎሶሊያውን ጫፍ ቆርጠው ካሮቱን በተመሳሳይ ይቁረጡ።",
+     "optional": false
+    },
+    {
+     "index": 1,
+     "text": "Soften the sliced onion in oil.",
+     "textAm": "የተከተፈውን ሽንኩርት በዘይት ያለሰልሱት።",
+     "optional": false,
+     "durationSeconds": 360
+    },
+    {
+     "index": 2,
+     "text": "Add garlic, then the vegetables.",
+     "textAm": "ነጭ ሽንኩርት ከዚያም አትክልቶቹን ይጨምሩ።",
+     "optional": false,
+     "durationSeconds": 60
+    },
+    {
+     "index": 3,
+     "text": "Cover and cook until tender but still green.",
+     "textAm": "ሸፍነው እስኪለሰልሱ ግን አረንጓዴነታቸውን ሳይለቁ ያብስሉ።",
+     "optional": false,
+     "durationSeconds": 900
+    }
+   ],
+   "gradientA": "#2A6A2A",
+   "gradientB": "#6FBF5F",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": true,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "alicha": {
+   "title": "Alicha Wat",
+   "titleAm": "አልጫ ወጥ",
+   "subtitle": "Beef · turmeric · no berbere",
+   "subtitleAm": "የበሬ ሥጋ · እርድ · በርበሬ የለም",
+   "story": "The mild counterpart to a berbere wat: turmeric instead of chilli, cooked long and gently. Often the dish put in front of children and elders at the same table.",
+   "storyAm": "የበርበሬ ወጥ ለስላሳ አቻ ሲሆን በርበሬ ሳይሆን እርድ ይጠቀማል፤ ረጅም ጊዜ በእርጋታ ይበስላል። ብዙ ጊዜ በአንድ ማዕድ ላይ ለልጆችና ለአዛውንቶች የሚቀርበው ነው።",
+   "regionId": "amhara",
+   "category": "wat",
+   "difficulty": 1,
+   "totalMinutes": 70,
+   "servings": 6,
+   "xpReward": 120,
+   "heatLevel": 0,
+   "tags": [
+    "wat",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Beef, cubed",
+     "nameAm": "የተከተፈ የበሬ ሥጋ",
+     "quantity": 800,
+     "unit": "g",
+     "unitAm": "ግራም",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 2,
+     "unit": "large",
+     "unitAm": "ትልቅ",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Turmeric",
+     "nameAm": "እርድ",
+     "quantity": 2,
+     "unit": "tsp",
+     "unitAm": "የሻይ ማንኪያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Ginger",
+     "nameAm": "ዝንጅብል",
+     "quantity": 1,
+     "unit": "in",
+     "unitAm": "ኢንች",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Garlic",
+     "nameAm": "ነጭ ሽንኩርት",
+     "quantity": 5,
+     "unit": "cloves",
+     "unitAm": "ቅንጣት",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Niter kibbeh",
+     "nameAm": "ንጥር ቅቤ",
+     "quantity": 0.33,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "meatDairy",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Dry-cook the onions until soft and pale.",
+     "textAm": "ሽንኩርቱን እስኪለሰልስና እስኪገረጣ በደረቁ ያብስሉ።",
+     "optional": false,
+     "durationSeconds": 720
+    },
+    {
+     "index": 1,
+     "text": "Add kibbeh, turmeric, garlic and ginger.",
+     "textAm": "ቅቤ፣ እርድ፣ ነጭ ሽንኩርትና ዝንጅብል ይጨምሩ።",
+     "optional": false,
+     "durationSeconds": 180
+    },
+    {
+     "index": 2,
+     "text": "Add the beef and turn until sealed.",
+     "textAm": "ሥጋውን ጨምረው እስኪለበስ ይገልብጡ።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 3,
+     "text": "Add water to barely cover and simmer low.",
+     "textAm": "ውሃ ሸፍኖት እስኪያልፍ ጨምረው በዝቅተኛ እሳት ያንተከትኩ።",
+     "optional": false,
+     "durationSeconds": 2700
+    }
+   ],
+   "gradientA": "#8A7A18",
+   "gradientB": "#DCC845",
+   "isFasting": false,
+   "isVegan": false,
+   "isGlutenFree": true,
+   "isDairyFree": false,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "ayib": {
+   "title": "Ayib",
+   "titleAm": "አይብ",
+   "subtitle": "Fresh cheese · pressed curd",
+   "subtitleAm": "ትኩስ አይብ · የተጨመቀ",
+   "story": "A mild fresh cheese, crumbly and barely salted. Its job is to sit next to something fierce -- kitfo, or a hot wat -- and cool it down.",
+   "storyAm": "ለስላሳና ትንሽ ጨው ያለው ትኩስ አይብ ነው። ሥራው ከሚያቃጥል ምግብ -- ከክትፎ ወይም ከሚያቃጥል ወጥ -- አጠገብ ሆኖ ማብረድ ነው።",
+   "regionId": "amhara",
+   "category": "side",
+   "difficulty": 0,
+   "totalMinutes": 45,
+   "servings": 6,
+   "xpReward": 55,
+   "heatLevel": 0,
+   "tags": [
+    "side",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Buttermilk",
+     "nameAm": "አረራ",
+     "quantity": 2,
+     "unit": "l",
+     "unitAm": "ሊትር",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Salt",
+     "nameAm": "ጨው",
+     "quantity": 0,
+     "unit": "to taste",
+     "unitAm": "እንደ አስፈላጊነቱ",
+     "aisle": "spice",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Warm the buttermilk gently. Do not let it boil.",
+     "textAm": "አረራውን በእርጋታ ያሙቁት። እንዲፈላ አይፍቀዱ።",
+     "optional": false,
+     "durationSeconds": 900
+    },
+    {
+     "index": 1,
+     "text": "Let the curds separate and rise.",
+     "textAm": "እርጎው ተለይቶ እንዲወጣ ያድርጉ።",
+     "optional": false,
+     "durationSeconds": 600
+    },
+    {
+     "index": 2,
+     "text": "Strain through cloth and press out the whey.",
+     "textAm": "በጨርቅ አጣርተው ውሃውን ይጭመቁት።",
+     "optional": false,
+     "durationSeconds": 1200
+    },
+    {
+     "index": 3,
+     "text": "Salt lightly and serve cool.",
+     "textAm": "ትንሽ ጨው ጨምረው ቀዝቃዛ ሆኖ ያቅርቡ።",
+     "optional": false
+    }
+   ],
+   "gradientA": "#8A8A7A",
+   "gradientB": "#E4E0D2",
+   "isFasting": false,
+   "isVegan": false,
+   "isGlutenFree": true,
+   "isDairyFree": false,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "awaze": {
+   "title": "Awaze",
+   "titleAm": "አዋዜ",
+   "subtitle": "Berbere · wine · garlic paste",
+   "subtitleAm": "በርበሬ · ወይን · ነጭ ሽንኩርት",
+   "story": "A berbere paste loosened with wine or tej, served beside tibs and kitfo for anyone who wants more heat than the dish already carries.",
+   "storyAm": "በወይን ወይም በጠጅ የተለወሰ የበርበሬ ለጥ ሲሆን ከምግቡ በላይ ቅመም ለሚፈልጉ ከጥብስና ከክትፎ ጎን ይቀርባል።",
+   "regionId": "amhara",
+   "category": "condiment",
+   "difficulty": 0,
+   "totalMinutes": 15,
+   "servings": 6,
+   "xpReward": 45,
+   "heatLevel": 4,
+   "tags": [
+    "condiment",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Berbere",
+     "nameAm": "በርበሬ",
+     "quantity": 0.5,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Red wine or tej",
+     "nameAm": "ወይን ወይም ጠጅ",
+     "quantity": 3,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Garlic",
+     "nameAm": "ነጭ ሽንኩርት",
+     "quantity": 2,
+     "unit": "cloves",
+     "unitAm": "ቅንጣት",
+     "aisle": "fresh",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Crush the garlic to a paste with a little salt.",
+     "textAm": "ነጭ ሽንኩርቱን ከትንሽ ጨው ጋር ወቅጠው ለጥ ያድርጉት።",
+     "optional": false
+    },
+    {
+     "index": 1,
+     "text": "Stir the berbere into the wine a spoon at a time.",
+     "textAm": "በርበሬውን በማንኪያ እየጨመሩ ከወይኑ ጋር ያማስሉ።",
+     "optional": false,
+     "durationSeconds": 180
+    },
+    {
+     "index": 2,
+     "text": "Rest it so the spice softens before serving.",
+     "textAm": "ቅመሙ እንዲለሰልስ አሳርፈው ያቅርቡት።",
+     "optional": false,
+     "durationSeconds": 600
+    }
+   ],
+   "gradientA": "#7A1010",
+   "gradientB": "#C43A2A",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": true,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "tihlo": {
+   "title": "Tihlo",
+   "titleAm": "ጥሕሎ",
+   "subtitle": "Roasted barley dough · fork-eaten",
+   "subtitleAm": "የተጠበሰ የገብስ ሊጥ · በሹካ",
+   "story": "Balls of roasted barley dough, speared on a small wooden fork and dipped in a spiced sauce. Associated with Tigray, and eaten communally from one dish.",
+   "storyAm": "የተጠበሰ የገብስ ሊጥ ኳስ ሲሆን በትንሽ የእንጨት ሹካ ተወግቶ በቅመም መረቅ ይጠቀሳል። ከትግራይ ጋር የተያያዘ ሲሆን ከአንድ ሰሃን በጋራ ይበላል።",
+   "regionId": "tigray",
+   "category": "grain",
+   "difficulty": 1,
+   "totalMinutes": 60,
+   "servings": 6,
+   "xpReward": 140,
+   "heatLevel": 2,
+   "tags": [
+    "grain",
+    "tigray"
+   ],
+   "ingredients": [
+    {
+     "name": "Roasted barley flour",
+     "nameAm": "የተጠበሰ የገብስ ዱቄት",
+     "quantity": 3,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Water",
+     "nameAm": "ውሃ",
+     "quantity": 2,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Berbere",
+     "nameAm": "በርበሬ",
+     "quantity": 3,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Niter kibbeh",
+     "nameAm": "ንጥር ቅቤ",
+     "quantity": 0.25,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Beef, diced",
+     "nameAm": "የተከተፈ ሥጋ",
+     "quantity": 300,
+     "unit": "g",
+     "unitAm": "ግራም",
+     "aisle": "meatDairy",
+     "optional": true
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Work the flour and warm water into a stiff dough.",
+     "textAm": "ዱቄቱንና ለብ ያለ ውሃ አዋህደው ጠጣር ሊጥ ያድርጉት።",
+     "optional": false,
+     "durationSeconds": 600
+    },
+    {
+     "index": 1,
+     "text": "Roll it into small balls and keep them covered.",
+     "textAm": "ትንንሽ ኳሶች አድርገው ሸፍነው ያስቀምጡ።",
+     "optional": false,
+     "durationSeconds": 600
+    },
+    {
+     "index": 2,
+     "text": "Build a berbere sauce with kibbeh and onion.",
+     "textAm": "በቅቤና በሽንኩርት የበርበሬ መረቅ ይሥሩ።",
+     "optional": false,
+     "durationSeconds": 900
+    },
+    {
+     "index": 3,
+     "text": "Serve the balls around the sauce, with forks.",
+     "textAm": "ኳሶቹን በመረቁ ዙሪያ ከሹካ ጋር ያቅርቡ።",
+     "optional": false
+    }
+   ],
+   "gradientA": "#5A4A2A",
+   "gradientB": "#A8905C",
+   "isFasting": false,
+   "isVegan": false,
+   "isGlutenFree": false,
+   "isDairyFree": false,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "shorba": {
+   "title": "Shorba",
+   "titleAm": "ሾርባ",
+   "subtitle": "Lentil broth · cumin · fast-breaking",
+   "subtitleAm": "የምስር ሾርባ · ከሙን · ጾም መፍቻ",
+   "story": "A thin lentil broth, often the first thing eaten when a fast is broken because it is gentle on an empty stomach.",
+   "storyAm": "ቀጭን የምስር ሾርባ ሲሆን ባዶ ሆድ ላይ ቀላል ስለሆነ ጾም ሲፈታ መጀመሪያ የሚበላ ነው።",
+   "regionId": "harar",
+   "category": "soup",
+   "difficulty": 0,
+   "totalMinutes": 35,
+   "servings": 6,
+   "xpReward": 60,
+   "heatLevel": 1,
+   "tags": [
+    "soup",
+    "harar"
+   ],
+   "ingredients": [
+    {
+     "name": "Red lentils",
+     "nameAm": "ቀይ ምስር",
+     "quantity": 1,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 1,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Cumin",
+     "nameAm": "ከሙን",
+     "quantity": 1,
+     "unit": "tsp",
+     "unitAm": "የሻይ ማንኪያ",
+     "aisle": "spice",
+     "optional": false
+    },
+    {
+     "name": "Tomato",
+     "nameAm": "ቲማቲም",
+     "quantity": 1,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Oil",
+     "nameAm": "ዘይት",
+     "quantity": 2,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "pantry",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Soften onion in oil with the cumin.",
+     "textAm": "ሽንኩርቱን ከከሙን ጋር በዘይት ያለሰልሱት።",
+     "optional": false,
+     "durationSeconds": 360
+    },
+    {
+     "index": 1,
+     "text": "Add chopped tomato and let it break down.",
+     "textAm": "የተከተፈ ቲማቲም ጨምረው እንዲፈርስ ያድርጉ።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 2,
+     "text": "Add lentils and plenty of water.",
+     "textAm": "ምስርና በቂ ውሃ ይጨምሩ።",
+     "optional": false,
+     "durationSeconds": 60
+    },
+    {
+     "index": 3,
+     "text": "Simmer until the lentils fall apart.",
+     "textAm": "ምስሩ እስኪፈርስ ያንተከትኩ።",
+     "optional": false,
+     "durationSeconds": 1500
+    }
+   ],
+   "gradientA": "#8A5A20",
+   "gradientB": "#D9A050",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": true,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "kinche": {
+   "title": "Kinche",
+   "titleAm": "ቅንጬ",
+   "subtitle": "Cracked wheat · kibbeh · plain",
+   "subtitleAm": "ስንዴ ፍርፍር · ቅቤ · ተራ",
+   "story": "Cracked wheat boiled soft and dressed with spiced butter. Plain on purpose -- a breakfast that does not compete with the coffee that follows it.",
+   "storyAm": "የተፈጨ ስንዴ ለስላሳ እስኪሆን ተቀቅሎ በቅመም ቅቤ ይለወሳል። ሆን ተብሎ ተራ ነው -- ከሚከተለው ቡና ጋር የማይወዳደር ቁርስ።",
+   "regionId": "amhara",
+   "category": "breakfast",
+   "difficulty": 0,
+   "totalMinutes": 30,
+   "servings": 6,
+   "xpReward": 55,
+   "heatLevel": 0,
+   "tags": [
+    "breakfast",
+    "amhara"
+   ],
+   "ingredients": [
+    {
+     "name": "Cracked wheat",
+     "nameAm": "ስንዴ ፍርፍር",
+     "quantity": 1.5,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Water",
+     "nameAm": "ውሃ",
+     "quantity": 3,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Niter kibbeh",
+     "nameAm": "ንጥር ቅቤ",
+     "quantity": 3,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "meatDairy",
+     "optional": false
+    },
+    {
+     "name": "Salt",
+     "nameAm": "ጨው",
+     "quantity": 0,
+     "unit": "to taste",
+     "unitAm": "እንደ አስፈላጊነቱ",
+     "aisle": "spice",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Rinse the cracked wheat until the water runs clear.",
+     "textAm": "ስንዴውን ውሃው እስኪጠራ ያጠቡት።",
+     "optional": false,
+     "durationSeconds": 180
+    },
+    {
+     "index": 1,
+     "text": "Boil in salted water until soft.",
+     "textAm": "በጨው ውሃ እስኪለሰልስ ያብስሉት።",
+     "optional": false,
+     "durationSeconds": 1200
+    },
+    {
+     "index": 2,
+     "text": "Drain, then stir the kibbeh through while hot.",
+     "textAm": "አጣርተው ሙቅ ሳለ ቅቤውን ይቀላቅሉ።",
+     "optional": false,
+     "durationSeconds": 120
+    }
+   ],
+   "gradientA": "#7A7A5A",
+   "gradientB": "#CFC7A0",
+   "isFasting": false,
+   "isVegan": false,
+   "isGlutenFree": false,
+   "isDairyFree": false,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "ful": {
+   "title": "Ful",
+   "titleAm": "ፉል",
+   "subtitle": "Fava beans · onion · chilli · bread",
+   "subtitleAm": "ባቄላ · ሽንኩርት · ቃሪያ · ዳቦ",
+   "story": "Stewed fava beans mashed at the table, eaten from a shared bowl with bread. Common in Harar and across the east, and a fixture of morning eating houses.",
+   "storyAm": "የበሰለ ባቄላ በማዕድ ላይ ተፈጭቶ ከዳቦ ጋር ከጋራ ሰሃን ይበላል። በሐረርና በምሥራቁ አካባቢ የተለመደ ሲሆን የጠዋት ምግብ ቤቶች ዋነኛ ነው።",
+   "regionId": "harar",
+   "category": "breakfast",
+   "difficulty": 0,
+   "totalMinutes": 25,
+   "servings": 6,
+   "xpReward": 60,
+   "heatLevel": 2,
+   "tags": [
+    "breakfast",
+    "harar"
+   ],
+   "ingredients": [
+    {
+     "name": "Fava beans, cooked",
+     "nameAm": "የበሰለ ባቄላ",
+     "quantity": 2,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Onion",
+     "nameAm": "ሽንኩርት",
+     "quantity": 1,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Green chilli",
+     "nameAm": "ቃሪያ",
+     "quantity": 2,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Tomato",
+     "nameAm": "ቲማቲም",
+     "quantity": 1,
+     "unit": "",
+     "unitAm": "",
+     "aisle": "fresh",
+     "optional": false
+    },
+    {
+     "name": "Oil",
+     "nameAm": "ዘይት",
+     "quantity": 2,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Bread",
+     "nameAm": "ዳቦ",
+     "quantity": 1,
+     "unit": "loaf",
+     "unitAm": "ዳቦ",
+     "aisle": "pantry",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Warm the beans through with a little of their liquid.",
+     "textAm": "ባቄላውን ከትንሽ ውሃው ጋር ያሙቁት።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 1,
+     "text": "Mash roughly -- it should not be smooth.",
+     "textAm": "ሻካራ አድርገው ይፍጩት -- ለስላሳ መሆን የለበትም።",
+     "optional": false,
+     "durationSeconds": 120
+    },
+    {
+     "index": 2,
+     "text": "Top with raw onion, chilli, tomato and oil.",
+     "textAm": "ጥሬ ሽንኩርት፣ ቃሪያ፣ ቲማቲምና ዘይት ይጨምሩበት።",
+     "optional": false
+    },
+    {
+     "index": 3,
+     "text": "Serve with bread torn to scoop.",
+     "textAm": "ለመጎረስ ከተቀደደ ዳቦ ጋር ያቅርቡ።",
+     "optional": false
+    }
+   ],
+   "gradientA": "#5A5A2A",
+   "gradientB": "#A8A050",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": false,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  },
+  "dabo": {
+   "title": "Ambasha",
+   "titleAm": "አንባሻ",
+   "subtitle": "Celebration bread · scored top",
+   "subtitleAm": "የበዓል ዳቦ · የተቀረጸ ላይ",
+   "story": "A round, slightly sweet bread scored across the top before baking. Made for holidays and guests; the pattern is cut so it can be torn into even shares.",
+   "storyAm": "ክብ፣ ትንሽ ጣፋጭ ዳቦ ሲሆን ከመጋገሩ በፊት ላዩ ላይ ይቀረጻል። ለበዓላትና ለእንግዶች የሚሠራ ሲሆን እኩል ለመከፋፈል እንዲመች ነው የሚቀረጸው።",
+   "regionId": "tigray",
+   "category": "bread",
+   "difficulty": 1,
+   "totalMinutes": 180,
+   "servings": 6,
+   "xpReward": 150,
+   "heatLevel": 0,
+   "tags": [
+    "bread",
+    "tigray"
+   ],
+   "ingredients": [
+    {
+     "name": "Flour",
+     "nameAm": "ዱቄት",
+     "quantity": 4,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Yeast",
+     "nameAm": "እርሾ",
+     "quantity": 2,
+     "unit": "tsp",
+     "unitAm": "የሻይ ማንኪያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Sugar",
+     "nameAm": "ስኳር",
+     "quantity": 2,
+     "unit": "tbsp",
+     "unitAm": "የሾርባ ማንኪያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Oil",
+     "nameAm": "ዘይት",
+     "quantity": 0.25,
+     "unit": "cup",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    },
+    {
+     "name": "Water",
+     "nameAm": "ውሃ",
+     "quantity": 1.5,
+     "unit": "cups",
+     "unitAm": "ኩባያ",
+     "aisle": "pantry",
+     "optional": false
+    }
+   ],
+   "equipment": [],
+   "steps": [
+    {
+     "index": 0,
+     "text": "Bloom the yeast in warm water with the sugar.",
+     "textAm": "እርሾውን ከስኳር ጋር በለብ ያለ ውሃ ያንቁት።",
+     "optional": false,
+     "durationSeconds": 600
+    },
+    {
+     "index": 1,
+     "text": "Work everything into a soft dough and knead it well.",
+     "textAm": "ሁሉንም አዋህደው ለስላሳ ሊጥ አድርገው በደንብ ያቡኩት።",
+     "optional": false,
+     "durationSeconds": 900
+    },
+    {
+     "index": 2,
+     "text": "Let it rise until doubled.",
+     "textAm": "እጥፍ እስኪሆን ያቡኩት።",
+     "optional": false,
+     "durationSeconds": 3600
+    },
+    {
+     "index": 3,
+     "text": "Shape into a round and score the pattern across the top.",
+     "textAm": "ክብ አድርገው ላዩ ላይ ንድፍ ይቅረጹ።",
+     "optional": false,
+     "durationSeconds": 300
+    },
+    {
+     "index": 4,
+     "text": "Bake until it sounds hollow underneath.",
+     "textAm": "ከሥሩ ባዶ ድምፅ እስኪያሰማ ይጋግሩ።",
+     "optional": false,
+     "durationSeconds": 2400
+    }
+   ],
+   "gradientA": "#8A6A2A",
+   "gradientB": "#D9B060",
+   "isFasting": true,
+   "isVegan": true,
+   "isGlutenFree": false,
+   "isDairyFree": true,
+   "isTraditional": true,
+   "isFamilyRecipe": false,
+   "averageRating": 0.0,
+   "ratingCount": 0,
+   "numberOfCooks": 0
+  }
+ },
+ "regions": [
+  {
+   "id": "gurage",
+   "name": "Gurage",
+   "nameAm": "ጉራጌ",
+   "gradientA": "#1E5A34",
+   "gradientB": "#4FA766",
+   "order": 0
+  },
+  {
+   "id": "amhara",
+   "name": "Amhara",
+   "nameAm": "አማራ",
+   "gradientA": "#8E1B0F",
+   "gradientB": "#E0522A",
+   "order": 1
+  },
+  {
+   "id": "tigray",
+   "name": "Tigray",
+   "nameAm": "ትግራይ",
+   "gradientA": "#6B5330",
+   "gradientB": "#C7A56A",
+   "order": 2
+  },
+  {
+   "id": "oromia",
+   "name": "Oromia",
+   "nameAm": "ኦሮሚያ",
+   "gradientA": "#5C2A12",
+   "gradientB": "#B4652C",
+   "order": 3
+  },
+  {
+   "id": "harar",
+   "name": "Harar",
+   "nameAm": "ሐረር",
+   "gradientA": "#6A4A12",
+   "gradientB": "#CBA23F",
+   "order": 4
+  },
+  {
+   "id": "sidama",
+   "name": "Sidama",
+   "nameAm": "ሲዳማ",
+   "gradientA": "#3B2416",
+   "gradientB": "#8B5E3C",
+   "order": 5
+  },
+  {
+   "id": "afar",
+   "name": "Afar",
+   "nameAm": "አፋር",
+   "gradientA": "#4A1520",
+   "gradientB": "#93304A",
+   "order": 6
+  },
+  {
+   "id": "somali",
+   "name": "Somali",
+   "nameAm": "ሶማሌ",
+   "gradientA": "#8A7A18",
+   "gradientB": "#DCC845",
+   "order": 7
+  }
+ ]
+}
