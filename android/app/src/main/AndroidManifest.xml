@@ -20,11 +20,17 @@
     <!-- Re-arm pending cooking timers after a reboot. -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
-    <!-- firebase_analytics merges in the advertising-ID permission by default.
-         FlameUp does not advertise or build ad audiences, and the brief is
-         explicit about not collecting unnecessary personal data, so it is
-         removed from the merged manifest. -->
+    <!-- firebase_analytics merges in advertising permissions by default:
+         the advertising ID, plus the Privacy Sandbox attribution and ad-ID
+         permissions from play-services-measurement. FlameUp does not
+         advertise or build ad audiences, and the brief is explicit about not
+         collecting unnecessary personal data, so all three are removed from
+         the merged manifest. Product analytics still work without them. -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_AD_ID"
+        tools:node="remove"/>
+    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION"
         tools:node="remove"/>
 
     <application

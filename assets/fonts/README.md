@@ -13,5 +13,13 @@ from it with `fonttools`:
 ```bash
 fonttools varLib.instancer 'NotoSansEthiopic[wdth,wght].ttf' \
     wght=400 wdth=100 -o NotoSansEthiopic-Regular.ttf
-# ... and 500 Medium, 600 SemiBold, 700 Bold
+# ... and 200 ExtraLight, 500 Medium, 600 SemiBold, 700 Bold
 ```
+
+Five weights, because the design uses five. ExtraLight (200) is there for one
+element only: the 54px cook-mode countdown, where the hairline stroke is the
+whole visual idea. Without the instance it silently fell back to Regular.
+
+Glyph coverage was verified against every string in the design: all 217
+distinct characters -- Latin, Ethiopic and typographic punctuation -- are
+present, so no fallback font is needed for Amharic.

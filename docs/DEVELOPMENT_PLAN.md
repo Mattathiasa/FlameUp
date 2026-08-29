@@ -26,8 +26,8 @@ was recovered from the prototype bundle first.
 
 ---
 
-## 🚧 Phase 1 — Architecture and foundation
-`feat: initialize FlameUp architecture`
+## ✅ Phase 1 — Architecture and foundation
+`docs: add GitHub Pages index.html and initial project setup`
 
 - Flutter project at the repo root, `com.flameup.app` on both platforms.
 - Dependencies pinned to the generation that resolves on Dart 3.3.4;
@@ -43,12 +43,16 @@ was recovered from the prototype bundle first.
 - Noto Sans Ethiopic instanced to four static weights from the variable font.
 - Docs: `ARCHITECTURE.md`, `DATABASE_SCHEMA.md`, `FIREBASE_SETUP.md`, this file.
 
-**Acceptance** — analyzer clean, unit tests green, the app boots to the shell
-and the redirect chain lands on the right screen for each auth state.
+**Acceptance** — analyzer clean, unit tests green, `flutter build apk --debug`
+succeeds, and the redirect chain lands on the right screen for each auth state.
+
+Also landed here: the **offline-first cache layer** (`feat: offline-first cache
+layer and Android build fixes`) — see `docs/OFFLINE_MODE.md` — and the Android
+toolchain upgrade to AGP 8.3.2 / Gradle 8.7 that the debug APK needed.
 
 ---
 
-## ⬜ Phase 2 — Design system
+## ✅ Phase 2 — Design system
 `feat: implement FlameUp design system`
 
 Generate Dart from `design/extracted/tokens.json` rather than transcribing it.
@@ -61,8 +65,14 @@ used on nearly every card), `GradientTile`, `FlameButton`, `PillChip`,
 `EmptyState`, `ErrorState`, `LoadingState`, `ShimmerBox`, `FlameIcon`, and the
 floating glass tab bar that replaces the Material one.
 
-**Acceptance** — a gallery route renders every component in both themes and
-both languages; `design/PARITY.md` checklist filled in.
+The palette is **generated** from `tokens.json` by `tool/generate_theme.py`
+rather than transcribed — 19 colours × 2 themes, where hand-copying 40 rgba()
+values would guarantee drift.
+
+**Done.** 22 component tests covering both themes, Amharic overflow, semantics
+and touch targets; `test/core/theme/app_theme_test.dart` asserts the Dart
+constants against `tokens.json` so code and design cannot drift silently.
+Deviations recorded in `design/PARITY.md`.
 
 ---
 

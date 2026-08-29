@@ -82,6 +82,10 @@ flutter:
   fonts:
     - family: NotoSansEthiopic
       fonts:
+        # Weight 200 is used by exactly one thing -- the 54px cook-mode
+        # countdown, where the hairline stroke is the point.
+        - asset: assets/fonts/NotoSansEthiopic-ExtraLight.ttf
+          weight: 200
         - asset: assets/fonts/NotoSansEthiopic-Regular.ttf
           weight: 400
         - asset: assets/fonts/NotoSansEthiopic-Medium.ttf
