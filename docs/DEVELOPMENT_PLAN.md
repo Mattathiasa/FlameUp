@@ -135,10 +135,9 @@ newer build is dropped rather than crashed on.
 
 ---
 
-## 🚧 Phase 5 — Recipe engine
-`feat: implement recipe engine`
-
-**Models and data done; Discover and detail screens still to build.**
+## ✅ Phase 5 — Recipe engine
+`feat: implement recipe models, catalogue and offline-first repository`
+`feat: build Discover and recipe detail screens`
 
 - `Recipe`, `RecipeStep`, `Ingredient` with the brief's field set. Ingredient
   `quantity` is **numeric**, not `"4 large"`, because serving-size scaling has
@@ -164,6 +163,14 @@ inventor is named.
 
 `tool/seed_firestore.dart` writes the same catalogue to Firestore or the
 emulator, keyed by recipe id so re-running updates rather than duplicates.
+
+**Screens:** Discover (`06-search`) with live search, filter chips and results
+that keep showing cached data through a failed refresh; recipe detail
+(`07-recipe`) with the ingredients / steps / story tabs and **live serving-size
+scaling** — changing the count rescales every quantity and re-renders it as a
+fraction. `DishCard` and `DishListTile` are the two card shapes the design
+uses, both skipping the backdrop blur because a `BackdropFilter` per row is the
+most expensive thing in a scrolling list.
 
 ## ⬜ Phase 6 — Cooking engine *(critical milestone)*
 `feat: implement cooking mode`

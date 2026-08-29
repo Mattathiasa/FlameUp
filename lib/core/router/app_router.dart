@@ -9,6 +9,8 @@ import '../../features/auth/presentation/welcome_screen.dart';
 import '../../features/onboarding/domain/onboarding_providers.dart';
 import '../../features/onboarding/presentation/skill_screen.dart';
 import '../../features/onboarding/presentation/taste_screen.dart';
+import '../../features/recipes/presentation/discover_screen.dart';
+import '../../features/recipes/presentation/recipe_detail_screen.dart';
 import '../../shared/widgets/not_built_yet.dart';
 import '../services/crash_reporter.dart';
 import 'app_shell.dart';
@@ -146,11 +148,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: Routes.discover,
-                builder: (_, __) => const NotBuiltYet(
-                  screen: 'explore',
-                  designFile: '06-search.html',
-                  phase: 'Phase 5',
-                ),
+                builder: (_, __) => const DiscoverScreen(),
                 routes: [
                   GoRoute(
                     path: 'map',
@@ -201,10 +199,8 @@ final appRouterProvider = Provider<GoRouter>((ref) {
               ),
               GoRoute(
                 path: Routes.recipeDetail,
-                builder: (_, __) => const NotBuiltYet(
-                  screen: 'recipe',
-                  designFile: '07-recipe.html',
-                  phase: 'Phase 5',
+                builder: (_, state) => RecipeDetailScreen(
+                  recipeId: state.pathParameters['recipeId']!,
                 ),
               ),
             ],
