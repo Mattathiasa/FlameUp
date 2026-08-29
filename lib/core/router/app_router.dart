@@ -7,6 +7,8 @@ import '../../features/auth/presentation/auth_form_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
 import '../../features/auth/presentation/welcome_screen.dart';
 import '../../features/onboarding/domain/onboarding_providers.dart';
+import '../../features/onboarding/presentation/skill_screen.dart';
+import '../../features/onboarding/presentation/taste_screen.dart';
 import '../../shared/widgets/not_built_yet.dart';
 import '../services/crash_reporter.dart';
 import 'app_shell.dart';
@@ -76,19 +78,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: Routes.onboardingSkill,
-        builder: (_, __) => const NotBuiltYet(
-          screen: 'skill level',
-          designFile: '03-skill.html',
-          phase: 'Phase 4',
-        ),
+        builder: (_, __) => const SkillScreen(),
       ),
       GoRoute(
         path: Routes.onboardingTaste,
-        builder: (_, __) => const NotBuiltYet(
-          screen: 'taste profile',
-          designFile: '04-taste.html',
-          phase: 'Phase 4',
-        ),
+        builder: (_, __) => const TasteScreen(),
       ),
 
       // --- full-screen routes that sit above the tab shell ---------------

@@ -113,12 +113,25 @@ works against the live project.
 
 ---
 
-## ⬜ Phase 4 — Onboarding
+## ✅ Phase 4 — Onboarding
 `feat: implement onboarding`
 
-Skill level, heat tolerance, dietary flags, language — persisted to
-`users/{uid}` and mirrored locally. Optional steps skippable, flow resumable if
-abandoned.
+Skill level (3 options), heat tolerance (5 steps) and dietary flags (6
+toggles), built from `03-skill.html` and `04-taste.html`.
+
+**Local-first**, like everything else: every answer is written to disk as it is
+given, so closing the app mid-flow resumes rather than restarts, and someone
+installing on a bad signal still reaches the kitchen. The profile write to
+`users/{uid}` goes through the outbox, so it lands whenever the device next has
+a network and the user never waits on it.
+
+`syncFromServer` reconciles after sign-in — a reinstalling user gets their
+answers back from the server, while a device that answered offline keeps its
+own, because those are newer than anything the server holds.
+
+Enums serialise as ints and dietary flags as the design's own string keys, so
+reordering an enum cannot corrupt saved profiles and an unknown flag from a
+newer build is dropped rather than crashed on.
 
 ---
 
