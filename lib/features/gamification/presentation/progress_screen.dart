@@ -266,6 +266,7 @@ class _NavRow extends StatelessWidget {
       ),
       borderRadius: AppRadii.lgAll,
       onTap: onTap,
+      semanticLabel: label,
       child: Row(
         children: [
           Expanded(

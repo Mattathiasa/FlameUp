@@ -1,13 +1,13 @@
-// Integration tests for the journeys that matter most.
+// Journey tests: the paths where a bug costs the user something real -- a lost
+// cooking session, a double-awarded reward, a timer that lies.
 //
-// Run on a device or emulator:
-//   flutter test integration_test/cooking_journey_test.dart
+// These run as ordinary tests rather than under integration_test, because
+// every property here is about domain state surviving serialisation, and none
+// of it needs a running app. Requiring a device binding for pure logic buys
+// nothing and costs twelve minutes on an emulator.
 //
-// These exercise the parts where a bug costs the user something real: a lost
-// cooking session, a double-awarded reward, a timer that lies. They use the
-// domain layer directly rather than driving the UI, because the properties
-// under test are about state surviving process death -- which a widget test
-// cannot express.
+// The genuine device test -- does the app actually launch and render -- lives
+// in integration_test/app_launch_test.dart.
 
 import 'package:flameup/features/cooking/domain/cooking_session.dart';
 import 'package:flameup/features/gamification/domain/level_curve.dart';
@@ -16,13 +16,10 @@ import 'package:flameup/features/gamification/domain/streak_calculator.dart';
 import 'package:flameup/features/gamification/domain/xp_rules.dart';
 import 'package:flameup/features/recipes/domain/recipe.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
 
-import '../test/features/recipes/recipe_query_test.dart' show loadSeed;
+import '../features/recipes/recipe_query_test.dart' show loadSeed;
 
 void main() {
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
-
   late List<Recipe> catalogue;
 
   setUpAll(() => catalogue = loadSeed());

@@ -186,9 +186,18 @@ service cloud.firestore {
 
       allow delete: if isOwner(existing().authorId) || isModerator();
 
+      // Generations name the people a recipe was passed down through, so
+      // they inherit the parent's visibility rather than being public. A
+      // world-readable subcollection under a private draft would leak family
+      // names the author has not published.
       match /generations/{generationId} {
-        allow read: if true;
-        allow write: if isOwner(get(/databases/$(database)/documents/family_recipes/$(id)).data.authorId);
+        function parent() {
+          return get(/databases/$(database)/documents/family_recipes/$(id)).data;
+        }
+        allow read: if parent().status == 'published'
+          || isOwner(parent().authorId)
+          || isModerator();
+        allow write: if isOwner(parent().authorId) || isModerator();
       }
     }
 

@@ -215,56 +215,65 @@ class _SlotRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = AppPalette.of(context);
 
-    return InkWell(
-      onTap: onTap,
-      borderRadius: AppRadii.mdAll,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
-        child: Row(
-          children: [
-            SizedBox(
-              width: 74,
-              child: Text(
-                switch (slot) {
-                  MealSlot.breakfast => l10n.breakfast,
-                  MealSlot.lunch => l10n.lunch,
-                  MealSlot.dinner => l10n.dinner,
-                },
-                style:
-                    AppTypography.label.copyWith(color: palette.textTertiary),
+    final slotLabel = switch (slot) {
+      MealSlot.breakfast => l10n.breakfast,
+      MealSlot.lunch => l10n.lunch,
+      MealSlot.dinner => l10n.dinner,
+    };
+    final dish = recipe;
+
+    return Semantics(
+      button: true,
+      label: '$slotLabel. '
+          '${dish?.localisedTitle(amharic: amharic) ?? l10n.planEmpty}',
+      excludeSemantics: true,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: AppRadii.mdAll,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+          child: Row(
+            children: [
+              SizedBox(
+                width: 74,
+                child: Text(
+                  slotLabel,
+                  style:
+                      AppTypography.label.copyWith(color: palette.textTertiary),
+                ),
               ),
-            ),
-            Expanded(
-              child: recipe == null
-                  ? Text(
-                      l10n.planEmpty,
-                      style: AppTypography.bodySmall
-                          .copyWith(color: palette.textTertiary),
-                    )
-                  : Row(
-                      children: [
-                        GradientTile.fromHex(
-                          colorA: recipe!.gradientA,
-                          colorB: recipe!.gradientB,
-                          width: 26,
-                          height: 26,
-                          borderRadius: AppRadii.smAll,
-                          sheen: false,
-                        ),
-                        const SizedBox(width: AppSpacing.sm),
-                        Expanded(
-                          child: Text(
-                            recipe!.localisedTitle(amharic: amharic),
-                            style: AppTypography.bodySmall
-                                .copyWith(color: palette.textPrimary),
-                            overflow: TextOverflow.ellipsis,
+              Expanded(
+                child: dish == null
+                    ? Text(
+                        l10n.planEmpty,
+                        style: AppTypography.bodySmall
+                            .copyWith(color: palette.textTertiary),
+                      )
+                    : Row(
+                        children: [
+                          GradientTile.fromHex(
+                            colorA: dish.gradientA,
+                            colorB: dish.gradientB,
+                            width: 26,
+                            height: 26,
+                            borderRadius: AppRadii.smAll,
+                            sheen: false,
                           ),
-                        ),
-                      ],
-                    ),
-            ),
-            Icon(Icons.chevron_right, size: 16, color: palette.textTertiary),
-          ],
+                          const SizedBox(width: AppSpacing.sm),
+                          Expanded(
+                            child: Text(
+                              dish.localisedTitle(amharic: amharic),
+                              style: AppTypography.bodySmall
+                                  .copyWith(color: palette.textPrimary),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+              ),
+              Icon(Icons.chevron_right, size: 16, color: palette.textTertiary),
+            ],
+          ),
         ),
       ),
     );

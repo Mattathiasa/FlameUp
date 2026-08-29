@@ -44,8 +44,10 @@ class PillChip extends StatelessWidget {
             child: AnimatedContainer(
               duration: AppMotion.fast,
               curve: AppMotion.standard,
-              height: 32,
-              padding: const EdgeInsets.symmetric(horizontal: 14),
+              // A minimum rather than a fixed height, so scaled-up text grows
+              // the pill instead of overflowing it.
+              constraints: const BoxConstraints(minHeight: 32),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
               decoration: BoxDecoration(
                 color: selected ? AppColors.accent : palette.glass,
                 borderRadius: AppRadii.pillAll,
@@ -61,10 +63,17 @@ class PillChip extends StatelessWidget {
                     icon!,
                     const SizedBox(width: AppSpacing.xs),
                   ],
-                  Text(
-                    label,
-                    style: AppTypography.label.copyWith(
-                      color: selected ? Colors.white : palette.textSecondary,
+                  // Flexible with an ellipsis: Amharic labels run longer than
+                  // their English counterparts, and at a large accessibility
+                  // text size an unconstrained Text overflows its pill.
+                  Flexible(
+                    child: Text(
+                      label,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTypography.label.copyWith(
+                        color: selected ? Colors.white : palette.textSecondary,
+                      ),
                     ),
                   ),
                 ],

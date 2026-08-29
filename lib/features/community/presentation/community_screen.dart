@@ -94,6 +94,7 @@ class _NavCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: AppSpacing.md),
       padding: const EdgeInsets.all(AppSpacing.xl),
       onTap: onTap,
+      semanticLabel: '$title. $subtitle',
       child: Row(
         children: [
           Expanded(

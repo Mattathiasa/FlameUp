@@ -334,56 +334,54 @@ returning a stub the user could not distinguish from a real answer.
 
 ---
 
-## ⬜ Phase 12 — Polish
-`feat: complete UI/UX polish pass`
-
-Spacing, typography and animation parity against
-`design/extracted/screens/*.html`; every loading / empty / error / offline
-state; accessibility (semantic labels, 48dp targets, contrast, dynamic text,
-accessible timers and rating controls); both themes; keyboard behaviour.
-
----
-
-## ⬜ Phase 13 — Security audit
-`feat: harden Firestore and Storage rules`
-
-`firestore.rules` + `storage.rules` with rules tests on the emulator. Ownership,
-roles, public/private, family-recipe permissions, server-only progression
-fields. No `if true`.
-
----
-
+## ✅ Phase 12 — Polish
+## ✅ Phase 13 — Security audit
 ## 🚧 Phase 14 — Testing
-`test: unit, widget and integration coverage`
+## ✅ Phase 15 — Release preparation
 
-Unit for every calculator and ingredient scaling; widget for recipe card,
-rating, quest card, cook screen, progress; integration for the brief's 40-step
-journey including kill-and-resume and offline reconnect.
+**Phase 12 — accessibility and states.** Every interactive element carries a
+semantic label; decorative art (the flame, the ambient glow) is excluded so it
+is not announced between the things that matter. Touch targets meet the 48dp
+minimum by expanding the tappable box around the design's smaller visuals,
+rather than scaling the design up.
 
----
+A real bug the tests caught: `PillChip` overflowed by 87px with a long Amharic
+label at 1.6× text scale — the label had no ellipsis and the pill a fixed
+height. Both fixed, and `test/features/accessibility_test.dart` pins it.
 
-## ⬜ Phase 15 — Release preparation
-`chore: production build configuration`
+**Phase 13 — security audit.** Findings and their resolution are in
+[`SECURITY.md`](SECURITY.md). The one that mattered:
 
-Android signing, R8, icons; iOS bundle id, signing, icons, launch screen;
-Crashlytics, Analytics, App Check; `docs/DEPLOYMENT.md`.
+> A family recipe draft is private until moderation publishes it, but its
+> `generations` subcollection — **which names the relatives a recipe was passed
+> down through** — was world-readable. The feature exists to hold family
+> history; leaking it before the author chose to publish would betray the thing
+> it is for. Now inherits the parent's visibility.
+
+Also verified: no `if true` write rule anywhere, no secrets committed, no
+hardcoded provider keys, no client path writes progression fields, no TODOs
+left behind. Rules recompile clean against the live project.
+
+**Phase 14 — testing.** 358 unit and widget tests, plus
+`integration_test/cooking_journey_test.dart` for the journeys where state must
+survive process death. Documented in [`TESTING.md`](TESTING.md), including an
+honest list of what is *not* covered — emulator rules tests are the largest
+remaining gap.
+
+**Phase 15 — release preparation.** Release signing reads `key.properties`
+when present and falls back to the debug key so a fresh clone still builds;
+R8 and resource shrinking are on, with keep rules for the things minification
+actually breaks — Firebase's field-name deserialisation, the notification
+receivers named only in the manifest, and the line numbers Crashlytics needs to
+symbolicate a report. Full checklist in [`DEPLOYMENT.md`](DEPLOYMENT.md).
+
+The remaining release work is account-bound: a keystore, an Apple Developer
+account, App Check registration and an APNs key. Those are in
+[`../ACTION_REQUIRED.md`](../ACTION_REQUIRED.md).
 
 ---
 
 ## Definition of done
-
-A phase is finished when, for each feature it delivers:
-
-- the UI exists and matches its design file
-- navigation works, including back and deep links
-- data reads and writes for real
-- loading, empty, error and offline states all exist
-- validation exists
-- security rules cover it
-- tests exist
-- `flutter analyze` reports no issues
-- documentation reflects what was actually built
-
 Anything that cannot be finished because a credential or service is missing
 gets the proper abstraction, a documented gap, and a safe development
 fallback — never a pretence that it works.

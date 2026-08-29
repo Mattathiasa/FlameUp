@@ -167,19 +167,28 @@ I made these calls rather than stopping to ask. Each is reversible.
    someone who cooks them** — they are written carefully, but I am not an
    Ethiopian cook and the app's credibility rests on them being right.
 
-5. **Amharic throughout.** All 277 strings and all 25 recipes are translated.
+5. **Amharic throughout.** All 283 strings and all 25 recipes are translated.
    Worth a native speaker's read before launch.
+
+6. **Journey tests are ordinary tests, not integration tests.** They were
+   written under `integration_test/` first; on this machine's x86 emulator that
+   build timed out after twelve minutes without executing a single assertion.
+   Every property in them is about domain state surviving serialisation and
+   needs no running app, so they moved to `test/journeys/` and now run in
+   fourteen seconds. `integration_test/` keeps the one thing that genuinely
+   needs hardware: that storage opens and the splash paints.
 
 ---
 
 ## What is done and verified
 
 - `flutter analyze` — **no issues**
-- **340 tests passing**
+- **366 tests passing**
 - `flutter build apk --debug` — **succeeds**
 - **Every route renders a real screen** — no placeholders remain
 - `firestore.rules` — **compiles against your live project**
 - `functions/` — **typechecks** under `tsc --noEmit`
+- Release signing, R8 and resource shrinking configured
 
 Run it yourself:
 

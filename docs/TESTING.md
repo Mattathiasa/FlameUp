@@ -79,11 +79,11 @@ a blank error to a user.
 
 ---
 
-## Integration tests
+## Journey tests
 
-`integration_test/cooking_journey_test.dart` covers the journeys where state
-has to survive process death: a session serialised and restored mid-cook with
-its timer intact, a timer that expired while the app was closed, one reward key
+`test/journeys/cooking_journey_test.dart` covers the paths where state has to
+survive process death: a session serialised and restored mid-cook with its
+timer intact, a timer that expired while the app was closed, one reward key
 across every attempt, and a week of daily cooking reaching the streak
 milestone.
 
@@ -91,11 +91,23 @@ It also asserts that **cooking twelve different dishes pays more than cooking
 one dish twelve times** — the XP decay exists so the optimal strategy is
 discovery rather than repetition, and that is a product property worth pinning.
 
-These need a connected device:
+These are ordinary tests, not integration tests. Every property in them is
+about domain state surviving serialisation, and none of it needs a running
+app. They were written under `integration_test` first; on this machine's x86
+emulator that build timed out after twelve minutes without executing a single
+assertion. As plain tests they run in fourteen seconds. Requiring a device
+binding for pure logic buys nothing.
+
+## Device tests
+
+`integration_test/app_launch_test.dart` covers the one thing that genuinely
+needs hardware: that local storage opens and the splash screen paints. Both
+touch the platform, and a failure in either means the app cannot start at all —
+which no unit test would catch.
 
 ```bash
 flutter emulators --launch Pixel_7a
-flutter test integration_test/
+flutter test integration_test/ -d <device>
 ```
 
 ---
