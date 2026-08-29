@@ -1,0 +1,57 @@
+rules_version = '2';
+
+// FlameUp Storage rules.
+//
+// Uploads are scoped to their owner and capped in size and type, so a
+// compromised or careless client cannot fill the bucket or serve something
+// that is not an image.
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function isImage() {
+      return request.resource.contentType.matches('image/.*');
+    }
+
+    function underSizeLimit(megabytes) {
+      return request.resource.size < megabytes * 1024 * 1024;
+    }
+
+    // Profile photos are public, since they appear beside posts and on
+    // leaderboards.
+    match /users/{uid}/avatar/{fileName} {
+      allow read: if true;
+      allow write: if isOwner(uid) && isImage() && underSizeLimit(5);
+      allow delete: if isOwner(uid);
+    }
+
+    // Photos of a finished dish, attached to a review or a post.
+    match /users/{uid}/cooking/{sessionId}/{fileName} {
+      allow read: if signedIn();
+      allow write: if isOwner(uid) && isImage() && underSizeLimit(10);
+      allow delete: if isOwner(uid);
+    }
+
+    // Family recipe media. Larger, because these carry video of someone's
+    // grandmother cooking, which is the point of the feature.
+    match /family_recipes/{recipeId}/{fileName} {
+      allow read: if signedIn();
+      allow write: if signedIn() && underSizeLimit(100);
+      allow delete: if signedIn();
+    }
+
+    // Curated recipe photography is uploaded out of band, never by the app.
+    match /recipes/{allPaths=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

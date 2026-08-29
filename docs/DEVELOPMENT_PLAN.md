@@ -212,19 +212,32 @@ server-side, and a number the client made up would be a lie the moment the two
 disagreed. A review always carries the session it rates, which is what lets the
 server enforce that you can only rate what you actually cooked.
 
-## ⬜ Phase 7 — Gamification
-`feat: implement gamification engine`
+## 🚧 Phase 7 — Gamification
+`feat: implement gamification engine and server-authoritative rewards`
 
-Pure-Dart, unit-tested `XpCalculator`, `LevelCurve` (config-driven),
-`MasteryCalculator` (Tried It → Learning → Cook → Skilled → Expert → Master),
-`StreakCalculator` (timezone-aware, with freeze days), `QuestEvaluator`,
-`AchievementEvaluator` (data-driven rules).
+**Engine, Cloud Functions and security rules done. The progress, mastery,
+achievements, quests and streak screens are the remainder.**
 
-`functions/` — `onCookingSessionComplete` awards everything server-side;
-leaderboard aggregation on a schedule. Emulator-tested; deploy blocked on
-Blaze.
+Pure Dart, no Firebase imports, so the maths is tested without mocks:
+`LevelCurve`, `StreakCalculator`, `MasteryCalculator`, `XpRules`,
+`AchievementEvaluator`, `QuestEvaluator`. **113 tests** cover them.
 
----
+The rules exist twice on purpose — Dart for the client's expected figure,
+TypeScript for the server's real one. Sharing the code would ship the server's
+rules to the client where they can be gamed. `test/features/gamification/` is
+the specification for both. Full rationale in
+[`GAMIFICATION.md`](GAMIFICATION.md).
+
+**`claimCookingReward` is idempotent by construction**: the session's key is
+written as a marker document *inside* the same transaction that applies the XP,
+so a replay finds it and grants nothing.
+
+**`firestore.rules` compiles against the live project** (verified by dry-run
+deploy) and makes `xp`, `level`, `flames`, mastery and achievements
+client-unwritable — using `diff().affectedKeys()`, so a user can edit their
+display name in the same document without touching their XP. Reviews require an
+existing *completed* session owned by the writer, enforced in the rules rather
+than trusted from the client.
 
 ## ⬜ Phase 8 — Ethiopian cultural system
 `feat: implement Taste Ethiopia and family recipes`

@@ -1,0 +1,262 @@
+rules_version = '2';
+
+// FlameUp security rules.
+//
+// The central invariant: progression is server-authoritative. XP, level,
+// streak, mastery, achievements and rating aggregates are written only by
+// Cloud Functions, which run with admin credentials and bypass these rules.
+// A client that tries is refused -- which is what makes the reward function
+// the only path to XP rather than merely the intended one.
+//
+// `allow read, write: if true;` appears nowhere.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- helpers ---------------------------------------------------------
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    /// Fields only the server may set or change.
+    function serverOnlyUserFields() {
+      return [
+        'xp', 'level', 'flames', 'longestStreak', 'lastCookedOn',
+        'freezeDaysLeft', 'recipesCooked', 'recipesMastered', 'regionsTasted'
+      ];
+    }
+
+    /// True when the write leaves every server-only field exactly as it was.
+    ///
+    /// diff().affectedKeys() is the mechanism: a client may edit its display
+    /// name in the same document that holds its XP, but it cannot touch the
+    /// XP while doing so.
+    function leavesProgressionAlone() {
+      return !incoming().diff(existing()).affectedKeys()
+        .hasAny(serverOnlyUserFields().toSet());
+    }
+
+    /// A create must not arrive with progression already filled in.
+    function createsWithoutProgression() {
+      return !incoming().keys().hasAny(serverOnlyUserFields().toSet());
+    }
+
+    function isModerator() {
+      return signedIn() && request.auth.token.moderator == true;
+    }
+
+    // --- users -----------------------------------------------------------
+
+    match /users/{uid} {
+      // A profile is readable by its owner. Public visibility is resolved by
+      // the fields the client is allowed to denormalise elsewhere, not by
+      // opening the whole document.
+      allow get: if isOwner(uid) ||
+        (signedIn() && existing().profileVisibility == 'public');
+      allow list: if false;
+
+      allow create: if isOwner(uid) && createsWithoutProgression();
+      allow update: if isOwner(uid) && leavesProgressionAlone();
+      allow delete: if isOwner(uid);
+
+      // Cooking sessions are private and client-written: they are a record of
+      // what happened, not of what it was worth.
+      match /cooking_sessions/{sessionId} {
+        allow read, write: if isOwner(uid);
+      }
+
+      // Everything the server grants is read-only to the client.
+      match /mastery/{recipeId} {
+        allow read: if isOwner(uid);
+        allow write: if false;
+      }
+
+      match /user_achievements/{achievementId} {
+        allow read: if isOwner(uid);
+        allow write: if false;
+      }
+
+      match /reward_claims/{key} {
+        allow read: if isOwner(uid);
+        allow write: if false;
+      }
+
+      // Quest progress is server-written, because it converts into XP.
+      match /user_quests/{questId} {
+        allow read: if isOwner(uid);
+        allow write: if false;
+      }
+
+      // Personal lists carry no reward, so the owner may write them freely.
+      match /saved_recipes/{recipeId} {
+        allow read, write: if isOwner(uid);
+      }
+
+      match /shopping_items/{itemId} {
+        allow read, write: if isOwner(uid);
+      }
+
+      match /meal_plans/{weekId} {
+        allow read, write: if isOwner(uid);
+      }
+
+      match /notifications/{notificationId} {
+        allow read: if isOwner(uid);
+        allow update: if isOwner(uid);
+        allow create, delete: if false;
+      }
+
+      match /friends/{otherUid} {
+        allow read: if isOwner(uid);
+        allow write: if isOwner(uid);
+      }
+
+      match /friend_requests/{otherUid} {
+        allow read: if isOwner(uid);
+        // Either party may write: the sender creates the outgoing request and
+        // the recipient answers it.
+        allow write: if isOwner(uid) || isOwner(otherUid);
+      }
+
+      match /outbox/{key} {
+        allow read, write: if isOwner(uid);
+      }
+    }
+
+    // --- recipes ---------------------------------------------------------
+
+    match /recipes/{recipeId} {
+      allow read: if true;
+      // Curated recipes are seeded and maintained server-side. Family recipes
+      // reach this collection only when moderation publishes them.
+      allow write: if isModerator();
+
+      match /reviews/{uid} {
+        allow read: if true;
+
+        // A review must be your own, and must reference a completed cooking
+        // session that you own. This is where "you can only rate what you
+        // actually cooked" is enforced -- the client cannot fake it, because
+        // the session document is checked here.
+        allow create, update: if isOwner(uid)
+          && incoming().uid == uid
+          && incoming().sessionId is string
+          && exists(/databases/$(database)/documents/users/$(uid)/cooking_sessions/$(incoming().sessionId))
+          && get(/databases/$(database)/documents/users/$(uid)/cooking_sessions/$(incoming().sessionId)).data.status == 'completed';
+
+        allow delete: if isOwner(uid) || isModerator();
+      }
+    }
+
+    match /regions/{regionId} {
+      allow read: if true;
+      allow write: if isModerator();
+    }
+
+    // --- family recipes --------------------------------------------------
+
+    match /family_recipes/{id} {
+      // A draft is private to its author until it is published, so nothing
+      // user-written is publicly readable before review.
+      allow read: if existing().status == 'published'
+        || isOwner(existing().authorId)
+        || isModerator();
+
+      allow create: if signedIn()
+        && incoming().authorId == request.auth.uid
+        && incoming().status in ['draft', 'pending'];
+
+      // An author may edit their own work but cannot approve it.
+      allow update: if (isOwner(existing().authorId)
+          && incoming().status in ['draft', 'pending'])
+        || isModerator();
+
+      allow delete: if isOwner(existing().authorId) || isModerator();
+
+      match /generations/{generationId} {
+        allow read: if true;
+        allow write: if isOwner(get(/databases/$(database)/documents/family_recipes/$(id)).data.authorId);
+      }
+    }
+
+    // --- community -------------------------------------------------------
+
+    match /posts/{postId} {
+      allow read: if signedIn();
+      allow create: if signedIn() && incoming().authorId == request.auth.uid;
+      // Counters are maintained by triggers, so an author editing their own
+      // post cannot inflate its like count.
+      allow update: if isOwner(existing().authorId)
+        && !incoming().diff(existing()).affectedKeys()
+          .hasAny(['likeCount', 'commentCount'].toSet());
+      allow delete: if isOwner(existing().authorId) || isModerator();
+
+      match /comments/{commentId} {
+        allow read: if signedIn();
+        allow create: if signedIn() && incoming().authorId == request.auth.uid;
+        allow update, delete: if isOwner(existing().authorId) || isModerator();
+      }
+
+      // Keyed by uid, so a double tap cannot double-count.
+      match /likes/{uid} {
+        allow read: if signedIn();
+        allow write: if isOwner(uid);
+      }
+    }
+
+    // --- challenges ------------------------------------------------------
+
+    match /challenges/{challengeId} {
+      allow read: if signedIn()
+        && request.auth.uid in [existing().createdBy, existing().opponentId];
+      allow create: if signedIn() && incoming().createdBy == request.auth.uid;
+      allow update: if signedIn()
+        && request.auth.uid in [existing().createdBy, existing().opponentId]
+        // The winner is decided server-side.
+        && !incoming().diff(existing()).affectedKeys().hasAny(['winnerId'].toSet());
+      allow delete: if false;
+
+      match /submissions/{uid} {
+        // A participant cannot read the other's submission until both exist,
+        // which is what keeps the comparison honest.
+        allow read: if isOwner(uid)
+          || (signedIn()
+            && exists(/databases/$(database)/documents/challenges/$(challengeId)/submissions/$(request.auth.uid)));
+        allow create: if isOwner(uid);
+        allow update, delete: if false;
+      }
+    }
+
+    // --- leaderboards, config, reports -----------------------------------
+
+    match /leaderboards/{scope} {
+      allow read: if signedIn();
+      // Aggregated by a scheduled function.
+      allow write: if false;
+    }
+
+    match /config/{document} {
+      allow read: if true;
+      allow write: if isModerator();
+    }
+
+    match /reports/{reportId} {
+      // Write-only for clients: a reporter cannot read the moderation queue.
+      allow create: if signedIn() && incoming().reporterId == request.auth.uid;
+      allow read, update, delete: if isModerator();
+    }
+  }
+}

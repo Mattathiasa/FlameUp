@@ -9,7 +9,7 @@ FlameUp uses an existing Firebase project. It was **not** created by this build.
 | Project id | `flameup-78d15` |
 | Project number | `997414781684` |
 | Firestore | `(default)`, Native mode, Standard edition — provisioned |
-| Storage bucket | `flameup-78d15.firebasestorage.app` — provisioned |
+| Storage bucket | `flameup-78d15.firebasestorage.app` — **not yet set up**, see below |
 | Console | https://console.firebase.google.com/project/flameup-78d15 |
 
 ### Registered apps
@@ -178,6 +178,17 @@ Console → App Check. Register Play Integrity (Android) and App Attest (iOS).
 Debug builds use the debug provider; each developer machine's debug token must
 be registered once.
 
+### ⚠ Firebase Storage — not set up
+
+`firebase deploy --only storage` fails with:
+
+> Firebase Storage has not been set up on project 'flameup-78d15'.
+
+Console → Storage → **Get Started**. Until then `storage.rules` cannot be
+deployed, and photo upload (profile pictures, finished-dish photos, family
+recipe media) will fail against the live project. The rules file is written and
+the upload paths are built; this is a one-click console step, not code.
+
 ### Cloud Messaging — Phase 10
 
 Upload an APNs auth key for iOS. Android needs no extra step.
@@ -191,8 +202,10 @@ builds.
 
 ## Security rules
 
-`firestore.rules` and `storage.rules` are written in Phase 13 and tested
-against the emulator. The invariants they enforce:
+`firestore.rules` and `storage.rules` are written and
+**`firestore.rules` compiles against the live project** (verified with
+`firebase deploy --only firestore:rules --dry-run`). Phase 13 adds emulator
+rules tests. The invariants they enforce:
 
 - a user may write only their own documents
 - `xp`, `level`, `flames`, mastery and achievements are **server-only**
