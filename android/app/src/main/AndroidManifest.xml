@@ -1,6 +1,34 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Talking to Firebase. The Flutter template only declares this in the
+         debug manifest, so without it here a release build has no network. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <!-- Cooking timers and streak reminders. POST_NOTIFICATIONS is runtime-
+         requested on API 33+; the app must still work if it is refused. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <!-- A step timer has to fire at the moment the step ends, not whenever the
+         system feels like batching it, so cook-mode alarms are exact.
+         SCHEDULE_EXACT_ALARM is user-grantable on API 31-32; USE_EXACT_ALARM
+         is the API 33+ replacement and is justified by the timer use case. -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+
+    <!-- Re-arm pending cooking timers after a reboot. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <!-- firebase_analytics merges in the advertising-ID permission by default.
+         FlameUp does not advertise or build ad audiences, and the brief is
+         explicit about not collecting unnecessary personal data, so it is
+         removed from the merged manifest. -->
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove"/>
+
     <application
-        android:label="flameup"
+        android:label="FlameUp"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -24,12 +52,30 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <!-- flutter_local_notifications: reschedules cooking timers after a
+             reboot and delivers scheduled step alarms. -->
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>
     </application>
+
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility?hl=en and
          https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.

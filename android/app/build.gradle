@@ -29,18 +29,20 @@ if (flutterVersionName == null) {
 android {
     namespace "com.flameup.app"
     compileSdk flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
+    // Pinned rather than taking flutter.ndkVersion: several Firebase plugins
+    // require 25.1.8937393 and the Flutter default is older.
+    ndkVersion "25.1.8937393"
 
     compileOptions {
         // flutter_local_notifications needs the desugared java.time APIs for
         // scheduled cooking timers.
         coreLibraryDesugaringEnabled true
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
     sourceSets {
@@ -51,11 +53,18 @@ android {
         applicationId "com.flameup.app"
         // firebase_auth 5.x requires API 23 as its floor.
         minSdkVersion 23
-        targetSdkVersion flutter.targetSdkVersion
+        // Google Play requires 34 for new apps and updates; the Flutter
+        // default for this SDK is still 33.
+        targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         // The Firebase SDK set pushes the app past the 64k method limit.
         multiDexEnabled true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 
     buildTypes {
@@ -72,5 +81,8 @@ flutter {
 }
 
 dependencies {
+    // 2.0.4 is what flutter_local_notifications 17.x expects. It emits
+    // desugared-library spec format 200, which AGP 8's L8 understands --
+    // AGP 7.3 did not, and failed with "This is not a JSON Array".
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
 }

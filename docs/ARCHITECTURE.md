@@ -123,28 +123,52 @@ names only, never query values.
 
 ---
 
-## 5. Data and offline
+## 5. Data — offline-first
 
-Three tiers:
+FlameUp is **offline-first**, not offline-tolerant: a cached value is served
+immediately, every time, and freshness only decides whether a background
+refresh also runs. Full detail in [`OFFLINE_MODE.md`](OFFLINE_MODE.md).
 
 | Tier | Technology | Holds |
 |---|---|---|
-| Firestore offline cache | built-in, `persistenceEnabled` | recipes, profile, most reads |
-| Hive boxes | `cache_recipes`, `cooking_sessions`, `mutation_outbox`, `cache_misc` | cooking state and queued writes |
-| SharedPreferences | scalars | theme, language, onboarding flag, active session id |
+| Firestore persistence | built in | document reads and live listeners |
+| `CacheStore` | Hive, JSON | query results, feed pages, recipe lists |
+| `Outbox` | Hive, JSON | writes waiting to reach the server |
+| `SharedPreferences` | scalars | theme, language, onboarding flag, session id |
 
-Firestore's own cache handles ordinary reads. Hive exists for the things
-Firestore's cache cannot express: an **in-flight cooking session** with
-wall-clock timer deadlines, and the **mutation outbox**.
+Deliberately **not a local database**. The app caches documents and lists keyed
+by query — a key-value shape. SQLite/Drift would add codegen, migrations and a
+native dependency to buy joins nothing here performs.
 
-### The outbox
+### Reading
 
-Writes made offline are appended to `mutation_outbox` with an **idempotency
-key**. On reconnect they replay; the server rejects a duplicate key. This is
-what stops a cook completed on a plane from awarding XP twice when the phone
-lands (brief §22).
+`OfflineFirst.read` implements the policy once: emit cache immediately, refresh
+if stale, **keep showing cached data when a refresh fails**, and throw only
+when there is nothing cached *and* nothing fetched.
 
----
+Repositories emit `Cached<T>` rather than a bare `T`, carrying `origin`
+(cache / network / cacheAfterFailure), `isRefreshing` and `refreshFailed`.
+`AsyncValue.loading` cannot express "here is real content, and it is updating"
+because its loading state has no data; `Cached` can, so screens never flash a
+spinner over content the user was already reading.
+
+### Writing — the outbox
+
+Writes are appended to a durable queue **and applied locally first**, so the UI
+is correct immediately whether or not there is a network.
+
+Each `PendingMutation` carries an **idempotency key minted when the user acts**,
+not when the request is sent. A retry, a restart mid-drain or a double tap all
+carry the same key and the server refuses the second grant — this is what stops
+a cook finished on a plane awarding XP twice on landing.
+
+Mutations replay oldest-first and the drain stops at the first failure, because
+"start session → step 4 → complete" applied out of order produces a session
+that never ran. Backoff is exponential and capped; after 8 attempts a mutation
+is dropped so a permanently rejected write cannot block the queue forever.
+
+Every cache and outbox read is non-throwing: a corrupt entry is dropped and
+reported as a miss rather than taking a screen down.
 
 ## 6. Security posture
 

@@ -86,6 +86,11 @@ the app's code path is the production one. A release build against the live
 project cannot award XP until the project is upgraded.
 Details: `docs/FIREBASE_SETUP.md`.
 
+**FlameUp is offline-first.** Cached data is shown immediately and always;
+writes made offline are queued with idempotency keys and replayed in order when
+the connection returns. A failed refresh keeps showing saved data rather than
+blanking the screen. See `docs/OFFLINE_MODE.md`.
+
 **There is no recipe photography.** The design uses two-colour gradient tiles
 per dish, and so does the app. The Firebase Storage upload path is built for
 real, so photographs drop in without a code change.
@@ -100,4 +105,5 @@ real, so photographs drop in without a code change.
 | [`ARCHITECTURE.md`](docs/ARCHITECTURE.md) | structure, state, errors, navigation, offline |
 | [`DATABASE_SCHEMA.md`](docs/DATABASE_SCHEMA.md) | the Firestore model and why it is shaped that way |
 | [`DEVELOPMENT_PLAN.md`](docs/DEVELOPMENT_PLAN.md) | the phases and their status |
+| [`OFFLINE_MODE.md`](docs/OFFLINE_MODE.md) | offline-first reads, the outbox, why XP cannot double |
 | [`FIREBASE_SETUP.md`](docs/FIREBASE_SETUP.md) | project, emulators, what still needs the console |

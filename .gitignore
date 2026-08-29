@@ -67,3 +67,6 @@ emulator-data/
 
 # Local tooling
 .fvm/
+
+# Build outputs (belt and braces -- the Flutter template covers /build)
+/build/
