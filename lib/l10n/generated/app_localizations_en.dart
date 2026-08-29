@@ -146,6 +146,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get continueLabel => 'Continue';
 
   @override
+  String get continueWithApple => 'Continue with Apple';
+
+  @override
+  String get continueWithGoogle => 'Continue with Google';
+
+  @override
   String get cookOne => 'Cook a Gurage dish';
 
   @override
@@ -284,10 +290,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get feedSub => 'Sixty-one people cooked tonight.';
 
   @override
+  String get fieldEmail => 'Email';
+
+  @override
+  String get fieldName => 'Your name';
+
+  @override
+  String get fieldPassword => 'Password';
+
+  @override
   String get finish => 'Finish dish';
 
   @override
   String get following => 'Following';
+
+  @override
+  String get forgotLink => 'Forgot password?';
+
+  @override
+  String get forgotSent => 'Check your email for the reset link.';
+
+  @override
+  String get forgotSubtitle => 'We\'ll email you a link to set a new one.';
+
+  @override
+  String get forgotTitle => 'Reset your password';
 
   @override
   String get freeze => '2 freeze days left';
@@ -312,6 +339,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get greeting => 'Selam, good evening';
+
+  @override
+  String get guestBadge => 'Guest';
 
   @override
   String get gurageTitle => 'Gurage — kitfo, kocho, and the long grind';
@@ -410,6 +440,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nextStep => 'Next step';
 
   @override
+  String get noAccountYet => 'New here? Create an account';
+
+  @override
   String get noteP => 'What would you do differently next time?';
 
   @override
@@ -426,6 +459,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get offSub => 'Eighteen recipes are on this phone, including everything you started this week.';
+
+  @override
+  String get orDivider => 'or';
 
   @override
   String get pause => 'Pause';
@@ -593,6 +629,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get shopSub => 'For Doro Wat and two more';
 
   @override
+  String get signInSubtitle => 'Your streak is where you left it.';
+
+  @override
+  String get signInTitle => 'Welcome back';
+
+  @override
+  String get signOut => 'Sign out';
+
+  @override
+  String get signUpSubtitle => 'So your cooking follows you to any phone.';
+
+  @override
+  String get signUpTitle => 'Make it yours';
+
+  @override
   String get skillH1 => 'How well do you know the kitchen?';
 
   @override
@@ -686,6 +737,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unlocked => 'NEW BADGE';
 
   @override
+  String get upgradeCta => 'Create my account';
+
+  @override
+  String get upgradeSubtitle => 'You\'re cooking as a guest. Add an account and your XP, streak and saved recipes come with you.';
+
+  @override
+  String get upgradeTitle => 'Save your progress';
+
+  @override
   String get uploadCta => 'Send to the kitchen';
 
   @override
@@ -699,6 +759,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get userName => 'Liya';
+
+  @override
+  String get validationNameRequired => 'Tell us what to call you.';
+
+  @override
+  String get validationPasswordShort => 'At least 8 characters.';
 
   @override
   String get viewAll => 'View all';

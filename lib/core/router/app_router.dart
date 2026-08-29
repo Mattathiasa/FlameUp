@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/domain/auth_providers.dart';
+import '../../features/auth/presentation/auth_form_screen.dart';
+import '../../features/auth/presentation/splash_screen.dart';
+import '../../features/auth/presentation/welcome_screen.dart';
 import '../../features/onboarding/domain/onboarding_providers.dart';
 import '../../shared/widgets/not_built_yet.dart';
 import '../services/crash_reporter.dart';
@@ -46,43 +49,30 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       // --- pre-app ------------------------------------------------------
       GoRoute(
         path: Routes.splash,
-        builder: (_, __) => const NotBuiltYet(
-          screen: 'splash',
-          designFile: '01-splash.html',
-          phase: 'Phase 3',
-        ),
+        builder: (_, __) => const SplashScreen(),
       ),
       GoRoute(
         path: Routes.welcome,
-        builder: (_, __) => const NotBuiltYet(
-          screen: 'welcome',
-          designFile: '02-welcome.html',
-          phase: 'Phase 3',
-        ),
+        builder: (_, __) => const WelcomeScreen(),
       ),
       GoRoute(
         path: Routes.signIn,
-        builder: (_, __) => const NotBuiltYet(
-          screen: 'sign in',
-          designFile: '02-welcome.html',
-          phase: 'Phase 3',
-        ),
+        builder: (_, __) => const AuthFormScreen(mode: AuthFormMode.signIn),
       ),
       GoRoute(
         path: Routes.signUp,
-        builder: (_, __) => const NotBuiltYet(
-          screen: 'sign up',
-          designFile: '02-welcome.html',
-          phase: 'Phase 3',
-        ),
+        builder: (_, __) => const AuthFormScreen(mode: AuthFormMode.signUp),
       ),
       GoRoute(
         path: Routes.forgotPassword,
-        builder: (_, __) => const NotBuiltYet(
-          screen: 'forgot password',
-          designFile: '02-welcome.html',
-          phase: 'Phase 3',
-        ),
+        builder: (_, __) =>
+            const AuthFormScreen(mode: AuthFormMode.forgotPassword),
+      ),
+      GoRoute(
+        path: Routes.upgradeAccount,
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (_, __) =>
+            const AuthFormScreen(mode: AuthFormMode.upgradeGuest),
       ),
       GoRoute(
         path: Routes.onboardingSkill,

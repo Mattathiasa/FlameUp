@@ -146,6 +146,12 @@ class AppLocalizationsAm extends AppLocalizations {
   String get continueLabel => 'ቀጥል';
 
   @override
+  String get continueWithApple => 'በApple ይቀጥሉ';
+
+  @override
+  String get continueWithGoogle => 'በGoogle ይቀጥሉ';
+
+  @override
   String get cookOne => 'የጉራጌ ምግብ ያብስሉ';
 
   @override
@@ -284,10 +290,31 @@ class AppLocalizationsAm extends AppLocalizations {
   String get feedSub => 'ስድሳ አንድ ሰዎች ዛሬ ማታ አብስለዋል።';
 
   @override
+  String get fieldEmail => 'ኢሜይል';
+
+  @override
+  String get fieldName => 'ስምዎ';
+
+  @override
+  String get fieldPassword => 'የይለፍ ቃል';
+
+  @override
   String get finish => 'ምግቡን ጨርስ';
 
   @override
   String get following => 'ተከታታይ';
+
+  @override
+  String get forgotLink => 'የይለፍ ቃል ረሱ?';
+
+  @override
+  String get forgotSent => 'የመቀየሪያ አገናኝ ኢሜይልዎን ይመልከቱ።';
+
+  @override
+  String get forgotSubtitle => 'አዲስ ለማዘጋጀት አገናኝ በኢሜይል እንልክልዎታለን።';
+
+  @override
+  String get forgotTitle => 'የይለፍ ቃልዎን ይቀይሩ';
 
   @override
   String get freeze => '2 የእረፍት ቀናት ቀርተዋል';
@@ -312,6 +339,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get greeting => 'ሰላም፣ እንደምን አመሸህ';
+
+  @override
+  String get guestBadge => 'እንግዳ';
 
   @override
   String get gurageTitle => 'ጉራጌ — ክትፎ፣ ቆጮ፣ እና ረጅሙ ውቅጣ';
@@ -410,6 +440,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get nextStep => 'ቀጣይ ደረጃ';
 
   @override
+  String get noAccountYet => 'አዲስ ነዎት? አካውንት ይፍጠሩ';
+
+  @override
   String get noteP => 'በሚቀጥለው ጊዜ ምን ይለውጣሉ?';
 
   @override
@@ -426,6 +459,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get offSub => 'አሥራ ስምንት አዘገጃጀቶች በዚህ ስልክ ላይ አሉ፤ በዚህ ሳምንት የጀመሩትን ሁሉንም ጨምሮ።';
+
+  @override
+  String get orDivider => 'ወይም';
 
   @override
   String get pause => 'አቁም';
@@ -593,6 +629,21 @@ class AppLocalizationsAm extends AppLocalizations {
   String get shopSub => 'ለዶሮ ወጥና ለሁለት ተጨማሪ';
 
   @override
+  String get signInSubtitle => 'ተከታታይ ቀናትዎ እንዳሉ ናቸው።';
+
+  @override
+  String get signInTitle => 'እንኳን ደህና ተመለሱ';
+
+  @override
+  String get signOut => 'ውጣ';
+
+  @override
+  String get signUpSubtitle => 'ማብሰልዎ ወደ ማንኛውም ስልክ እንዲከተልዎ።';
+
+  @override
+  String get signUpTitle => 'የራስዎ ያድርጉት';
+
+  @override
   String get skillH1 => 'ኩሽናውን ምን ያህል ያውቁታል?';
 
   @override
@@ -686,6 +737,15 @@ class AppLocalizationsAm extends AppLocalizations {
   String get unlocked => 'አዲስ ባጅ';
 
   @override
+  String get upgradeCta => 'አካውንቴን ፍጠር';
+
+  @override
+  String get upgradeSubtitle => 'እንደ እንግዳ እያበሰሉ ነው። አካውንት ይጨምሩ፤ XP፣ ተከታታይ ቀናትና የተቀመጡ አዘገጃጀቶች አብረው ይመጣሉ።';
+
+  @override
+  String get upgradeTitle => 'እድገትዎን ያስቀምጡ';
+
+  @override
   String get uploadCta => 'ወደ ኩሽናው ላክ';
 
   @override
@@ -699,6 +759,12 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get userName => 'ልያ';
+
+  @override
+  String get validationNameRequired => 'ማን እንደምንልዎ ይንገሩን።';
+
+  @override
+  String get validationPasswordShort => 'ቢያንስ 8 ቁምፊዎች።';
 
   @override
   String get viewAll => 'ሁሉንም ይመልከቱ';

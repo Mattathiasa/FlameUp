@@ -76,7 +76,7 @@ Deviations recorded in `design/PARITY.md`.
 
 ---
 
-## ⬜ Phase 3 — Authentication
+## ✅ Phase 3 — Authentication
 `feat: implement authentication`
 
 Splash, welcome, sign in, sign up, forgot password; Google, Apple, and guest
@@ -86,8 +86,30 @@ The critical piece is **account upgrade**: `linkWithCredential` so a guest
 becomes a permanent account without losing XP, history, achievements, saved
 recipes, mastery or family recipes.
 
-**Acceptance** — all six paths work against the live project; guest → permanent
-preserves a seeded XP value; no raw `FirebaseAuthException` reaches the UI.
+**Done.** `AuthRepository` covers email/password, Google, Apple, guest,
+password reset, account deletion and the guest upgrade. `AuthController` keeps
+submission state and failures out of the widgets. Splash, welcome and a single
+`AuthFormScreen` (four modes) are built from the design.
+
+The design has no auth screens — it goes splash → welcome → onboarding — so
+that copy was written into `tool/l10n_extra.json` rather than borrowing
+unrelated design strings. 261 strings now, 55 of them the app's own.
+
+Two things worth noting:
+
+- **Guest upgrade links in place.** `linkWithCredential` keeps the uid, so XP,
+  history, achievements, mastery, saved and family recipes all survive. A spy
+  test asserts the repository links rather than creating a second account,
+  because `firebase_auth_mocks` cannot model the anonymous → permanent
+  transition.
+- **A real bug was found and fixed while testing:** sign-out cleared the Google
+  session first, so a failure there meant Firebase sign-out never ran and the
+  user stayed signed in. Firebase sign-out is now unconditional.
+
+**Still blocked on the console** (documented in `FIREBASE_SETUP.md`): the
+Email/Password, Anonymous, Google and Apple providers must be enabled in the
+Firebase console, and Google needs the Android SHA fingerprints, before sign-in
+works against the live project.
 
 ---
 

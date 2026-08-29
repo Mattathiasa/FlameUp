@@ -1,39 +1,223 @@
 {
-  "_comment": "Strings the app needs that the design prototype did not include: error copy, auth failures and generic actions. Design-derived strings live in design/extracted/strings.json and are never edited by hand.",
-
-  "errorOffline":   { "en": "No connection. Check your network and try again.", "am": "ግንኙነት የለም። አውታረ መረብዎን አረጋግጠው እንደገና ይሞክሩ።" },
-  "errorServer":    { "en": "Something went wrong on our side.", "am": "በእኛ በኩል ችግር ተፈጥሯል።" },
-  "errorPermission":{ "en": "You do not have permission to do that.", "am": "ይህን ለማድረግ ፈቃድ የለዎትም።" },
-  "errorNotFound":  { "en": "We could not find that.", "am": "ያንን ማግኘት አልቻልንም።" },
-  "errorCache":     { "en": "Could not read saved data.", "am": "የተቀመጠውን መረጃ ማንበብ አልተቻለም።" },
-  "errorCancelled": { "en": "Cancelled.", "am": "ተሰርዟል።" },
-  "errorUnknown":   { "en": "Something went wrong.", "am": "የሆነ ችግር ተፈጥሯል።" },
-  "errorTimeout":   { "en": "That took too long. Try again.", "am": "ጊዜው አልፏል። እንደገና ይሞክሩ።" },
-  "errorBadResponse": { "en": "We received an unexpected response.", "am": "ያልተጠበቀ ምላሽ ደርሶናል።" },
-  "errorInvalidRequest": { "en": "That request was not valid.", "am": "ጥያቄው ትክክል አልነበረም።" },
-  "errorConflict":  { "en": "That has already been saved.", "am": "ያ አስቀድሞ ተቀምጧል።" },
-
-  "authErrorInvalidEmail": { "en": "That email address is not valid.", "am": "ይህ የኢሜይል አድራሻ ትክክል አይደለም።" },
-  "authErrorUserDisabled": { "en": "This account has been disabled.", "am": "ይህ አካውንት ተሰናክሏል።" },
-  "authErrorInvalidCredentials": { "en": "Email or password is incorrect.", "am": "ኢሜይል ወይም የይለፍ ቃል ትክክል አይደለም።" },
-  "authErrorEmailInUse": { "en": "An account already uses that email.", "am": "በዚህ ኢሜይል የተመዘገበ አካውንት አለ።" },
-  "authErrorWeakPassword": { "en": "Choose a longer password.", "am": "ረዘም ያለ የይለፍ ቃል ይምረጡ።" },
-  "authErrorOperationNotAllowed": { "en": "That sign-in method is not enabled.", "am": "ይህ የመግቢያ ዘዴ አልነቃም።" },
-  "authErrorRequiresRecentLogin": { "en": "Please sign in again to continue.", "am": "ለመቀጠል እንደገና ይግቡ።" },
-  "authErrorTooManyRequests": { "en": "Too many attempts. Try again shortly.", "am": "በጣም ብዙ ሙከራዎች። ትንሽ ቆይተው ይሞክሩ።" },
-  "authErrorAccountExistsDifferentCredential": { "en": "You already signed up with a different method.", "am": "በሌላ ዘዴ አስቀድመው ተመዝግበዋል።" },
-  "authErrorCredentialInUse": { "en": "Those credentials belong to another account.", "am": "እነዚያ መረጃዎች የሌላ አካውንት ናቸው።" },
-  "authErrorProviderAlreadyLinked": { "en": "That account is already linked.", "am": "ያ አካውንት አስቀድሞ ተያይዟል።" },
-  "authErrorGeneric": { "en": "We could not sign you in.", "am": "ማስገባት አልቻልንም።" },
-  "authErrorSignedOut": { "en": "You are signed out. Sign in to continue.", "am": "ወጥተዋል። ለመቀጠል ይግቡ።" },
-
-  "actionCancel": { "en": "Cancel", "am": "ተወው" },
-  "actionOk":     { "en": "OK", "am": "እሺ" },
-  "actionSave":   { "en": "Save", "am": "አስቀምጥ" },
-  "actionDelete": { "en": "Delete", "am": "ሰርዝ" },
-  "actionEdit":   { "en": "Edit", "am": "አርትዕ" },
-  "actionClose":  { "en": "Close", "am": "ዝጋ" },
-  "actionDone":   { "en": "Done", "am": "ተጠናቋል" },
-  "loading":      { "en": "Loading", "am": "በመጫን ላይ" },
-  "appName":      { "en": "FlameUp", "am": "ፍሌም አፕ" }
+  "_comment": "Strings the app needs that the design prototype did not include: error copy, auth failures, generic actions, and the sign-in/sign-up screens. The design goes splash -> welcome -> onboarding with no auth forms, so that copy is written here. Design-derived strings live in design/extracted/strings.json and are never edited by hand.",
+  "errorOffline": {
+    "en": "No connection. Check your network and try again.",
+    "am": "ግንኙነት የለም። አውታረ መረብዎን አረጋግጠው እንደገና ይሞክሩ።"
+  },
+  "errorServer": {
+    "en": "Something went wrong on our side.",
+    "am": "በእኛ በኩል ችግር ተፈጥሯል።"
+  },
+  "errorPermission": {
+    "en": "You do not have permission to do that.",
+    "am": "ይህን ለማድረግ ፈቃድ የለዎትም።"
+  },
+  "errorNotFound": {
+    "en": "We could not find that.",
+    "am": "ያንን ማግኘት አልቻልንም።"
+  },
+  "errorCache": {
+    "en": "Could not read saved data.",
+    "am": "የተቀመጠውን መረጃ ማንበብ አልተቻለም።"
+  },
+  "errorCancelled": {
+    "en": "Cancelled.",
+    "am": "ተሰርዟል።"
+  },
+  "errorUnknown": {
+    "en": "Something went wrong.",
+    "am": "የሆነ ችግር ተፈጥሯል።"
+  },
+  "errorTimeout": {
+    "en": "That took too long. Try again.",
+    "am": "ጊዜው አልፏል። እንደገና ይሞክሩ።"
+  },
+  "errorBadResponse": {
+    "en": "We received an unexpected response.",
+    "am": "ያልተጠበቀ ምላሽ ደርሶናል።"
+  },
+  "errorInvalidRequest": {
+    "en": "That request was not valid.",
+    "am": "ጥያቄው ትክክል አልነበረም።"
+  },
+  "errorConflict": {
+    "en": "That has already been saved.",
+    "am": "ያ አስቀድሞ ተቀምጧል።"
+  },
+  "authErrorInvalidEmail": {
+    "en": "That email address is not valid.",
+    "am": "ይህ የኢሜይል አድራሻ ትክክል አይደለም።"
+  },
+  "authErrorUserDisabled": {
+    "en": "This account has been disabled.",
+    "am": "ይህ አካውንት ተሰናክሏል።"
+  },
+  "authErrorInvalidCredentials": {
+    "en": "Email or password is incorrect.",
+    "am": "ኢሜይል ወይም የይለፍ ቃል ትክክል አይደለም።"
+  },
+  "authErrorEmailInUse": {
+    "en": "An account already uses that email.",
+    "am": "በዚህ ኢሜይል የተመዘገበ አካውንት አለ።"
+  },
+  "authErrorWeakPassword": {
+    "en": "Choose a longer password.",
+    "am": "ረዘም ያለ የይለፍ ቃል ይምረጡ።"
+  },
+  "authErrorOperationNotAllowed": {
+    "en": "That sign-in method is not enabled.",
+    "am": "ይህ የመግቢያ ዘዴ አልነቃም።"
+  },
+  "authErrorRequiresRecentLogin": {
+    "en": "Please sign in again to continue.",
+    "am": "ለመቀጠል እንደገና ይግቡ።"
+  },
+  "authErrorTooManyRequests": {
+    "en": "Too many attempts. Try again shortly.",
+    "am": "በጣም ብዙ ሙከራዎች። ትንሽ ቆይተው ይሞክሩ።"
+  },
+  "authErrorAccountExistsDifferentCredential": {
+    "en": "You already signed up with a different method.",
+    "am": "በሌላ ዘዴ አስቀድመው ተመዝግበዋል።"
+  },
+  "authErrorCredentialInUse": {
+    "en": "Those credentials belong to another account.",
+    "am": "እነዚያ መረጃዎች የሌላ አካውንት ናቸው።"
+  },
+  "authErrorProviderAlreadyLinked": {
+    "en": "That account is already linked.",
+    "am": "ያ አካውንት አስቀድሞ ተያይዟል።"
+  },
+  "authErrorGeneric": {
+    "en": "We could not sign you in.",
+    "am": "ማስገባት አልቻልንም።"
+  },
+  "authErrorSignedOut": {
+    "en": "You are signed out. Sign in to continue.",
+    "am": "ወጥተዋል። ለመቀጠል ይግቡ።"
+  },
+  "actionCancel": {
+    "en": "Cancel",
+    "am": "ተወው"
+  },
+  "actionOk": {
+    "en": "OK",
+    "am": "እሺ"
+  },
+  "actionSave": {
+    "en": "Save",
+    "am": "አስቀምጥ"
+  },
+  "actionDelete": {
+    "en": "Delete",
+    "am": "ሰርዝ"
+  },
+  "actionEdit": {
+    "en": "Edit",
+    "am": "አርትዕ"
+  },
+  "actionClose": {
+    "en": "Close",
+    "am": "ዝጋ"
+  },
+  "actionDone": {
+    "en": "Done",
+    "am": "ተጠናቋል"
+  },
+  "loading": {
+    "en": "Loading",
+    "am": "በመጫን ላይ"
+  },
+  "appName": {
+    "en": "FlameUp",
+    "am": "ፍሌም አፕ"
+  },
+  "signInTitle": {
+    "en": "Welcome back",
+    "am": "እንኳን ደህና ተመለሱ"
+  },
+  "signInSubtitle": {
+    "en": "Your streak is where you left it.",
+    "am": "ተከታታይ ቀናትዎ እንዳሉ ናቸው።"
+  },
+  "signUpTitle": {
+    "en": "Make it yours",
+    "am": "የራስዎ ያድርጉት"
+  },
+  "signUpSubtitle": {
+    "en": "So your cooking follows you to any phone.",
+    "am": "ማብሰልዎ ወደ ማንኛውም ስልክ እንዲከተልዎ።"
+  },
+  "forgotTitle": {
+    "en": "Reset your password",
+    "am": "የይለፍ ቃልዎን ይቀይሩ"
+  },
+  "forgotSubtitle": {
+    "en": "We'll email you a link to set a new one.",
+    "am": "አዲስ ለማዘጋጀት አገናኝ በኢሜይል እንልክልዎታለን።"
+  },
+  "forgotLink": {
+    "en": "Forgot password?",
+    "am": "የይለፍ ቃል ረሱ?"
+  },
+  "forgotSent": {
+    "en": "Check your email for the reset link.",
+    "am": "የመቀየሪያ አገናኝ ኢሜይልዎን ይመልከቱ።"
+  },
+  "upgradeTitle": {
+    "en": "Save your progress",
+    "am": "እድገትዎን ያስቀምጡ"
+  },
+  "upgradeSubtitle": {
+    "en": "You're cooking as a guest. Add an account and your XP, streak and saved recipes come with you.",
+    "am": "እንደ እንግዳ እያበሰሉ ነው። አካውንት ይጨምሩ፤ XP፣ ተከታታይ ቀናትና የተቀመጡ አዘገጃጀቶች አብረው ይመጣሉ።"
+  },
+  "upgradeCta": {
+    "en": "Create my account",
+    "am": "አካውንቴን ፍጠር"
+  },
+  "guestBadge": {
+    "en": "Guest",
+    "am": "እንግዳ"
+  },
+  "fieldName": {
+    "en": "Your name",
+    "am": "ስምዎ"
+  },
+  "fieldEmail": {
+    "en": "Email",
+    "am": "ኢሜይል"
+  },
+  "fieldPassword": {
+    "en": "Password",
+    "am": "የይለፍ ቃል"
+  },
+  "validationNameRequired": {
+    "en": "Tell us what to call you.",
+    "am": "ማን እንደምንልዎ ይንገሩን።"
+  },
+  "validationPasswordShort": {
+    "en": "At least 8 characters.",
+    "am": "ቢያንስ 8 ቁምፊዎች።"
+  },
+  "orDivider": {
+    "en": "or",
+    "am": "ወይም"
+  },
+  "continueWithGoogle": {
+    "en": "Continue with Google",
+    "am": "በGoogle ይቀጥሉ"
+  },
+  "continueWithApple": {
+    "en": "Continue with Apple",
+    "am": "በApple ይቀጥሉ"
+  },
+  "noAccountYet": {
+    "en": "New here? Create an account",
+    "am": "አዲስ ነዎት? አካውንት ይፍጠሩ"
+  },
+  "signOut": {
+    "en": "Sign out",
+    "am": "ውጣ"
+  }
 }

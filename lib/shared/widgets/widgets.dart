@@ -5,6 +5,7 @@
 /// `design/COMPONENT_INVENTORY.md` for the measurements behind each one.
 library;
 
+export 'ambient_background.dart';
 export 'flame_button.dart';
 export 'flame_icon.dart';
 export 'flame_tab_bar.dart';

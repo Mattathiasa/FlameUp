@@ -10,6 +10,10 @@ abstract final class Routes {
   static const String signUp = '/sign-up';
   static const String forgotPassword = '/forgot-password';
 
+  /// Guest -> permanent account. Reachable while signed in, so it is not a
+  /// public path: a guest is already authenticated.
+  static const String upgradeAccount = '/upgrade-account';
+
   static const String onboardingSkill = '/onboarding/skill'; // 03-skill
   static const String onboardingTaste = '/onboarding/taste'; // 04-taste
 

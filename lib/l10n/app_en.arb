@@ -188,6 +188,14 @@
   "@continueLabel": {
     "description": "Design prototype copy"
   },
+  "continueWithApple": "Continue with Apple",
+  "@continueWithApple": {
+    "description": "Application copy"
+  },
+  "continueWithGoogle": "Continue with Google",
+  "@continueWithGoogle": {
+    "description": "Application copy"
+  },
   "cookOne": "Cook a Gurage dish",
   "@cookOne": {
     "description": "Design prototype copy"
@@ -372,6 +380,18 @@
   "@feedSub": {
     "description": "Design prototype copy"
   },
+  "fieldEmail": "Email",
+  "@fieldEmail": {
+    "description": "Application copy"
+  },
+  "fieldName": "Your name",
+  "@fieldName": {
+    "description": "Application copy"
+  },
+  "fieldPassword": "Password",
+  "@fieldPassword": {
+    "description": "Application copy"
+  },
   "finish": "Finish dish",
   "@finish": {
     "description": "Design prototype copy"
@@ -379,6 +399,22 @@
   "following": "Following",
   "@following": {
     "description": "Design prototype copy"
+  },
+  "forgotLink": "Forgot password?",
+  "@forgotLink": {
+    "description": "Application copy"
+  },
+  "forgotSent": "Check your email for the reset link.",
+  "@forgotSent": {
+    "description": "Application copy"
+  },
+  "forgotSubtitle": "We'll email you a link to set a new one.",
+  "@forgotSubtitle": {
+    "description": "Application copy"
+  },
+  "forgotTitle": "Reset your password",
+  "@forgotTitle": {
+    "description": "Application copy"
   },
   "freeze": "2 freeze days left",
   "@freeze": {
@@ -411,6 +447,10 @@
   "greeting": "Selam, good evening",
   "@greeting": {
     "description": "Design prototype copy"
+  },
+  "guestBadge": "Guest",
+  "@guestBadge": {
+    "description": "Application copy"
   },
   "gurageTitle": "Gurage — kitfo, kocho, and the long grind",
   "@gurageTitle": {
@@ -540,6 +580,10 @@
   "@nextStep": {
     "description": "Design prototype copy"
   },
+  "noAccountYet": "New here? Create an account",
+  "@noAccountYet": {
+    "description": "Application copy"
+  },
   "noteP": "What would you do differently next time?",
   "@noteP": {
     "description": "Design prototype copy"
@@ -563,6 +607,10 @@
   "offSub": "Eighteen recipes are on this phone, including everything you started this week.",
   "@offSub": {
     "description": "Design prototype copy"
+  },
+  "orDivider": "or",
+  "@orDivider": {
+    "description": "Application copy"
   },
   "pause": "Pause",
   "@pause": {
@@ -784,6 +832,26 @@
   "@shopSub": {
     "description": "Design prototype copy"
   },
+  "signInSubtitle": "Your streak is where you left it.",
+  "@signInSubtitle": {
+    "description": "Application copy"
+  },
+  "signInTitle": "Welcome back",
+  "@signInTitle": {
+    "description": "Application copy"
+  },
+  "signOut": "Sign out",
+  "@signOut": {
+    "description": "Application copy"
+  },
+  "signUpSubtitle": "So your cooking follows you to any phone.",
+  "@signUpSubtitle": {
+    "description": "Application copy"
+  },
+  "signUpTitle": "Make it yours",
+  "@signUpTitle": {
+    "description": "Application copy"
+  },
   "skillH1": "How well do you know the kitchen?",
   "@skillH1": {
     "description": "Design prototype copy"
@@ -908,6 +976,18 @@
   "@unlocked": {
     "description": "Design prototype copy"
   },
+  "upgradeCta": "Create my account",
+  "@upgradeCta": {
+    "description": "Application copy"
+  },
+  "upgradeSubtitle": "You're cooking as a guest. Add an account and your XP, streak and saved recipes come with you.",
+  "@upgradeSubtitle": {
+    "description": "Application copy"
+  },
+  "upgradeTitle": "Save your progress",
+  "@upgradeTitle": {
+    "description": "Application copy"
+  },
   "uploadCta": "Send to the kitchen",
   "@uploadCta": {
     "description": "Design prototype copy"
@@ -927,6 +1007,14 @@
   "userName": "Liya",
   "@userName": {
     "description": "Design prototype copy"
+  },
+  "validationNameRequired": "Tell us what to call you.",
+  "@validationNameRequired": {
+    "description": "Application copy"
+  },
+  "validationPasswordShort": "At least 8 characters.",
+  "@validationPasswordShort": {
+    "description": "Application copy"
   },
   "viewAll": "View all",
   "@viewAll": {

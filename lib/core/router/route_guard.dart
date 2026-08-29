@@ -38,6 +38,9 @@ abstract final class RouteGuard {
     }
 
     // Signed in and onboarded — the pre-app routes have nothing left to show.
+    // The upgrade screen is the exception: it is only reachable *because* the
+    // user is signed in, as a guest converting to a permanent account.
+    if (path == Routes.upgradeAccount) return null;
     if (isPublic || isOnboarding) return Routes.home;
     return null;
   }

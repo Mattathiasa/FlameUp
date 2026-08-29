@@ -135,7 +135,11 @@ both git-ignored.
 These are console-side steps that code cannot perform. Each is done in the
 phase noted.
 
-### Authentication providers — Phase 3
+### ⚠ Authentication providers — required before sign-in works
+
+**The code is complete; these console steps are not, and cannot be done from a
+terminal.** Until they are, sign-in will fail against the live project with
+`operation-not-allowed`.
 
 Console → Authentication → Sign-in method. Enable:
 
@@ -150,7 +154,23 @@ Console → Authentication → Sign-in method. Enable:
 - **Apple** — needs an Apple Developer account: a Services ID, a Sign in with
   Apple key, and the `com.apple.developer.applesignin` entitlement on the
   Runner target. Required by App Store review whenever another social provider
-  is offered.
+  is offered. The app hides the Apple button where the platform does not
+  support it, so an un-configured Apple provider is not a crash — but it is a
+  store rejection on iOS.
+
+#### What the app already does correctly
+
+- **Guest mode is anonymous auth**, and upgrading calls `linkWithCredential` on
+  the existing user, so the uid never changes and no progress is orphaned.
+  `test/features/auth/auth_repository_test.dart` asserts the repository links
+  rather than creating a second account.
+- **Sign-out is unconditional.** Clearing the Google session is attempted first
+  so the account chooser appears next time, but a failure there cannot prevent
+  the Firebase sign-out — being left signed in after asking to leave is the
+  worse outcome.
+- **Errors never leak.** `wrong-password` and `user-not-found` deliberately
+  resolve to the same message so the app does not disclose which half was
+  wrong.
 
 ### App Check — Phase 15
 

@@ -1,5 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../data/auth_repository.dart';
+import 'auth_user.dart';
 
 /// Where the user stands with respect to having an identity.
 ///
@@ -8,15 +10,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// through the welcome screen.
 enum AuthStatus { unknown, signedOut, guest, signedIn }
 
-final firebaseAuthProvider = Provider<FirebaseAuth>(
-  (ref) => FirebaseAuth.instance,
-);
-
-/// The live Firebase user, or null. Seeded with the already-restored user so
-/// the first frame does not flash [AuthStatus.unknown] unnecessarily.
-final authUserProvider = StreamProvider<User?>((ref) {
-  final auth = ref.watch(firebaseAuthProvider);
-  return auth.authStateChanges();
+/// The live user, or null.
+final authUserProvider = StreamProvider<AuthUser?>((ref) {
+  return ref.watch(authRepositoryProvider).authStateChanges();
 });
 
 final authStatusProvider = Provider<AuthStatus>((ref) {
@@ -25,13 +21,13 @@ final authStatusProvider = Provider<AuthStatus>((ref) {
         error: (_, __) => AuthStatus.signedOut,
         data: (user) => switch (user) {
           null => AuthStatus.signedOut,
-          final u when u.isAnonymous => AuthStatus.guest,
+          final u when u.isGuest => AuthStatus.guest,
           _ => AuthStatus.signedIn,
         },
       );
 });
 
-/// True for both guests and full accounts — anyone with a uid.
+/// True for guests and full accounts alike — anyone with a uid.
 final isAuthenticatedProvider = Provider<bool>((ref) {
   final status = ref.watch(authStatusProvider);
   return status == AuthStatus.guest || status == AuthStatus.signedIn;
@@ -39,4 +35,17 @@ final isAuthenticatedProvider = Provider<bool>((ref) {
 
 final currentUidProvider = Provider<String?>((ref) {
   return ref.watch(authUserProvider).valueOrNull?.uid;
+});
+
+/// Whether the signed-in user is still a guest.
+///
+/// Drives the "save your progress" prompt: a guest's work exists but is lost
+/// with the app until the account is upgraded.
+final isGuestProvider = Provider<bool>((ref) {
+  return ref.watch(authStatusProvider) == AuthStatus.guest;
+});
+
+/// Whether to offer Apple sign-in on this device.
+final appleSignInAvailableProvider = FutureProvider<bool>((ref) {
+  return AuthRepository.isAppleAvailable;
 });

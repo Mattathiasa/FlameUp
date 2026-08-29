@@ -375,6 +375,18 @@ abstract class AppLocalizations {
   /// **'Continue'**
   String get continueLabel;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Apple'**
+  String get continueWithApple;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get continueWithGoogle;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -651,6 +663,24 @@ abstract class AppLocalizations {
   /// **'Sixty-one people cooked tonight.'**
   String get feedSub;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get fieldEmail;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Your name'**
+  String get fieldName;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get fieldPassword;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -662,6 +692,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Following'**
   String get following;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgotLink;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email for the reset link.'**
+  String get forgotSent;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll email you a link to set a new one.'**
+  String get forgotSubtitle;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Reset your password'**
+  String get forgotTitle;
 
   /// Design prototype copy
   ///
@@ -710,6 +764,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Selam, good evening'**
   String get greeting;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Guest'**
+  String get guestBadge;
 
   /// Design prototype copy
   ///
@@ -903,6 +963,12 @@ abstract class AppLocalizations {
   /// **'Next step'**
   String get nextStep;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'New here? Create an account'**
+  String get noAccountYet;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -938,6 +1004,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Eighteen recipes are on this phone, including everything you started this week.'**
   String get offSub;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get orDivider;
 
   /// Design prototype copy
   ///
@@ -1269,6 +1341,36 @@ abstract class AppLocalizations {
   /// **'For Doro Wat and two more'**
   String get shopSub;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Your streak is where you left it.'**
+  String get signInSubtitle;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get signInTitle;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get signOut;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'So your cooking follows you to any phone.'**
+  String get signUpSubtitle;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Make it yours'**
+  String get signUpTitle;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1455,6 +1557,24 @@ abstract class AppLocalizations {
   /// **'NEW BADGE'**
   String get unlocked;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Create my account'**
+  String get upgradeCta;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re cooking as a guest. Add an account and your XP, streak and saved recipes come with you.'**
+  String get upgradeSubtitle;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Save your progress'**
+  String get upgradeTitle;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1484,6 +1604,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Liya'**
   String get userName;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us what to call you.'**
+  String get validationNameRequired;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'At least 8 characters.'**
+  String get validationPasswordShort;
 
   /// Design prototype copy
   ///

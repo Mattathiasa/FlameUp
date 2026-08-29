@@ -167,6 +167,36 @@ void main() {
     });
   });
 
+  group('guest upgrade route', () {
+    test('a guest can reach it', () {
+      // The whole point of the screen: a guest converting to a permanent
+      // account. Redirecting it to /home would make upgrading impossible.
+      expect(
+        redirect(
+          AuthStatus.guest,
+          onboarded: true,
+          path: Routes.upgradeAccount,
+        ),
+        isNull,
+      );
+    });
+
+    test('a signed-out user cannot', () {
+      expect(
+        redirect(
+          AuthStatus.signedOut,
+          onboarded: true,
+          path: Routes.upgradeAccount,
+        ),
+        Routes.welcome,
+      );
+    });
+
+    test('it is not a public path', () {
+      expect(Routes.publicPaths, isNot(contains(Routes.upgradeAccount)));
+    });
+  });
+
   group('route table', () {
     test('every public path is a real route constant', () {
       expect(Routes.publicPaths, contains(Routes.welcome));
