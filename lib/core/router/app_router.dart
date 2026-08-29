@@ -6,15 +6,33 @@ import '../../features/auth/domain/auth_providers.dart';
 import '../../features/auth/presentation/auth_form_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
 import '../../features/auth/presentation/welcome_screen.dart';
+import '../../features/community/presentation/challenges_screen.dart';
+import '../../features/community/presentation/community_screen.dart';
+import '../../features/community/presentation/friends_screen.dart';
+import '../../features/community/presentation/leaderboard_screen.dart';
 import '../../features/cooking/presentation/cook_done_screen.dart';
 import '../../features/cooking/presentation/cook_mode_screen.dart';
 import '../../features/cooking/presentation/cook_rate_screen.dart';
+import '../../features/family_recipes/presentation/family_recipe_form.dart';
+import '../../features/family_recipes/presentation/grandma_screen.dart';
+import '../../features/gamification/presentation/achievements_screen.dart';
+import '../../features/gamification/presentation/mastery_screen.dart';
+import '../../features/gamification/presentation/progress_screen.dart';
+import '../../features/gamification/presentation/quests_screen.dart';
+import '../../features/gamification/presentation/streak_screen.dart';
+import '../../features/home/presentation/home_screen.dart';
+import '../../features/meal_planner/presentation/planner_screen.dart';
 import '../../features/onboarding/domain/onboarding_providers.dart';
 import '../../features/onboarding/presentation/skill_screen.dart';
 import '../../features/onboarding/presentation/taste_screen.dart';
 import '../../features/recipes/presentation/discover_screen.dart';
 import '../../features/recipes/presentation/recipe_detail_screen.dart';
-import '../../shared/widgets/not_built_yet.dart';
+import '../../features/recipes/presentation/saved_screen.dart';
+import '../../features/regions/presentation/region_screen.dart';
+import '../../features/regions/presentation/taste_ethiopia_screen.dart';
+import '../../features/settings/presentation/settings_screen.dart';
+import '../../features/shopping/presentation/shopping_screen.dart';
+import '../../features/system/presentation/offline_screen.dart';
 import '../services/crash_reporter.dart';
 import 'app_shell.dart';
 import 'route_guard.dart';
@@ -115,11 +133,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.offline,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (_, __) => const NotBuiltYet(
-          screen: 'offline',
-          designFile: '29-offline.html',
-          phase: 'Phase 12',
-        ),
+        builder: (_, __) => const OfflineScreen(),
       ),
 
       // --- the five-tab shell -------------------------------------------
@@ -132,11 +146,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: Routes.home,
-                builder: (_, __) => const NotBuiltYet(
-                  screen: 'today',
-                  designFile: '05-home.html',
-                  phase: 'Phase 5',
-                ),
+                builder: (_, __) => const HomeScreen(),
               ),
             ],
           ),
@@ -149,35 +159,21 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                 routes: [
                   GoRoute(
                     path: 'map',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'taste ethiopia',
-                      designFile: '16-map.html',
-                      phase: 'Phase 8',
-                    ),
+                    builder: (_, __) => const TasteEthiopiaScreen(),
                   ),
                   GoRoute(
                     path: 'region/:regionId',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'region',
-                      designFile: '17-region.html',
-                      phase: 'Phase 8',
+                    builder: (_, state) => RegionScreen(
+                      regionId: state.pathParameters['regionId']!,
                     ),
                   ),
                   GoRoute(
                     path: 'grandma',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: "grandma's kitchen",
-                      designFile: '18-grandma.html',
-                      phase: 'Phase 8',
-                    ),
+                    builder: (_, __) => const GrandmaScreen(),
                   ),
                   GoRoute(
                     path: 'family-recipe/new',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'family recipe',
-                      designFile: '19-upload.html',
-                      phase: 'Phase 8',
-                    ),
+                    builder: (_, __) => const FamilyRecipeForm(),
                   ),
                 ],
               ),
@@ -188,11 +184,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: Routes.cook,
-                builder: (_, __) => const NotBuiltYet(
-                  screen: 'cook',
-                  designFile: '07-recipe.html',
-                  phase: 'Phase 5',
-                ),
+                builder: (_, __) => const DiscoverScreen(),
               ),
               GoRoute(
                 path: Routes.recipeDetail,
@@ -207,35 +199,19 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: Routes.community,
-                builder: (_, __) => const NotBuiltYet(
-                  screen: 'community',
-                  designFile: '20-feed.html',
-                  phase: 'Phase 9',
-                ),
+                builder: (_, __) => const CommunityScreen(),
                 routes: [
                   GoRoute(
                     path: 'friends',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'friends',
-                      designFile: '21-friends.html',
-                      phase: 'Phase 9',
-                    ),
+                    builder: (_, __) => const FriendsScreen(),
                   ),
                   GoRoute(
                     path: 'challenges',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'challenges',
-                      designFile: '22-challenges.html',
-                      phase: 'Phase 9',
-                    ),
+                    builder: (_, __) => const ChallengesScreen(),
                   ),
                   GoRoute(
                     path: 'leaderboard',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'leaderboard',
-                      designFile: '23-leader.html',
-                      phase: 'Phase 9',
-                    ),
+                    builder: (_, __) => const LeaderboardScreen(),
                   ),
                 ],
               ),
@@ -246,75 +222,39 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: Routes.you,
-                builder: (_, __) => const NotBuiltYet(
-                  screen: 'your kitchen',
-                  designFile: '11-progress.html',
-                  phase: 'Phase 7',
-                ),
+                builder: (_, __) => const ProgressScreen(),
                 routes: [
                   GoRoute(
                     path: 'mastery',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'mastery',
-                      designFile: '12-mastery.html',
-                      phase: 'Phase 7',
-                    ),
+                    builder: (_, __) => const MasteryScreen(),
                   ),
                   GoRoute(
                     path: 'achievements',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'achievements',
-                      designFile: '13-achv.html',
-                      phase: 'Phase 7',
-                    ),
+                    builder: (_, __) => const AchievementsScreen(),
                   ),
                   GoRoute(
                     path: 'quests',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'quests',
-                      designFile: '14-quests.html',
-                      phase: 'Phase 7',
-                    ),
+                    builder: (_, __) => const QuestsScreen(),
                   ),
                   GoRoute(
                     path: 'streak',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'streak',
-                      designFile: '15-streak.html',
-                      phase: 'Phase 7',
-                    ),
+                    builder: (_, __) => const StreakScreen(),
                   ),
                   GoRoute(
                     path: 'saved',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'favorites',
-                      designFile: '24-saved.html',
-                      phase: 'Phase 10',
-                    ),
+                    builder: (_, __) => const SavedScreen(),
                   ),
                   GoRoute(
                     path: 'shopping',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'shopping list',
-                      designFile: '25-shop.html',
-                      phase: 'Phase 10',
-                    ),
+                    builder: (_, __) => const ShoppingScreen(),
                   ),
                   GoRoute(
                     path: 'planner',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'meal planner',
-                      designFile: '26-planner.html',
-                      phase: 'Phase 10',
-                    ),
+                    builder: (_, __) => const PlannerScreen(),
                   ),
                   GoRoute(
                     path: 'settings',
-                    builder: (_, __) => const NotBuiltYet(
-                      screen: 'settings',
-                      designFile: '27-settings.html',
-                      phase: 'Phase 10',
-                    ),
+                    builder: (_, __) => const SettingsScreen(),
                   ),
                 ],
               ),

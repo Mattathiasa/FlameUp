@@ -38,10 +38,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addAll => 'Add all to list';
 
   @override
+  String get addManualItem => 'Add an item';
+
+  @override
   String get addPhoto => 'Add a photo';
 
   @override
   String get addStep => 'Add a step';
+
+  @override
+  String get addToList => 'Add to shopping list';
+
+  @override
+  String get addedToList => 'Added to your shopping list';
 
   @override
   String get adv => 'I grew up on this';
@@ -54,6 +63,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aisleMeat => 'MEAT & DAIRY';
+
+  @override
+  String get aislePantry => 'PANTRY';
 
   @override
   String get aisleSpice => 'SPICE & DRY';
@@ -114,6 +126,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get beginnerS => 'I can boil water and follow instructions.';
+
+  @override
+  String get breakfast => 'Breakfast';
 
   @override
   String get chBody => 'Seven dishes, one injera, photographed together. Judged by three cooks from Addis.';
@@ -177,6 +192,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dietary => 'ANYTHING WE SHOULD KNOW?';
+
+  @override
+  String get dinner => 'Dinner';
 
   @override
   String get dishesFrom => 'Dishes from here';
@@ -329,6 +347,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fromRegion => 'Where it comes from';
 
   @override
+  String get generateList => 'Build shopping list from plan';
+
+  @override
   String get getStarted => 'Light the first flame';
 
   @override
@@ -413,6 +434,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get locked => 'Locked';
 
   @override
+  String get lunch => 'Lunch';
+
+  @override
   String get lvlName => 'Wot Wanderer';
 
   @override
@@ -479,6 +503,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get planSub => 'Drag a dish onto a night.';
 
   @override
+  String get plannerEmpty => 'No meals planned yet';
+
+  @override
+  String get plannerEmptySub => 'Pick a night and choose something to cook.';
+
+  @override
   String get postToComm => 'Post to community';
 
   @override
@@ -533,13 +563,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get regionTitle => 'Gurage';
 
   @override
+  String get removeFromPlan => 'Remove';
+
+  @override
   String get results => '24 dishes';
 
   @override
   String get resume => 'Resume';
 
   @override
+  String get resumeCooking => 'Resume cooking';
+
+  @override
   String get retry => 'Try again';
+
+  @override
+  String get savedEmpty => 'Nothing saved yet';
 
   @override
   String get savedH1 => 'Favorites';
@@ -627,6 +666,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get shopSub => 'For Doro Wat and two more';
+
+  @override
+  String get shoppingEmpty => 'Nothing on the list';
+
+  @override
+  String get shoppingEmptySub => 'Add a recipe\'s ingredients from any dish, or type something in.';
 
   @override
   String get signInSubtitle => 'Your streak is where you left it.';
@@ -732,6 +777,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get toNext => '520 XP to Level 13';
+
+  @override
+  String get today => 'Today';
 
   @override
   String get unlocked => 'NEW BADGE';

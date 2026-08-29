@@ -219,5 +219,69 @@
   "signOut": {
     "en": "Sign out",
     "am": "ውጣ"
+  },
+  "aislePantry": {
+    "en": "PANTRY",
+    "am": "ጓዳ"
+  },
+  "addManualItem": {
+    "en": "Add an item",
+    "am": "ዕቃ ጨምር"
+  },
+  "shoppingEmpty": {
+    "en": "Nothing on the list",
+    "am": "በዝርዝሩ ላይ ምንም የለም"
+  },
+  "shoppingEmptySub": {
+    "en": "Add a recipe's ingredients from any dish, or type something in.",
+    "am": "ከማንኛውም ምግብ ግብዓቶችን ይጨምሩ፣ ወይም ይተይቡ።"
+  },
+  "addToList": {
+    "en": "Add to shopping list",
+    "am": "ወደ ግብይት ዝርዝር ጨምር"
+  },
+  "addedToList": {
+    "en": "Added to your shopping list",
+    "am": "ወደ ግብይት ዝርዝርዎ ተጨምሯል"
+  },
+  "plannerEmpty": {
+    "en": "No meals planned yet",
+    "am": "ገና ምንም ምግብ አልታቀደም"
+  },
+  "plannerEmptySub": {
+    "en": "Pick a night and choose something to cook.",
+    "am": "አንድ ምሽት መርጠው የሚያበስሉትን ይምረጡ።"
+  },
+  "generateList": {
+    "en": "Build shopping list from plan",
+    "am": "ከእቅዱ የግብይት ዝርዝር ይሥሩ"
+  },
+  "removeFromPlan": {
+    "en": "Remove",
+    "am": "አስወግድ"
+  },
+  "savedEmpty": {
+    "en": "Nothing saved yet",
+    "am": "ገና ምንም አልተቀመጠም"
+  },
+  "breakfast": {
+    "en": "Breakfast",
+    "am": "ቁርስ"
+  },
+  "lunch": {
+    "en": "Lunch",
+    "am": "ምሳ"
+  },
+  "dinner": {
+    "en": "Dinner",
+    "am": "እራት"
+  },
+  "today": {
+    "en": "Today",
+    "am": "ዛሬ"
+  },
+  "resumeCooking": {
+    "en": "Resume cooking",
+    "am": "ማብሰል ቀጥል"
   }
 }

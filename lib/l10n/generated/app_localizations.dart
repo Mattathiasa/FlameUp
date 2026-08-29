@@ -159,6 +159,12 @@ abstract class AppLocalizations {
   /// **'Add all to list'**
   String get addAll;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Add an item'**
+  String get addManualItem;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -170,6 +176,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add a step'**
   String get addStep;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Add to shopping list'**
+  String get addToList;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Added to your shopping list'**
+  String get addedToList;
 
   /// Design prototype copy
   ///
@@ -194,6 +212,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'MEAT & DAIRY'**
   String get aisleMeat;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'PANTRY'**
+  String get aislePantry;
 
   /// Design prototype copy
   ///
@@ -314,6 +338,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'I can boil water and follow instructions.'**
   String get beginnerS;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Breakfast'**
+  String get breakfast;
 
   /// Design prototype copy
   ///
@@ -440,6 +470,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'ANYTHING WE SHOULD KNOW?'**
   String get dietary;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Dinner'**
+  String get dinner;
 
   /// Design prototype copy
   ///
@@ -741,6 +777,12 @@ abstract class AppLocalizations {
   /// **'Where it comes from'**
   String get fromRegion;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Build shopping list from plan'**
+  String get generateList;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -909,6 +951,12 @@ abstract class AppLocalizations {
   /// **'Locked'**
   String get locked;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Lunch'**
+  String get lunch;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1041,6 +1089,18 @@ abstract class AppLocalizations {
   /// **'Drag a dish onto a night.'**
   String get planSub;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'No meals planned yet'**
+  String get plannerEmpty;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a night and choose something to cook.'**
+  String get plannerEmptySub;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1149,6 +1209,12 @@ abstract class AppLocalizations {
   /// **'Gurage'**
   String get regionTitle;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get removeFromPlan;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1161,11 +1227,23 @@ abstract class AppLocalizations {
   /// **'Resume'**
   String get resume;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Resume cooking'**
+  String get resumeCooking;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
   /// **'Try again'**
   String get retry;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing saved yet'**
+  String get savedEmpty;
 
   /// Design prototype copy
   ///
@@ -1340,6 +1418,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'For Doro Wat and two more'**
   String get shopSub;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing on the list'**
+  String get shoppingEmpty;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Add a recipe\'s ingredients from any dish, or type something in.'**
+  String get shoppingEmptySub;
 
   /// Application copy
   ///
@@ -1550,6 +1640,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'520 XP to Level 13'**
   String get toNext;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get today;
 
   /// Design prototype copy
   ///

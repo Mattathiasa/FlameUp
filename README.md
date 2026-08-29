@@ -77,6 +77,12 @@ dart format lib test tool
 
 ---
 
+## ⚠ Before this runs for real
+
+**[`ACTION_REQUIRED.md`](ACTION_REQUIRED.md) lists the console steps only you
+can do** — enabling sign-in providers, turning on Firebase Storage, and the
+Blaze upgrade that XP depends on. None of them can be done from a terminal.
+
 ## Two things worth knowing up front
 
 **Cloud Functions are not deployed.** The `flameup-78d15` Firebase project is
@@ -105,5 +111,7 @@ real, so photographs drop in without a code change.
 | [`ARCHITECTURE.md`](docs/ARCHITECTURE.md) | structure, state, errors, navigation, offline |
 | [`DATABASE_SCHEMA.md`](docs/DATABASE_SCHEMA.md) | the Firestore model and why it is shaped that way |
 | [`DEVELOPMENT_PLAN.md`](docs/DEVELOPMENT_PLAN.md) | the phases and their status |
+| [`ACTION_REQUIRED.md`](ACTION_REQUIRED.md) | **the console steps only you can do** |
 | [`OFFLINE_MODE.md`](docs/OFFLINE_MODE.md) | offline-first reads, the outbox, why XP cannot double |
+| [`GAMIFICATION.md`](docs/GAMIFICATION.md) | XP, levels, streaks, mastery, and why the rules exist twice |
 | [`FIREBASE_SETUP.md`](docs/FIREBASE_SETUP.md) | project, emulators, what still needs the console |

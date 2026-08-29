@@ -38,10 +38,19 @@ class AppLocalizationsAm extends AppLocalizations {
   String get addAll => 'ሁሉንም ወደ ዝርዝር';
 
   @override
+  String get addManualItem => 'ዕቃ ጨምር';
+
+  @override
   String get addPhoto => 'ፎቶ ጨምር';
 
   @override
   String get addStep => 'ደረጃ ጨምር';
+
+  @override
+  String get addToList => 'ወደ ግብይት ዝርዝር ጨምር';
+
+  @override
+  String get addedToList => 'ወደ ግብይት ዝርዝርዎ ተጨምሯል';
 
   @override
   String get adv => 'ያደግኩበት ነው';
@@ -54,6 +63,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get aisleMeat => 'ሥጋና ወተት';
+
+  @override
+  String get aislePantry => 'ጓዳ';
 
   @override
   String get aisleSpice => 'ቅመምና ደረቅ';
@@ -114,6 +126,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get beginnerS => 'ውሃ አፍልቼ መመሪያ መከተል እችላለሁ።';
+
+  @override
+  String get breakfast => 'ቁርስ';
 
   @override
   String get chBody => 'ሰባት ምግቦች፣ አንድ እንጀራ፣ አብረው ተነስተው። በሦስት የአዲስ አበባ ምግብ አብሳዮች ይገመገማል።';
@@ -177,6 +192,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get dietary => 'ማወቅ ያለብን ነገር አለ?';
+
+  @override
+  String get dinner => 'እራት';
 
   @override
   String get dishesFrom => 'ከዚህ የመጡ ምግቦች';
@@ -329,6 +347,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get fromRegion => 'ከየት እንደመጣ';
 
   @override
+  String get generateList => 'ከእቅዱ የግብይት ዝርዝር ይሥሩ';
+
+  @override
   String get getStarted => 'የመጀመሪያውን እሳት አብሩ';
 
   @override
@@ -413,6 +434,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get locked => 'ተቆልፏል';
 
   @override
+  String get lunch => 'ምሳ';
+
+  @override
   String get lvlName => 'የወጥ መንገደኛ';
 
   @override
@@ -479,6 +503,12 @@ class AppLocalizationsAm extends AppLocalizations {
   String get planSub => 'ምግብን ወደ አንድ ምሽት ይጎትቱ።';
 
   @override
+  String get plannerEmpty => 'ገና ምንም ምግብ አልታቀደም';
+
+  @override
+  String get plannerEmptySub => 'አንድ ምሽት መርጠው የሚያበስሉትን ይምረጡ።';
+
+  @override
   String get postToComm => 'ወደ ማህበረሰብ ለጥፍ';
 
   @override
@@ -533,13 +563,22 @@ class AppLocalizationsAm extends AppLocalizations {
   String get regionTitle => 'ጉራጌ';
 
   @override
+  String get removeFromPlan => 'አስወግድ';
+
+  @override
   String get results => '24 ምግቦች';
 
   @override
   String get resume => 'ቀጥል';
 
   @override
+  String get resumeCooking => 'ማብሰል ቀጥል';
+
+  @override
   String get retry => 'እንደገና ይሞክሩ';
+
+  @override
+  String get savedEmpty => 'ገና ምንም አልተቀመጠም';
 
   @override
   String get savedH1 => 'ተወዳጆች';
@@ -627,6 +666,12 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get shopSub => 'ለዶሮ ወጥና ለሁለት ተጨማሪ';
+
+  @override
+  String get shoppingEmpty => 'በዝርዝሩ ላይ ምንም የለም';
+
+  @override
+  String get shoppingEmptySub => 'ከማንኛውም ምግብ ግብዓቶችን ይጨምሩ፣ ወይም ይተይቡ።';
 
   @override
   String get signInSubtitle => 'ተከታታይ ቀናትዎ እንዳሉ ናቸው።';
@@ -732,6 +777,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get toNext => '520 XP ወደ ደረጃ 13';
+
+  @override
+  String get today => 'ዛሬ';
 
   @override
   String get unlocked => 'አዲስ ባጅ';

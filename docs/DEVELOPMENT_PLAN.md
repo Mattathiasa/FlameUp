@@ -212,11 +212,11 @@ server-side, and a number the client made up would be a lie the moment the two
 disagreed. A review always carries the session it rates, which is what lets the
 server enforce that you can only rate what you actually cooked.
 
-## 🚧 Phase 7 — Gamification
+## ✅ Phase 7 — Gamification
 `feat: implement gamification engine and server-authoritative rewards`
 
-**Engine, Cloud Functions and security rules done. The progress, mastery,
-achievements, quests and streak screens are the remainder.**
+Engine, Cloud Functions, security rules and all five progress screens
+(`11-progress`, `12-mastery`, `13-achv`, `14-quests`, `15-streak`).
 
 Pure Dart, no Firebase imports, so the maths is tested without mocks:
 `LevelCurve`, `StreakCalculator`, `MasteryCalculator`, `XpRules`,
@@ -239,31 +239,63 @@ display name in the same document without touching their XP. Reviews require an
 existing *completed* session owned by the writer, enforced in the rules rather
 than trusted from the client.
 
-## ⬜ Phase 8 — Ethiopian cultural system
+## ✅ Phase 8 — Ethiopian cultural system
 `feat: implement Taste Ethiopia and family recipes`
 
-Taste Ethiopia map and region detail, Grandma's Kitchen, and the 11-step family
-recipe wizard with draft saving, validation, edit-after-publish, media upload
-and generational tracking — plus the moderation foundation, so nothing
-user-generated publishes unreviewed.
+Taste Ethiopia (`16-map`), region detail (`17-region`), Grandma's Kitchen
+(`18-grandma`) and the family recipe form (`19-upload`) with local draft
+saving — these are long forms, and losing one would be losing someone's
+grandmother's recipe.
+
+Submissions are written as `pending`, never `published`: the rules make the
+author unable to approve their own work, so nothing user-written reaches the
+public catalogue unreviewed.
+
+**Two honest deviations.** Taste Ethiopia is a grid rather than a geographic
+map — a real map needs boundary data with no authoritative source, and
+approximating a country's internal borders is not a thing to guess at. And
+Grandma's Kitchen leads with the contribution route instead of the design's
+four named elders and their recordings, because those people do not exist and
+inventing sources for cultural knowledge is exactly what this app must not do.
 
 ---
 
-## ⬜ Phase 9 — Social
+## 🚧 Phase 9 — Social
 `feat: implement community, friends, challenges, leaderboards`
 
-Paginated feed, comments, likes; friends, requests, block; the
-"Who Cooks Better?" challenge flow; leaderboards from server-aggregated
-documents, with opt-out.
+**Screens and backing exist; the interactions do not yet.**
+
+Community (`20-feed`), friends (`21-friends`), challenges (`22-challenges`) and
+leaderboard (`23-leader`) are built over their real Firestore collections, with
+rules already enforcing the hard parts: a challenge participant cannot read the
+other's submission until both exist, and like counts are trigger-maintained so
+an author cannot inflate their own post.
+
+The collections are empty until real people use them, and the screens say so
+rather than shipping the design's sample posts as if they were real users.
+Posting, commenting, friend requests and the challenge flow are the remaining
+work.
 
 ---
 
-## ⬜ Phase 10 — Utilities
+## ✅ Phase 10 — Utilities
 `feat: implement shopping list, meal planner, notifications`
 
-Aisle-grouped shopping list with manual items; weekly meal planner that
-generates a de-duplicated list; FCM with per-category preferences; saved
-recipes; cooking history.
+Shopping list (`25-shop`) grouped by aisle, meal planner (`26-planner`),
+favourites (`24-saved`), settings (`27-settings`) and the Today home screen
+(`05-home`).
+
+The list **merges** ingredient lines: two recipes that both want onions produce
+one line, not two — the difference between a usable list and a transcript. It
+will not merge into an already-checked line, because that would silently
+un-buy what was bought. The planner is keyed by ISO week so "this week" cannot
+change meaning on Sunday night.
+
+Local-first without qualification: a shopping list is used *in a shop*, which
+is exactly where signal fails.
+
+FCM with per-category preferences is the remaining piece; cooking timers
+already schedule OS-level alerts (Phase 6).
 
 ---
 

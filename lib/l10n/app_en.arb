@@ -44,6 +44,10 @@
   "@addAll": {
     "description": "Design prototype copy"
   },
+  "addManualItem": "Add an item",
+  "@addManualItem": {
+    "description": "Application copy"
+  },
   "addPhoto": "Add a photo",
   "@addPhoto": {
     "description": "Design prototype copy"
@@ -51,6 +55,14 @@
   "addStep": "Add a step",
   "@addStep": {
     "description": "Design prototype copy"
+  },
+  "addToList": "Add to shopping list",
+  "@addToList": {
+    "description": "Application copy"
+  },
+  "addedToList": "Added to your shopping list",
+  "@addedToList": {
+    "description": "Application copy"
   },
   "adv": "I grew up on this",
   "@adv": {
@@ -67,6 +79,10 @@
   "aisleMeat": "MEAT & DAIRY",
   "@aisleMeat": {
     "description": "Design prototype copy"
+  },
+  "aislePantry": "PANTRY",
+  "@aislePantry": {
+    "description": "Application copy"
   },
   "aisleSpice": "SPICE & DRY",
   "@aisleSpice": {
@@ -147,6 +163,10 @@
   "beginnerS": "I can boil water and follow instructions.",
   "@beginnerS": {
     "description": "Design prototype copy"
+  },
+  "breakfast": "Breakfast",
+  "@breakfast": {
+    "description": "Application copy"
   },
   "chBody": "Seven dishes, one injera, photographed together. Judged by three cooks from Addis.",
   "@chBody": {
@@ -231,6 +251,10 @@
   "dietary": "ANYTHING WE SHOULD KNOW?",
   "@dietary": {
     "description": "Design prototype copy"
+  },
+  "dinner": "Dinner",
+  "@dinner": {
+    "description": "Application copy"
   },
   "dishesFrom": "Dishes from here",
   "@dishesFrom": {
@@ -432,6 +456,10 @@
   "@fromRegion": {
     "description": "Design prototype copy"
   },
+  "generateList": "Build shopping list from plan",
+  "@generateList": {
+    "description": "Application copy"
+  },
   "getStarted": "Light the first flame",
   "@getStarted": {
     "description": "Design prototype copy"
@@ -544,6 +572,10 @@
   "@locked": {
     "description": "Design prototype copy"
   },
+  "lunch": "Lunch",
+  "@lunch": {
+    "description": "Application copy"
+  },
   "lvlName": "Wot Wanderer",
   "@lvlName": {
     "description": "Design prototype copy"
@@ -632,6 +664,14 @@
   "@planSub": {
     "description": "Design prototype copy"
   },
+  "plannerEmpty": "No meals planned yet",
+  "@plannerEmpty": {
+    "description": "Application copy"
+  },
+  "plannerEmptySub": "Pick a night and choose something to cook.",
+  "@plannerEmptySub": {
+    "description": "Application copy"
+  },
   "postToComm": "Post to community",
   "@postToComm": {
     "description": "Design prototype copy"
@@ -704,6 +744,10 @@
   "@regionTitle": {
     "description": "Design prototype copy"
   },
+  "removeFromPlan": "Remove",
+  "@removeFromPlan": {
+    "description": "Application copy"
+  },
   "results": "24 dishes",
   "@results": {
     "description": "Design prototype copy"
@@ -712,9 +756,17 @@
   "@resume": {
     "description": "Design prototype copy"
   },
+  "resumeCooking": "Resume cooking",
+  "@resumeCooking": {
+    "description": "Application copy"
+  },
   "retry": "Try again",
   "@retry": {
     "description": "Design prototype copy"
+  },
+  "savedEmpty": "Nothing saved yet",
+  "@savedEmpty": {
+    "description": "Application copy"
   },
   "savedH1": "Favorites",
   "@savedH1": {
@@ -831,6 +883,14 @@
   "shopSub": "For Doro Wat and two more",
   "@shopSub": {
     "description": "Design prototype copy"
+  },
+  "shoppingEmpty": "Nothing on the list",
+  "@shoppingEmpty": {
+    "description": "Application copy"
+  },
+  "shoppingEmptySub": "Add a recipe's ingredients from any dish, or type something in.",
+  "@shoppingEmptySub": {
+    "description": "Application copy"
   },
   "signInSubtitle": "Your streak is where you left it.",
   "@signInSubtitle": {
@@ -971,6 +1031,10 @@
   "toNext": "520 XP to Level 13",
   "@toNext": {
     "description": "Design prototype copy"
+  },
+  "today": "Today",
+  "@today": {
+    "description": "Application copy"
   },
   "unlocked": "NEW BADGE",
   "@unlocked": {
