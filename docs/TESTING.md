@@ -110,6 +110,16 @@ flutter emulators --launch Pixel_7a
 flutter test integration_test/ -d <device>
 ```
 
+> **Not verified on this machine.** The x86 emulator on the Intel Mac this was
+> built on never finished loading the test bundle — twelve minutes without
+> executing an assertion, twice. The tests analyze clean and are small, but
+> saying they pass would be a claim nothing here supports. Run them on an
+> Apple-silicon machine or a physical device before trusting them.
+>
+> This is why the journey tests were moved out of `integration_test/`: making
+> the app's most important assertions depend on hardware that cannot run them
+> would have meant they were never actually checked.
+
 ---
 
 ## Rules tests

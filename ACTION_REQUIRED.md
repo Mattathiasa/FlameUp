@@ -190,9 +190,24 @@ I made these calls rather than stopping to ask. Each is reversible.
 - `functions/` — **typechecks** under `tsc --noEmit`
 - Release signing, R8 and resource shrinking configured
 
+Also verified: the **release** APK builds with R8 minification and resource
+shrinking (55.4 MB), carries `INTERNET`, targets SDK 34, and requests no
+advertising permissions.
+
 Run it yourself:
 
 ```bash
 cd /Users/needsreset/Documents/Matty/FlameUp/FlameUp
-flutter analyze && flutter test && flutter build apk --debug
+flutter analyze && flutter test && flutter build apk --release
 ```
+
+### One thing I could not verify
+
+`integration_test/app_launch_test.dart` — two small checks that storage opens
+and the splash paints — **never ran to completion here.** The x86 Android
+emulator on this Intel Mac took twelve minutes to load the test bundle without
+executing an assertion, twice. The tests are written and analyze clean; I am
+not claiming they pass. Run them once on an Apple-silicon machine or a physical
+device.
+
+Everything else in the list above was actually executed.
