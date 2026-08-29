@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "997414781684",
+    "project_id": "flameup-78d15",
+    "storage_bucket": "flameup-78d15.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997414781684:android:1349cbb29ec5e03bf414a1",
+        "android_client_info": {
+          "package_name": "com.example.flame_up"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOAHGYbqc2RGMcRyo04WIcPsXVL4wlt68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997414781684:android:9c3f42d99657cb12f414a1",
+        "android_client_info": {
+          "package_name": "com.flameup.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOAHGYbqc2RGMcRyo04WIcPsXVL4wlt68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

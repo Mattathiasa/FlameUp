@@ -1,0 +1,959 @@
+{
+  "@@locale": "en",
+  "achvH1": "Achievements",
+  "@achvH1": {
+    "description": "Design prototype copy"
+  },
+  "achvSub": "14 of 42 earned",
+  "@achvSub": {
+    "description": "Design prototype copy"
+  },
+  "actionCancel": "Cancel",
+  "@actionCancel": {
+    "description": "Application copy"
+  },
+  "actionClose": "Close",
+  "@actionClose": {
+    "description": "Application copy"
+  },
+  "actionDelete": "Delete",
+  "@actionDelete": {
+    "description": "Application copy"
+  },
+  "actionDone": "Done",
+  "@actionDone": {
+    "description": "Application copy"
+  },
+  "actionEdit": "Edit",
+  "@actionEdit": {
+    "description": "Application copy"
+  },
+  "actionOk": "OK",
+  "@actionOk": {
+    "description": "Application copy"
+  },
+  "actionSave": "Save",
+  "@actionSave": {
+    "description": "Application copy"
+  },
+  "add": "Add",
+  "@add": {
+    "description": "Design prototype copy"
+  },
+  "addAll": "Add all to list",
+  "@addAll": {
+    "description": "Design prototype copy"
+  },
+  "addPhoto": "Add a photo",
+  "@addPhoto": {
+    "description": "Design prototype copy"
+  },
+  "addStep": "Add a step",
+  "@addStep": {
+    "description": "Design prototype copy"
+  },
+  "adv": "I grew up on this",
+  "@adv": {
+    "description": "Design prototype copy"
+  },
+  "advS": "Teach me the fifty-year techniques.",
+  "@advS": {
+    "description": "Design prototype copy"
+  },
+  "aisleFresh": "FRESH",
+  "@aisleFresh": {
+    "description": "Design prototype copy"
+  },
+  "aisleMeat": "MEAT & DAIRY",
+  "@aisleMeat": {
+    "description": "Design prototype copy"
+  },
+  "aisleSpice": "SPICE & DRY",
+  "@aisleSpice": {
+    "description": "Design prototype copy"
+  },
+  "appName": "FlameUp",
+  "@appName": {
+    "description": "Application copy"
+  },
+  "authErrorAccountExistsDifferentCredential": "You already signed up with a different method.",
+  "@authErrorAccountExistsDifferentCredential": {
+    "description": "Application copy"
+  },
+  "authErrorCredentialInUse": "Those credentials belong to another account.",
+  "@authErrorCredentialInUse": {
+    "description": "Application copy"
+  },
+  "authErrorEmailInUse": "An account already uses that email.",
+  "@authErrorEmailInUse": {
+    "description": "Application copy"
+  },
+  "authErrorGeneric": "We could not sign you in.",
+  "@authErrorGeneric": {
+    "description": "Application copy"
+  },
+  "authErrorInvalidCredentials": "Email or password is incorrect.",
+  "@authErrorInvalidCredentials": {
+    "description": "Application copy"
+  },
+  "authErrorInvalidEmail": "That email address is not valid.",
+  "@authErrorInvalidEmail": {
+    "description": "Application copy"
+  },
+  "authErrorOperationNotAllowed": "That sign-in method is not enabled.",
+  "@authErrorOperationNotAllowed": {
+    "description": "Application copy"
+  },
+  "authErrorProviderAlreadyLinked": "That account is already linked.",
+  "@authErrorProviderAlreadyLinked": {
+    "description": "Application copy"
+  },
+  "authErrorRequiresRecentLogin": "Please sign in again to continue.",
+  "@authErrorRequiresRecentLogin": {
+    "description": "Application copy"
+  },
+  "authErrorSignedOut": "You are signed out. Sign in to continue.",
+  "@authErrorSignedOut": {
+    "description": "Application copy"
+  },
+  "authErrorTooManyRequests": "Too many attempts. Try again shortly.",
+  "@authErrorTooManyRequests": {
+    "description": "Application copy"
+  },
+  "authErrorUserDisabled": "This account has been disabled.",
+  "@authErrorUserDisabled": {
+    "description": "Application copy"
+  },
+  "authErrorWeakPassword": "Choose a longer password.",
+  "@authErrorWeakPassword": {
+    "description": "Application copy"
+  },
+  "back": "Back",
+  "@back": {
+    "description": "Design prototype copy"
+  },
+  "badgeName": "Onion Patience",
+  "@badgeName": {
+    "description": "Design prototype copy"
+  },
+  "badgeSub": "Dry-cooked onions for a full 15 minutes without cheating.",
+  "@badgeSub": {
+    "description": "Design prototype copy"
+  },
+  "beginner": "Beginner",
+  "@beginner": {
+    "description": "Design prototype copy"
+  },
+  "beginnerS": "I can boil water and follow instructions.",
+  "@beginnerS": {
+    "description": "Design prototype copy"
+  },
+  "chBody": "Seven dishes, one injera, photographed together. Judged by three cooks from Addis.",
+  "@chBody": {
+    "description": "Design prototype copy"
+  },
+  "chH1": "Challenges",
+  "@chH1": {
+    "description": "Design prototype copy"
+  },
+  "chLive": "LIVE · ENDS IN 2 DAYS",
+  "@chLive": {
+    "description": "Design prototype copy"
+  },
+  "chPast": "FINISHED",
+  "@chPast": {
+    "description": "Design prototype copy"
+  },
+  "chTitle": "Cook the whole fasting plate",
+  "@chTitle": {
+    "description": "Design prototype copy"
+  },
+  "clearDone": "Clear checked",
+  "@clearDone": {
+    "description": "Design prototype copy"
+  },
+  "colBig": "When family comes",
+  "@colBig": {
+    "description": "Design prototype copy"
+  },
+  "colFast": "Fasting nights",
+  "@colFast": {
+    "description": "Design prototype copy"
+  },
+  "colQuick": "Weeknight fast",
+  "@colQuick": {
+    "description": "Design prototype copy"
+  },
+  "continueLabel": "Continue",
+  "@continueLabel": {
+    "description": "Design prototype copy"
+  },
+  "cookOne": "Cook a Gurage dish",
+  "@cookOne": {
+    "description": "Design prototype copy"
+  },
+  "cookTonight": "Cook tonight",
+  "@cookTonight": {
+    "description": "Design prototype copy"
+  },
+  "dDairy": "No dairy",
+  "@dDairy": {
+    "description": "Design prototype copy"
+  },
+  "dFast": "Fasting / vegan",
+  "@dFast": {
+    "description": "Design prototype copy"
+  },
+  "dGluten": "No gluten",
+  "@dGluten": {
+    "description": "Design prototype copy"
+  },
+  "dMeat": "Meat lover",
+  "@dMeat": {
+    "description": "Design prototype copy"
+  },
+  "dQuick": "Under 30 min",
+  "@dQuick": {
+    "description": "Design prototype copy"
+  },
+  "dRaw": "Raw dishes ok",
+  "@dRaw": {
+    "description": "Design prototype copy"
+  },
+  "dietary": "ANYTHING WE SHOULD KNOW?",
+  "@dietary": {
+    "description": "Design prototype copy"
+  },
+  "dishesFrom": "Dishes from here",
+  "@dishesFrom": {
+    "description": "Design prototype copy"
+  },
+  "doneH1": "Doro Wat, done.",
+  "@doneH1": {
+    "description": "Design prototype copy"
+  },
+  "doneSub": "Four hours of onion patience. That is the hard one out of the way.",
+  "@doneSub": {
+    "description": "Design prototype copy"
+  },
+  "doroWat": "Doro Wat · step 3 of 9",
+  "@doroWat": {
+    "description": "Design prototype copy"
+  },
+  "empCta": "Find something to cook",
+  "@empCta": {
+    "description": "Design prototype copy"
+  },
+  "empH1": "Nothing saved yet",
+  "@empH1": {
+    "description": "Design prototype copy"
+  },
+  "empSub": "Tap the bookmark on any recipe and it lands here, ready offline.",
+  "@empSub": {
+    "description": "Design prototype copy"
+  },
+  "errBack": "Back to Today",
+  "@errBack": {
+    "description": "Design prototype copy"
+  },
+  "errH1": "That flame went out.",
+  "@errH1": {
+    "description": "Design prototype copy"
+  },
+  "errSub": "We could not load the recipe. Your timer is still running in the background.",
+  "@errSub": {
+    "description": "Design prototype copy"
+  },
+  "errorBadResponse": "We received an unexpected response.",
+  "@errorBadResponse": {
+    "description": "Application copy"
+  },
+  "errorCache": "Could not read saved data.",
+  "@errorCache": {
+    "description": "Application copy"
+  },
+  "errorCancelled": "Cancelled.",
+  "@errorCancelled": {
+    "description": "Application copy"
+  },
+  "errorConflict": "That has already been saved.",
+  "@errorConflict": {
+    "description": "Application copy"
+  },
+  "errorInvalidRequest": "That request was not valid.",
+  "@errorInvalidRequest": {
+    "description": "Application copy"
+  },
+  "errorNotFound": "We could not find that.",
+  "@errorNotFound": {
+    "description": "Application copy"
+  },
+  "errorOffline": "No connection. Check your network and try again.",
+  "@errorOffline": {
+    "description": "Application copy"
+  },
+  "errorPermission": "You do not have permission to do that.",
+  "@errorPermission": {
+    "description": "Application copy"
+  },
+  "errorServer": "Something went wrong on our side.",
+  "@errorServer": {
+    "description": "Application copy"
+  },
+  "errorTimeout": "That took too long. Try again.",
+  "@errorTimeout": {
+    "description": "Application copy"
+  },
+  "errorUnknown": "Something went wrong.",
+  "@errorUnknown": {
+    "description": "Application copy"
+  },
+  "explored": "explored",
+  "@explored": {
+    "description": "Design prototype copy"
+  },
+  "fAll": "All",
+  "@fAll": {
+    "description": "Design prototype copy"
+  },
+  "fFast": "Fasting",
+  "@fFast": {
+    "description": "Design prototype copy"
+  },
+  "fHot": "Mitmita hot",
+  "@fHot": {
+    "description": "Design prototype copy"
+  },
+  "fName": "Dish name",
+  "@fName": {
+    "description": "Design prototype copy"
+  },
+  "fNameAm": "Name in Amharic",
+  "@fNameAm": {
+    "description": "Design prototype copy"
+  },
+  "fNew": "New to me",
+  "@fNew": {
+    "description": "Design prototype copy"
+  },
+  "fPhoto": "Photo of the dish",
+  "@fPhoto": {
+    "description": "Design prototype copy"
+  },
+  "fQuick": "Under 30m",
+  "@fQuick": {
+    "description": "Design prototype copy"
+  },
+  "fSteps": "Steps",
+  "@fSteps": {
+    "description": "Design prototype copy"
+  },
+  "fStepsP": "Write it the way they said it.",
+  "@fStepsP": {
+    "description": "Design prototype copy"
+  },
+  "fTigray": "Tigray",
+  "@fTigray": {
+    "description": "Design prototype copy"
+  },
+  "fWho": "Who taught you?",
+  "@fWho": {
+    "description": "Design prototype copy"
+  },
+  "fWhoP": "Grandmother, Mekelle",
+  "@fWhoP": {
+    "description": "Design prototype copy"
+  },
+  "feedH1": "Community",
+  "@feedH1": {
+    "description": "Design prototype copy"
+  },
+  "feedSub": "Sixty-one people cooked tonight.",
+  "@feedSub": {
+    "description": "Design prototype copy"
+  },
+  "finish": "Finish dish",
+  "@finish": {
+    "description": "Design prototype copy"
+  },
+  "following": "Following",
+  "@following": {
+    "description": "Design prototype copy"
+  },
+  "freeze": "2 freeze days left",
+  "@freeze": {
+    "description": "Design prototype copy"
+  },
+  "freezeSub": "Miss a day without losing the flame.",
+  "@freezeSub": {
+    "description": "Design prototype copy"
+  },
+  "friendsH1": "Friends",
+  "@friendsH1": {
+    "description": "Design prototype copy"
+  },
+  "fromRegion": "Where it comes from",
+  "@fromRegion": {
+    "description": "Design prototype copy"
+  },
+  "getStarted": "Light the first flame",
+  "@getStarted": {
+    "description": "Design prototype copy"
+  },
+  "grandmaH1": "Grandma’s Kitchen",
+  "@grandmaH1": {
+    "description": "Design prototype copy"
+  },
+  "grandmaSub": "Recorded in home kitchens, unedited, with the pauses left in.",
+  "@grandmaSub": {
+    "description": "Design prototype copy"
+  },
+  "greeting": "Selam, good evening",
+  "@greeting": {
+    "description": "Design prototype copy"
+  },
+  "gurageTitle": "Gurage — kitfo, kocho, and the long grind",
+  "@gurageTitle": {
+    "description": "Design prototype copy"
+  },
+  "h1": "Mild",
+  "@h1": {
+    "description": "Design prototype copy"
+  },
+  "h2": "Warm",
+  "@h2": {
+    "description": "Design prototype copy"
+  },
+  "h3": "Medium",
+  "@h3": {
+    "description": "Design prototype copy"
+  },
+  "h4": "Hot",
+  "@h4": {
+    "description": "Design prototype copy"
+  },
+  "h5": "Mitmita",
+  "@h5": {
+    "description": "Design prototype copy"
+  },
+  "haveAccount": "I already have an account",
+  "@haveAccount": {
+    "description": "Design prototype copy"
+  },
+  "heatLbl": "HEAT",
+  "@heatLbl": {
+    "description": "Design prototype copy"
+  },
+  "heatLevel": "HEAT TOLERANCE",
+  "@heatLevel": {
+    "description": "Design prototype copy"
+  },
+  "ingredients": "Ingredients",
+  "@ingredients": {
+    "description": "Design prototype copy"
+  },
+  "inter": "Getting there",
+  "@inter": {
+    "description": "Design prototype copy"
+  },
+  "interS": "I’ve made shiro and it went fine.",
+  "@interS": {
+    "description": "Design prototype copy"
+  },
+  "invite": "Invite someone to cook with you",
+  "@invite": {
+    "description": "Design prototype copy"
+  },
+  "inviteSub": "Streaks last longer in pairs.",
+  "@inviteSub": {
+    "description": "Design prototype copy"
+  },
+  "join": "Join the challenge",
+  "@join": {
+    "description": "Design prototype copy"
+  },
+  "joined": "312 joined",
+  "@joined": {
+    "description": "Design prototype copy"
+  },
+  "lbFriends": "Friends",
+  "@lbFriends": {
+    "description": "Design prototype copy"
+  },
+  "lbGlobal": "Global",
+  "@lbGlobal": {
+    "description": "Design prototype copy"
+  },
+  "lbH1": "Leaderboard",
+  "@lbH1": {
+    "description": "Design prototype copy"
+  },
+  "lbRegion": "Addis",
+  "@lbRegion": {
+    "description": "Design prototype copy"
+  },
+  "levelNow": "Level 12 · Wot Wanderer",
+  "@levelNow": {
+    "description": "Design prototype copy"
+  },
+  "loading": "Loading",
+  "@loading": {
+    "description": "Application copy"
+  },
+  "locked": "Locked",
+  "@locked": {
+    "description": "Design prototype copy"
+  },
+  "lvlName": "Wot Wanderer",
+  "@lvlName": {
+    "description": "Design prototype copy"
+  },
+  "lvlNo": "LEVEL 12",
+  "@lvlNo": {
+    "description": "Design prototype copy"
+  },
+  "mapH1": "Taste Ethiopia",
+  "@mapH1": {
+    "description": "Design prototype copy"
+  },
+  "mapPh": "MAP · REGION SHAPES",
+  "@mapPh": {
+    "description": "Design prototype copy"
+  },
+  "mapSub": "Nine regions, nine ways to cook the same grain.",
+  "@mapSub": {
+    "description": "Design prototype copy"
+  },
+  "masteryH": "Mastery",
+  "@masteryH": {
+    "description": "Design prototype copy"
+  },
+  "masteryH1": "What your hands know",
+  "@masteryH1": {
+    "description": "Design prototype copy"
+  },
+  "masterySub": "Mastery climbs when you repeat a technique, not when you finish a recipe.",
+  "@masterySub": {
+    "description": "Design prototype copy"
+  },
+  "nextStep": "Next step",
+  "@nextStep": {
+    "description": "Design prototype copy"
+  },
+  "noteP": "What would you do differently next time?",
+  "@noteP": {
+    "description": "Design prototype copy"
+  },
+  "ofWord": "of",
+  "@ofWord": {
+    "description": "Design prototype copy"
+  },
+  "offBanner": "OFFLINE · CACHED",
+  "@offBanner": {
+    "description": "Design prototype copy"
+  },
+  "offCta": "Cook from downloads",
+  "@offCta": {
+    "description": "Design prototype copy"
+  },
+  "offH1": "You are offline",
+  "@offH1": {
+    "description": "Design prototype copy"
+  },
+  "offSub": "Eighteen recipes are on this phone, including everything you started this week.",
+  "@offSub": {
+    "description": "Design prototype copy"
+  },
+  "pause": "Pause",
+  "@pause": {
+    "description": "Design prototype copy"
+  },
+  "pickUp": "PICK UP WHERE YOU LEFT",
+  "@pickUp": {
+    "description": "Design prototype copy"
+  },
+  "planEmpty": "Nothing planned",
+  "@planEmpty": {
+    "description": "Design prototype copy"
+  },
+  "planH1": "Meal planner",
+  "@planH1": {
+    "description": "Design prototype copy"
+  },
+  "planSub": "Drag a dish onto a night.",
+  "@planSub": {
+    "description": "Design prototype copy"
+  },
+  "postToComm": "Post to community",
+  "@postToComm": {
+    "description": "Design prototype copy"
+  },
+  "qDaily": "TODAY",
+  "@qDaily": {
+    "description": "Design prototype copy"
+  },
+  "qSeason": "FASTING SEASON",
+  "@qSeason": {
+    "description": "Design prototype copy"
+  },
+  "qWeekly": "THIS WEEK",
+  "@qWeekly": {
+    "description": "Design prototype copy"
+  },
+  "questSub": "2 of 3 done this week",
+  "@questSub": {
+    "description": "Design prototype copy"
+  },
+  "questTitle": "Today’s quest: cook one fasting dish",
+  "@questTitle": {
+    "description": "Design prototype copy"
+  },
+  "questsH1": "Quests",
+  "@questsH1": {
+    "description": "Design prototype copy"
+  },
+  "r1": "Rough",
+  "@r1": {
+    "description": "Design prototype copy"
+  },
+  "r2": "Edible",
+  "@r2": {
+    "description": "Design prototype copy"
+  },
+  "r3": "Solid",
+  "@r3": {
+    "description": "Design prototype copy"
+  },
+  "r4": "Proud of it",
+  "@r4": {
+    "description": "Design prototype copy"
+  },
+  "r5": "Grandma would nod",
+  "@r5": {
+    "description": "Design prototype copy"
+  },
+  "rateH1": "How did it turn out?",
+  "@rateH1": {
+    "description": "Design prototype copy"
+  },
+  "rateIt": "Rate it",
+  "@rateIt": {
+    "description": "Design prototype copy"
+  },
+  "rateSub": "Only you and your friends see this.",
+  "@rateSub": {
+    "description": "Design prototype copy"
+  },
+  "regionBody": "Gurage cooking is built on the enset plant — false banana — scraped, buried, and fermented for months before it becomes kocho. Nothing here is fast. Kitfo is the exception that proves it: raw, warm with mitmita, eaten the day the cow is slaughtered.",
+  "@regionBody": {
+    "description": "Design prototype copy"
+  },
+  "regionEyebrow": "REGION 04 OF 09",
+  "@regionEyebrow": {
+    "description": "Design prototype copy"
+  },
+  "regionTitle": "Gurage",
+  "@regionTitle": {
+    "description": "Design prototype copy"
+  },
+  "results": "24 dishes",
+  "@results": {
+    "description": "Design prototype copy"
+  },
+  "resume": "Resume",
+  "@resume": {
+    "description": "Design prototype copy"
+  },
+  "retry": "Try again",
+  "@retry": {
+    "description": "Design prototype copy"
+  },
+  "savedH1": "Favorites",
+  "@savedH1": {
+    "description": "Design prototype copy"
+  },
+  "savedSub": "12 saved · 3 collections",
+  "@savedSub": {
+    "description": "Design prototype copy"
+  },
+  "searchPh": "Search dishes, regions, spices",
+  "@searchPh": {
+    "description": "Design prototype copy"
+  },
+  "seeAll": "See all",
+  "@seeAll": {
+    "description": "Design prototype copy"
+  },
+  "serves": "Serves 6",
+  "@serves": {
+    "description": "Design prototype copy"
+  },
+  "setAbout": "ABOUT",
+  "@setAbout": {
+    "description": "Design prototype copy"
+  },
+  "setAccount": "ACCOUNT",
+  "@setAccount": {
+    "description": "Design prototype copy"
+  },
+  "setApp": "APPEARANCE",
+  "@setApp": {
+    "description": "Design prototype copy"
+  },
+  "setCredits": "Cooks and elders",
+  "@setCredits": {
+    "description": "Design prototype copy"
+  },
+  "setDarkL": "Dark",
+  "@setDarkL": {
+    "description": "Design prototype copy"
+  },
+  "setH1": "Settings",
+  "@setH1": {
+    "description": "Design prototype copy"
+  },
+  "setHeat": "Default heat",
+  "@setHeat": {
+    "description": "Design prototype copy"
+  },
+  "setKitchen": "KITCHEN",
+  "@setKitchen": {
+    "description": "Design prototype copy"
+  },
+  "setLang": "Language",
+  "@setLang": {
+    "description": "Design prototype copy"
+  },
+  "setLightL": "Light",
+  "@setLightL": {
+    "description": "Design prototype copy"
+  },
+  "setNotif": "Timers & reminders",
+  "@setNotif": {
+    "description": "Design prototype copy"
+  },
+  "setOffline": "Downloaded recipes",
+  "@setOffline": {
+    "description": "Design prototype copy"
+  },
+  "setOfflineV": "18 dishes",
+  "@setOfflineV": {
+    "description": "Design prototype copy"
+  },
+  "setPrivacy": "Who sees my cooking",
+  "@setPrivacy": {
+    "description": "Design prototype copy"
+  },
+  "setPrivacyV": "Friends",
+  "@setPrivacyV": {
+    "description": "Design prototype copy"
+  },
+  "setProfile": "Liya Bekele",
+  "@setProfile": {
+    "description": "Design prototype copy"
+  },
+  "setProfileSub": "Level 12 · Addis Ababa",
+  "@setProfileSub": {
+    "description": "Design prototype copy"
+  },
+  "setTheme": "Theme",
+  "@setTheme": {
+    "description": "Design prototype copy"
+  },
+  "setUnits": "Units",
+  "@setUnits": {
+    "description": "Design prototype copy"
+  },
+  "setUnitsV": "Metric",
+  "@setUnitsV": {
+    "description": "Design prototype copy"
+  },
+  "setVersion": "Version 2.4",
+  "@setVersion": {
+    "description": "Design prototype copy"
+  },
+  "share": "Share",
+  "@share": {
+    "description": "Design prototype copy"
+  },
+  "shopH1": "Shopping list",
+  "@shopH1": {
+    "description": "Design prototype copy"
+  },
+  "shopSub": "For Doro Wat and two more",
+  "@shopSub": {
+    "description": "Design prototype copy"
+  },
+  "skillH1": "How well do you know the kitchen?",
+  "@skillH1": {
+    "description": "Design prototype copy"
+  },
+  "skillSub": "We’ll set the pace of your first ten dishes.",
+  "@skillSub": {
+    "description": "Design prototype copy"
+  },
+  "skip": "Skip",
+  "@skip": {
+    "description": "Design prototype copy"
+  },
+  "stDishes": "Dishes cooked",
+  "@stDishes": {
+    "description": "Design prototype copy"
+  },
+  "stRegions": "Regions tasted",
+  "@stRegions": {
+    "description": "Design prototype copy"
+  },
+  "stStreak": "Day streak",
+  "@stStreak": {
+    "description": "Design prototype copy"
+  },
+  "startCooking": "Start cooking",
+  "@startCooking": {
+    "description": "Design prototype copy"
+  },
+  "stepOf": "Step",
+  "@stepOf": {
+    "description": "Design prototype copy"
+  },
+  "steps": "Steps",
+  "@steps": {
+    "description": "Design prototype copy"
+  },
+  "story": "Story",
+  "@story": {
+    "description": "Design prototype copy"
+  },
+  "storyBody": "Doro wat is what you make when someone is worth a whole day. Four onions, cooked dry until they give up their water — that is the whole secret, and it cannot be hurried. In much of Ethiopia it is the dish that ends a fast, carried to the table whole, the eggs scored so the sauce gets inside.",
+  "@storyBody": {
+    "description": "Design prototype copy"
+  },
+  "streakH1": "12 days on the fire",
+  "@streakH1": {
+    "description": "Design prototype copy"
+  },
+  "streakSub": "Best run: 21 days, last Lent.",
+  "@streakSub": {
+    "description": "Design prototype copy"
+  },
+  "submit": "Save and finish",
+  "@submit": {
+    "description": "Design prototype copy"
+  },
+  "tabComm": "Community",
+  "@tabComm": {
+    "description": "Design prototype copy"
+  },
+  "tabCook": "Cook",
+  "@tabCook": {
+    "description": "Design prototype copy"
+  },
+  "tabExplore": "Explore",
+  "@tabExplore": {
+    "description": "Design prototype copy"
+  },
+  "tabToday": "Today",
+  "@tabToday": {
+    "description": "Design prototype copy"
+  },
+  "tabYou": "You",
+  "@tabYou": {
+    "description": "Design prototype copy"
+  },
+  "tagline": "Cook your way through Ethiopia.",
+  "@tagline": {
+    "description": "Design prototype copy"
+  },
+  "tasteH1": "How much heat can you take?",
+  "@tasteH1": {
+    "description": "Design prototype copy"
+  },
+  "tasteSub": "Berbere is a spectrum, not a switch.",
+  "@tasteSub": {
+    "description": "Design prototype copy"
+  },
+  "taughtBy": "Taught by Emahoy Tsehay, 74, Gondar",
+  "@taughtBy": {
+    "description": "Design prototype copy"
+  },
+  "thisWeek": "THIS WEEK’S REGION",
+  "@thisWeek": {
+    "description": "Design prototype copy"
+  },
+  "thisWeekH": "This week",
+  "@thisWeekH": {
+    "description": "Design prototype copy"
+  },
+  "tier": "Tier",
+  "@tier": {
+    "description": "Design prototype copy"
+  },
+  "timeLbl": "TOTAL TIME",
+  "@timeLbl": {
+    "description": "Design prototype copy"
+  },
+  "timerLabel": "ONIONS, DRY-COOKING",
+  "@timerLabel": {
+    "description": "Design prototype copy"
+  },
+  "tipDry": "No oil until the onions give up",
+  "@tipDry": {
+    "description": "Design prototype copy"
+  },
+  "toNext": "520 XP to Level 13",
+  "@toNext": {
+    "description": "Design prototype copy"
+  },
+  "unlocked": "NEW BADGE",
+  "@unlocked": {
+    "description": "Design prototype copy"
+  },
+  "uploadCta": "Send to the kitchen",
+  "@uploadCta": {
+    "description": "Design prototype copy"
+  },
+  "uploadH1": "Add your family’s recipe",
+  "@uploadH1": {
+    "description": "Design prototype copy"
+  },
+  "uploadNote": "Reviewed by two cooks from that region before it goes live.",
+  "@uploadNote": {
+    "description": "Design prototype copy"
+  },
+  "uploadSub": "Someone taught you. Write it down before it goes.",
+  "@uploadSub": {
+    "description": "Design prototype copy"
+  },
+  "userName": "Liya",
+  "@userName": {
+    "description": "Design prototype copy"
+  },
+  "viewAll": "View all",
+  "@viewAll": {
+    "description": "Design prototype copy"
+  },
+  "warming": "WARMING THE PAN",
+  "@warming": {
+    "description": "Design prototype copy"
+  },
+  "watch": "Watch",
+  "@watch": {
+    "description": "Design prototype copy"
+  },
+  "welcomeH1": "Every dish is a place you’ve been.",
+  "@welcomeH1": {
+    "description": "Design prototype copy"
+  },
+  "welcomeSub": "Learn the wat, the ferment, the ceremony — one flame at a time, from the people who cook it at home.",
+  "@welcomeSub": {
+    "description": "Design prototype copy"
+  },
+  "xpOf": "2,480 / 3,000 XP",
+  "@xpOf": {
+    "description": "Design prototype copy"
+  },
+  "yieldLbl": "YIELD",
+  "@yieldLbl": {
+    "description": "Design prototype copy"
+  }
+}
