@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/services/timer_notifications.dart';
 import '../../auth/domain/auth_providers.dart';
 import '../../recipes/domain/recipe.dart';
 import '../data/cooking_repository.dart';
@@ -39,6 +40,7 @@ class CookingController extends AutoDisposeNotifier<CookingSession?> {
   }
 
   CookingRepository get _repo => ref.read(cookingRepositoryProvider);
+  TimerNotifications get _alerts => ref.read(timerNotificationsProvider);
   String? get _uid => ref.read(currentUidProvider);
 
   void _startTicker() {
@@ -104,7 +106,20 @@ class CookingController extends AutoDisposeNotifier<CookingSession?> {
     if (recipeStep.hasTimer &&
         !deadlines.containsKey(step) &&
         !paused.containsKey(step)) {
-      deadlines[step] = DateTime.now().add(recipeStep.duration!);
+      final deadline = DateTime.now().add(recipeStep.duration!);
+      deadlines[step] = deadline;
+
+      // The OS alert is what reaches a user who has put the phone down. The
+      // on-screen countdown does not depend on it, so a refused permission
+      // degrades the reminder rather than breaking the timer.
+      unawaited(
+        _alerts.scheduleStepAlert(
+          id: TimerNotifications.idFor(session.id, step),
+          deadline: deadline,
+          title: recipe.title,
+          body: recipeStep.text,
+        ),
+      );
     }
 
     final next = session.copyWith(
@@ -143,6 +158,9 @@ class CookingController extends AutoDisposeNotifier<CookingSession?> {
       pausedRemaining: paused,
     );
 
+    // A paused timer must not fire.
+    unawaited(_alerts.cancel(TimerNotifications.idFor(session.id, step)));
+
     state = next;
     await _repo.save(next, uid: uid);
   }
@@ -158,12 +176,22 @@ class CookingController extends AutoDisposeNotifier<CookingSession?> {
     if (remaining == null) return;
 
     final paused = Map<int, int>.from(session.pausedRemaining)..remove(step);
+    final deadline = DateTime.now().add(Duration(seconds: remaining));
     final deadlines = Map<int, DateTime>.from(session.stepDeadlines)
-      ..[step] = DateTime.now().add(Duration(seconds: remaining));
+      ..[step] = deadline;
 
     final next = session.copyWith(
       stepDeadlines: deadlines,
       pausedRemaining: paused,
+    );
+
+    unawaited(
+      _alerts.scheduleStepAlert(
+        id: TimerNotifications.idFor(session.id, step),
+        deadline: deadline,
+        title: 'FlameUp',
+        body: 'Your timer is running again.',
+      ),
     );
 
     state = next;
@@ -180,13 +208,23 @@ class CookingController extends AutoDisposeNotifier<CookingSession?> {
     final recipeStep = recipe.steps[step];
     if (!recipeStep.hasTimer) return;
 
+    final deadline = DateTime.now().add(recipeStep.duration!);
     final deadlines = Map<int, DateTime>.from(session.stepDeadlines)
-      ..[step] = DateTime.now().add(recipeStep.duration!);
+      ..[step] = deadline;
     final paused = Map<int, int>.from(session.pausedRemaining)..remove(step);
 
     final next = session.copyWith(
       stepDeadlines: deadlines,
       pausedRemaining: paused,
+    );
+
+    unawaited(
+      _alerts.scheduleStepAlert(
+        id: TimerNotifications.idFor(session.id, step),
+        deadline: deadline,
+        title: recipe.title,
+        body: recipeStep.text,
+      ),
     );
 
     state = next;
@@ -198,6 +236,9 @@ class CookingController extends AutoDisposeNotifier<CookingSession?> {
     final session = state;
     final uid = _uid;
     if (session == null || uid == null) return null;
+
+    // The dish is done; no step alert should still be pending.
+    unawaited(_alerts.cancelAll());
 
     final result = await _repo.complete(session, uid: uid);
     final completed = result.valueOrNull;
@@ -212,6 +253,7 @@ class CookingController extends AutoDisposeNotifier<CookingSession?> {
     final uid = _uid;
     if (session == null || uid == null) return;
 
+    unawaited(_alerts.cancelAll());
     await _repo.abandon(session, uid: uid);
     state = null;
   }

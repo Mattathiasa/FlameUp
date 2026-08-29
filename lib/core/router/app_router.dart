@@ -6,7 +6,9 @@ import '../../features/auth/domain/auth_providers.dart';
 import '../../features/auth/presentation/auth_form_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
 import '../../features/auth/presentation/welcome_screen.dart';
+import '../../features/cooking/presentation/cook_done_screen.dart';
 import '../../features/cooking/presentation/cook_mode_screen.dart';
+import '../../features/cooking/presentation/cook_rate_screen.dart';
 import '../../features/onboarding/domain/onboarding_providers.dart';
 import '../../features/onboarding/presentation/skill_screen.dart';
 import '../../features/onboarding/presentation/taste_screen.dart';
@@ -99,19 +101,15 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: Routes.cookDone,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (_, __) => const NotBuiltYet(
-          screen: 'finished',
-          designFile: '09-done.html',
-          phase: 'Phase 6',
+        builder: (_, state) => CookDoneScreen(
+          sessionId: state.pathParameters['sessionId']!,
         ),
       ),
       GoRoute(
         path: Routes.cookRate,
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (_, __) => const NotBuiltYet(
-          screen: 'rate it',
-          designFile: '10-rate.html',
-          phase: 'Phase 5',
+        builder: (_, state) => CookRateScreen(
+          sessionId: state.pathParameters['sessionId']!,
         ),
       ),
       GoRoute(

@@ -172,11 +172,9 @@ fraction. `DishCard` and `DishListTile` are the two card shapes the design
 uses, both skipping the backdrop blur because a `BackdropFilter` per row is the
 most expensive thing in a scrolling list.
 
-## 🚧 Phase 6 — Cooking engine *(critical milestone)*
+## ✅ Phase 6 — Cooking engine *(critical milestone)*
 `feat: implement cooking engine with wall-clock timers`
-
-**Engine, session model and cook mode done. The done/rate screens and local
-notifications are the remainder.**
+`feat: add timer notifications, finished and rate screens`
 
 **Timers store absolute deadlines, not remaining seconds.** A timer is then a
 subtraction against the wall clock, which stays correct whether the app was
@@ -201,6 +199,18 @@ clock is not running. Resuming sets a fresh deadline from the banked seconds.
 
 Leaving cook mode always asks first: backing out by accident would lose the
 thread of what you were doing.
+
+**OS-level alerts** fire when a step ends, so the phone can be put down.
+Permission is requested when the first timer starts rather than at launch, so
+the prompt arrives with a reason attached — and a refusal degrades the reminder
+without breaking the timer, because the on-screen countdown is computed from
+the deadline either way.
+
+The finished (`09-done`) and rate (`10-rate`) screens complete the loop. The
+finished screen does **not** invent an XP figure: rewards are granted
+server-side, and a number the client made up would be a lie the moment the two
+disagreed. A review always carries the session it rates, which is what lets the
+server enforce that you can only rate what you actually cooked.
 
 ## ⬜ Phase 7 — Gamification
 `feat: implement gamification engine`
