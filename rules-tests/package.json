@@ -1,0 +1,15 @@
+{
+  "name": "flameup-rules-tests",
+  "description": "Behavioural tests for firestore.rules, run against the emulator.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "firebase emulators:exec --only firestore --project flameup-rules-test 'vitest run'",
+    "test:watch": "firebase emulators:exec --only firestore --project flameup-rules-test 'vitest'"
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^4.0.1",
+    "firebase": "^11.0.0",
+    "vitest": "^2.1.0"
+  }
+}

@@ -109,11 +109,34 @@ Each of these could be bypassed by a modified client if it lived only in Dart:
 
 ---
 
+### Fixed: the profile-create rule refused every write
+
+`keys().hasAny(set)` is an unsupported operation in the rules language — it
+takes a list. The unsupported call made the whole rule **error**, and an
+erroring rule denies. So `allow create` on `users/{uid}` refused legitimate
+profile creation as well as the writes it was meant to stop.
+
+The symptom would have been: sign-up appears to work, Firebase Auth creates the
+account, and the user document silently never persists — taking every
+onboarding answer with it.
+
+Found by the first run of `rules-tests/`, and not findable any other way:
+`firebase deploy --dry-run` compiles the file without evaluating it, and
+reading it does not reveal that one overload is unsupported. The same mistake
+was present on the post and challenge rules and is fixed there too.
+
+---
+
+## Verification
+
+61 emulator tests in `rules-tests/` assert the behaviour of every invariant
+above — not just that the file compiles. See
+[`../rules-tests/README.md`](../rules-tests/README.md).
+
+---
+
 ## Not yet done
 
-- **Behavioural rules tests against the emulator.** The rules compile and are
-  reviewed; their behaviour is not asserted in CI. This is the largest
-  remaining gap.
 - **App Check enforcement** is not switched on in the console, so the backend
   currently answers unattested requests.
 - **No penetration testing** of the deployed backend, which cannot happen until

@@ -27,6 +27,7 @@ producing a visible error.
 | Shopping + planner | 19 | ingredient merging, ISO-week identity |
 | Core | 53 | `Result`, `ErrorMapper`, localisation completeness |
 | Auth | 14 | guest upgrade links in place, errors never leak |
+| **Firestore rules** | **61** | **run against the emulator — see below** |
 | AI assistant | 9 | claims are never promoted to a higher authority |
 
 ---
@@ -122,17 +123,35 @@ flutter test integration_test/ -d <device>
 
 ---
 
-## Rules tests
+## Rules tests — 61, against the emulator
 
-`firestore.rules` compiles against the live project (verified by
-`firebase deploy --only firestore:rules --dry-run`). Behavioural rules tests
-against the emulator are the remaining gap — the invariants they should pin
-are listed in `docs/GAMIFICATION.md`:
+```bash
+cd rules-tests && npm install && npm test
+```
 
-- `xp`, `level`, `flames`, mastery and achievements reject client writes
-- a review requires a completed session owned by the writer
-- a challenge submission is unreadable until both participants have submitted
-- a family recipe author cannot set their own status to `published`
+`firebase deploy --dry-run` only proves the rules *compile*. It says nothing
+about whether they permit what they should and refuse what they should not —
+a rule can compile, run, and be exactly backwards.
+
+The first run of this suite proved that. It found:
+
+```
+Unsupported operation error. Received: list.hasAny(set). Expected: list.hasAny(list).
+```
+
+`keys()` and `affectedKeys()` take a **list**, not a set. Passing a set made
+the whole rule error — and **an erroring rule denies**. The profile-create rule
+was refusing every write, including legitimate ones. The symptom would have
+been: sign-up appears to work, Auth creates the account, the user document
+silently never persists, onboarding answers vanish. No amount of reading the
+file was going to surface that.
+
+Covered: progression is unwritable by clients (16), reviews require a completed
+session owned by the writer (9), family recipes stay private until moderation
+publishes them including the `generations` leak (11), challenges cannot be
+gamed by peeking or self-declaring (10), posts/likes/personal lists (15).
+
+Details in [`../rules-tests/README.md`](../rules-tests/README.md).
 
 ---
 
@@ -140,8 +159,6 @@ are listed in `docs/GAMIFICATION.md`:
 
 Stated plainly rather than left to be discovered:
 
-- **No rules tests against the emulator yet** — the rules compile and are
-  reviewed, but their behaviour is not asserted in CI.
 - **No end-to-end auth test against the live project** — the providers are not
   enabled yet (see `ACTION_REQUIRED.md`), so there is nothing to test against.
 - **No Cloud Functions tests** — they typecheck and can be run in the emulator,

@@ -186,7 +186,8 @@ I made these calls rather than stopping to ask. Each is reversible.
 - **366 tests passing**
 - `flutter build apk --debug` — **succeeds**
 - **Every route renders a real screen** — no placeholders remain
-- `firestore.rules` — **compiles against your live project**
+- `firestore.rules` — **compiles against your live project**, and **61 emulator
+  tests** assert its behaviour rather than just its syntax
 - `functions/` — **typechecks** under `tsc --noEmit`
 - Release signing, R8 and resource shrinking configured
 
@@ -199,6 +200,7 @@ Run it yourself:
 ```bash
 cd /Users/needsreset/Documents/Matty/FlameUp/FlameUp
 flutter analyze && flutter test && flutter build apk --release
+cd rules-tests && npm install && npm test
 ```
 
 ### One thing I could not verify

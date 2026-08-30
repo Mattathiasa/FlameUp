@@ -44,14 +44,20 @@ service cloud.firestore {
     /// diff().affectedKeys() is the mechanism: a client may edit its display
     /// name in the same document that holds its XP, but it cannot touch the
     /// XP while doing so.
+    ///
+    /// hasAny() takes a **list**, not a set. Passing a set is an unsupported
+    /// operation that makes the whole rule error -- and an erroring rule
+    /// denies, so this once silently blocked legitimate profile creation as
+    /// well as the writes it was meant to stop. Caught by the emulator tests
+    /// in rules-tests/, which is the only place it could have been caught.
     function leavesProgressionAlone() {
       return !incoming().diff(existing()).affectedKeys()
-        .hasAny(serverOnlyUserFields().toSet());
+        .hasAny(serverOnlyUserFields());
     }
 
     /// A create must not arrive with progression already filled in.
     function createsWithoutProgression() {
-      return !incoming().keys().hasAny(serverOnlyUserFields().toSet());
+      return !incoming().keys().hasAny(serverOnlyUserFields());
     }
 
     function isModerator() {
@@ -210,7 +216,7 @@ service cloud.firestore {
       // post cannot inflate its like count.
       allow update: if isOwner(existing().authorId)
         && !incoming().diff(existing()).affectedKeys()
-          .hasAny(['likeCount', 'commentCount'].toSet());
+          .hasAny(['likeCount', 'commentCount']);
       allow delete: if isOwner(existing().authorId) || isModerator();
 
       match /comments/{commentId} {
@@ -235,7 +241,7 @@ service cloud.firestore {
       allow update: if signedIn()
         && request.auth.uid in [existing().createdBy, existing().opponentId]
         // The winner is decided server-side.
-        && !incoming().diff(existing()).affectedKeys().hasAny(['winnerId'].toSet());
+        && !incoming().diff(existing()).affectedKeys().hasAny(['winnerId']);
       allow delete: if false;
 
       match /submissions/{uid} {

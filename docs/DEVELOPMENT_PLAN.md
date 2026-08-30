@@ -336,7 +336,7 @@ returning a stub the user could not distinguish from a real answer.
 
 ## ✅ Phase 12 — Polish
 ## ✅ Phase 13 — Security audit
-## 🚧 Phase 14 — Testing
+## ✅ Phase 14 — Testing
 ## ✅ Phase 15 — Release preparation
 
 **Phase 12 — accessibility and states.** Every interactive element carries a
@@ -362,11 +362,19 @@ Also verified: no `if true` write rule anywhere, no secrets committed, no
 hardcoded provider keys, no client path writes progression fields, no TODOs
 left behind. Rules recompile clean against the live project.
 
-**Phase 14 — testing.** 358 unit and widget tests, plus
-`integration_test/cooking_journey_test.dart` for the journeys where state must
-survive process death. Documented in [`TESTING.md`](TESTING.md), including an
-honest list of what is *not* covered — emulator rules tests are the largest
-remaining gap.
+**Phase 14 — testing.** 366 Dart tests plus **61 Firestore rules tests running
+against the emulator**, which closes the gap this phase was carrying.
+
+The rules tests earned themselves on their first run. `keys().hasAny(set)` is
+unsupported in the rules language — it takes a list — and the unsupported call
+made the whole rule **error**, which denies. The profile-create rule was
+refusing every write, including legitimate ones: sign-up would have appeared to
+work while the user document silently never persisted, taking every onboarding
+answer with it. Compiling the file could not reveal that, and neither could
+reading it.
+
+Documented in [`TESTING.md`](TESTING.md), with an honest list of what is still
+not covered.
 
 **Phase 15 — release preparation.** Release signing reads `key.properties`
 when present and falls back to the debug key so a fresh clone still builds;
