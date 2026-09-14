@@ -7,6 +7,7 @@ import '../../../core/constants/app_constants.dart';
 import '../../../core/constants/firestore_paths.dart';
 import '../../../core/errors/error_mapper.dart';
 import '../../../core/result/result.dart';
+import '../domain/app_notification.dart';
 import '../domain/challenge.dart';
 import '../domain/directory_user.dart';
 import '../domain/post.dart';
@@ -268,6 +269,42 @@ class CommunityRepository {
             _firestore.doc('${FirestorePaths.userFriends(otherUid)}/$uid'),
           );
         await batch.commit();
+      });
+
+  // --- notifications -----------------------------------------------------
+
+  /// The user's notifications, newest first.
+  ///
+  /// Documents are created by Cloud Functions; the client only reads and
+  /// marks read. A limit keeps the cold start cheap -- older items can be
+  /// paged if the volume ever asks for it.
+  Stream<List<AppNotification>> watchNotifications(String uid) => _firestore
+      .collection(FirestorePaths.userNotifications(uid))
+      .orderBy('createdAt', descending: true)
+      .limit(AppConstants.pageSize)
+      .snapshots()
+      .map(
+        (snapshot) => snapshot.docs
+            .map((doc) => AppNotification.fromJson(doc.id, doc.data()))
+            .whereType<AppNotification>()
+            .toList(),
+      );
+
+  /// Mark one notification read. Keyed by the document id so the write is
+  /// idempotent -- marking twice leaves the same timestamp.
+  Future<Result<void>> markNotificationRead({
+    required String uid,
+    required String notificationId,
+  }) =>
+      ErrorMapper.guard(() async {
+        await _firestore
+            .doc(
+              '${FirestorePaths.userNotifications(uid)}/$notificationId',
+            )
+            .set(
+              {'readAt': DateTime.now().toIso8601String()},
+              SetOptions(merge: true),
+            );
       });
 
   // --- challenges --------------------------------------------------------

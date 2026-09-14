@@ -8,6 +8,8 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
+import '../domain/community_providers.dart';
+import 'notifications_sheet.dart';
 
 /// 20-feed — Community.
 ///
@@ -22,8 +24,25 @@ class CommunityScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final palette = AppPalette.of(context);
     final l10n = AppLocalizations.of(context);
+    final unread = ref.watch(unreadNotificationsProvider);
 
     return Scaffold(
+      appBar: AppBar(
+        // No title here -- the screen paints its own display heading -- just
+        // the bell, with the unread count as its badge.
+        backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(
+            tooltip: l10n.notificationsTitle,
+            onPressed: () => NotificationsSheet.show(context),
+            icon: Badge(
+              isLabelVisible: unread > 0,
+              label: Text('$unread'),
+              child: const Icon(Icons.notifications_outlined),
+            ),
+          ),
+        ],
+      ),
       body: Stack(
         children: [
           const AmbientBackground(),

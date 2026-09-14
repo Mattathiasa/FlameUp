@@ -680,6 +680,34 @@
   "@noteP": {
     "description": "Design prototype copy"
   },
+  "notifEmpty": "Nothing yet. Cook something, add a friend.",
+  "@notifEmpty": {
+    "description": "Application copy"
+  },
+  "notifFriendAdded": "New friend",
+  "@notifFriendAdded": {
+    "description": "Application copy"
+  },
+  "notifFriendAddedBody": "You and {name} are now cooking friends",
+  "@notifFriendAddedBody": {
+    "description": "Application copy"
+  },
+  "notifFriendRequest": "Friend request",
+  "@notifFriendRequest": {
+    "description": "Application copy"
+  },
+  "notifFriendRequestBody": "{name} wants to cook with you",
+  "@notifFriendRequestBody": {
+    "description": "Application copy"
+  },
+  "notifMarkRead": "Got it",
+  "@notifMarkRead": {
+    "description": "Application copy"
+  },
+  "notificationsTitle": "Activity",
+  "@notificationsTitle": {
+    "description": "Application copy"
+  },
   "ofWord": "of",
   "@ofWord": {
     "description": "Design prototype copy"

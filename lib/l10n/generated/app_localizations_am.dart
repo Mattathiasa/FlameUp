@@ -525,6 +525,31 @@ class AppLocalizationsAm extends AppLocalizations {
   String get noteP => 'በሚቀጥለው ጊዜ ምን ይለውጣሉ?';
 
   @override
+  String get notifEmpty => 'እስካሁን ምንም የለም። ይብሱ፣ ጓደኛ ያክሉ።';
+
+  @override
+  String get notifFriendAdded => 'አዲስ ጓደኛ';
+
+  @override
+  String notifFriendAddedBody(Object name) {
+    return 'እርስዎና $name አሁን የማብሰያ ጓደኞች ናችሁ';
+  }
+
+  @override
+  String get notifFriendRequest => 'የጓደኛነት ጥያቄ';
+
+  @override
+  String notifFriendRequestBody(Object name) {
+    return '$name ከእርስዎ ጋር ማብሰል ይፈልጋል';
+  }
+
+  @override
+  String get notifMarkRead => 'ተገቢዋለሁ';
+
+  @override
+  String get notificationsTitle => 'እንቅስቃሴ';
+
+  @override
   String get ofWord => 'ከ';
 
   @override

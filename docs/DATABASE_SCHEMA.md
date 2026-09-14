@@ -68,7 +68,8 @@ sanely.
 | `meal_plans/{yyyy-Www}` | `days: { mon: { breakfast, lunch, dinner }, ... }` | one doc per ISO week |
 | `friends/{otherUid}` | `since`, `displayName`, `photoUrl` | denormalised for list rendering |
 | `friend_requests/{otherUid}` | `direction` in/out, `status`, `createdAt` | |
-| `notifications/{id}` | `type`, `body`, `readAt`, `deepLink` | |
+| `notifications/{id}` | `type` ('friendRequest' \| 'friendAdded'), `otherUid`, `otherName`, `readAt`, `createdAt` | written **only by Cloud Functions**; the client reads and marks read |
+
 | `outbox/{idempotencyKey}` | queued offline mutation | drained on reconnect |
 
 ---

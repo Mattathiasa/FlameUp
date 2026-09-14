@@ -355,5 +355,33 @@
   "inviteShareText": {
     "en": "Cook Ethiopian food with me on FlameUp! Add me with friend code {code}",
     "am": "በFlameUp ላይ ከእኔ ጋር የኢትዮጵያ ምግብ ይብሱ! በዚህ ኮድ ያክሉኝ {code}"
+  },
+  "notificationsTitle": {
+    "en": "Activity",
+    "am": "እንቅስቃሴ"
+  },
+  "notifFriendRequest": {
+    "en": "Friend request",
+    "am": "የጓደኛነት ጥያቄ"
+  },
+  "notifFriendAdded": {
+    "en": "New friend",
+    "am": "አዲስ ጓደኛ"
+  },
+  "notifFriendRequestBody": {
+    "en": "{name} wants to cook with you",
+    "am": "{name} ከእርስዎ ጋር ማብሰል ይፈልጋል"
+  },
+  "notifFriendAddedBody": {
+    "en": "You and {name} are now cooking friends",
+    "am": "እርስዎና {name} አሁን የማብሰያ ጓደኞች ናችሁ"
+  },
+  "notifEmpty": {
+    "en": "Nothing yet. Cook something, add a friend.",
+    "am": "እስካሁን ምንም የለም። ይብሱ፣ ጓደኛ ያክሉ።"
+  },
+  "notifMarkRead": {
+    "en": "Got it",
+    "am": "ተገቢዋለሁ"
   }
 }

@@ -537,6 +537,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noteP => 'What would you do differently next time?';
 
   @override
+  String get notifEmpty => 'Nothing yet. Cook something, add a friend.';
+
+  @override
+  String get notifFriendAdded => 'New friend';
+
+  @override
+  String notifFriendAddedBody(Object name) {
+    return 'You and $name are now cooking friends';
+  }
+
+  @override
+  String get notifFriendRequest => 'Friend request';
+
+  @override
+  String notifFriendRequestBody(Object name) {
+    return '$name wants to cook with you';
+  }
+
+  @override
+  String get notifMarkRead => 'Got it';
+
+  @override
+  String get notificationsTitle => 'Activity';
+
+  @override
   String get ofWord => 'of';
 
   @override

@@ -1118,6 +1118,48 @@ abstract class AppLocalizations {
   /// **'What would you do differently next time?'**
   String get noteP;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing yet. Cook something, add a friend.'**
+  String get notifEmpty;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'New friend'**
+  String get notifFriendAdded;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'You and {name} are now cooking friends'**
+  String notifFriendAddedBody(Object name);
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Friend request'**
+  String get notifFriendRequest;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'{name} wants to cook with you'**
+  String notifFriendRequestBody(Object name);
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get notifMarkRead;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Activity'**
+  String get notificationsTitle;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:

@@ -13,7 +13,10 @@
 
 import { initializeApp } from 'firebase-admin/app';
 import { FieldValue, getFirestore } from 'firebase-admin/firestore';
-import { onDocumentWritten } from 'firebase-functions/v2/firestore';
+import {
+  onDocumentCreated,
+  onDocumentWritten,
+} from 'firebase-functions/v2/firestore';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import * as logger from 'firebase-functions/logger';
@@ -278,5 +281,111 @@ export const onUserDeleted = onDocumentWritten(
     }
 
     logger.info('user data removed', { uid });
+  },
+);
+
+/**
+ * Social notifications: friend requests sent, friendships formed.
+ *
+ * Lives here rather than in the client because the notifications collection
+ * is create-only for the server by rule -- a client that could write its own
+ * notifications could write anyone's. Both triggers are idempotent by key:
+ * the notification id is derived from the pair involved, so a replayed
+ * request write (the client sends to both sides in one batch, and the
+ * outbox may drain twice) updates the same document instead of stacking
+ * duplicates.
+ */
+
+/** The document id for a notification about a friend request from `fromUid`. */
+function friendRequestNotificationId(fromUid: string): string {
+  return `friend_request_${fromUid}`;
+}
+
+/** The document id for the "you are now friends" notification. */
+function friendAddedNotificationId(otherUid: string): string {
+  return `friend_added_${otherUid}`;
+}
+
+/**
+ * Someone asked to be your friend.
+ *
+ * Fires on the recipient's incoming request document. Recreating a request
+ * after a decline re-rings the bell, which is correct: the previous
+ * notification was answered, this one is new.
+ */
+export const onFriendRequestCreated = onDocumentCreated(
+  { region: REGION, document: 'users/{uid}/friend_requests/{fromUid}' },
+  async (event) => {
+    const uid = event.params.uid;
+    const fromUid = event.params.fromUid;
+    const data = event.data?.data();
+
+    if (!data || data.direction !== 'incoming' || data.status !== 'pending') {
+      return;
+    }
+
+    const fromName =
+      typeof data.displayName === 'string' && data.displayName.length > 0
+        ? data.displayName
+        : 'Someone';
+
+    await db
+      .doc(`users/${uid}/notifications/${friendRequestNotificationId(fromUid)}`)
+      // No display copy here on purpose: the client renders the localized
+      // string from type + name, so notifications speak the reader's
+      // language even though the server writes once, in no language.
+      .set({
+        type: 'friendRequest',
+        fromUid,
+        fromName,
+        otherUid: fromUid,
+        otherName: fromName,
+        readAt: null,
+        createdAt: FieldValue.serverTimestamp(),
+      });
+  },
+);
+
+/**
+ * A request was answered in the affirmative: both sides become friends.
+ *
+ * Fires on either side's friends document, and notifies the *other* person --
+ * the writer already knows it happened. The dedupe key covers the case where
+ * both users accept near-simultaneously on their own mirrors.
+ */
+export const onFriendAdded = onDocumentCreated(
+  { region: REGION, document: 'users/{uid}/friends/{otherUid}' },
+  async (event) => {
+    const uid = event.params.uid;
+    const otherUid = event.params.otherUid;
+    const data = event.data?.data();
+
+    if (!data) return;
+
+    const otherName =
+      await db.doc(`users/${otherUid}`).get()
+        .then((snap) => snap.data()?.displayName)
+        .catch(() => undefined);
+
+    // The mirror document carries the display name too, and it is what the
+    // writer knew at write time; the profile is the fresher source but a
+    // missing profile must not kill the notification.
+    const name =
+      (typeof otherName === 'string' && otherName.length > 0
+        ? otherName
+        : undefined) ??
+      (typeof data.displayName === 'string' && data.displayName.length > 0
+        ? data.displayName
+        : 'Someone');
+
+    await db
+      .doc(`users/${uid}/notifications/${friendAddedNotificationId(otherUid)}`)
+      .set({
+        type: 'friendAdded',
+        otherUid,
+        otherName: name,
+        readAt: null,
+        createdAt: FieldValue.serverTimestamp(),
+      });
   },
 );

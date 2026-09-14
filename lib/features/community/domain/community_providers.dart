@@ -3,8 +3,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../auth/domain/auth_providers.dart';
 import '../data/community_repository.dart';
+import 'app_notification.dart';
 import 'challenge.dart';
 import 'post.dart';
+
+/// The user's social notifications, newest first.
+final notificationsProvider =
+    StreamProvider.autoDispose<List<AppNotification>>((ref) {
+  final uid = ref.watch(currentUidProvider);
+  if (uid == null) return Stream.value(const []);
+  return ref.watch(communityRepositoryProvider).watchNotifications(uid);
+});
+
+/// Notifications not yet read -- the badge count.
+final unreadNotificationsProvider = Provider.autoDispose<int>((ref) {
+  final all = ref.watch(notificationsProvider).valueOrNull ?? const [];
+  return all.where((n) => n.isUnread).length;
+});
 
 /// The signed-in user's friends.
 final friendsProvider = StreamProvider.autoDispose<List<Friend>>((ref) {
