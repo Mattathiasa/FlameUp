@@ -13,6 +13,37 @@ Flutter · Riverpod · go_router · Firebase · English + አማርኛ
 
 ---
 
+## What FlameUp is
+
+**The goal.** Turn cooking Ethiopian food into a progression game — while
+making the family recipes that define the cuisine a first-class, preservable
+thing. It serves two audiences at once: anyone who wants to learn Ethiopian
+cooking (guided, timed, rewarded), and Ethiopian families who want their
+inheritance recipes recorded before they are lost.
+
+**The core loop.** Discover a dish → cook it in Cook Mode (full-screen guided
+steps with a live countdown) → rate it → earn XP. Everything else feeds this
+loop:
+
+- **Gamification, server-authoritative.** XP, levels, six mastery tracks,
+  achievements, daily quests and streaks are granted only by Cloud Functions —
+  Firestore rules forbid client-side XP writes, so progress cannot be faked.
+- **Cultural discovery.** A Taste Ethiopia map across eight cuisine regions,
+  and Grandma's Kitchen: an archive of family recipes with story, photo and
+  credit to the elder who kept them.
+- **Social.** Friends, a community feed, weekly challenges and leaderboards
+  rebuilt server-side on a schedule.
+- **Kitchen tools, offline-first.** Shopping list, meal planner and saved
+  recipes work with no connection; offline writes queue and replay in order.
+- **AI cooking assistant.** Ask questions mid-recipe; an Anthropic-powered
+  helper proxied through a Cloud Function so the key never ships in the app.
+- **Bilingual throughout.** Every string ships in English and Amharic.
+
+In one sentence: a cooking game on top of a cuisine, with an archive at its
+heart.
+
+---
+
 ## Getting started
 
 ```bash
