@@ -42,6 +42,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get addAll => 'ሁሉንም ወደ ዝርዝር';
 
   @override
+  String get addByCode => 'በኮድ ያክሉ';
+
+  @override
   String get addManualItem => 'ዕቃ ጨምር';
 
   @override
@@ -172,6 +175,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get clearDone => 'የተመረጡትን አጽዳ';
+
+  @override
+  String get codeHint => '8 ፊደላት ኮድ';
 
   @override
   String get colBig => 'ቤተሰብ ሲመጣ';
@@ -346,6 +352,15 @@ class AppLocalizationsAm extends AppLocalizations {
   String get fieldPassword => 'የይለፍ ቃል';
 
   @override
+  String get findFriendsSub => 'በስም ይፈልጉ፣ ወይም ጓደኛዎ ካጋለው ኮድ ይጻፉ።';
+
+  @override
+  String get findFriendsTitle => 'ጓደኞችን ያግኙ';
+
+  @override
+  String get findLabel => 'ፈልግ';
+
+  @override
   String get finish => 'ምግቡን ጨርስ';
 
   @override
@@ -433,6 +448,11 @@ class AppLocalizationsAm extends AppLocalizations {
   String get invite => 'አብሮዎት እንዲያበስል ይጋብዙ';
 
   @override
+  String inviteShareText(Object code) {
+    return 'በFlameUp ላይ ከእኔ ጋር የኢትዮጵያ ምግብ ይብሱ! በዚህ ኮድ ያክሉኝ $code';
+  }
+
+  @override
   String get inviteSub => 'ተከታታይ ቀናት በጥንድ ይረዝማሉ።';
 
   @override
@@ -490,10 +510,16 @@ class AppLocalizationsAm extends AppLocalizations {
   String get masterySub => 'ብቃት የሚያድገው አንድን ዘዴ ሲደጋግሙ ነው እንጂ አዘገጃጀት ሲጨርሱ አይደለም።';
 
   @override
+  String get myFriendCode => 'የእርስዎ ኮድ';
+
+  @override
   String get nextStep => 'ቀጣይ ደረጃ';
 
   @override
   String get noAccountYet => 'አዲስ ነዎት? አካውንት ይፍጠሩ';
+
+  @override
+  String get noPeopleFound => 'እስካሁን በዚያ ስም ማንም የለም።';
 
   @override
   String get noteP => 'በሚቀጥለው ጊዜ ምን ይለውጣሉ?';
@@ -597,6 +623,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get removeFromPlan => 'አስወግድ';
 
   @override
+  String get requestSent => 'ጥያቄ ተልኳል!';
+
+  @override
   String get results => '24 ምግቦች';
 
   @override
@@ -616,6 +645,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get savedSub => '12 ተቀምጠዋል · 3 ስብስቦች';
+
+  @override
+  String get searchByName => 'ወይም በስም ይፈልጉ';
 
   @override
   String get searchPh => 'ምግቦችን፣ ክልሎችን፣ ቅመሞችን ይፈልጉ';
@@ -691,6 +723,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get share => 'አጋራ';
+
+  @override
+  String get shareCode => 'ኮድዎን ያጋሩ';
 
   @override
   String get shopH1 => 'የግብይት ዝርዝር';

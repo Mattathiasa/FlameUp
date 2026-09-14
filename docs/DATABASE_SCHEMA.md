@@ -248,6 +248,26 @@ justify it; until then the query filters on `visibility`.
 
 ---
 
+## user_directory/{uid} — findable people
+
+```
+uid          == document id, re-checked by the rules
+displayName  1..60 chars
+nameSearch   displayName, lowercased, whitespace-collapsed
+friendCode   first 8 hex chars of SHA-256(uid)
+```
+
+The `users/{uid}` profile deliberately forbids list queries, so the three
+fields finding a person needs are denormalised into this opt-in card. Readable
+by any signed-in user; writable only by its owner; no other field is accepted.
+A user who has never sent a request or shared a code has no card, and is thus
+unfindable -- publishing is a side effect of either action.
+
+Search is a `nameSearch` range query (prefix through `\uf8ff`); code lookup is
+an equality on `friendCode`. Both indexed in `firestore.indexes.json`.
+
+---
+
 ## challenges/{id} — "Who Cooks Better?"
 
 ```
@@ -315,3 +335,5 @@ Declared in `firestore.indexes.json`. The composite indexes the app needs:
 | `cooking_sessions` (group) | `status`, `lastActiveAt desc` |
 | `family_recipes` | `status`, `createdAt desc` |
 | `family_recipes` | `authorId`, `status` |
+| `user_directory` | `nameSearch` |
+| `user_directory` | `friendCode` |

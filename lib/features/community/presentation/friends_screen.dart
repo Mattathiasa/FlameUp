@@ -10,6 +10,7 @@ import '../../auth/domain/auth_providers.dart';
 import '../data/community_repository.dart';
 import '../domain/community_providers.dart';
 import '../domain/post.dart';
+import 'find_friends_sheet.dart';
 
 /// 21-friends.
 class FriendsScreen extends ConsumerWidget {
@@ -26,12 +27,20 @@ class FriendsScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.friendsH1)),
+      floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'find-friends',
+        onPressed: () => FindFriendsSheet.show(context),
+        icon: const Icon(Icons.person_add_alt_1, size: 20),
+        label: Text(l10n.findFriendsTitle),
+      ),
       body: Stack(
         children: [
           const AmbientBackground(),
           if (friends.isEmpty && incoming.isEmpty)
             Padding(
-              padding: const EdgeInsets.only(bottom: AppSpacing.screenBottom),
+              padding: const EdgeInsets.only(
+                bottom: AppSpacing.screenBottom + 72,
+              ),
               child: EmptyView(
                 title: l10n.friendsH1,
                 message: l10n.inviteSub,

@@ -8,6 +8,7 @@ import '../../../core/constants/firestore_paths.dart';
 import '../../../core/errors/error_mapper.dart';
 import '../../../core/result/result.dart';
 import '../domain/challenge.dart';
+import '../domain/directory_user.dart';
 import '../domain/post.dart';
 
 /// The community: feed, friends and challenges.
@@ -87,6 +88,76 @@ class CommunityRepository {
           .map((doc) => doc.exists);
 
   // --- friends -----------------------------------------------------------
+
+  /// A page of directory matches for a name prefix.
+  ///
+  /// The prefix trick with \uf8ff gives case-insensitive-at-the-first-letter
+  /// behaviour against the pre-lowered `nameSearch` field without needing a
+  /// third-party search index; exact case variants elsewhere in the string
+  /// are not found, which is an accepted trade at friend-list scale.
+  Future<Result<List<DirectoryUser>>> searchDirectory(String rawQuery) =>
+      ErrorMapper.guard(() async {
+        final query = DirectoryUser.searchableName(rawQuery);
+        if (query.isEmpty) return const [];
+
+        final snapshot = await _firestore
+            .collection(FirestorePaths.userDirectory)
+            .where('nameSearch', isGreaterThanOrEqualTo: query)
+            .where('nameSearch', isLessThanOrEqualTo: '$query\uf8ff')
+            .orderBy('nameSearch')
+            .limit(AppConstants.pageSize)
+            .get();
+
+        return snapshot.docs
+            .map((doc) => DirectoryUser.fromJson(doc.id, doc.data()))
+            .whereType<DirectoryUser>()
+            .toList();
+      });
+
+  /// Resolve a friend code to the person it belongs to.
+  Future<Result<DirectoryUser?>> findByFriendCode(String rawCode) =>
+      ErrorMapper.guard(() async {
+        final code = rawCode.trim().toLowerCase();
+        if (code.isEmpty) return null;
+
+        final snapshot = await _firestore
+            .collection(FirestorePaths.userDirectory)
+            .where('friendCode', isEqualTo: code)
+            .limit(1)
+            .get();
+
+        return snapshot.docs.isEmpty
+            ? null
+            : DirectoryUser.fromJson(
+                snapshot.docs.first.id,
+                snapshot.docs.first.data(),
+              );
+      });
+
+  /// Publish or refresh this user's directory card.
+  ///
+  /// Idempotent and called before sending a request, so a user who has never
+  /// opened the directory can still be found by the code they shared.
+  Future<Result<void>> publishToDirectory({
+    required String uid,
+    required String displayName,
+  }) =>
+      ErrorMapper.guard(() async {
+        final name = displayName.trim();
+        if (name.isNotEmpty) {
+          await _firestore
+              .doc(FirestorePaths.directoryEntry(uid))
+              .set(
+                {
+                  'uid': uid,
+                  'displayName': name,
+                  'nameSearch': DirectoryUser.searchableName(name),
+                  'friendCode': DirectoryUser.friendCodeOf(uid),
+                },
+                SetOptions(merge: true),
+              );
+        }
+      });
 
   Stream<List<Friend>> watchFriends(String uid) =>
       _firestore.collection(FirestorePaths.userFriends(uid)).snapshots().map(

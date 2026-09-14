@@ -142,6 +142,31 @@ service cloud.firestore {
       }
     }
 
+    // --- user directory ----------------------------------------------------
+
+    // Public, minimal search cards. A profile document forbids list queries,
+    // so the fields finding a person needs live here, opt-in per user, with
+    // nothing but name, search key and friend code exposed. The card is
+    // writable only by its own user; the friend code is public by design
+    // (it is handed out to be typed), so it is validated for shape only.
+    match /user_directory/{uid} {
+      allow read: if signedIn();
+      allow create: if isOwner(uid)
+        && incoming().keys().hasOnly(['uid', 'displayName', 'nameSearch', 'friendCode'])
+        && incoming().uid == uid
+        && incoming().displayName is string
+        && incoming().displayName.size() > 0
+        && incoming().displayName.size() <= 60
+        && incoming().nameSearch is string
+        && incoming().nameSearch.size() > 0
+        && incoming().nameSearch.size() <= 60
+        && incoming().friendCode is string
+        && incoming().friendCode.size() == 8;
+      allow update: if isOwner(uid)
+        && incoming().uid == uid;
+      allow delete: if isOwner(uid);
+    }
+
     // --- recipes ---------------------------------------------------------
 
     match /recipes/{recipeId} {

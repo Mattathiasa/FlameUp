@@ -5,6 +5,11 @@
 abstract final class FirestorePaths {
   // Top-level collections
   static const String users = 'users';
+
+  /// Public, opt-in search cards: display name, searchable name and friend
+  /// code. The profile document itself forbids list queries (see the rules),
+  /// so the fields finding a person needs are denormalised here instead.
+  static const String userDirectory = 'user_directory';
   static const String recipes = 'recipes';
   static const String regions = 'regions';
   static const String achievements = 'achievements';
@@ -36,6 +41,7 @@ abstract final class FirestorePaths {
 
   // Documents
   static String user(String uid) => '$users/$uid';
+  static String directoryEntry(String uid) => '$userDirectory/$uid';
   static String recipe(String id) => '$recipes/$id';
   static String region(String id) => '$regions/$id';
   static String familyRecipe(String id) => '$familyRecipes/$id';

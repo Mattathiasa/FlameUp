@@ -44,6 +44,10 @@
   "@addAll": {
     "description": "Design prototype copy"
   },
+  "addByCode": "Add by code",
+  "@addByCode": {
+    "description": "Application copy"
+  },
   "addManualItem": "Add an item",
   "@addManualItem": {
     "description": "Application copy"
@@ -215,6 +219,10 @@
   "clearDone": "Clear checked",
   "@clearDone": {
     "description": "Design prototype copy"
+  },
+  "codeHint": "8-character code",
+  "@codeHint": {
+    "description": "Application copy"
   },
   "colBig": "When family comes",
   "@colBig": {
@@ -444,6 +452,18 @@
   "@fieldPassword": {
     "description": "Application copy"
   },
+  "findFriendsSub": "Search by name, or type the code a friend shared with you.",
+  "@findFriendsSub": {
+    "description": "Application copy"
+  },
+  "findFriendsTitle": "Find friends",
+  "@findFriendsTitle": {
+    "description": "Application copy"
+  },
+  "findLabel": "Find",
+  "@findLabel": {
+    "description": "Application copy"
+  },
   "finish": "Finish dish",
   "@finish": {
     "description": "Design prototype copy"
@@ -560,6 +580,10 @@
   "@invite": {
     "description": "Design prototype copy"
   },
+  "inviteShareText": "Cook Ethiopian food with me on FlameUp! Add me with friend code {code}",
+  "@inviteShareText": {
+    "description": "Application copy"
+  },
   "inviteSub": "Streaks last longer in pairs.",
   "@inviteSub": {
     "description": "Design prototype copy"
@@ -636,12 +660,20 @@
   "@masterySub": {
     "description": "Design prototype copy"
   },
+  "myFriendCode": "Your friend code",
+  "@myFriendCode": {
+    "description": "Application copy"
+  },
   "nextStep": "Next step",
   "@nextStep": {
     "description": "Design prototype copy"
   },
   "noAccountYet": "New here? Create an account",
   "@noAccountYet": {
+    "description": "Application copy"
+  },
+  "noPeopleFound": "No one by that name yet.",
+  "@noPeopleFound": {
     "description": "Application copy"
   },
   "noteP": "What would you do differently next time?",
@@ -776,6 +808,10 @@
   "@removeFromPlan": {
     "description": "Application copy"
   },
+  "requestSent": "Request sent!",
+  "@requestSent": {
+    "description": "Application copy"
+  },
   "results": "24 dishes",
   "@results": {
     "description": "Design prototype copy"
@@ -803,6 +839,10 @@
   "savedSub": "12 saved · 3 collections",
   "@savedSub": {
     "description": "Design prototype copy"
+  },
+  "searchByName": "Or search by name",
+  "@searchByName": {
+    "description": "Application copy"
   },
   "searchPh": "Search dishes, regions, spices",
   "@searchPh": {
@@ -903,6 +943,10 @@
   "share": "Share",
   "@share": {
     "description": "Design prototype copy"
+  },
+  "shareCode": "Share your code",
+  "@shareCode": {
+    "description": "Application copy"
   },
   "shopH1": "Shopping list",
   "@shopH1": {

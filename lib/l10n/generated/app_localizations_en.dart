@@ -42,6 +42,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addAll => 'Add all to list';
 
   @override
+  String get addByCode => 'Add by code';
+
+  @override
   String get addManualItem => 'Add an item';
 
   @override
@@ -178,6 +181,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get clearDone => 'Clear checked';
+
+  @override
+  String get codeHint => '8-character code';
 
   @override
   String get colBig => 'When family comes';
@@ -355,6 +361,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fieldPassword => 'Password';
 
   @override
+  String get findFriendsSub =>
+      'Search by name, or type the code a friend shared with you.';
+
+  @override
+  String get findFriendsTitle => 'Find friends';
+
+  @override
+  String get findLabel => 'Find';
+
+  @override
   String get finish => 'Finish dish';
 
   @override
@@ -443,6 +459,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get invite => 'Invite someone to cook with you';
 
   @override
+  String inviteShareText(Object code) {
+    return 'Cook Ethiopian food with me on FlameUp! Add me with friend code $code';
+  }
+
+  @override
   String get inviteSub => 'Streaks last longer in pairs.';
 
   @override
@@ -501,10 +522,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'Mastery climbs when you repeat a technique, not when you finish a recipe.';
 
   @override
+  String get myFriendCode => 'Your friend code';
+
+  @override
   String get nextStep => 'Next step';
 
   @override
   String get noAccountYet => 'New here? Create an account';
+
+  @override
+  String get noPeopleFound => 'No one by that name yet.';
 
   @override
   String get noteP => 'What would you do differently next time?';
@@ -608,6 +635,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get removeFromPlan => 'Remove';
 
   @override
+  String get requestSent => 'Request sent!';
+
+  @override
   String get results => '24 dishes';
 
   @override
@@ -627,6 +657,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get savedSub => '12 saved · 3 collections';
+
+  @override
+  String get searchByName => 'Or search by name';
 
   @override
   String get searchPh => 'Search dishes, regions, spices';
@@ -702,6 +735,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get share => 'Share';
+
+  @override
+  String get shareCode => 'Share your code';
 
   @override
   String get shopH1 => 'Shopping list';

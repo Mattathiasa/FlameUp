@@ -167,6 +167,12 @@ abstract class AppLocalizations {
   /// Application copy
   ///
   /// In en, this message translates to:
+  /// **'Add by code'**
+  String get addByCode;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
   /// **'Add an item'**
   String get addManualItem;
 
@@ -421,6 +427,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Clear checked'**
   String get clearDone;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'8-character code'**
+  String get codeHint;
 
   /// Design prototype copy
   ///
@@ -764,6 +776,24 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get fieldPassword;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Search by name, or type the code a friend shared with you.'**
+  String get findFriendsSub;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Find friends'**
+  String get findFriendsTitle;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Find'**
+  String get findLabel;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -938,6 +968,12 @@ abstract class AppLocalizations {
   /// **'Invite someone to cook with you'**
   String get invite;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Cook Ethiopian food with me on FlameUp! Add me with friend code {code}'**
+  String inviteShareText(Object code);
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1052,6 +1088,12 @@ abstract class AppLocalizations {
   /// **'Mastery climbs when you repeat a technique, not when you finish a recipe.'**
   String get masterySub;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Your friend code'**
+  String get myFriendCode;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1063,6 +1105,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'New here? Create an account'**
   String get noAccountYet;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'No one by that name yet.'**
+  String get noPeopleFound;
 
   /// Design prototype copy
   ///
@@ -1262,6 +1310,12 @@ abstract class AppLocalizations {
   /// **'Remove'**
   String get removeFromPlan;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Request sent!'**
+  String get requestSent;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1303,6 +1357,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'12 saved · 3 collections'**
   String get savedSub;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Or search by name'**
+  String get searchByName;
 
   /// Design prototype copy
   ///
@@ -1453,6 +1513,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Share'**
   String get share;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Share your code'**
+  String get shareCode;
 
   /// Design prototype copy
   ///

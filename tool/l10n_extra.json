@@ -311,5 +311,49 @@
   "continueAsGuest": {
     "en": "Or continue as a guest — no account, nothing saved",
     "am": "ወይም እንደ እንግዳ ይቀጥሉ — አካውንት የለም፣ ምንም አይቀመጥም"
+  },
+  "findFriendsTitle": {
+    "en": "Find friends",
+    "am": "ጓደኞችን ያግኙ"
+  },
+  "findFriendsSub": {
+    "en": "Search by name, or type the code a friend shared with you.",
+    "am": "በስም ይፈልጉ፣ ወይም ጓደኛዎ ካጋለው ኮድ ይጻፉ።"
+  },
+  "myFriendCode": {
+    "en": "Your friend code",
+    "am": "የእርስዎ ኮድ"
+  },
+  "shareCode": {
+    "en": "Share your code",
+    "am": "ኮድዎን ያጋሩ"
+  },
+  "addByCode": {
+    "en": "Add by code",
+    "am": "በኮድ ያክሉ"
+  },
+  "codeHint": {
+    "en": "8-character code",
+    "am": "8 ፊደላት ኮድ"
+  },
+  "findLabel": {
+    "en": "Find",
+    "am": "ፈልግ"
+  },
+  "searchByName": {
+    "en": "Or search by name",
+    "am": "ወይም በስም ይፈልጉ"
+  },
+  "noPeopleFound": {
+    "en": "No one by that name yet.",
+    "am": "እስካሁን በዚያ ስም ማንም የለም።"
+  },
+  "requestSent": {
+    "en": "Request sent!",
+    "am": "ጥያቄ ተልኳል!"
+  },
+  "inviteShareText": {
+    "en": "Cook Ethiopian food with me on FlameUp! Add me with friend code {code}",
+    "am": "በFlameUp ላይ ከእኔ ጋር የኢትዮጵያ ምግብ ይብሱ! በዚህ ኮድ ያክሉኝ {code}"
   }
 }
