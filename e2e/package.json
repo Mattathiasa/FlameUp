@@ -1,0 +1,12 @@
+{
+  "name": "flameup-e2e",
+  "private": true,
+  "type": "module",
+  "description": "End-to-end flows against the Firebase emulator suite.",
+  "scripts": {
+    "test": "firebase emulators:exec --only auth,firestore,functions --project flameup-78d15 'node social_notifications.test.mjs'"
+  },
+  "dependencies": {
+    "firebase": "^11.10.0"
+  }
+}

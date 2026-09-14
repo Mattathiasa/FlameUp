@@ -349,9 +349,11 @@ export const onFriendRequestCreated = onDocumentCreated(
 /**
  * A request was answered in the affirmative: both sides become friends.
  *
- * Fires on either side's friends document, and notifies the *other* person --
- * the writer already knows it happened. The dedupe key covers the case where
- * both users accept near-simultaneously on their own mirrors.
+ * The accept flow writes both mirrors, so this fires once per side; each
+ * side's notification lands under its own uid, so both parties learn the
+ * friendship formed -- the acceptor included, whose confirmation arrives
+ * the same way the requester's does. Derived ids keep a replayed mirror
+ * write from stacking duplicates.
  */
 export const onFriendAdded = onDocumentCreated(
   { region: REGION, document: 'users/{uid}/friends/{otherUid}' },
