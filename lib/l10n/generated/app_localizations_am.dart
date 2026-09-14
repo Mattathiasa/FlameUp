@@ -183,6 +183,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get colQuick => 'የሳምንት ፈጣን';
 
   @override
+  String get continueAsGuest => 'ወይም እንደ እንግዳ ይቀጥሉ — አካውንት የለም፣ ምንም አይቀመጥም';
+
+  @override
   String get continueLabel => 'ቀጥል';
 
   @override
@@ -376,7 +379,7 @@ class AppLocalizationsAm extends AppLocalizations {
   String get generateList => 'ከእቅዱ የግብይት ዝርዝር ይሥሩ';
 
   @override
-  String get getStarted => 'የመጀመሪያውን እሳት አብሩ';
+  String get getStarted => 'አካውንት ይፍጠሩ';
 
   @override
   String get grandmaH1 => 'የአያት ኩሽና';

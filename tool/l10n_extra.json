@@ -307,5 +307,9 @@
   "askAssistant": {
     "en": "Ask",
     "am": "ጠይቅ"
+  },
+  "continueAsGuest": {
+    "en": "Or continue as a guest — no account, nothing saved",
+    "am": "ወይም እንደ እንግዳ ይቀጥሉ — አካውንት የለም፣ ምንም አይቀመጥም"
   }
 }

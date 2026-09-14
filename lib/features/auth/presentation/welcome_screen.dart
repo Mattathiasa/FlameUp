@@ -110,9 +110,7 @@ class WelcomeScreen extends ConsumerWidget {
                     loading: auth.submitting,
                     onPressed: auth.submitting
                         ? null
-                        : () => ref
-                            .read(authControllerProvider.notifier)
-                            .continueAsGuest(),
+                        : () => context.push(Routes.signUp),
                   ),
                   const SizedBox(height: AppSpacing.lg),
                   SizedBox(
@@ -122,6 +120,24 @@ class WelcomeScreen extends ConsumerWidget {
                           ? null
                           : () => context.push(Routes.signIn),
                       child: Text(l10n.haveAccount),
+                    ),
+                  ),
+                  // Guest mode is real but must never be the default tap:
+                  // creating an anonymous account behind an ambiguous label
+                  // is how "Get Started" ended up surprising people. The
+                  // choice is explicit here, and upgradeable later from
+                  // Settings or the You tab without losing progress.
+                  const SizedBox(height: AppSpacing.md),
+                  TextButton(
+                    onPressed: auth.submitting
+                        ? null
+                        : () => ref
+                            .read(authControllerProvider.notifier)
+                            .continueAsGuest(),
+                    child: Text(
+                      l10n.continueAsGuest,
+                      style: AppTypography.bodyMedium
+                          .copyWith(color: palette.textTertiary),
                     ),
                   ),
                 ],

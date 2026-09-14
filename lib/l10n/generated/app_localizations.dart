@@ -440,6 +440,12 @@ abstract class AppLocalizations {
   /// **'Weeknight fast'**
   String get colQuick;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Or continue as a guest — no account, nothing saved'**
+  String get continueAsGuest;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -827,7 +833,7 @@ abstract class AppLocalizations {
   /// Design prototype copy
   ///
   /// In en, this message translates to:
-  /// **'Light the first flame'**
+  /// **'Create an account'**
   String get getStarted;
 
   /// Design prototype copy

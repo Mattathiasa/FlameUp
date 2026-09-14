@@ -189,6 +189,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get colQuick => 'Weeknight fast';
 
   @override
+  String get continueAsGuest =>
+      'Or continue as a guest — no account, nothing saved';
+
+  @override
   String get continueLabel => 'Continue';
 
   @override
@@ -384,7 +388,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get generateList => 'Build shopping list from plan';
 
   @override
-  String get getStarted => 'Light the first flame';
+  String get getStarted => 'Create an account';
 
   @override
   String get grandmaH1 => 'Grandma’s Kitchen';

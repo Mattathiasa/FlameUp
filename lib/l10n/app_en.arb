@@ -228,6 +228,10 @@
   "@colQuick": {
     "description": "Design prototype copy"
   },
+  "continueAsGuest": "Or continue as a guest — no account, nothing saved",
+  "@continueAsGuest": {
+    "description": "Application copy"
+  },
   "continueLabel": "Continue",
   "@continueLabel": {
     "description": "Design prototype copy"
@@ -484,7 +488,7 @@
   "@generateList": {
     "description": "Application copy"
   },
-  "getStarted": "Light the first flame",
+  "getStarted": "Create an account",
   "@getStarted": {
     "description": "Design prototype copy"
   },
