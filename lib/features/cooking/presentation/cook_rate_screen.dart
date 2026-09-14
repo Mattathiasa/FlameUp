@@ -177,7 +177,7 @@ class _CookRateScreenState extends ConsumerState<CookRateScreen> {
                                   .copyWith(color: palette.textPrimary),
                             ),
                             contentPadding: EdgeInsets.zero,
-                            activeColor: AppColors.accent,
+                            activeThumbColor: AppColors.accent,
                           ),
                         ),
                         const SizedBox(height: AppSpacing.xxxl),

@@ -82,7 +82,7 @@ class _CookModeState extends ConsumerState<_CookMode> {
       // Backing out of a cook by accident would lose the thread of what you
       // were doing, so leaving is always deliberate.
       canPop: false,
-      onPopInvoked: (didPop) async {
+      onPopInvokedWithResult: (didPop, _) async {
         if (didPop) return;
         final leave = await _confirmExit(context, l10n);
         if (leave == true && context.mounted) context.pop();

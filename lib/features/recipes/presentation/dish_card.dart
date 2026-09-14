@@ -225,7 +225,7 @@ class _Tag extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: colour.withOpacity(0.9),
+        color: colour.withValues(alpha: 0.9),
         borderRadius: BorderRadius.circular(AppRadii.xs),
       ),
       child: Text(

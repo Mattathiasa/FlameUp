@@ -70,7 +70,7 @@ class _Glow extends StatelessWidget {
         gradient: RadialGradient(
           center: alignment,
           radius: radius,
-          colors: [colour, colour.withOpacity(0)],
+          colors: [colour, colour.withValues(alpha: 0)],
           stops: [0, stop],
         ),
       ),

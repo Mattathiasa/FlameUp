@@ -107,9 +107,9 @@ class XpBadge extends StatelessWidget {
           vertical: 5,
         ),
         decoration: BoxDecoration(
-          color: AppColors.gold.withOpacity(0.16),
+          color: AppColors.gold.withValues(alpha: 0.16),
           borderRadius: BorderRadius.circular(AppRadii.xs),
-          border: Border.all(color: AppColors.gold.withOpacity(0.36)),
+          border: Border.all(color: AppColors.gold.withValues(alpha: 0.36)),
         ),
         child: Text(
           text,

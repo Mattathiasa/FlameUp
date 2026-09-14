@@ -70,9 +70,9 @@ abstract final class AppTheme {
       // FlameTabBar; this only styles the Material fallback.
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: palette.tabBar,
-        indicatorColor: AppColors.accent.withOpacity(0.18),
+        indicatorColor: AppColors.accent.withValues(alpha: 0.18),
         surfaceTintColor: Colors.transparent,
-        labelTextStyle: MaterialStatePropertyAll(
+        labelTextStyle: WidgetStatePropertyAll(
           AppTypography.tabLabel.copyWith(color: palette.textSecondary),
         ),
       ),
@@ -130,7 +130,7 @@ abstract final class AppTheme {
         ),
       ),
 
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: palette.glass,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
@@ -146,7 +146,7 @@ abstract final class AppTheme {
         ),
       ),
 
-      dialogTheme: DialogTheme(
+      dialogTheme: DialogThemeData(
         backgroundColor: palette.surface,
         surfaceTintColor: Colors.transparent,
         shape: const RoundedRectangleBorder(borderRadius: AppRadii.heroAll),

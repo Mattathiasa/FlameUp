@@ -145,7 +145,7 @@ class _Badge extends StatelessWidget {
                       ? LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          colors: [tint, tint.withOpacity(0.35)],
+                          colors: [tint, tint.withValues(alpha: 0.35)],
                         )
                       : null,
                   color: unlocked ? null : palette.fieldFill,

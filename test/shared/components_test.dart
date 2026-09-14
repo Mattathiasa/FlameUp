@@ -1,9 +1,10 @@
+import 'dart:ui' show Tristate;
+
 import 'package:flameup/core/theme/app_colors.dart';
 import 'package:flameup/core/theme/app_theme.dart';
 import 'package:flameup/l10n/generated/app_localizations.dart';
 import 'package:flameup/shared/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/semantics.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -166,7 +167,7 @@ void main() {
 
       final node = tester.getSemantics(find.byType(PillChip));
       expect(node.label, 'Fasting');
-      expect(node.hasFlag(SemanticsFlag.isSelected), isTrue);
+      expect(node.flagsCollection.isSelected, Tristate.isTrue);
     });
 
     testWidgets('meets the minimum touch target', (tester) async {

@@ -169,7 +169,7 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
                 ),
                 const SizedBox(height: AppSpacing.md),
                 DropdownButtonFormField<String>(
-                  value: _regionId,
+                  initialValue: _regionId,
                   decoration: InputDecoration(hintText: l10n.regionTitle),
                   items: [
                     for (final region in regions)
