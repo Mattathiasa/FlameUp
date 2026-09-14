@@ -115,12 +115,16 @@
       ]
     },
     {
-      "collectionGroup": "user_directory",
+      "collectionGroup": "family_recipes",
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "nameSearch",
+          "fieldPath": "authorId",
           "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updatedAt",
+          "order": "DESCENDING"
         }
       ]
     }

@@ -1,7 +1,7 @@
 # What you need to do
 
-Everything in this list is a **console click or an account decision** — none of
-it can be done from a terminal, which is why it is not already done. The code
+**Most of this is now done** — see "What is done and verified" at the bottom.
+What remains is genuinely a console click or an account decision. The code
 for each is written and waiting.
 
 Ordered by what unblocks the most.
@@ -43,8 +43,11 @@ Then re-download `google-services.json` and replace `android/app/google-services
 
 ## 2. Turn on Firebase Storage — 1 minute, free
 
-**Without this, no photo can be uploaded** — profile pictures, finished-dish
-photos, family recipe media.
+**STATUS: still the one manual step.** Provisioning the default bucket
+programmatically fails with *"the billing account for the owning project is
+disabled in state absent"* — the console's "Get started" flow uses a
+Firebase-internal provisioning path that does not. Without it, no photo can
+be uploaded — profile pictures, finished-dish photos, family recipe media.
 
 → [Storage](https://console.firebase.google.com/project/flameup-78d15/storage) →
 **Get Started** → accept the default rules → pick a location
@@ -55,8 +58,9 @@ Then, from the project root:
 firebase deploy --only storage
 ```
 
-I could not do this step: `firebase deploy --only storage` currently fails with
-*"Firebase Storage has not been set up on project 'flameup-78d15'"*.
+`firebasestorage.googleapis.com` is already ENABLED on the project and
+`storage.rules` (owner-scoped family-recipe media, media-type checks) is
+written and tested — only the bucket itself needs the console click.
 
 ---
 
@@ -90,32 +94,31 @@ The functions are written, typecheck, and run against the local emulator today.
 
 ---
 
-## 4. Deploy the security rules — 1 minute, free
+## 4. ~~Deploy the security rules~~ — DONE
+
+Deployed to production (rules + indexes) via `firebase deploy`. Re-deploy
+after any rules change:
 
 ```bash
-cd /Users/needsreset/Documents/Matty/FlameUp/FlameUp
 firebase deploy --only firestore:rules,firestore:indexes
 ```
 
-`firestore.rules` already **compiles successfully** against your project
-(verified with a dry run). This just pushes it. Do it **before** any real user
-touches the app — the default rules are wide open.
-
 ---
 
-## 5. Seed the recipe catalogue — optional
+## 5. ~~Seed the recipe catalogue~~ — DONE, with demo data
 
-The app ships all 25 recipes bundled, so it works fully without this. Do it
-when you want the backend to hold them too (needed before user reviews and
-cook-counts aggregate properly):
+Production Firestore now holds the full 25-recipe catalogue (with
+`searchTokens` for server-side text search), 8 regions, and the `config/*`
+documents. A demo world of 6 people (sessions, reviews, posts, friendships,
+family recipes, notifications) is seeded alongside — sign in as
+`demo.liya@demo.flameup.app` / `flameup-demo` to see it.
+
+Re-running is idempotent and refreshes rather than duplicates:
 
 ```bash
-# against the emulator
-firebase emulators:start --only firestore
-dart run tool/seed_firestore.dart --emulator
-
-# against the live project (needs an admin credential)
-dart run tool/seed_firestore.dart --project flameup-78d15
+python3 tool/seed_production.py              # everything
+python3 tool/seed_production.py --content    # catalogue + config only
+python3 tool/seed_production.py --demo       # demo people only
 ```
 
 ---
@@ -183,13 +186,18 @@ I made these calls rather than stopping to ask. Each is reversible.
 ## What is done and verified
 
 - `flutter analyze` — **no issues**
-- **366 tests passing**
+- **386 tests passing**, **88 Firestore/Storage rules tests** passing
 - `flutter build apk --debug` — **succeeds**
 - **Every route renders a real screen** — no placeholders remain
 - `firestore.rules` — **compiles against your live project**, and **61 emulator
   tests** assert its behaviour rather than just its syntax
 - `functions/` — **typechecks** under `tsc --noEmit`
 - Release signing, R8 and resource shrinking configured
+- **Production backend live** (2026-09-14): security rules + indexes deployed;
+  25 recipes, 8 regions, `config/*` seeded; 6-person demo world with a
+  coherent history (sessions → reviews → posts → friendships → family
+  recipes → notifications). Verified by signing in as a demo user through the
+  public auth API and running the app's real queries against production.
 
 Also verified: the **release** APK builds with R8 minification and resource
 shrinking (55.4 MB), carries `INTERNET`, targets SDK 34, and requests no

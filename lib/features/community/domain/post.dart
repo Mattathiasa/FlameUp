@@ -1,4 +1,5 @@
 import 'package:uuid/uuid.dart';
+import '../../../core/utils/firestore_date.dart';
 
 /// Who can see a post.
 enum PostVisibility {
@@ -89,7 +90,7 @@ class Post {
       likeCount: json['likeCount'] as int? ?? 0,
       commentCount: json['commentCount'] as int? ?? 0,
       visibility: PostVisibility.fromName(json['visibility'] as String?),
-      createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
+      createdAt: firestoreDate(json['createdAt']),
     );
   }
 }
@@ -171,7 +172,7 @@ class FriendRequest {
               .firstOrNull ??
           RequestStatus.pending,
       displayName: json['displayName'] as String? ?? '',
-      createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
+      createdAt: firestoreDate(json['createdAt']),
     );
   }
 }

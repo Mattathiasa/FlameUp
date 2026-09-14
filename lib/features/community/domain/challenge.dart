@@ -1,4 +1,5 @@
 import 'package:uuid/uuid.dart';
+import '../../../core/utils/firestore_date.dart';
 
 /// Where a "Who Cooks Better?" challenge stands.
 enum ChallengeStatus {
@@ -87,7 +88,7 @@ class ChallengeSubmission {
         (json['scores'] as Map?)?.cast<String, dynamic>(),
       ),
       photoUrl: json['photoUrl'] as String?,
-      submittedAt: DateTime.tryParse(json['submittedAt'] as String? ?? ''),
+      submittedAt: firestoreDate(json['submittedAt']),
     );
   }
 }
@@ -185,8 +186,8 @@ class Challenge {
       recipeTitle: json['recipeTitle'] as String? ?? '',
       status: ChallengeStatus.fromName(json['status'] as String?),
       winnerId: json['winnerId'] as String?,
-      createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
-      deadline: DateTime.tryParse(json['deadline'] as String? ?? ''),
+      createdAt: firestoreDate(json['createdAt']),
+      deadline: firestoreDate(json['deadline']),
     );
   }
 }

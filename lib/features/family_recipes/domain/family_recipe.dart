@@ -1,8 +1,9 @@
-/// One recipe in Grandma's Kitchen, as stored in `family_recipes/{id}`.
-///
-/// Deliberately tolerant: these documents are written by phones (sometimes
-/// offline, sometimes mid-migration) and read years later. A missing field is
-/// rendered as absent, never a crash.
+// One recipe in Grandma's Kitchen, as stored in `family_recipes/{id}`.
+//
+// Deliberately tolerant: these documents are written by phones (sometimes
+// offline, sometimes mid-migration) and read years later. A missing field is
+// rendered as absent, never a crash.
+import '../../../core/utils/firestore_date.dart';
 class FamilyRecipe {
   const FamilyRecipe({
     required this.id,
@@ -39,8 +40,8 @@ class FamilyRecipe {
       story: json['story'] as String? ?? '',
       stepsText: json['stepsText'] as String? ?? '',
       mediaUrl: json['mediaUrl'] as String?,
-      createdAt: DateTime.tryParse(json['createdAt'] as String? ?? ''),
-      updatedAt: DateTime.tryParse(json['updatedAt'] as String? ?? ''),
+      createdAt: firestoreDate(json['createdAt']),
+      updatedAt: firestoreDate(json['updatedAt']),
     );
   }
 
