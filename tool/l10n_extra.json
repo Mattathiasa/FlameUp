@@ -383,5 +383,53 @@
   "notifMarkRead": {
     "en": "Got it",
     "am": "ተገቢዋለሁ"
+  },
+  "fPhotoHint": {
+    "en": "Add a photo",
+    "am": "ፎቶ ያክሉ"
+  },
+  "myRecipesTitle": {
+    "en": "My family recipes",
+    "am": "የቤተሰብ ዝግጅቶቼ"
+  },
+  "myRecipesEmpty": {
+    "en": "Nothing recorded yet — your first recipe belongs here.",
+    "am": "እስካሁን የተመዘገበ አልተገኘም — የመጀመሪያው ዝግጅትዎ እዚህ ይኖራል።"
+  },
+  "statusDraft": {
+    "en": "Draft",
+    "am": "ረቂቅ"
+  },
+  "statusPending": {
+    "en": "In review",
+    "am": "በግምገማ ላይ"
+  },
+  "statusPublished": {
+    "en": "In the archive",
+    "am": "በማህደር ውስጥ"
+  },
+  "archiveTitle": {
+    "en": "From the archive",
+    "am": "ከማህደሩ"
+  },
+  "archiveEmpty": {
+    "en": "The first published family recipe will appear here.",
+    "am": "የመጀመሪያው የታተመ የቤተሰብ ዝግጅት እዚህ ይታያል።"
+  },
+  "uploadMediaFailed": {
+    "en": "The photo could not be uploaded. Try again.",
+    "am": "ፎቶው መስቀል አልተቻለም። እንደገና ይሞክሩ።"
+  },
+  "notifRecipePublished": {
+    "en": "Recipe published",
+    "am": "ዝግጅት ታትሟል"
+  },
+  "notifRecipePublishedBody": {
+    "en": "“{name}” is now in Grandma's Kitchen. Thank you for sharing it.",
+    "am": "“{name}” አሁን በአያት ምግብ ቤት ውስጥ ነው። ስለተጋሩት እናመሰግናለን።"
+  },
+  "recipesPlaceholder": {
+    "en": "{count, plural, =0{no recipes} =1{1 recipe} other{{count} recipes}}",
+    "am": "{count, plural, =0{ምንም ዝግጅቶች የሉም} =1{1 ዝግጅት} other{{count} ዝግጅቶች}}"
   }
 }

@@ -96,6 +96,14 @@
   "@appName": {
     "description": "Application copy"
   },
+  "archiveEmpty": "The first published family recipe will appear here.",
+  "@archiveEmpty": {
+    "description": "Application copy"
+  },
+  "archiveTitle": "From the archive",
+  "@archiveTitle": {
+    "description": "Application copy"
+  },
   "askAssistant": "Ask",
   "@askAssistant": {
     "description": "Application copy"
@@ -408,6 +416,10 @@
   "@fPhoto": {
     "description": "Design prototype copy"
   },
+  "fPhotoHint": "Add a photo",
+  "@fPhotoHint": {
+    "description": "Application copy"
+  },
   "fQuick": "Under 30m",
   "@fQuick": {
     "description": "Design prototype copy"
@@ -664,6 +676,14 @@
   "@myFriendCode": {
     "description": "Application copy"
   },
+  "myRecipesEmpty": "Nothing recorded yet — your first recipe belongs here.",
+  "@myRecipesEmpty": {
+    "description": "Application copy"
+  },
+  "myRecipesTitle": "My family recipes",
+  "@myRecipesTitle": {
+    "description": "Application copy"
+  },
   "nextStep": "Next step",
   "@nextStep": {
     "description": "Design prototype copy"
@@ -702,6 +722,14 @@
   },
   "notifMarkRead": "Got it",
   "@notifMarkRead": {
+    "description": "Application copy"
+  },
+  "notifRecipePublished": "Recipe published",
+  "@notifRecipePublished": {
+    "description": "Application copy"
+  },
+  "notifRecipePublishedBody": "“{name}” is now in Grandma's Kitchen. Thank you for sharing it.",
+  "@notifRecipePublishedBody": {
     "description": "Application copy"
   },
   "notificationsTitle": "Activity",
@@ -819,6 +847,10 @@
   "rateSub": "Only you and your friends see this.",
   "@rateSub": {
     "description": "Design prototype copy"
+  },
+  "recipesPlaceholder": "{count, plural, =0{no recipes} =1{1 recipe} other{{count} recipes}}",
+  "@recipesPlaceholder": {
+    "description": "Application copy"
   },
   "regionBody": "Gurage cooking is built on the enset plant — false banana — scraped, buried, and fermented for months before it becomes kocho. Nothing here is fast. Kitfo is the exception that proves it: raw, warm with mitmita, eaten the day the cow is slaughtered.",
   "@regionBody": {
@@ -1040,6 +1072,18 @@
   "@startCooking": {
     "description": "Design prototype copy"
   },
+  "statusDraft": "Draft",
+  "@statusDraft": {
+    "description": "Application copy"
+  },
+  "statusPending": "In review",
+  "@statusPending": {
+    "description": "Application copy"
+  },
+  "statusPublished": "In the archive",
+  "@statusPublished": {
+    "description": "Application copy"
+  },
   "stepOf": "Step",
   "@stepOf": {
     "description": "Design prototype copy"
@@ -1159,6 +1203,10 @@
   "uploadH1": "Add your family’s recipe",
   "@uploadH1": {
     "description": "Design prototype copy"
+  },
+  "uploadMediaFailed": "The photo could not be uploaded. Try again.",
+  "@uploadMediaFailed": {
+    "description": "Application copy"
   },
   "uploadNote": "Reviewed by two cooks from that region before it goes live.",
   "@uploadNote": {

@@ -81,6 +81,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appName => 'FlameUp';
 
   @override
+  String get archiveEmpty =>
+      'The first published family recipe will appear here.';
+
+  @override
+  String get archiveTitle => 'From the archive';
+
+  @override
   String get askAssistant => 'Ask';
 
   @override
@@ -328,6 +335,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fPhoto => 'Photo of the dish';
 
   @override
+  String get fPhotoHint => 'Add a photo';
+
+  @override
   String get fQuick => 'Under 30m';
 
   @override
@@ -525,6 +535,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myFriendCode => 'Your friend code';
 
   @override
+  String get myRecipesEmpty =>
+      'Nothing recorded yet — your first recipe belongs here.';
+
+  @override
+  String get myRecipesTitle => 'My family recipes';
+
+  @override
   String get nextStep => 'Next step';
 
   @override
@@ -557,6 +574,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notifMarkRead => 'Got it';
+
+  @override
+  String get notifRecipePublished => 'Recipe published';
+
+  @override
+  String notifRecipePublishedBody(Object name) {
+    return '“$name” is now in Grandma\'s Kitchen. Thank you for sharing it.';
+  }
 
   @override
   String get notificationsTitle => 'Activity';
@@ -645,6 +670,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get rateSub => 'Only you and your friends see this.';
+
+  @override
+  String recipesPlaceholder(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count recipes',
+      one: '1 recipe',
+      zero: 'no recipes',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get regionBody =>
@@ -814,6 +851,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get startCooking => 'Start cooking';
 
   @override
+  String get statusDraft => 'Draft';
+
+  @override
+  String get statusPending => 'In review';
+
+  @override
+  String get statusPublished => 'In the archive';
+
+  @override
   String get stepOf => 'Step';
 
   @override
@@ -904,6 +950,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get uploadH1 => 'Add your family’s recipe';
+
+  @override
+  String get uploadMediaFailed => 'The photo could not be uploaded. Try again.';
 
   @override
   String get uploadNote =>

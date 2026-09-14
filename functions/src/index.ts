@@ -391,3 +391,96 @@ export const onFriendAdded = onDocumentCreated(
       });
   },
 );
+
+/**
+ * Grandma's Kitchen: a family recipe was published.
+ *
+ * Moderators flip `status` from `pending` to `published`; this trigger gives
+ * the author the news and the reward. The transition guard (before not
+ * published, after published) keeps edits to a live recipe from re-firing,
+ * and the marker document makes the XP grant replay-safe the same way
+ * `claimCookingReward` is: a re-run finds the marker and grants nothing.
+ */
+export const FAMILY_RECIPE_PUBLISHED_XP = 75;
+
+/** The document id for the "your recipe went live" notification. */
+function recipePublishedNotificationId(recipeId: string): string {
+  return `recipe_published_${recipeId}`;
+}
+
+export const onFamilyRecipePublished = onDocumentWritten(
+  { region: REGION, document: 'family_recipes/{recipeId}' },
+  async (event) => {
+    const recipeId = event.params.recipeId;
+    const before = event.data?.before?.data();
+    const after = event.data?.after?.data();
+
+    if (!after || after.status !== 'published') return;
+    if (before?.status === 'published') return; // edit, not a publication
+
+    const authorId = typeof after.authorId === 'string' ? after.authorId : '';
+    if (authorId.length === 0) return;
+
+    const title =
+      typeof after.titleAm === 'string' && after.titleAm.length > 0
+        ? after.titleAm
+        : typeof after.title === 'string' && after.title.length > 0
+          ? after.title
+          : 'A family recipe';
+
+    await db
+      .doc(
+        `users/${authorId}/notifications/${recipePublishedNotificationId(recipeId)}`,
+      )
+      // Same contract as the social notifications: type + facts only, the
+      // client renders the localized sentence. `otherName` carries the
+      // recipe title, which is the name the sentence is about.
+      .set({
+        type: 'recipePublished',
+        otherUid: recipeId,
+        otherName: title,
+        readAt: null,
+        createdAt: FieldValue.serverTimestamp(),
+      });
+
+    const userRef = db.doc(`users/${authorId}`);
+    const markerRef = db.doc(
+      `users/${authorId}/reward_claims/family_recipe_${recipeId}`,
+    );
+
+    await db.runTransaction(async (tx) => {
+      const marker = await tx.get(markerRef);
+      if (marker.exists) {
+        logger.info('family recipe reward already granted', {
+          authorId,
+          recipeId,
+        });
+        return;
+      }
+
+      const userSnap = await tx.get(userRef);
+      const user = userSnap.data() ?? {};
+      const xpBefore = typeof user.xp === 'number' ? user.xp : 0;
+      const xpAfter = xpBefore + FAMILY_RECIPE_PUBLISHED_XP;
+
+      tx.set(markerRef, {
+        kind: 'familyRecipePublished',
+        recipeId,
+        xpAwarded: FAMILY_RECIPE_PUBLISHED_XP,
+        grantedAt: FieldValue.serverTimestamp(),
+      });
+      tx.set(
+        userRef,
+        {
+          xp: xpAfter,
+          level: levelFor(xpAfter),
+          familyRecipesPublished: FieldValue.increment(1),
+          updatedAt: FieldValue.serverTimestamp(),
+        },
+        { merge: true },
+      );
+    });
+
+    logger.info('family recipe published', { recipeId, authorId });
+  },
+);

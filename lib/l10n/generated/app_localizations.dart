@@ -245,6 +245,18 @@ abstract class AppLocalizations {
   /// Application copy
   ///
   /// In en, this message translates to:
+  /// **'The first published family recipe will appear here.'**
+  String get archiveEmpty;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'From the archive'**
+  String get archiveTitle;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
   /// **'Ask'**
   String get askAssistant;
 
@@ -710,6 +722,12 @@ abstract class AppLocalizations {
   /// **'Photo of the dish'**
   String get fPhoto;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Add a photo'**
+  String get fPhotoHint;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1094,6 +1112,18 @@ abstract class AppLocalizations {
   /// **'Your friend code'**
   String get myFriendCode;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing recorded yet — your first recipe belongs here.'**
+  String get myRecipesEmpty;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'My family recipes'**
+  String get myRecipesTitle;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1153,6 +1183,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Got it'**
   String get notifMarkRead;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Recipe published'**
+  String get notifRecipePublished;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'“{name}” is now in Grandma\'s Kitchen. Thank you for sharing it.'**
+  String notifRecipePublishedBody(Object name);
 
   /// Application copy
   ///
@@ -1327,6 +1369,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Only you and your friends see this.'**
   String get rateSub;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{no recipes} =1{1 recipe} other{{count} recipes}}'**
+  String recipesPlaceholder(num count);
 
   /// Design prototype copy
   ///
@@ -1658,6 +1706,24 @@ abstract class AppLocalizations {
   /// **'Start cooking'**
   String get startCooking;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get statusDraft;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'In review'**
+  String get statusPending;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'In the archive'**
+  String get statusPublished;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1837,6 +1903,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add your family’s recipe'**
   String get uploadH1;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'The photo could not be uploaded. Try again.'**
+  String get uploadMediaFailed;
 
   /// Design prototype copy
   ///

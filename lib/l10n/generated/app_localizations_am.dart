@@ -81,6 +81,12 @@ class AppLocalizationsAm extends AppLocalizations {
   String get appName => 'ፍሌም አፕ';
 
   @override
+  String get archiveEmpty => 'የመጀመሪያው የታተመ የቤተሰብ ዝግጅት እዚህ ይታያል።';
+
+  @override
+  String get archiveTitle => 'ከማህደሩ';
+
+  @override
   String get askAssistant => 'ጠይቅ';
 
   @override
@@ -319,6 +325,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get fPhoto => 'የምግቡ ፎቶ';
 
   @override
+  String get fPhotoHint => 'ፎቶ ያክሉ';
+
+  @override
   String get fQuick => 'ከ30ደቂቃ በታች';
 
   @override
@@ -513,6 +522,12 @@ class AppLocalizationsAm extends AppLocalizations {
   String get myFriendCode => 'የእርስዎ ኮድ';
 
   @override
+  String get myRecipesEmpty => 'እስካሁን የተመዘገበ አልተገኘም — የመጀመሪያው ዝግጅትዎ እዚህ ይኖራል።';
+
+  @override
+  String get myRecipesTitle => 'የቤተሰብ ዝግጅቶቼ';
+
+  @override
   String get nextStep => 'ቀጣይ ደረጃ';
 
   @override
@@ -545,6 +560,14 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get notifMarkRead => 'ተገቢዋለሁ';
+
+  @override
+  String get notifRecipePublished => 'ዝግጅት ታትሟል';
+
+  @override
+  String notifRecipePublishedBody(Object name) {
+    return '“$name” አሁን በአያት ምግብ ቤት ውስጥ ነው። ስለተጋሩት እናመሰግናለን።';
+  }
 
   @override
   String get notificationsTitle => 'እንቅስቃሴ';
@@ -633,6 +656,18 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get rateSub => 'እርስዎና ጓደኞችዎ ብቻ ያዩታል።';
+
+  @override
+  String recipesPlaceholder(num count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ዝግጅቶች',
+      one: '1 ዝግጅት',
+      zero: 'ምንም ዝግጅቶች የሉም',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get regionBody =>
@@ -801,6 +836,15 @@ class AppLocalizationsAm extends AppLocalizations {
   String get startCooking => 'ማብሰል ጀምር';
 
   @override
+  String get statusDraft => 'ረቂቅ';
+
+  @override
+  String get statusPending => 'በግምገማ ላይ';
+
+  @override
+  String get statusPublished => 'በማህደር ውስጥ';
+
+  @override
   String get stepOf => 'ደረጃ';
 
   @override
@@ -891,6 +935,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get uploadH1 => 'የቤተሰብዎን አዘገጃጀት ያክሉ';
+
+  @override
+  String get uploadMediaFailed => 'ፎቶው መስቀል አልተቻለም። እንደገና ይሞክሩ።';
 
   @override
   String get uploadNote => 'ከዚያ ክልል በሁለት ምግብ አብሳዮች ተገምግሞ ይለቀቃል።';

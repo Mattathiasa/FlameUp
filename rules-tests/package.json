@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "firebase emulators:exec --only firestore --project flameup-rules-test 'vitest run'",
-    "test:watch": "firebase emulators:exec --only firestore --project flameup-rules-test 'vitest'"
+    "test": "firebase emulators:exec --only firestore,storage --project flameup-rules-test 'vitest run'",
+    "test:watch": "firebase emulators:exec --only firestore,storage --project flameup-rules-test 'vitest'"
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^4.0.1",

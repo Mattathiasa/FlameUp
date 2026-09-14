@@ -21,6 +21,13 @@ service firebase.storage {
       return request.resource.contentType.matches('image/.*');
     }
 
+    // Family recipes carry photos of dishes and video of the cooking
+    // itself -- the archive's whole point.
+    function isMedia() {
+      return request.resource.contentType.matches('image/.*')
+        || request.resource.contentType.matches('video/.*');
+    }
+
     function underSizeLimit(megabytes) {
       return request.resource.size < megabytes * 1024 * 1024;
     }
@@ -40,12 +47,19 @@ service firebase.storage {
       allow delete: if isOwner(uid);
     }
 
-    // Family recipe media. Larger, because these carry video of someone's
-    // grandmother cooking, which is the point of the feature.
-    match /family_recipes/{recipeId}/{fileName} {
+    // Family recipe media, kept inside the author's own space so ownership
+    // is checkable from the path alone. Larger, because these carry video of
+    // someone's grandmother cooking, which is the point of the feature.
+    //
+    // Read is any signed-in user, which means media attached to a *draft*
+    // is technically visible before its recipe is published. The sensitive
+    // content -- names, stories, steps -- lives in Firestore and stays
+    // private there; the trade is documented rather than papered over with a
+    // cross-service lookup that would break offline-first uploads.
+    match /users/{uid}/family_recipes/{recipeId}/{fileName} {
       allow read: if signedIn();
-      allow write: if signedIn() && underSizeLimit(100);
-      allow delete: if signedIn();
+      allow write: if isOwner(uid) && isMedia() && underSizeLimit(100);
+      allow delete: if isOwner(uid);
     }
 
     // Curated recipe photography is uploaded out of band, never by the app.

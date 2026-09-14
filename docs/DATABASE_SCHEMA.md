@@ -68,7 +68,7 @@ sanely.
 | `meal_plans/{yyyy-Www}` | `days: { mon: { breakfast, lunch, dinner }, ... }` | one doc per ISO week |
 | `friends/{otherUid}` | `since`, `displayName`, `photoUrl` | denormalised for list rendering |
 | `friend_requests/{otherUid}` | `direction` in/out, `status`, `createdAt` | |
-| `notifications/{id}` | `type` ('friendRequest' \| 'friendAdded'), `otherUid`, `otherName`, `readAt`, `createdAt` | written **only by Cloud Functions**; the client reads and marks read |
+| `notifications/{id}` | `type` ('friendRequest' \| 'friendAdded' \| 'recipePublished'), `otherUid`, `otherName`, `readAt`, `createdAt` | written **only by Cloud Functions**; the client reads and marks read. For `recipePublished`, `otherUid` is the recipe id and `otherName` its title |
 
 | `outbox/{idempotencyKey}` | queued offline mutation | drained on reconnect |
 
@@ -224,6 +224,21 @@ lineage the feature is about is real data rather than prose.
 
 Drafts are visible only to their author. Nothing reaches `published` without
 passing moderation (brief §32).
+
+**Client writes today** use the fields the form collects: `title`, `titleAm`,
+`teacherName`, `regionId`, `story`, `stepsText`, `authorId`, `status`,
+`mediaUrl`, plus `generations` for lineage. The remaining columns above are
+reserved for the moderation tooling that will write them.
+
+**Media** lives in Storage under `users/{authorId}/family_recipes/{mediaId}`
+(owner-derivable path; any signed-in user may read, only the owner may write
+delete). Firestore stores the download URL in `mediaUrl`.
+
+**Publication rewards:** when a moderator flips `status` to `published`, the
+`onFamilyRecipePublished` trigger notifies the author (notification type
+`recipePublished`) and, replay-safely via a `reward_claims` marker, grants 75
+XP and increments the `familyRecipesPublished` counter on `users/{authorId}`
+-- the figure the "Grandma Approved" achievement reads.
 
 ---
 

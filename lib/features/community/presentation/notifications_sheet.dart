@@ -91,7 +91,14 @@ class NotificationsSheet extends ConsumerWidget {
                     unawaited(markRead(notification));
                     if (context.mounted) {
                       Navigator.of(context).pop();
-                      unawaited(context.push(Routes.friends));
+                      unawaited(
+                        context.push(
+                          notification.type ==
+                                  AppNotificationType.recipePublished
+                              ? Routes.grandmasKitchen
+                              : Routes.friends,
+                        ),
+                      );
                     }
                   },
                   onDismiss: () => markRead(notification),
@@ -123,12 +130,15 @@ class _NotificationRow extends StatelessWidget {
     final title = switch (notification.type) {
       AppNotificationType.friendRequest => l10n.notifFriendRequest,
       AppNotificationType.friendAdded => l10n.notifFriendAdded,
+      AppNotificationType.recipePublished => l10n.notifRecipePublished,
     };
     final body = switch (notification.type) {
       AppNotificationType.friendRequest =>
         l10n.notifFriendRequestBody(notification.otherName),
       AppNotificationType.friendAdded =>
         l10n.notifFriendAddedBody(notification.otherName),
+      AppNotificationType.recipePublished =>
+        l10n.notifRecipePublishedBody(notification.otherName),
     };
 
     return GlassPanel(
@@ -143,9 +153,11 @@ class _NotificationRow extends StatelessWidget {
                 ? AppColors.accent.withValues(alpha: 0.18)
                 : palette.glassRaised,
             child: Icon(
-              notification.type == AppNotificationType.friendRequest
-                  ? Icons.person_add_alt_1
-                  : Icons.group,
+              switch (notification.type) {
+                AppNotificationType.friendRequest => Icons.person_add_alt_1,
+                AppNotificationType.friendAdded => Icons.group,
+                AppNotificationType.recipePublished => Icons.restaurant_menu,
+              },
               size: 18,
               color: notification.isUnread
                   ? AppColors.accent

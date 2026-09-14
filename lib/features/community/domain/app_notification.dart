@@ -3,7 +3,7 @@
 /// The server stores no display copy: [type] plus the actor's name are the
 /// facts, and the client renders the localized sentence. One more type means
 /// one more client case -- no function redeploy to fix wording.
-enum AppNotificationType { friendRequest, friendAdded }
+enum AppNotificationType { friendRequest, friendAdded, recipePublished }
 
 class AppNotification {
   const AppNotification({

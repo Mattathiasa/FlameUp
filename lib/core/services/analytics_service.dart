@@ -31,6 +31,10 @@ class AnalyticsService {
   static const String masteryAdvanced = 'mastery_advanced';
   // Culture + social
   static const String familyRecipeCreated = 'family_recipe_created';
+
+  /// A family recipe was submitted to Grandma's Kitchen.
+  Future<void> logFamilyRecipeCreated() =>
+      log(AnalyticsService.familyRecipeCreated);
   static const String regionExplored = 'region_explored';
   static const String challengeCreated = 'challenge_created';
   static const String challengeCompleted = 'challenge_completed';
