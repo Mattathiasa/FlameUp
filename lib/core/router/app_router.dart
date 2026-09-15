@@ -11,6 +11,7 @@ import '../../features/community/presentation/community_screen.dart';
 import '../../features/community/presentation/friends_screen.dart';
 import '../../features/community/presentation/leaderboard_screen.dart';
 import '../../features/cooking/presentation/cook_done_screen.dart';
+import '../../features/cooking/presentation/cook_hub_screen.dart';
 import '../../features/cooking/presentation/cook_mode_screen.dart';
 import '../../features/cooking/presentation/cook_rate_screen.dart';
 import '../../features/family_recipes/presentation/family_recipe_form.dart';
@@ -184,7 +185,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: Routes.cook,
-                builder: (_, __) => const DiscoverScreen(),
+                builder: (_, __) => const CookHubScreen(),
               ),
               GoRoute(
                 path: Routes.recipeDetail,

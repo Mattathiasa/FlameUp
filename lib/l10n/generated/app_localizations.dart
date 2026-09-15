@@ -488,6 +488,12 @@ abstract class AppLocalizations {
   /// **'Continue with Google'**
   String get continueWithGoogle;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Everything for the meal you are about to make'**
+  String get cookHubSub;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -499,6 +505,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cook tonight'**
   String get cookTonight;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Cooked recently'**
+  String get cookedRecently;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Your last cooks on this device'**
+  String get cookedRecentlySub;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Cooked {n} times'**
+  String cookedTimes(Object n);
 
   /// Design prototype copy
   ///
@@ -1322,6 +1346,18 @@ abstract class AppLocalizations {
   /// **'Quests'**
   String get questsH1;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Quick cooks'**
+  String get quickCooks;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'On the table in 45 minutes or less'**
+  String get quickCooksSub;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1429,6 +1465,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try again'**
   String get retry;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Saved for later'**
+  String get savedCookSub;
 
   /// Application copy
   ///
@@ -1844,11 +1886,59 @@ abstract class AppLocalizations {
   /// **'TOTAL TIME'**
   String get timeLbl;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Timer finished'**
+  String get timerDoneAnnounce;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Finish the dish'**
+  String get timerDoneFinish;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Next step'**
+  String get timerDoneNext;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Needs more time'**
+  String get timerDoneRestart;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'This step has finished its time.'**
+  String get timerDoneSub;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Timer done'**
+  String get timerDoneTitle;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Acknowledged — finish this step'**
+  String get timerDoneTitleAck;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
   /// **'ONIONS, DRY-COOKING'**
   String get timerLabel;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Paused'**
+  String get timerPausedLabel;
 
   /// Design prototype copy
   ///

@@ -1,9 +1,13 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/errors/failure.dart';
 import '../../../core/router/routes.dart';
+import '../../../core/services/cook_wakelock.dart';
+import '../../../core/services/timer_completion_alert.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
@@ -51,14 +55,59 @@ class _CookMode extends ConsumerStatefulWidget {
 }
 
 class _CookModeState extends ConsumerState<_CookMode> {
+  /// Steps whose completion has already been announced. The ticker repaints
+  /// every second, so without this the alert would re-fire on each tick after
+  /// the deadline — once per step is the contract.
+  final Set<int> _announcedSteps = {};
+
+  /// Captured in initState and used in dispose: Riverpod forbids `ref.read`
+  /// once the element is unmounting.
+  CookWakelock? _wakelock;
+
   @override
   void initState() {
     super.initState();
+    _wakelock = ref.read(cookWakelockProvider);
     // Start or resume once the first frame is up, so the provider is not
     // mutated during build.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(cookingControllerProvider.notifier).start(widget.recipe);
     });
+    // Cook mode holds the screen awake: a simmering pot is read glances, not
+    // touch, and a display that sleeps mid-step is a worse kitchen companion
+    // than one that stays bright. Released in dispose.
+    _wakelock!.enable();
+    // The completion alert is driven by the same one-second state stream the
+    // display repaints from, so the cue lands within a tick of the deadline.
+    ref.listenManual(
+      cookingControllerProvider,
+      (_, session) {
+        if (session != null) _announceIfExpired(session);
+      },
+      // A resumed session may already be expired before the first frame, so
+      // the current value matters, not just future changes.
+      fireImmediately: true,
+    );
+  }
+
+  @override
+  void dispose() {
+    _wakelock?.disable();
+    _announcedSteps.clear();
+    super.dispose();
+  }
+
+  /// Announce a finished step timer: chime + haptics while the app is in the
+  /// foreground. (The OS notification covers the backgrounded case; while
+  /// FlameUp is on screen, the OS suppresses its own banner.)
+  void _announceIfExpired(CookingSession session) {
+    final step = session.currentStep;
+    if (_announcedSteps.contains(step)) return;
+    if (!widget.recipe.steps[step].hasTimer) return;
+    if (!session.hasExpiredTimer(step)) return;
+
+    _announcedSteps.add(step);
+    unawaited(ref.read(timerCompletionAlertProvider).play());
   }
 
   @override
@@ -110,22 +159,44 @@ class _CookModeState extends ConsumerState<_CookMode> {
                       child: Column(
                         children: [
                           const SizedBox(height: AppSpacing.xxl),
-                          if (step.hasTimer)
+                          if (step.hasTimer && !expired)
                             _Timer(
                               remaining: remaining,
                               total: step.duration!,
-                              expired: expired,
+                              expired: false,
                               paused: paused,
                               palette: palette,
                             ),
-                          const SizedBox(height: AppSpacing.xxxl),
-                          Text(
-                            step.localisedText(amharic: amharic),
-                            textAlign: TextAlign.center,
-                            style: AppTypography.headlineMedium
-                                .copyWith(color: palette.textPrimary),
-                          ),
-                          if (step.localisedTip(amharic: amharic) != null) ...[
+                          if (step.hasTimer && expired) ...[
+                            _TimerDoneCard(
+                              isLastStep: session.isOnLastStep,
+                              onNext: () async {
+                                if (session.isOnLastStep) {
+                                  final done = await controller.finish();
+                                  if (done != null && context.mounted) {
+                                    context.pushReplacement(
+                                      Routes.cookDoneOf(done.id),
+                                    );
+                                  }
+                                } else {
+                                  await controller.nextStep(widget.recipe);
+                                }
+                              },
+                              onRestart: () =>
+                                  controller.restartTimer(widget.recipe),
+                            ),
+                          ],
+                          if (!expired) ...[
+                            const SizedBox(height: AppSpacing.xxxl),
+                            Text(
+                              step.localisedText(amharic: amharic),
+                              textAlign: TextAlign.center,
+                              style: AppTypography.headlineMedium
+                                  .copyWith(color: palette.textPrimary),
+                            ),
+                          ],
+                          if (step.localisedTip(amharic: amharic) != null &&
+                              !expired) ...[
                             const SizedBox(height: AppSpacing.xl),
                             GlassPanel(
                               blur: false,
@@ -149,6 +220,7 @@ class _CookModeState extends ConsumerState<_CookMode> {
                     controller: controller,
                     step: step,
                     paused: paused,
+                    expired: expired,
                     l10n: l10n,
                   ),
                 ],
@@ -273,7 +345,7 @@ class _Timer extends StatelessWidget {
     return Semantics(
       liveRegion: true,
       label: expired
-          ? 'Timer finished'
+          ? AppLocalizations.of(context).timerDoneAnnounce
           : '$minutes minutes $seconds seconds remaining',
       excludeSemantics: true,
       child: RingProgress(
@@ -294,7 +366,7 @@ class _Timer extends StatelessWidget {
             ),
             if (paused)
               Text(
-                'paused',
+                AppLocalizations.of(context).timerPausedLabel,
                 style:
                     AppTypography.label.copyWith(color: palette.textTertiary),
               ),
@@ -312,6 +384,7 @@ class _Controls extends StatelessWidget {
     required this.controller,
     required this.step,
     required this.paused,
+    required this.expired,
     required this.l10n,
   });
 
@@ -320,6 +393,11 @@ class _Controls extends StatelessWidget {
   final CookingController controller;
   final RecipeStep step;
   final bool paused;
+
+  /// A finished timer is replaced by the done card, so its pause/restart row
+  /// would be controls for something that is no longer on screen.
+  final bool expired;
+
   final AppLocalizations l10n;
 
   @override
@@ -328,7 +406,7 @@ class _Controls extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
       child: Column(
         children: [
-          if (step.hasTimer)
+          if (step.hasTimer && !expired)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -350,8 +428,12 @@ class _Controls extends StatelessWidget {
           Row(
             children: [
               if (session.currentStep > 0) ...[
+                // Bounded square: the theme's outlined-button minimum width is
+                // infinite (full-width rows elsewhere), which crashes when the
+                // button is placed bare in a Row.
                 SizedBox(
                   height: 56,
+                  width: 56,
                   child: OutlinedButton(
                     onPressed: () => controller.previousStep(recipe),
                     child: const Icon(Icons.arrow_back),
@@ -375,6 +457,72 @@ class _Controls extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// The state that replaces the countdown when a step's timer has run out.
+///
+/// The green ring alone was too easy to miss from across a kitchen — and it
+/// asked the cook to scroll down to find the Next button. This card is the
+/// announcement: what happened, and the three honest ways to respond.
+class _TimerDoneCard extends StatelessWidget {
+  const _TimerDoneCard({
+    required this.isLastStep,
+    required this.onNext,
+    required this.onRestart,
+  });
+
+  final bool isLastStep;
+  final VoidCallback onNext;
+  final VoidCallback onRestart;
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = AppPalette.of(context);
+    final l10n = AppLocalizations.of(context);
+
+    return GlassPanel(
+      blur: false,
+      padding: const EdgeInsets.all(AppSpacing.xl),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.check_circle, color: AppColors.green),
+              const SizedBox(width: AppSpacing.sm),
+              Flexible(
+                child: Text(
+                  l10n.timerDoneTitle,
+                  style: AppTypography.titleMedium
+                      .copyWith(color: palette.textPrimary),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.sm),
+          Text(
+            l10n.timerDoneSub,
+            textAlign: TextAlign.center,
+            style:
+                AppTypography.bodyMedium.copyWith(color: palette.textSecondary),
+          ),
+          const SizedBox(height: AppSpacing.xl),
+          FlameButton(
+            label: isLastStep ? l10n.timerDoneFinish : l10n.timerDoneNext,
+            onPressed: onNext,
+          ),
+          const SizedBox(height: AppSpacing.md),
+          // The honest third option: the timer said so, the cook disagrees.
+          TextButton.icon(
+            onPressed: onRestart,
+            icon: const Icon(Icons.refresh),
+            label: Text(l10n.timerDoneRestart),
           ),
         ],
       ),

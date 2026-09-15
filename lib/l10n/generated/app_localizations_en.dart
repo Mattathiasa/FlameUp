@@ -215,10 +215,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get continueWithGoogle => 'Continue with Google';
 
   @override
+  String get cookHubSub => 'Everything for the meal you are about to make';
+
+  @override
   String get cookOne => 'Cook a Gurage dish';
 
   @override
   String get cookTonight => 'Cook tonight';
+
+  @override
+  String get cookedRecently => 'Cooked recently';
+
+  @override
+  String get cookedRecentlySub => 'Your last cooks on this device';
+
+  @override
+  String cookedTimes(Object n) {
+    return 'Cooked $n times';
+  }
 
   @override
   String get dDairy => 'No dairy';
@@ -648,6 +662,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get questsH1 => 'Quests';
 
   @override
+  String get quickCooks => 'Quick cooks';
+
+  @override
+  String get quickCooksSub => 'On the table in 45 minutes or less';
+
+  @override
   String get r1 => 'Rough';
 
   @override
@@ -710,6 +730,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get retry => 'Try again';
+
+  @override
+  String get savedCookSub => 'Saved for later';
 
   @override
   String get savedEmpty => 'Nothing saved yet';
@@ -921,7 +944,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get timeLbl => 'TOTAL TIME';
 
   @override
+  String get timerDoneAnnounce => 'Timer finished';
+
+  @override
+  String get timerDoneFinish => 'Finish the dish';
+
+  @override
+  String get timerDoneNext => 'Next step';
+
+  @override
+  String get timerDoneRestart => 'Needs more time';
+
+  @override
+  String get timerDoneSub => 'This step has finished its time.';
+
+  @override
+  String get timerDoneTitle => 'Timer done';
+
+  @override
+  String get timerDoneTitleAck => 'Acknowledged — finish this step';
+
+  @override
   String get timerLabel => 'ONIONS, DRY-COOKING';
+
+  @override
+  String get timerPausedLabel => 'Paused';
 
   @override
   String get tipDry => 'No oil until the onions give up';

@@ -207,10 +207,24 @@ class AppLocalizationsAm extends AppLocalizations {
   String get continueWithGoogle => 'በGoogle ይቀጥሉ';
 
   @override
+  String get cookHubSub => 'አቁራቢው እንዲመጣልዎ የሚያስፈልግ ሁሉ እዚህ ነው';
+
+  @override
   String get cookOne => 'የጉራጌ ምግብ ያብስሉ';
 
   @override
   String get cookTonight => 'ዛሬ ማታ ያብስሉ';
+
+  @override
+  String get cookedRecently => 'በአጭር ጊዜ የተበላ';
+
+  @override
+  String get cookedRecentlySub => 'በአዚህ መሣሪያ ላይ ያበሉት ምግቦች';
+
+  @override
+  String cookedTimes(Object n) {
+    return '$n ጊዜ የበሉት';
+  }
 
   @override
   String get dDairy => 'ወተት የለም';
@@ -634,6 +648,12 @@ class AppLocalizationsAm extends AppLocalizations {
   String get questsH1 => 'ተልእኮዎች';
 
   @override
+  String get quickCooks => 'ፈጣን ዝግጅቶች';
+
+  @override
+  String get quickCooksSub => 'በ45 ደቂቃ ወስጥ ወደ ጠረጴዛ ይደርሳል';
+
+  @override
   String get r1 => 'ደካማ';
 
   @override
@@ -696,6 +716,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get retry => 'እንደገና ይሞክሩ';
+
+  @override
+  String get savedCookSub => 'ለኋላ በቀጠለ';
 
   @override
   String get savedEmpty => 'ገና ምንም አልተቀመጠም';
@@ -906,7 +929,31 @@ class AppLocalizationsAm extends AppLocalizations {
   String get timeLbl => 'ጠቅላላ ጊዜ';
 
   @override
+  String get timerDoneAnnounce => 'ጊዜው አለቀ';
+
+  @override
+  String get timerDoneFinish => 'ምግቡን ጨርስ';
+
+  @override
+  String get timerDoneNext => 'ቀጣዩ ደረጃ';
+
+  @override
+  String get timerDoneRestart => 'ተጨማሪ ጊዜ ያስፈልገዋል';
+
+  @override
+  String get timerDoneSub => 'ይህ ደረጃ ጊዜውን ጨርሷል።';
+
+  @override
+  String get timerDoneTitle => 'ሰዓቱ አበቃ';
+
+  @override
+  String get timerDoneTitleAck => 'ተረጋግጧል — ደረጃውን ጨርስ';
+
+  @override
   String get timerLabel => 'ሽንኩርት፣ በደረቁ እየበሰለ';
+
+  @override
+  String get timerPausedLabel => 'ለአፍጥታ ቆሟል';
 
   @override
   String get tipDry => 'ሽንኩርቱ ውሃውን እስኪለቅ ዘይት የለም';

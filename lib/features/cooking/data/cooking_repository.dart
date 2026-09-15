@@ -22,11 +22,17 @@ class CookingRepository {
     FirebaseFirestore? firestore,
   })  : _store = store,
         _outbox = outbox,
-        _firestore = firestore ?? FirebaseFirestore.instance;
+        _firestore = firestore;
 
   final LocalStore _store;
   final Outbox _outbox;
-  final FirebaseFirestore _firestore;
+
+  /// Resolved lazily: cooking is local-first, so constructing the repository
+  /// must not require Firebase to be initialised — a test or a fully offline
+  /// moment only ever touches the local store.
+  FirebaseFirestore? _firestore;
+
+  FirebaseFirestore get _fs => _firestore ??= FirebaseFirestore.instance;
 
   static const String _box = LocalStore.boxSessions;
 
@@ -81,6 +87,8 @@ class CookingRepository {
             '.${session.status.name}',
       ),
     );
+
+    _notify();
   }
 
   /// Mark a session complete and queue the reward claim.
@@ -115,14 +123,21 @@ class CookingRepository {
 
   /// Applies a queued session write. Registered with the outbox at startup.
   Future<void> applyMutation(PendingMutation mutation) async {
-    await _firestore.doc(mutation.path).set(
-      {
-        ...mutation.payload,
-        'updatedAt': FieldValue.serverTimestamp(),
-      },
-      SetOptions(merge: true),
-    );
+    await _fs.doc(mutation.path).set(
+          {
+            ...mutation.payload,
+            'updatedAt': FieldValue.serverTimestamp(),
+          },
+          SetOptions(merge: true),
+        );
   }
+
+  /// Notified whenever a session is written, so providers derived from the
+  /// local store (resume card, history) refresh without waiting for a rebuild
+  /// that may never come.
+  void Function()? changeListener;
+
+  void _notify() => changeListener?.call();
 }
 
 final cookingRepositoryProvider = Provider<CookingRepository>((ref) {
@@ -134,5 +149,21 @@ final cookingRepositoryProvider = Provider<CookingRepository>((ref) {
         MutationKind.cookingSession,
         repo.applyMutation,
       );
+  ref.onDispose(() => repo.changeListener = null);
   return repo;
 });
+
+/// Bumps every time any session is written to the local store. Providers that
+/// read sessions watch this instead of polling, and re-read on each bump.
+class SessionStoreVersion extends Notifier<int> {
+  @override
+  int build() {
+    final repo = ref.watch(cookingRepositoryProvider);
+    repo.changeListener = () => state++;
+    ref.onDispose(() => repo.changeListener = null);
+    return 0;
+  }
+}
+
+final sessionStoreVersionProvider =
+    NotifierProvider<SessionStoreVersion, int>(SessionStoreVersion.new);

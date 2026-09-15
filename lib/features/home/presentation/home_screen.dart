@@ -10,6 +10,7 @@ import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
 import '../../auth/domain/auth_providers.dart';
 import '../../cooking/domain/cooking_controller.dart';
+import '../../cooking/presentation/resume_card.dart';
 import '../../gamification/domain/progress_providers.dart';
 import '../../onboarding/domain/onboarding_providers.dart';
 import '../../recipes/data/recipe_seed_source.dart';
@@ -108,7 +109,7 @@ class HomeScreen extends ConsumerWidget {
                           AppSpacing.gutter,
                           0,
                         ),
-                        child: _ResumeCard(
+                        child: ResumeCard(
                           recipe: byId[resumable.recipeId]!,
                           step: resumable.currentStep + 1,
                           total: resumable.totalSteps,
@@ -211,83 +212,6 @@ class _StreakPill extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _ResumeCard extends StatelessWidget {
-  const _ResumeCard({
-    required this.recipe,
-    required this.step,
-    required this.total,
-    required this.progress,
-    required this.amharic,
-    required this.l10n,
-    required this.onTap,
-  });
-
-  final Recipe recipe;
-  final int step;
-  final int total;
-  final double progress;
-  final bool amharic;
-  final AppLocalizations l10n;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final palette = AppPalette.of(context);
-
-    return GlassPanel(
-      blur: false,
-      padding: const EdgeInsets.all(AppSpacing.xl),
-      onTap: onTap,
-      child: Row(
-        children: [
-          GradientTile.fromHex(
-            colorA: recipe.gradientA,
-            colorB: recipe.gradientB,
-            width: 56,
-            height: 56,
-            borderRadius: AppRadii.lgAll,
-          ),
-          const SizedBox(width: AppSpacing.lg),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Eyebrow(l10n.pickUp, color: AppColors.accent),
-                const SizedBox(height: AppSpacing.xs),
-                Text(
-                  '${recipe.localisedTitle(amharic: amharic)} · '
-                  '${l10n.stepOf} $step ${l10n.ofWord} $total',
-                  style: AppTypography.titleSmall
-                      .copyWith(color: palette.textPrimary),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                FlameProgressBar(value: progress, animate: false),
-              ],
-            ),
-          ),
-          const SizedBox(width: AppSpacing.md),
-          Container(
-            width: 44,
-            height: 44,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment(-0.34, -1),
-                end: Alignment(0.34, 1),
-                colors: [AppColors.accent, AppColors.accentDeep],
-              ),
-            ),
-            child: const Icon(Icons.play_arrow, color: Colors.white, size: 22),
-          ),
-        ],
       ),
     );
   }

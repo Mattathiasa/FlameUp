@@ -265,9 +265,26 @@ final cookingControllerProvider =
 );
 
 /// The session waiting to be resumed, if any. Drives the "pick up where you
-/// left" card on Today.
+/// left" card on Today and at the top of the Cook tab.
 final resumableSessionProvider = Provider<CookingSession?>((ref) {
+  // Watching the version counter is what makes this reactive: the card
+  // disappears the moment a session completes, without any manual
+  // invalidate from the screens.
+  ref.watch(sessionStoreVersionProvider);
   return ref.watch(cookingRepositoryProvider).activeSession();
+});
+
+/// Completed cooks on this device, aggregated per recipe: recipe id -> number
+/// of times cooked. Newest sessions carry the most weight in ordering.
+final cookingHistoryProvider =
+    Provider<Map<String, int>>((ref) {
+  ref.watch(sessionStoreVersionProvider);
+  final counts = <String, int>{};
+  for (final session in ref.watch(cookingRepositoryProvider).allLocal()) {
+    if (session.status != SessionStatus.completed) continue;
+    counts[session.recipeId] = (counts[session.recipeId] ?? 0) + 1;
+  }
+  return counts;
 });
 
 /// Forwards app lifecycle changes to callbacks.

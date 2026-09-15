@@ -260,6 +260,10 @@
   "@continueWithGoogle": {
     "description": "Application copy"
   },
+  "cookHubSub": "Everything for the meal you are about to make",
+  "@cookHubSub": {
+    "description": "Application copy"
+  },
   "cookOne": "Cook a Gurage dish",
   "@cookOne": {
     "description": "Design prototype copy"
@@ -267,6 +271,18 @@
   "cookTonight": "Cook tonight",
   "@cookTonight": {
     "description": "Design prototype copy"
+  },
+  "cookedRecently": "Cooked recently",
+  "@cookedRecently": {
+    "description": "Application copy"
+  },
+  "cookedRecentlySub": "Your last cooks on this device",
+  "@cookedRecentlySub": {
+    "description": "Application copy"
+  },
+  "cookedTimes": "Cooked {n} times",
+  "@cookedTimes": {
+    "description": "Application copy"
   },
   "dDairy": "No dairy",
   "@dDairy": {
@@ -816,6 +832,14 @@
   "@questsH1": {
     "description": "Design prototype copy"
   },
+  "quickCooks": "Quick cooks",
+  "@quickCooks": {
+    "description": "Application copy"
+  },
+  "quickCooksSub": "On the table in 45 minutes or less",
+  "@quickCooksSub": {
+    "description": "Application copy"
+  },
   "r1": "Rough",
   "@r1": {
     "description": "Design prototype copy"
@@ -887,6 +911,10 @@
   "retry": "Try again",
   "@retry": {
     "description": "Design prototype copy"
+  },
+  "savedCookSub": "Saved for later",
+  "@savedCookSub": {
+    "description": "Application copy"
   },
   "savedEmpty": "Nothing saved yet",
   "@savedEmpty": {
@@ -1164,9 +1192,41 @@
   "@timeLbl": {
     "description": "Design prototype copy"
   },
+  "timerDoneAnnounce": "Timer finished",
+  "@timerDoneAnnounce": {
+    "description": "Application copy"
+  },
+  "timerDoneFinish": "Finish the dish",
+  "@timerDoneFinish": {
+    "description": "Application copy"
+  },
+  "timerDoneNext": "Next step",
+  "@timerDoneNext": {
+    "description": "Application copy"
+  },
+  "timerDoneRestart": "Needs more time",
+  "@timerDoneRestart": {
+    "description": "Application copy"
+  },
+  "timerDoneSub": "This step has finished its time.",
+  "@timerDoneSub": {
+    "description": "Application copy"
+  },
+  "timerDoneTitle": "Timer done",
+  "@timerDoneTitle": {
+    "description": "Application copy"
+  },
+  "timerDoneTitleAck": "Acknowledged — finish this step",
+  "@timerDoneTitleAck": {
+    "description": "Application copy"
+  },
   "timerLabel": "ONIONS, DRY-COOKING",
   "@timerLabel": {
     "description": "Design prototype copy"
+  },
+  "timerPausedLabel": "Paused",
+  "@timerPausedLabel": {
+    "description": "Application copy"
   },
   "tipDry": "No oil until the onions give up",
   "@tipDry": {

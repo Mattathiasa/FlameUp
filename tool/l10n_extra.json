@@ -431,5 +431,65 @@
   "recipesPlaceholder": {
     "en": "{count, plural, =0{no recipes} =1{1 recipe} other{{count} recipes}}",
     "am": "{count, plural, =0{ምንም ዝግጅቶች የሉም} =1{1 ዝግጅት} other{{count} ዝግጅቶች}}"
+  },
+  "cookHubSub": {
+    "en": "Everything for the meal you are about to make",
+    "am": "አቁራቢው እንዲመጣልዎ የሚያስፈልግ ሁሉ እዚህ ነው"
+  },
+  "quickCooks": {
+    "en": "Quick cooks",
+    "am": "ፈጣን ዝግጅቶች"
+  },
+  "quickCooksSub": {
+    "en": "On the table in 45 minutes or less",
+    "am": "በ45 ደቂቃ ወስጥ ወደ ጠረጴዛ ይደርሳል"
+  },
+  "cookedRecently": {
+    "en": "Cooked recently",
+    "am": "በአጭር ጊዜ የተበላ"
+  },
+  "cookedRecentlySub": {
+    "en": "Your last cooks on this device",
+    "am": "በአዚህ መሣሪያ ላይ ያበሉት ምግቦች"
+  },
+  "cookedTimes": {
+    "en": "Cooked {n} times",
+    "am": "{n} ጊዜ የበሉት"
+  },
+  "savedCookSub": {
+    "en": "Saved for later",
+    "am": "ለኋላ በቀጠለ"
+  },
+  "timerDoneTitle": {
+    "en": "Timer done",
+    "am": "ሰዓቱ አበቃ"
+  },
+  "timerDoneSub": {
+    "en": "This step has finished its time.",
+    "am": "ይህ ደረጃ ጊዜውን ጨርሷል።"
+  },
+  "timerDoneNext": {
+    "en": "Next step",
+    "am": "ቀጣዩ ደረጃ"
+  },
+  "timerDoneFinish": {
+    "en": "Finish the dish",
+    "am": "ምግቡን ጨርስ"
+  },
+  "timerDoneRestart": {
+    "en": "Needs more time",
+    "am": "ተጨማሪ ጊዜ ያስፈልገዋል"
+  },
+  "timerDoneTitleAck": {
+    "en": "Acknowledged — finish this step",
+    "am": "ተረጋግጧል — ደረጃውን ጨርስ"
+  },
+  "timerPausedLabel": {
+    "en": "Paused",
+    "am": "ለአፍጥታ ቆሟል"
+  },
+  "timerDoneAnnounce": {
+    "en": "Timer finished",
+    "am": "ጊዜው አለቀ"
   }
 }
