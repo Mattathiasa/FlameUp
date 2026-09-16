@@ -96,7 +96,7 @@ class SettingsScreen extends ConsumerWidget {
                       options: {
                         ThemeMode.dark: l10n.setDarkL,
                         ThemeMode.light: l10n.setLightL,
-                        ThemeMode.system: l10n.actionOk,
+                        ThemeMode.system: l10n.setSystemL,
                       },
                       onChanged: (mode) =>
                           ref.read(themeModeProvider.notifier).set(mode),

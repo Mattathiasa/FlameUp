@@ -328,6 +328,14 @@
   "@dRaw": {
     "description": "Design prototype copy"
   },
+  "detFewerServings": "Fewer servings",
+  "@detFewerServings": {
+    "description": "Application copy"
+  },
+  "detMoreServings": "More servings",
+  "@detMoreServings": {
+    "description": "Application copy"
+  },
   "dietary": "ANYTHING WE SHOULD KNOW?",
   "@dietary": {
     "description": "Design prototype copy"
@@ -424,9 +432,17 @@
   "@explored": {
     "description": "Design prototype copy"
   },
+  "fAddStep": "Add step",
+  "@fAddStep": {
+    "description": "Application copy"
+  },
   "fAll": "All",
   "@fAll": {
     "description": "Design prototype copy"
+  },
+  "fEditRecipe": "Edit recipe",
+  "@fEditRecipe": {
+    "description": "Application copy"
   },
   "fFast": "Fasting",
   "@fFast": {
@@ -435,6 +451,14 @@
   "fHot": "Mitmita hot",
   "@fHot": {
     "description": "Design prototype copy"
+  },
+  "fIngredients": "Ingredients",
+  "@fIngredients": {
+    "description": "Application copy"
+  },
+  "fIngredientsP": "e.g. 2 cups shiro powder, 3 tbsp berbere…",
+  "@fIngredientsP": {
+    "description": "Application copy"
   },
   "fName": "Dish name",
   "@fName": {
@@ -459,6 +483,10 @@
   "fQuick": "Under 30m",
   "@fQuick": {
     "description": "Design prototype copy"
+  },
+  "fRemoveStep": "Remove step",
+  "@fRemoveStep": {
+    "description": "Application copy"
   },
   "fSteps": "Steps",
   "@fSteps": {
@@ -716,6 +744,10 @@
   "@myFriendCode": {
     "description": "Application copy"
   },
+  "myRecipesDeleteConfirm": "Delete this recipe? This cannot be undone.",
+  "@myRecipesDeleteConfirm": {
+    "description": "Application copy"
+  },
   "myRecipesEmpty": "Nothing recorded yet — your first recipe belongs here.",
   "@myRecipesEmpty": {
     "description": "Application copy"
@@ -892,6 +924,10 @@
   "@rateIt": {
     "description": "Design prototype copy"
   },
+  "rateRating": "Rating",
+  "@rateRating": {
+    "description": "Application copy"
+  },
   "rateSub": "Only you and your friends see this.",
   "@rateSub": {
     "description": "Design prototype copy"
@@ -1036,6 +1072,10 @@
   "@setProfileSub": {
     "description": "Design prototype copy"
   },
+  "setSystemL": "System",
+  "@setSystemL": {
+    "description": "Application copy"
+  },
   "setTheme": "Theme",
   "@setTheme": {
     "description": "Design prototype copy"
@@ -1132,7 +1172,7 @@
   "@statusPending": {
     "description": "Application copy"
   },
-  "statusPublished": "In the archive",
+  "statusPublished": "Published",
   "@statusPublished": {
     "description": "Application copy"
   },
@@ -1191,6 +1231,10 @@
   "tasteH1": "How much heat can you take?",
   "@tasteH1": {
     "description": "Design prototype copy"
+  },
+  "tasteHeat": "Heat tolerance",
+  "@tasteHeat": {
+    "description": "Application copy"
   },
   "tasteSub": "Berbere is a spectrum, not a switch.",
   "@tasteSub": {

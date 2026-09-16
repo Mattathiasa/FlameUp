@@ -48,6 +48,11 @@ abstract final class Routes {
   static const String familyRecipeNew =
       '/discover/family-recipe/new'; // 19-upload
 
+  /// Edit one of your own still-unpublished family recipes. The form gates
+  /// what loads; the rules gate what saves.
+  static String familyRecipeEditOf(String recipeId) =>
+      '/discover/family-recipe/$recipeId/edit';
+
   static String regionOf(String regionId) => '/discover/region/$regionId';
 
   // --- social ------------------------------------------------------------

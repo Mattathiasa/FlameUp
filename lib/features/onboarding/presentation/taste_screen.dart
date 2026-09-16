@@ -95,8 +95,9 @@ class _HeatScale extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Semantics(
-      label: 'Heat tolerance',
+      label: l10n.tasteHeat,
       value: label,
       slider: true,
       child: GlassPanel(

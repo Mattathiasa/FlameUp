@@ -405,8 +405,8 @@
     "am": "በግምገማ ላይ"
   },
   "statusPublished": {
-    "en": "In the archive",
-    "am": "በማህደር ውስጥ"
+    "en": "Published",
+    "am": "የታተመ"
   },
   "archiveTitle": {
     "en": "From the archive",
@@ -515,5 +515,49 @@
   "chWeeklyCookToEnter": {
     "en": "Cook the dish to enter",
     "am": "ምግቡን ብስሉ ይግቡ"
+  },
+  "fIngredients": {
+    "en": "Ingredients",
+    "am": "ጉብአቶች"
+  },
+  "fIngredientsP": {
+    "en": "e.g. 2 cups shiro powder, 3 tbsp berbere…",
+    "am": "ለምሳሌ 2 ስኒ ሽሮ ዱቄት፣ 3 ምርጫ በርበሬ…"
+  },
+  "fAddStep": {
+    "en": "Add step",
+    "am": "ደረጃ ጨምር"
+  },
+  "fRemoveStep": {
+    "en": "Remove step",
+    "am": "ደረጃ አስወግድ"
+  },
+  "fEditRecipe": {
+    "en": "Edit recipe",
+    "am": "የምግብ አሰራር አስተካክል"
+  },
+  "myRecipesDeleteConfirm": {
+    "en": "Delete this recipe? This cannot be undone.",
+    "am": "ይህን የምግብ አሰራር ልሰርዝ? ማስተካከል አይቻልም።"
+  },
+  "setSystemL": {
+    "en": "System",
+    "am": "ስርዓት"
+  },
+  "rateRating": {
+    "en": "Rating",
+    "am": "ደረጃ"
+  },
+  "detFewerServings": {
+    "en": "Fewer servings",
+    "am": "አነስተኛ ብዛት"
+  },
+  "detMoreServings": {
+    "en": "More servings",
+    "am": "ተጨማሪ ብዛት"
+  },
+  "tasteHeat": {
+    "en": "Heat tolerance",
+    "am": "የቅመም መቻችት"
   }
 }

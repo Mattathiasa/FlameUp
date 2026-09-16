@@ -176,6 +176,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                     path: 'family-recipe/new',
                     builder: (_, __) => const FamilyRecipeForm(),
                   ),
+                  GoRoute(
+                    path: 'family-recipe/:recipeId/edit',
+                    builder: (_, state) => FamilyRecipeForm(
+                      editId: state.pathParameters['recipeId'],
+                    ),
+                  ),
                 ],
               ),
             ],

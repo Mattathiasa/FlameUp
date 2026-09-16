@@ -113,7 +113,7 @@ class _CookRateScreenState extends ConsumerState<CookRateScreen> {
                         ),
                         const SizedBox(height: AppSpacing.xxxl),
                         Semantics(
-                          label: 'Rating',
+                          label: l10n.rateRating,
                           value: words[_taste - 1],
                           slider: true,
                           child: Row(

@@ -221,7 +221,7 @@ class _IngredientsTab extends ConsumerWidget {
               IconButton(
                 onPressed: servings > 1 ? controller.decrement : null,
                 icon: const Icon(Icons.remove_circle_outline),
-                tooltip: 'Fewer servings',
+                tooltip: l10n.detFewerServings,
               ),
               Text(
                 '$servings',
@@ -231,7 +231,7 @@ class _IngredientsTab extends ConsumerWidget {
               IconButton(
                 onPressed: servings < 20 ? controller.increment : null,
                 icon: const Icon(Icons.add_circle_outline),
-                tooltip: 'More servings',
+                tooltip: l10n.detMoreServings,
               ),
             ],
           ),

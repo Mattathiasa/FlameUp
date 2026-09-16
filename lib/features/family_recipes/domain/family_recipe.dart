@@ -4,6 +4,7 @@
 // offline, sometimes mid-migration) and read years later. A missing field is
 // rendered as absent, never a crash.
 import '../../../core/utils/firestore_date.dart';
+
 class FamilyRecipe {
   const FamilyRecipe({
     required this.id,
@@ -15,6 +16,7 @@ class FamilyRecipe {
     this.regionId,
     this.story = '',
     this.stepsText = '',
+    this.ingredientsText = '',
     this.mediaUrl,
     this.createdAt,
     this.updatedAt,
@@ -39,6 +41,7 @@ class FamilyRecipe {
       regionId: json['regionId'] as String?,
       story: json['story'] as String? ?? '',
       stepsText: json['stepsText'] as String? ?? '',
+      ingredientsText: json['ingredientsText'] as String? ?? '',
       mediaUrl: json['mediaUrl'] as String?,
       createdAt: firestoreDate(json['createdAt']),
       updatedAt: firestoreDate(json['updatedAt']),
@@ -54,6 +57,19 @@ class FamilyRecipe {
   final String? regionId;
   final String story;
   final String stepsText;
+
+  /// Free-form ingredient list, one ingredient per line or comma-separated —
+  /// family recipes are dictated, not measured. Rendered verbatim.
+  final String ingredientsText;
+
+  /// The steps as they were entered: one line per step. Older submissions
+  /// (before the form had per-step fields) typed them into one blob and
+  /// newline joins still round-trip through it.
+  List<String> get stepLines => stepsText
+      .split('\n')
+      .map((line) => line.trim())
+      .where((line) => line.isNotEmpty)
+      .toList(growable: false);
 
   /// Download URL of the uploaded photo/video, if any. Media lives in
   /// Storage under the author's path; Firestore stores only the URL.

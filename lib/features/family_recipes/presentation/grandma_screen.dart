@@ -8,6 +8,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
+import '../data/family_recipe_repository.dart';
 import '../domain/family_recipe.dart';
 import '../domain/family_recipe_providers.dart';
 
@@ -125,12 +126,50 @@ class GrandmaScreen extends ConsumerWidget {
                     l10n: l10n,
                     palette: palette,
                     showStatus: true,
+                    // Drafts and pending submissions stay editable by their
+                    // author; published ones are review copy and can only be
+                    // deleted from here.
+                    onEdit: recipe.status != FamilyRecipeStatus.published
+                        ? () =>
+                            context.push(Routes.familyRecipeEditOf(recipe.id))
+                        : null,
+                    onDelete: () => _confirmDelete(context, ref, recipe),
                   ),
             ],
           ),
         ],
       ),
     );
+  }
+
+  Future<void> _confirmDelete(
+    BuildContext context,
+    WidgetRef ref,
+    FamilyRecipe recipe,
+  ) async {
+    final l10n = AppLocalizations.of(context);
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(l10n.actionDelete),
+        content: Text(l10n.myRecipesDeleteConfirm),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(false),
+            child: Text(l10n.actionCancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(true),
+            child: Text(l10n.actionDelete),
+          ),
+        ],
+      ),
+    );
+    if (confirmed ?? false) {
+      await ref
+          .read(familyRecipeRepositoryProvider)
+          .delete(recipeId: recipe.id);
+    }
   }
 }
 
@@ -140,15 +179,20 @@ class _RecipeCard extends StatelessWidget {
     required this.l10n,
     required this.palette,
     this.showStatus = false,
+    this.onEdit,
+    this.onDelete,
   });
 
   final FamilyRecipe recipe;
   final AppLocalizations l10n;
   final AppPalette palette;
   final bool showStatus;
+  final VoidCallback? onEdit;
+  final VoidCallback? onDelete;
 
   @override
   Widget build(BuildContext context) {
+    final hasActions = onEdit != null || onDelete != null;
     return GlassPanel(
       blur: false,
       margin: const EdgeInsets.only(bottom: AppSpacing.sm),
@@ -179,6 +223,42 @@ class _RecipeCard extends StatelessWidget {
             const SizedBox(width: AppSpacing.sm),
             _StatusChip(status: recipe.status, l10n: l10n),
           ],
+          if (hasActions) ...[
+            const SizedBox(width: AppSpacing.xs),
+            PopupMenuButton<String>(
+              tooltip: MaterialLocalizations.of(context).moreButtonTooltip,
+              iconColor: palette.textSecondary,
+              itemBuilder: (menuContext) => [
+                if (onEdit != null)
+                  PopupMenuItem(
+                    value: 'edit',
+                    child: Row(
+                      children: [
+                        const Icon(Icons.edit_outlined, size: 18),
+                        const SizedBox(width: AppSpacing.sm),
+                        Text(l10n.fEditRecipe),
+                      ],
+                    ),
+                  ),
+                if (onDelete != null)
+                  PopupMenuItem(
+                    value: 'delete',
+                    child: Row(
+                      children: [
+                        const Icon(Icons.delete_outline, size: 18),
+                        const SizedBox(width: AppSpacing.sm),
+                        Text(l10n.actionDelete),
+                      ],
+                    ),
+                  ),
+              ],
+              onSelected: (value) => switch (value) {
+                'edit' => onEdit?.call(),
+                'delete' => onDelete?.call(),
+                _ => null,
+              },
+            ),
+          ],
         ],
       ),
     );
@@ -195,14 +275,8 @@ class _StatusChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final (label, color) = switch (status) {
       FamilyRecipeStatus.draft => (l10n.statusDraft, AppColors.accent),
-      FamilyRecipeStatus.pending => (
-          l10n.statusPending,
-          const Color(0xFFC79A5E),
-        ),
-      FamilyRecipeStatus.published => (
-          l10n.statusPublished,
-          const Color(0xFF6B8E4E),
-        ),
+      FamilyRecipeStatus.pending => (l10n.statusPending, AppColors.gold),
+      FamilyRecipeStatus.published => (l10n.statusPublished, AppColors.green),
     };
 
     return Container(

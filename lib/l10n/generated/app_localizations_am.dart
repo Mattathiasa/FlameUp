@@ -260,6 +260,12 @@ class AppLocalizationsAm extends AppLocalizations {
   String get dRaw => 'ጥሬ ምግብ ችግር የለም';
 
   @override
+  String get detFewerServings => 'አነስተኛ ብዛት';
+
+  @override
+  String get detMoreServings => 'ተጨማሪ ብዛት';
+
+  @override
   String get dietary => 'ማወቅ ያለብን ነገር አለ?';
 
   @override
@@ -333,13 +339,25 @@ class AppLocalizationsAm extends AppLocalizations {
   String get explored => 'ተዳሷል';
 
   @override
+  String get fAddStep => 'ደረጃ ጨምር';
+
+  @override
   String get fAll => 'ሁሉም';
+
+  @override
+  String get fEditRecipe => 'የምግብ አሰራር አስተካክል';
 
   @override
   String get fFast => 'ጾም';
 
   @override
   String get fHot => 'ሚጥሚጣ';
+
+  @override
+  String get fIngredients => 'ጉብአቶች';
+
+  @override
+  String get fIngredientsP => 'ለምሳሌ 2 ስኒ ሽሮ ዱቄት፣ 3 ምርጫ በርበሬ…';
 
   @override
   String get fName => 'የምግቡ ስም';
@@ -358,6 +376,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get fQuick => 'ከ30ደቂቃ በታች';
+
+  @override
+  String get fRemoveStep => 'ደረጃ አስወግድ';
 
   @override
   String get fSteps => 'ደረጃዎች';
@@ -554,6 +575,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get myFriendCode => 'የእርስዎ ኮድ';
 
   @override
+  String get myRecipesDeleteConfirm => 'ይህን የምግብ አሰራር ልሰርዝ? ማስተካከል አይቻልም።';
+
+  @override
   String get myRecipesEmpty => 'እስካሁን የተመዘገበ አልተገኘም — የመጀመሪያው ዝግጅትዎ እዚህ ይኖራል።';
 
   @override
@@ -693,6 +717,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get rateIt => 'ደረጃ ስጥ';
 
   @override
+  String get rateRating => 'ደረጃ';
+
+  @override
   String get rateSub => 'እርስዎና ጓደኞችዎ ብቻ ያዩታል።';
 
   @override
@@ -811,6 +838,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get setProfileSub => 'ደረጃ 12 · አዲስ አበባ';
 
   @override
+  String get setSystemL => 'ስርዓት';
+
+  @override
   String get setTheme => 'ገጽታ';
 
   @override
@@ -883,7 +913,7 @@ class AppLocalizationsAm extends AppLocalizations {
   String get statusPending => 'በግምገማ ላይ';
 
   @override
-  String get statusPublished => 'በማህደር ውስጥ';
+  String get statusPublished => 'የታተመ';
 
   @override
   String get stepOf => 'ደረጃ';
@@ -927,6 +957,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get tasteH1 => 'ምን ያህል ቅመም ይችላሉ?';
+
+  @override
+  String get tasteHeat => 'የቅመም መቻችት';
 
   @override
   String get tasteSub => 'በርበሬ ደረጃ አለው እንጂ አንድ ዓይነት አይደለም።';

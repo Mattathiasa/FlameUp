@@ -590,6 +590,18 @@ abstract class AppLocalizations {
   /// **'Raw dishes ok'**
   String get dRaw;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Fewer servings'**
+  String get detFewerServings;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'More servings'**
+  String get detMoreServings;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -734,11 +746,23 @@ abstract class AppLocalizations {
   /// **'explored'**
   String get explored;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Add step'**
+  String get fAddStep;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
   /// **'All'**
   String get fAll;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Edit recipe'**
+  String get fEditRecipe;
 
   /// Design prototype copy
   ///
@@ -751,6 +775,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Mitmita hot'**
   String get fHot;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Ingredients'**
+  String get fIngredients;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 2 cups shiro powder, 3 tbsp berbere…'**
+  String get fIngredientsP;
 
   /// Design prototype copy
   ///
@@ -787,6 +823,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Under 30m'**
   String get fQuick;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Remove step'**
+  String get fRemoveStep;
 
   /// Design prototype copy
   ///
@@ -1175,6 +1217,12 @@ abstract class AppLocalizations {
   /// Application copy
   ///
   /// In en, this message translates to:
+  /// **'Delete this recipe? This cannot be undone.'**
+  String get myRecipesDeleteConfirm;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
   /// **'Nothing recorded yet — your first recipe belongs here.'**
   String get myRecipesEmpty;
 
@@ -1436,6 +1484,12 @@ abstract class AppLocalizations {
   /// **'Rate it'**
   String get rateIt;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get rateRating;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1652,6 +1706,12 @@ abstract class AppLocalizations {
   /// **'Level 12 · Addis Ababa'**
   String get setProfileSub;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get setSystemL;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1799,7 +1859,7 @@ abstract class AppLocalizations {
   /// Application copy
   ///
   /// In en, this message translates to:
-  /// **'In the archive'**
+  /// **'Published'**
   String get statusPublished;
 
   /// Design prototype copy
@@ -1885,6 +1945,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'How much heat can you take?'**
   String get tasteH1;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Heat tolerance'**
+  String get tasteHeat;
 
   /// Design prototype copy
   ///

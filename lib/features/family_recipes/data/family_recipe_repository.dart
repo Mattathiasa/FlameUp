@@ -81,6 +81,13 @@ class FamilyRecipeRepository {
     );
   }
 
+  /// Remove one of your own submissions outright. Rules allow the author to
+  /// delete; a published recipe needs a moderator, and the failure surfaces
+  /// through the [Result].
+  Future<Result<void>> delete({required String recipeId}) => ErrorMapper.guard(
+        () => _firestore.doc(FirestorePaths.familyRecipe(recipeId)).delete(),
+      );
+
   // --- reads --------------------------------------------------------------
 
   /// The signed-in author's own submissions, any status, newest first.

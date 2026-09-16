@@ -268,6 +268,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dRaw => 'Raw dishes ok';
 
   @override
+  String get detFewerServings => 'Fewer servings';
+
+  @override
+  String get detMoreServings => 'More servings';
+
+  @override
   String get dietary => 'ANYTHING WE SHOULD KNOW?';
 
   @override
@@ -343,13 +349,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get explored => 'explored';
 
   @override
+  String get fAddStep => 'Add step';
+
+  @override
   String get fAll => 'All';
+
+  @override
+  String get fEditRecipe => 'Edit recipe';
 
   @override
   String get fFast => 'Fasting';
 
   @override
   String get fHot => 'Mitmita hot';
+
+  @override
+  String get fIngredients => 'Ingredients';
+
+  @override
+  String get fIngredientsP => 'e.g. 2 cups shiro powder, 3 tbsp berbere…';
 
   @override
   String get fName => 'Dish name';
@@ -368,6 +386,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get fQuick => 'Under 30m';
+
+  @override
+  String get fRemoveStep => 'Remove step';
 
   @override
   String get fSteps => 'Steps';
@@ -567,6 +588,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myFriendCode => 'Your friend code';
 
   @override
+  String get myRecipesDeleteConfirm =>
+      'Delete this recipe? This cannot be undone.';
+
+  @override
   String get myRecipesEmpty =>
       'Nothing recorded yet — your first recipe belongs here.';
 
@@ -707,6 +732,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get rateIt => 'Rate it';
 
   @override
+  String get rateRating => 'Rating';
+
+  @override
   String get rateSub => 'Only you and your friends see this.';
 
   @override
@@ -825,6 +853,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get setProfileSub => 'Level 12 · Addis Ababa';
 
   @override
+  String get setSystemL => 'System';
+
+  @override
   String get setTheme => 'Theme';
 
   @override
@@ -898,7 +929,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get statusPending => 'In review';
 
   @override
-  String get statusPublished => 'In the archive';
+  String get statusPublished => 'Published';
 
   @override
   String get stepOf => 'Step';
@@ -942,6 +973,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tasteH1 => 'How much heat can you take?';
+
+  @override
+  String get tasteHeat => 'Heat tolerance';
 
   @override
   String get tasteSub => 'Berbere is a spectrum, not a switch.';
