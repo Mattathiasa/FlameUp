@@ -376,6 +376,10 @@
   "@errBack": {
     "description": "Design prototype copy"
   },
+  "errCloudinaryConfig": "Photo hosting isn't set up for this build yet. Add the Cloudinary keys and try again.",
+  "@errCloudinaryConfig": {
+    "description": "Application copy"
+  },
   "errH1": "That flame went out.",
   "@errH1": {
     "description": "Design prototype copy"

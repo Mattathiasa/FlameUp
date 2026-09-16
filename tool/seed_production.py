@@ -33,6 +33,9 @@ import argparse
 import base64
 import hashlib
 import json
+import socket
+
+socket.setdefaulttimeout(30)  # every REST call dies instead of hanging
 import random
 import sys
 import time

@@ -306,6 +306,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errBack => 'Back to Today';
 
   @override
+  String get errCloudinaryConfig =>
+      'Photo hosting isn\'t set up for this build yet. Add the Cloudinary keys and try again.';
+
+  @override
   String get errH1 => 'That flame went out.';
 
   @override

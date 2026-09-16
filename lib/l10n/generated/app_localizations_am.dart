@@ -297,6 +297,10 @@ class AppLocalizationsAm extends AppLocalizations {
   String get errBack => 'ወደ ዛሬ ተመለስ';
 
   @override
+  String get errCloudinaryConfig =>
+      'የፎቶ ማስቀመጫ አሁንም አልተዋቀረም። የCloudinary ቁልፎችን ያክሉና እንደገና ይሞክሩ።';
+
+  @override
   String get errH1 => 'ያ ነበልባል ጠፍቷል።';
 
   @override

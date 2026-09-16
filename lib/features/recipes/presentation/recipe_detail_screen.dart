@@ -11,6 +11,7 @@ import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
 import '../domain/recipe.dart';
 import '../domain/recipe_providers.dart';
+import 'dish_photo.dart';
 
 /// 07-recipe — the detail screen, with ingredients, steps and the story.
 class RecipeDetailScreen extends ConsumerWidget {
@@ -58,11 +59,21 @@ class _Content extends ConsumerWidget {
             pinned: true,
             leading: const BackButton(),
             flexibleSpace: FlexibleSpaceBar(
-              background: GradientTile.fromHex(
-                colorA: recipe.gradientA,
-                colorB: recipe.gradientB,
-                borderRadius: BorderRadius.zero,
-                scrim: true,
+              background: Stack(
+                fit: StackFit.expand,
+                children: [
+                  DishPhoto(recipe: recipe),
+                  // The scrim keeps the status bar legible over a photo.
+                  const DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Color(0x66000000), Color(0x00000000)],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

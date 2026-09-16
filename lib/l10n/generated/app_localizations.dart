@@ -662,6 +662,12 @@ abstract class AppLocalizations {
   /// **'Back to Today'**
   String get errBack;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Photo hosting isn\'t set up for this build yet. Add the Cloudinary keys and try again.'**
+  String get errCloudinaryConfig;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:

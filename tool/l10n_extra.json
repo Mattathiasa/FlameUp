@@ -559,5 +559,9 @@
   "tasteHeat": {
     "en": "Heat tolerance",
     "am": "የቅመም መቻችት"
+  },
+  "errCloudinaryConfig": {
+    "en": "Photo hosting isn't set up for this build yet. Add the Cloudinary keys and try again.",
+    "am": "የፎቶ ማስቀመጫ አሁንም አልተዋቀረም። የCloudinary ቁልፎችን ያክሉና እንደገና ይሞክሩ።"
   }
 }

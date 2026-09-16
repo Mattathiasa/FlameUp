@@ -41,6 +41,7 @@ String failureMessage(BuildContext context, Failure failure) {
     'authErrorProviderAlreadyLinked' => l.authErrorProviderAlreadyLinked,
     'authErrorGeneric' => l.authErrorGeneric,
     'authErrorSignedOut' => l.authErrorSignedOut,
+    'cloudinaryNotConfigured' => l.errCloudinaryConfig,
     _ => l.errorUnknown,
   };
 }

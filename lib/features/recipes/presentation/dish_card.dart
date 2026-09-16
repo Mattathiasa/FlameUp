@@ -9,6 +9,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../shared/widgets/widgets.dart';
 import '../domain/recipe.dart';
 import '../domain/recipe_providers.dart';
+import 'dish_photo.dart';
 
 /// The dish card from the design — a gradient tile with the XP badge over it,
 /// and title, subtitle and metadata beneath.
@@ -44,11 +45,10 @@ class DishCard extends ConsumerWidget {
             children: [
               Stack(
                 children: [
-                  GradientTile.fromHex(
-                    colorA: recipe.gradientA,
-                    colorB: recipe.gradientB,
+                  SizedBox(
                     height: 124,
-                    borderRadius: BorderRadius.zero,
+                    width: double.infinity,
+                    child: DishPhoto(recipe: recipe),
                   ),
                   Positioned(
                     right: 10,

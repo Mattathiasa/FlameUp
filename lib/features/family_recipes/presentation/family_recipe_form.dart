@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../core/services/analytics_service.dart';
+import '../../../core/services/cloudinary_service.dart';
 import '../../../core/services/local_store.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
@@ -198,13 +199,16 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
 
     // Media first, when there is any: the URL is part of the document, and
     // an upload failure should stop the submission rather than strand a
-    // recipe pointing at nothing.
+    // recipe pointing at nothing. Photos go to Cloudinary (a free-tier CDN
+    // that also resizes for us); videos stay on Firebase Storage.
     final mediaPath = _mediaPath;
     if (mediaPath != null) {
-      final upload = await repo.uploadMedia(
-        uid: uid,
-        file: File(mediaPath),
-      );
+      final isVideo = _mediaIsVideo(mediaPath);
+      final upload = isVideo
+          ? await repo.uploadMedia(uid: uid, file: File(mediaPath))
+          : await ref
+              .read(cloudinaryServiceProvider)
+              .uploadImage(uid: uid, file: File(mediaPath));
       final url = upload.valueOrNull;
       if (url == null) {
         if (!mounted) return;
@@ -212,7 +216,7 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              AppLocalizations.of(context).uploadMediaFailed,
+              failureMessage(context, upload.failureOrNull!),
             ),
           ),
         );
@@ -253,6 +257,11 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
   /// same transition — and it keeps this testable without a GoRouter.
   Future<void> maybePop(BuildContext context) async {
     if (context.mounted) Navigator.of(context).maybePop();
+  }
+
+  bool _mediaIsVideo(String path) {
+    final extension = path.split('.').last.toLowerCase();
+    return extension == 'mp4' || extension == 'mov' || extension == 'm4v';
   }
 
   @override
@@ -385,12 +394,8 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
                             decoration: InputDecoration(
                               hintText: '${i + 1}.',
                             ),
-                            validator: i == 0
-                                ? (value) =>
-                                    (value == null || value.trim().isEmpty)
-                                        ? l10n.validationNameRequired
-                                        : null
-                                : null,
+                            // Steps are optional: a recipe can be a photo, a
+                            // story and an ingredient list alone.
                           ),
                         ),
                         IconButton(

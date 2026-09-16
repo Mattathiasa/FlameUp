@@ -184,6 +184,30 @@ void main() {
 
       expect(find.byKey(const Key('fr-step-1')), findsOneWidget);
     });
+
+    testWidgets('steps are optional: empty step fields submit cleanly',
+        (tester) async {
+      await pumpForm(tester);
+
+      await tester.enterText(find.byKey(const Key('fr-name')), 'Chechebsa');
+      await tester.enterText(
+        find.byKey(const Key('fr-teacher')),
+        'Emahoy Almaz',
+      );
+      await tester.enterText(
+        find.byKey(const Key('fr-ingredients')),
+        '2 pieces kita',
+      );
+      // fr-step-0 is left untouched — a recipe can be a photo and a story.
+
+      await tester.tap(find.byType(FlameButton));
+      await tester.pump();
+
+      expect(repo.submitted, isNotNull);
+      expect(repo.submitted!['status'], 'pending');
+      expect(repo.submitted!['ingredientsText'], '2 pieces kita');
+      expect(repo.submitted!['stepsText'], isEmpty);
+    });
   });
 }
 
