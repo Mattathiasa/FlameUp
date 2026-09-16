@@ -21,8 +21,7 @@ import '../domain/directory_user.dart';
 class FindFriendsSheet extends ConsumerStatefulWidget {
   const FindFriendsSheet({super.key});
 
-  static Future<void> show(BuildContext context) =>
-      showModalBottomSheet<void>(
+  static Future<void> show(BuildContext context) => showModalBottomSheet<void>(
         context: context,
         isScrollControlled: true,
         builder: (_) => const FindFriendsSheet(),
@@ -157,7 +156,8 @@ class _FindFriendsSheetState extends ConsumerState<FindFriendsSheet> {
     final palette = AppPalette.of(context);
     final l10n = AppLocalizations.of(context);
     final user = ref.watch(authUserProvider).valueOrNull;
-    final myCode = user?.uid == null ? null : DirectoryUser.friendCodeOf(user!.uid);
+    final myCode =
+        user?.uid == null ? null : DirectoryUser.friendCodeOf(user!.uid);
 
     return Padding(
       // The view inset keeps the sheet above the keyboard when typing.
@@ -240,8 +240,7 @@ class _FindFriendsSheetState extends ConsumerState<FindFriendsSheet> {
                       controller: _code,
                       textCapitalization: TextCapitalization.characters,
                       onSubmitted: (_) => _doCodeLookup(),
-                      decoration:
-                          InputDecoration(hintText: l10n.codeHint),
+                      decoration: InputDecoration(hintText: l10n.codeHint),
                     ),
                   ),
                   const SizedBox(width: AppSpacing.sm),
@@ -347,8 +346,8 @@ class _PersonRow extends StatelessWidget {
           Expanded(
             child: Text(
               person.displayName,
-              style: AppTypography.titleSmall
-                  .copyWith(color: palette.textPrimary),
+              style:
+                  AppTypography.titleSmall.copyWith(color: palette.textPrimary),
             ),
           ),
           requesting

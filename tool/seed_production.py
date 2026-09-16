@@ -116,6 +116,12 @@ def to_value(v):
         return {'integerValue': str(v)}
     if isinstance(v, float):
         return {'doubleValue': v}
+    if isinstance(v, datetime):
+        # A real Firestore timestamp, not an ISO string: the security rules
+        # compare some of these fields (weekly deadline) against request.time,
+        # which is a Timestamp — a string on the other side of < would deny
+        # every legitimate write.
+        return {'timestampValue': iso(v)}
     if isinstance(v, str):
         return {'stringValue': v}
     if isinstance(v, list):
@@ -472,6 +478,12 @@ def seed_demo_world():
                 'createdAt': iso(days_ago(1)),
             })
 
+    # --- weekly competition: this week's cook-off + the XP rows that put
+    #     the demo people on the board. Idempotent per week: the doc key is
+    #     the ISO week id, and rows are keyed {weekId}_{uid}, so re-running
+    #     next week seeds that week instead of duplicating this one.
+    seed_weekly_competition(people, recipes)
+
     print(f'demo: {len(people)} people, {sum(3 + i * 2 for i in range(len(people)))} sessions,'
           f' {post_index} posts, 3 family recipes')
 
@@ -518,6 +530,126 @@ DEMO_FAMILY_RECIPES = [
 ]
 
 
+# --- weekly competition ------------------------------------------------------
+
+def week_id_for(dt):
+    """ISO week id for [dt], identical to the app's weekIdFor() and the
+
+    security rules' currentWeekId(). Three implementations, one convention:
+    a leaderboard whose surfaces disagree about "this week" is two
+    leaderboards, none of them real."""
+    start = dt - timedelta(days=dt.weekday())
+    start = datetime(start.year, start.month, start.day, tzinfo=timezone.utc)
+    thursday = start + timedelta(days=3)
+    jan4 = datetime(thursday.year, 1, 4, tzinfo=timezone.utc)
+    first_monday = jan4 - timedelta(days=jan4.weekday())
+    week = (start - first_monday).days // 7 + 1
+    return f'w{thursday.year}w{week}'
+
+
+def seed_weekly_competition(people, recipes):
+    now = datetime.now(timezone.utc)
+    week_id = week_id_for(now)
+
+    # The week's dish: a rotating pick keyed on the week id (stable, not
+    # Python's randomized hash — re-runs and reruns-next-week must agree).
+    rid = week_recipe_id(week_id, recipes)
+    recipe = recipes[rid]
+    xp_reward = recipe['xpReward']
+
+    write_doc(f'weekly_challenges/{week_id}', {
+        'id': week_id,
+        'recipeId': rid,
+        'recipeTitle': recipe['title'],
+        'recipeTitleAm': recipe['titleAm'],
+        # Datetime objects become true Timestamps (see to_value): the entry
+        # rules compare deadline against request.time.
+        'deadline': next_monday(now),
+        'note': 'Cook it before the week turns. Your best cook counts.',
+        'noteAm': 'ከሳምንቱ አልቃቀስ በፊት ብስሉ። ተሳታፊነትዎ ይቆጠራል።',
+        'publishedAt': now,
+    })
+
+    # Demo participation: people 0..3 have cooked the dish this week; people
+    # 4..5 have not yet (so the "cook the dish to enter" state is visible).
+    # Rows sum each cook's completion of ANY recipe this week — the same
+    # number the app's writer would produce.
+    weekly_totals = {}
+    for idx, (uid, email, name, region) in enumerate(people):
+        cooks_this_week = [0, 2, 1, 3, 0, 1][idx]
+        # Every cook is of the challenge recipe, so the entry XP (the recipe's
+        # own reward) and the row XP (the sum of completed cooks) agree for
+        # the entrants — exactly what the app would write.
+        weekly_totals[uid] = cooks_this_week * xp_reward
+        if cooks_this_week == 0:
+            continue
+
+        # One real completed session this week, of the week's dish, for each
+        # entrant — the rules verify entries against these.
+        completed_at = now - timedelta(hours=2 + idx)
+        session_id = f'demo-week-{week_id}-{uid[:6]}'
+        write_doc(f'users/{uid}/cooking_sessions/{session_id}', {
+            'id': session_id,
+            'recipeId': rid,
+            'totalSteps': len(recipe.get('steps', [])) or 4,
+            'servings': recipe.get('servings', 2),
+            'currentStep': len(recipe.get('steps', [])) or 4,
+            'status': 'completed',
+            'startedAt': iso(completed_at - timedelta(minutes=90)),
+            'completedAt': iso(completed_at),
+            'lastActiveAt': iso(completed_at),
+            'stepDeadlines': {},
+            'pausedRemaining': {},
+            'idempotencyKey': f'demo-{session_id}',
+            'offlineCreated': False,
+        })
+
+        write_doc(
+            f'weekly_challenges/{week_id}/entries/{uid}',
+            {
+                'uid': uid,
+                'sessionId': session_id,
+                'displayName': name,
+                'xp': xp_reward,
+                'completedAt': iso(completed_at),
+            },
+        )
+
+    for idx, (uid, email, name, region) in enumerate(people):
+        cooks = [0, 2, 1, 3, 0, 1][idx]
+        if cooks == 0:
+            continue
+        write_doc(f'weekly_xp/{week_id}_{uid}', {
+            'uid': uid,
+            'weekId': week_id,
+            'displayName': name,
+            'xp': cooks * xp_reward,
+            'cooks': cooks,
+            'updatedAt': iso(now),
+        })
+
+    entrants = sum(1 for idx in range(len(people)) if [0, 2, 1, 3, 0, 1][idx] > 0)
+    print(f'weekly: {week_id} -> {rid} ({xp_reward} XP), {entrants} entrants, '
+          f'{sum(1 for i in range(len(people)) if [0, 2, 1, 3, 0, 1][i] > 0)} rows')
+
+
+def week_recipe_id(week_id, recipes):
+    """Deterministic per-week dish pick (≤90 min, stable order). Uses crc32
+
+    — Python's hash() is salted per process and would re-roll every run."""
+    ids = sorted(rid for rid, r in recipes.items()
+                 if r.get('totalMinutes', 999) <= 90)
+    import zlib
+    return ids[zlib.crc32(week_id.encode()) % len(ids)]
+
+
+def next_monday(now):
+    """The coming Monday 00:00 UTC — the week's deadline."""
+    days_ahead = (7 - now.weekday()) % 7 or 7
+    d = now + timedelta(days=days_ahead)
+    return datetime(d.year, d.month, d.day, tzinfo=timezone.utc)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--content', action='store_true',
@@ -531,10 +663,9 @@ def main():
             seed_content()
         if args.demo:
             seed_demo_world()
-    else:
+    else:  # pragma: no cover
         seed_content()
         seed_demo_world()
-
     print('done.')
 
 

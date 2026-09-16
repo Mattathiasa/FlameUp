@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../core/router/routes.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
 import '../../auth/domain/auth_providers.dart';
+import '../../recipes/domain/recipe_providers.dart';
 import '../data/community_repository.dart';
 import '../domain/challenge.dart';
 import '../domain/community_providers.dart';
+import '../domain/weekly_providers.dart';
 
-/// 22-challenges — "Who Cooks Better?".
+/// 22-challenges — "Who Cooks Better?" plus the weekly community cook-off.
 class ChallengesScreen extends ConsumerWidget {
   const ChallengesScreen({super.key});
 
@@ -30,11 +34,16 @@ class ChallengesScreen extends ConsumerWidget {
           if (challenges.isEmpty)
             Padding(
               padding: const EdgeInsets.only(bottom: AppSpacing.screenBottom),
-              child: EmptyView(
-                title: l10n.chH1,
-                // A challenge needs an opponent, so the honest next step
-                // depends on whether they have any friends yet.
-                message: friends.isEmpty ? l10n.inviteSub : l10n.chBody,
+              child: ListView(
+                children: [
+                  const _WeeklyCard(),
+                  EmptyView(
+                    title: l10n.chH1,
+                    // A challenge needs an opponent, so the honest next step
+                    // depends on whether they have any friends yet.
+                    message: friends.isEmpty ? l10n.inviteSub : l10n.chBody,
+                  ),
+                ],
               ),
             )
           else
@@ -46,6 +55,7 @@ class ChallengesScreen extends ConsumerWidget {
                 AppSpacing.screenBottom,
               ),
               children: [
+                const _WeeklyCard(),
                 for (final challenge in challenges)
                   _ChallengeCard(
                     challenge: challenge,
@@ -163,6 +173,138 @@ class _ChallengeCard extends StatelessWidget {
             ],
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// The weekly community cook-off card.
+///
+/// Shows this week's dish, whether the user is already in, and everyone who
+/// has entered. Entering is a tap that reports a completed cook of that
+/// recipe — the rules verify the session before the entry lands, so the card
+/// can offer the action whenever it is honest to do so.
+class _WeeklyCard extends ConsumerWidget {
+  const _WeeklyCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final uid = ref.watch(currentUidProvider);
+    final palette = AppPalette.of(context);
+    final amharic = ref.watch(isAmharicProvider);
+    final challenge = ref.watch(weeklyChallengeProvider).valueOrNull;
+    final entries = ref.watch(weeklyEntriesProvider).valueOrNull ?? const [];
+
+    return GlassPanel(
+      blur: false,
+      margin: const EdgeInsets.only(bottom: AppSpacing.md),
+      padding: const EdgeInsets.all(AppSpacing.xl),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  l10n.chWeeklyTitle,
+                  style: AppTypography.titleMedium
+                      .copyWith(color: palette.textPrimary),
+                ),
+              ),
+              const Icon(Icons.local_fire_department, color: AppColors.gold),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.md),
+          if (challenge == null)
+            Text(
+              l10n.chWeeklyCookToEnter,
+              style: AppTypography.bodyMedium
+                  .copyWith(color: palette.textSecondary),
+            )
+          else ...[
+            // The dish itself: tapping goes to the recipe to cook it.
+            InkWell(
+              onTap: () =>
+                  context.push(Routes.recipeDetailOf(challenge.recipeId)),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      amharic && challenge.recipeTitleAm.isNotEmpty
+                          ? challenge.recipeTitleAm
+                          : challenge.recipeTitle,
+                      style: AppTypography.headlineSmall
+                          .copyWith(color: AppColors.accent),
+                    ),
+                  ),
+                  const Icon(Icons.chevron_right, size: 20),
+                ],
+              ),
+            ),
+            if (challenge.note != null) ...[
+              const SizedBox(height: AppSpacing.sm),
+              Text(
+                amharic && (challenge.noteAm?.isNotEmpty ?? false)
+                    ? challenge.noteAm!
+                    : challenge.note!,
+                style: AppTypography.bodySmall
+                    .copyWith(color: palette.textSecondary),
+              ),
+            ],
+            const SizedBox(height: AppSpacing.lg),
+            if (uid != null && entries.any((e) => e.uid == uid))
+              Row(
+                children: [
+                  const Icon(Icons.check_circle,
+                      color: AppColors.green, size: 18,),
+                  const SizedBox(width: AppSpacing.sm),
+                  Text(
+                    l10n.chWeeklyEntered,
+                    style: AppTypography.bodySmall
+                        .copyWith(color: AppColors.green),
+                  ),
+                ],
+              )
+            else
+              Text(
+                l10n.chWeeklyCookToEnter,
+                style: AppTypography.bodySmall
+                    .copyWith(color: palette.textTertiary),
+              ),
+            const SizedBox(height: AppSpacing.lg),
+            Text(
+              '${l10n.chWeeklyEntrants} · ${entries.length}',
+              style: AppTypography.label.copyWith(color: palette.textTertiary),
+            ),
+            for (final entry in entries.take(5))
+              Padding(
+                padding: const EdgeInsets.only(top: AppSpacing.sm),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        entry.uid == uid ? l10n.guestBadge : entry.displayName,
+                        style: AppTypography.bodyMedium
+                            .copyWith(color: palette.textPrimary),
+                      ),
+                    ),
+                    Text(
+                      '${entry.xp} XP',
+                      style: AppTypography.bodySmall
+                          .copyWith(color: palette.textSecondary),
+                    ),
+                  ],
+                ),
+              ),
+            if (entries.isEmpty)
+              Text(
+                l10n.chWeeklyNoEntries,
+                style: AppTypography.bodySmall
+                    .copyWith(color: palette.textTertiary),
+              ),
+          ],
+        ],
       ),
     );
   }

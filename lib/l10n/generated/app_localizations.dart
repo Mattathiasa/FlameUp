@@ -419,6 +419,36 @@ abstract class AppLocalizations {
   /// Application copy
   ///
   /// In en, this message translates to:
+  /// **'Cook the dish to enter'**
+  String get chWeeklyCookToEnter;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re in this week'**
+  String get chWeeklyEntered;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Entrants'**
+  String get chWeeklyEntrants;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'No entries yet — be the first'**
+  String get chWeeklyNoEntries;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly cook-off'**
+  String get chWeeklyTitle;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
   /// **'FROM THIS RECIPE'**
   String get claimRecipe;
 
@@ -1057,6 +1087,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Addis'**
   String get lbRegion;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get lbWeekly;
 
   /// Design prototype copy
   ///

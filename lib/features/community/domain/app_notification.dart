@@ -4,6 +4,7 @@
 // facts, and the client renders the localized sentence. One more type means
 // one more client case -- no function redeploy to fix wording.
 import '../../../core/utils/firestore_date.dart';
+
 enum AppNotificationType { friendRequest, friendAdded, recipePublished }
 
 class AppNotification {

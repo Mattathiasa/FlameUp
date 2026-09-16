@@ -171,6 +171,21 @@ class AppLocalizationsAm extends AppLocalizations {
   String get chTitle => 'ሙሉውን የጾም ማዕድ ያብስሉ';
 
   @override
+  String get chWeeklyCookToEnter => 'ምግቡን ብስሉ ይግቡ';
+
+  @override
+  String get chWeeklyEntered => 'በዚህ ሳምንት ተሳተፈሃል';
+
+  @override
+  String get chWeeklyEntrants => 'ተሳታፊዎች';
+
+  @override
+  String get chWeeklyNoEntries => 'እስካሁን ተሳታፊ የለም — የመጀመሪያው አንተ ሁን';
+
+  @override
+  String get chWeeklyTitle => 'የሳምንቱ ውድድር';
+
+  @override
   String get claimRecipe => 'ከዚህ አዘገጃጀት';
 
   @override
@@ -495,6 +510,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get lbRegion => 'አዲስ አበባ';
+
+  @override
+  String get lbWeekly => 'በዚህ ሳምንት';
 
   @override
   String get levelNow => 'ደረጃ 12 · የወጥ መንገደኛ';

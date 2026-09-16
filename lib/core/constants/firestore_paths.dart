@@ -15,6 +15,12 @@ abstract final class FirestorePaths {
   static const String achievements = 'achievements';
   static const String quests = 'quests';
   static const String challenges = 'challenges';
+
+  /// Weekly competition: the per-week cook-off and the self-reported XP rows
+  /// behind the weekly leaderboard. See features/community/domain/
+  /// weekly_competition.dart — Spark-safe: client-written, rules-bounded.
+  static const String weeklyChallenges = 'weekly_challenges';
+  static const String weeklyXp = 'weekly_xp';
   static const String familyRecipes = 'family_recipes';
   static const String posts = 'posts';
   static const String reports = 'reports';
@@ -47,6 +53,11 @@ abstract final class FirestorePaths {
   static String familyRecipe(String id) => '$familyRecipes/$id';
   static String post(String id) => '$posts/$id';
   static String challenge(String id) => '$challenges/$id';
+  static String weeklyChallenge(String weekId) => '$weeklyChallenges/$weekId';
+  static String weeklyXpRow(String weekId, String uid) =>
+      '$weeklyXp/${weekId}_$uid';
+  static String weeklyChallengeEntries(String weekId) =>
+      '${weeklyChallenge(weekId)}/entries';
 
   // Per-user subcollections
   static String userCookingSessions(String uid) =>

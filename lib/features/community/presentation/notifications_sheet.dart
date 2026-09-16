@@ -22,8 +22,7 @@ import '../domain/community_providers.dart';
 class NotificationsSheet extends ConsumerWidget {
   const NotificationsSheet({super.key});
 
-  static Future<void> show(BuildContext context) =>
-      showModalBottomSheet<void>(
+  static Future<void> show(BuildContext context) => showModalBottomSheet<void>(
         context: context,
         isScrollControlled: true,
         builder: (_) => const NotificationsSheet(),

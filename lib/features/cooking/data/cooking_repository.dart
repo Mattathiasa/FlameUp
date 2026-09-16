@@ -124,12 +124,12 @@ class CookingRepository {
   /// Applies a queued session write. Registered with the outbox at startup.
   Future<void> applyMutation(PendingMutation mutation) async {
     await _fs.doc(mutation.path).set(
-          {
-            ...mutation.payload,
-            'updatedAt': FieldValue.serverTimestamp(),
-          },
-          SetOptions(merge: true),
-        );
+      {
+        ...mutation.payload,
+        'updatedAt': FieldValue.serverTimestamp(),
+      },
+      SetOptions(merge: true),
+    );
   }
 
   /// Notified whenever a session is written, so providers derived from the

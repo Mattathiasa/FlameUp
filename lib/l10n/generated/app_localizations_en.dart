@@ -178,6 +178,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chTitle => 'Cook the whole fasting plate';
 
   @override
+  String get chWeeklyCookToEnter => 'Cook the dish to enter';
+
+  @override
+  String get chWeeklyEntered => 'You\'re in this week';
+
+  @override
+  String get chWeeklyEntrants => 'Entrants';
+
+  @override
+  String get chWeeklyNoEntries => 'No entries yet — be the first';
+
+  @override
+  String get chWeeklyTitle => 'Weekly cook-off';
+
+  @override
   String get claimRecipe => 'FROM THIS RECIPE';
 
   @override
@@ -507,6 +522,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lbRegion => 'Addis';
+
+  @override
+  String get lbWeekly => 'This week';
 
   @override
   String get levelNow => 'Level 12 · Wot Wanderer';

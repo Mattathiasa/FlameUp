@@ -491,5 +491,29 @@
   "timerDoneAnnounce": {
     "en": "Timer finished",
     "am": "ጊዜው አለቀ"
+  },
+  "lbWeekly": {
+    "en": "This week",
+    "am": "በዚህ ሳምንት"
+  },
+  "chWeeklyTitle": {
+    "en": "Weekly cook-off",
+    "am": "የሳምንቱ ውድድር"
+  },
+  "chWeeklyEntered": {
+    "en": "You're in this week",
+    "am": "በዚህ ሳምንት ተሳተፈሃል"
+  },
+  "chWeeklyEntrants": {
+    "en": "Entrants",
+    "am": "ተሳታፊዎች"
+  },
+  "chWeeklyNoEntries": {
+    "en": "No entries yet — be the first",
+    "am": "እስካሁን ተሳታፊ የለም — የመጀመሪያው አንተ ሁን"
+  },
+  "chWeeklyCookToEnter": {
+    "en": "Cook the dish to enter",
+    "am": "ምግቡን ብስሉ ይግቡ"
   }
 }

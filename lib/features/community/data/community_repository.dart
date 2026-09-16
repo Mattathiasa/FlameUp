@@ -146,17 +146,15 @@ class CommunityRepository {
       ErrorMapper.guard(() async {
         final name = displayName.trim();
         if (name.isNotEmpty) {
-          await _firestore
-              .doc(FirestorePaths.directoryEntry(uid))
-              .set(
-                {
-                  'uid': uid,
-                  'displayName': name,
-                  'nameSearch': DirectoryUser.searchableName(name),
-                  'friendCode': DirectoryUser.friendCodeOf(uid),
-                },
-                SetOptions(merge: true),
-              );
+          await _firestore.doc(FirestorePaths.directoryEntry(uid)).set(
+            {
+              'uid': uid,
+              'displayName': name,
+              'nameSearch': DirectoryUser.searchableName(name),
+              'friendCode': DirectoryUser.friendCodeOf(uid),
+            },
+            SetOptions(merge: true),
+          );
         }
       });
 
@@ -299,12 +297,12 @@ class CommunityRepository {
       ErrorMapper.guard(() async {
         await _firestore
             .doc(
-              '${FirestorePaths.userNotifications(uid)}/$notificationId',
-            )
+          '${FirestorePaths.userNotifications(uid)}/$notificationId',
+        )
             .set(
-              {'readAt': DateTime.now().toIso8601String()},
-              SetOptions(merge: true),
-            );
+          {'readAt': DateTime.now().toIso8601String()},
+          SetOptions(merge: true),
+        );
       });
 
   // --- challenges --------------------------------------------------------

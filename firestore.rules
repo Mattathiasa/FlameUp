@@ -284,6 +284,138 @@ service cloud.firestore {
       }
     }
 
+    // --- weekly competition ----------------------------------------------
+
+    // The week's cook-off. Written only by a moderator (or the seeder's
+    // admin-plane writes, which bypass rules); read by everyone signed in.
+    match /weekly_challenges/{weekId} {
+      allow read: if signedIn();
+      allow write: if isModerator();
+
+      match /entries/{uid} {
+        allow read: if signedIn();
+
+        // An entry is a claim the backend can check, so it checks it:
+        // before the entry lands, the week must exist and be open, and the
+        // cited session must exist in the entrant's own cooking_sessions,
+        // be completed, and be for the dish the week is about. The recipe
+        // doc supplies the only XP figure an entry may carry. A fudged
+        // device clock enters nothing: the deadline is compared against the
+        // server's request.time.
+        allow create: if isOwner(uid)
+          && weeklyEntryIsValid(weekId);
+        // Entries are immutable once written: no edits, no withdrawals,
+        // no re-entries under a different session.
+        allow update, delete: if false;
+      }
+    }
+
+    // The weekly XP rows behind the leaderboard. This is the one deliberate
+    // compromise of the Spark (no-Cloud-Functions) tier: rows are written by
+    // the client on cook completion rather than by a trusted function. The
+    // rules bound the damage a client can do — own row only, never lower,
+    // bounded size — while the honest path (the app's own writer) reports
+    // exactly what the recipe's xpReward grants.
+    match /weekly_xp/{rowId} {
+      allow read: if signedIn();
+
+      // rowId is '{weekId}_{uid}': the key itself ties the row to its owner
+      // and its week, and a retried write merges instead of duplicating.
+      // Only the current week may be written — a device cannot claim last
+      // week — and weekId parity with the client is proven by the rules
+      // tests, which write a row through both implementations.
+      allow create: if isOwner(rowId.split('_')[1])
+        && validWeeklyRowShape(rowId);
+
+      allow update: if isOwner(rowId.split('_')[1])
+        && validWeeklyRowShape(rowId)
+        && incoming().xp >= existing().xp
+        && incoming().cooks > existing().cooks;
+
+      allow delete: if false;
+    }
+
+    // Shape and honesty of a row write, shared by create and update.
+    function validWeeklyRowShape(rowId) {
+      return incoming().uid == request.auth.uid
+        && incoming().weekId == currentWeekId()
+        && incoming().xp is int
+        && incoming().cooks is int
+        && incoming().xp >= 0 && incoming().xp <= 10000
+        && incoming().cooks >= 0 && incoming().cooks <= 100
+        && incoming().displayName is string
+        && incoming().displayName.size() > 0
+        && incoming().displayName.size() <= 60
+        && rowId == incoming().weekId + '_' + request.auth.uid;
+    }
+
+    // ISO week id ('w2026w38') for the week containing request.time —
+    // the server's clock, not the device's. Must stay in lockstep with
+    // weekIdFor() in lib/features/community/domain/weekly_competition.dart.
+    function currentWeekId() {
+      let dayMs = 86400000;
+      let epochDays = request.time.toMillis() / dayMs;
+      // Epoch day 0 is a Thursday: Monday of the week is 3 days back,
+      // so snap to Monday with ((d + 3) / 7) * 7 - 3 and take the week's
+      // Thursday (Monday + 3) — the ISO year is that Thursday's year.
+      let monday = ((epochDays + 3) / 7) * 7 - 3;
+      let thursday = monday + 3;
+      let isoYear = civilYearOf(thursday);
+      let week = ((thursday - mondayOfIsoWeekOne(isoYear)) / 7) + 1;
+      return 'w' + string(isoYear) + 'w' + string(week);
+    }
+
+    // The Gregorian year containing the given epoch day
+    // (Howard Hinnant's civil_from_days).
+    function civilYearOf(epochDays) {
+      let z = epochDays + 719468;
+      let era = z / 146097;
+      let doe = z - era * 146097;
+      let yoe = (doe - doe / 1460 + doe / 36524 - doe / 146096) / 365;
+      return yoe + era * 400;
+    }
+
+    // Monday of ISO week 1 of [isoYear]: the Monday of the week containing
+    // 4 January, whose week always holds the first Thursday.
+    function mondayOfIsoWeekOne(isoYear) {
+      let jan4 = daysFromCivil(isoYear, 1, 4);
+      return jan4 - ((jan4 + 3) % 7);
+    }
+
+    // Days since 1970-01-01 for a civil date (Hinnant's days_from_civil).
+    function daysFromCivil(y, m, d) {
+      let yy = m <= 2 ? y - 1 : y;
+      let era = yy / 400;
+      let yoe = yy - era * 400;
+      let mp = (m + (m > 2 ? -3 : 9));
+      let doy = (153 * mp + 2) / 5 + d - 1;
+      let doe = yoe * 365 + yoe / 4 - yoe / 100 + doy;
+      return era * 146097 + doe - 719468;
+    }
+
+    // Validity of a cook-off entry: week open, session real, recipe matching.
+    // A get() on a missing document errors, which denies — the intended
+    // outcome for a made-up session id.
+    function weeklyEntryIsValid(weekId) {
+      let week = get(/databases/$(database)/documents/weekly_challenges/$(weekId)).data;
+      let session = get(/databases/$(database)/documents/users/$(request.auth.uid)/cooking_sessions/$(incoming().sessionId)).data;
+      let recipe = get(/databases/$(database)/documents/recipes/$(week.recipeId)).data;
+      return request.time < week.deadline
+        && incoming().uid == request.auth.uid
+        && incoming().sessionId is string
+        && incoming().sessionId.size() > 0
+        && incoming().displayName is string
+        && incoming().displayName.size() > 0
+        && incoming().displayName.size() <= 60
+        && incoming().xp is int
+        && incoming().xp >= 0 && incoming().xp <= 1000
+        // photoUrl is optional: absent is fine, present must be a string.
+        && (!('photoUrl' in incoming().keys()) || incoming().photoUrl is string)
+        && session.status == 'completed'
+        && session.recipeId == week.recipeId
+        && incoming().xp == recipe.xpReward;
+    }
+
     // --- leaderboards, config, reports -----------------------------------
 
     match /leaderboards/{scope} {

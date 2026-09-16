@@ -127,6 +127,20 @@
           "order": "DESCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "weekly_xp",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "weekId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "xp",
+          "order": "DESCENDING"
+        }
+      ]
     }
   ],
   "fieldOverrides": []

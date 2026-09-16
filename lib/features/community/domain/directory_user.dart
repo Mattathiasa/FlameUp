@@ -31,10 +31,8 @@ class DirectoryUser {
   final String friendCode;
 
   /// Lowercased, whitespace-collapsed name used for prefix search.
-  static String searchableName(String displayName) => displayName
-      .trim()
-      .toLowerCase()
-      .replaceAll(RegExp(r'\s+'), ' ');
+  static String searchableName(String displayName) =>
+      displayName.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
 
   /// The shareable friend code: the first eight hex characters of the SHA-256
   /// of the uid.

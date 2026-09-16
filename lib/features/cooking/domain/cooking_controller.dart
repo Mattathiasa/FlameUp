@@ -1,11 +1,14 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/services/timer_notifications.dart';
 import '../../auth/domain/auth_providers.dart';
+import '../../community/domain/weekly_providers.dart';
 import '../../recipes/domain/recipe.dart';
+import '../../recipes/domain/recipe_providers.dart';
 import '../data/cooking_repository.dart';
 import 'cooking_session.dart';
 
@@ -232,6 +235,11 @@ class CookingController extends AutoDisposeNotifier<CookingSession?> {
   }
 
   /// Finish. Records completion; the server decides the reward.
+  ///
+  /// The completed cook is also folded into this week's XP row — the
+  /// Spark-safe aggregate behind the weekly leaderboard (see WeeklyRepository).
+  /// Best-effort and unawaited-with-guard: a leaderboard row must never be
+  /// able to fail a cook, only miss it.
   Future<CookingSession?> finish() async {
     final session = state;
     final uid = _uid;
@@ -242,8 +250,41 @@ class CookingController extends AutoDisposeNotifier<CookingSession?> {
 
     final result = await _repo.complete(session, uid: uid);
     final completed = result.valueOrNull;
-    if (completed != null) state = completed;
+    if (completed != null) {
+      state = completed;
+      unawaited(_recordWeeklyXp(completed, uid));
+    }
     return completed;
+  }
+
+  /// Report the week's XP. Fire-and-forget with the error swallowed: the
+  /// weekly board is a bonus surface, and a failed write here (offline, for
+  /// instance) must not surface as a cook failure.
+  Future<void> _recordWeeklyXp(CookingSession completed, String uid) async {
+    try {
+      final recipe = await _recipeFor(completed.recipeId);
+      final user = FirebaseAuth.instance.currentUser;
+      await ref.read(weeklyRepositoryProvider).recordCookCompletion(
+            session: completed,
+            uid: uid,
+            displayName: user?.displayName ?? 'Cook',
+            xpEarned: recipe?.xpReward ?? 0,
+          );
+    } catch (_) {
+      // Deliberately silent — see the doc comment above.
+    }
+  }
+
+  /// The recipe behind a session, resolved through the cache-first provider
+  /// stack so an offline finish still finds it.
+  Future<Recipe?> _recipeFor(String recipeId) async {
+    try {
+      return await ref.read(recipeProvider(recipeId).future).then(
+            (cached) => cached.value,
+          );
+    } catch (_) {
+      return null;
+    }
   }
 
   /// Give up on this cook. Kept rather than deleted, so the history is honest
@@ -276,8 +317,7 @@ final resumableSessionProvider = Provider<CookingSession?>((ref) {
 
 /// Completed cooks on this device, aggregated per recipe: recipe id -> number
 /// of times cooked. Newest sessions carry the most weight in ordering.
-final cookingHistoryProvider =
-    Provider<Map<String, int>>((ref) {
+final cookingHistoryProvider = Provider<Map<String, int>>((ref) {
   ref.watch(sessionStoreVersionProvider);
   final counts = <String, int>{};
   for (final session in ref.watch(cookingRepositoryProvider).allLocal()) {

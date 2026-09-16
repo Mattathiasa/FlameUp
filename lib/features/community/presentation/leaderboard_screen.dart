@@ -1,16 +1,14 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/constants/firestore_paths.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
 import '../../auth/domain/auth_providers.dart';
-import '../../gamification/domain/progress_providers.dart';
 import '../domain/community_providers.dart';
+import '../domain/weekly_providers.dart';
 
 /// One row of a leaderboard.
 class LeaderboardEntry {
@@ -27,30 +25,21 @@ class LeaderboardEntry {
   final int rank;
 }
 
-/// The global board.
-///
-/// A **single aggregated document**, written by a scheduled Cloud Function.
-/// Rankings are never computed by pulling the users collection onto a device.
-final globalLeaderboardProvider =
-    StreamProvider.autoDispose<List<LeaderboardEntry>>((ref) {
-  return FirebaseFirestore.instance
-      .doc('${FirestorePaths.leaderboards}/global')
-      .snapshots()
-      .map((doc) {
-    final entries = doc.data()?['entries'] as List?;
-    if (entries == null) return const <LeaderboardEntry>[];
-
-    return entries.map((raw) {
-      final entry = (raw as Map).cast<String, dynamic>();
-      return LeaderboardEntry(
-        uid: entry['uid'] as String? ?? '',
-        displayName: entry['displayName'] as String? ?? '',
-        xp: entry['xp'] as int? ?? 0,
-        rank: entry['rank'] as int? ?? 0,
-      );
-    }).toList();
-  });
-});
+/// The global board is the weekly XP aggregate — see WeeklyRepository.
+/// Ranks are computed here from the ordered query, not read from a field,
+/// so the number on screen and the order on screen can never disagree.
+List<LeaderboardEntry> ranked(Iterable<LeaderboardEntry> rows) {
+  final sorted = rows.toList()..sort((a, b) => b.xp.compareTo(a.xp));
+  return [
+    for (var i = 0; i < sorted.length; i++)
+      LeaderboardEntry(
+        uid: sorted[i].uid,
+        displayName: sorted[i].displayName,
+        xp: sorted[i].xp,
+        rank: i + 1,
+      ),
+  ];
+}
 
 /// Which board is showing.
 enum LeaderboardScope { friends, global }
@@ -116,6 +105,8 @@ class _LeaderboardScreenState extends ConsumerState<LeaderboardScreen> {
 
 /// Friends are assembled on the device — the set is small and already local,
 /// so a server aggregate would be more machinery for no benefit.
+/// Friends and the user, ranked by **this week's** XP — the same rows the
+/// global board reads, filtered to the friend set on the device.
 class _FriendsBoard extends ConsumerWidget {
   const _FriendsBoard({required this.uid, required this.l10n});
 
@@ -125,39 +116,36 @@ class _FriendsBoard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final friends = ref.watch(friendsProvider).valueOrNull ?? const [];
-    final progress = ref.watch(userProgressProvider).valueOrNull?.value;
+    final board = ref.watch(weeklyLeaderboardProvider).valueOrNull ?? const [];
 
     if (friends.isEmpty) {
       return EmptyView(title: l10n.lbFriends, message: l10n.inviteSub);
     }
 
-    final rows = <LeaderboardEntry>[
-      if (progress != null && uid != null)
-        LeaderboardEntry(
-          uid: uid!,
-          displayName: l10n.guestBadge,
-          xp: progress.xp,
-          rank: 0,
-        ),
-      for (final friend in friends)
-        LeaderboardEntry(
-          uid: friend.uid,
-          displayName: friend.displayName,
-          xp: 0,
-          rank: 0,
-        ),
-    ]..sort((a, b) => b.xp.compareTo(a.xp));
+    // Everyone on this board is on the weekly scale — mine included. A row
+    // that does not exist yet means no cook this week, which is a zero, not
+    // an absence: hiding it would flatter me with silence.
+    final friendUids = {for (final f in friends) f.uid};
+    final myRow = board.where((row) => row.uid == uid).firstOrNull;
 
     return _Board(
-      entries: [
-        for (var i = 0; i < rows.length; i++)
+      entries: ranked([
+        if (uid != null)
           LeaderboardEntry(
-            uid: rows[i].uid,
-            displayName: rows[i].displayName,
-            xp: rows[i].xp,
-            rank: i + 1,
+            uid: uid!,
+            displayName: l10n.guestBadge,
+            xp: myRow?.xp ?? 0,
+            rank: 0,
           ),
-      ],
+        for (final row in board)
+          if (friendUids.contains(row.uid))
+            LeaderboardEntry(
+              uid: row.uid,
+              displayName: row.displayName,
+              xp: row.xp,
+              rank: 0,
+            ),
+      ]),
       meUid: uid,
     );
   }
@@ -171,15 +159,26 @@ class _GlobalBoard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(globalLeaderboardProvider).when(
+    return ref.watch(weeklyLeaderboardProvider).when(
           loading: () => const Center(child: CircularProgressIndicator()),
           // An empty or unreadable board is not an error worth alarming
-          // anyone with: the aggregation runs hourly and needs Blaze.
+          // anyone with: rows appear as people cook.
           error: (_, __) =>
               EmptyView(title: l10n.lbGlobal, message: l10n.errorOffline),
-          data: (entries) => entries.isEmpty
+          data: (rows) => rows.isEmpty
               ? EmptyView(title: l10n.lbGlobal, message: l10n.feedSub)
-              : _Board(entries: entries, meUid: uid),
+              : _Board(
+                  entries: ranked([
+                    for (final row in rows)
+                      LeaderboardEntry(
+                        uid: row.uid,
+                        displayName: row.displayName,
+                        xp: row.xp,
+                        rank: 0,
+                      ),
+                  ]),
+                  meUid: uid,
+                ),
         );
   }
 }

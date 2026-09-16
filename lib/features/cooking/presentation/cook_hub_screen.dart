@@ -137,8 +137,7 @@ class _SavedForLater extends ConsumerWidget {
               physics: const NeverScrollableScrollPhysics(),
               padding: AppSpacing.screenH,
               itemCount: recipes.length,
-              separatorBuilder: (_, __) =>
-                  const SizedBox(width: AppSpacing.md),
+              separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.md),
               itemBuilder: (context, index) =>
                   DishListTile(recipe: recipes[index]),
             ),

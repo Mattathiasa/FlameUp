@@ -212,6 +212,26 @@
   "@chTitle": {
     "description": "Design prototype copy"
   },
+  "chWeeklyCookToEnter": "Cook the dish to enter",
+  "@chWeeklyCookToEnter": {
+    "description": "Application copy"
+  },
+  "chWeeklyEntered": "You're in this week",
+  "@chWeeklyEntered": {
+    "description": "Application copy"
+  },
+  "chWeeklyEntrants": "Entrants",
+  "@chWeeklyEntrants": {
+    "description": "Application copy"
+  },
+  "chWeeklyNoEntries": "No entries yet — be the first",
+  "@chWeeklyNoEntries": {
+    "description": "Application copy"
+  },
+  "chWeeklyTitle": "Weekly cook-off",
+  "@chWeeklyTitle": {
+    "description": "Application copy"
+  },
   "claimRecipe": "FROM THIS RECIPE",
   "@claimRecipe": {
     "description": "Application copy"
@@ -639,6 +659,10 @@
   "lbRegion": "Addis",
   "@lbRegion": {
     "description": "Design prototype copy"
+  },
+  "lbWeekly": "This week",
+  "@lbWeekly": {
+    "description": "Application copy"
   },
   "levelNow": "Level 12 · Wot Wanderer",
   "@levelNow": {
