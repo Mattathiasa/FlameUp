@@ -69,6 +69,45 @@ service cloud.firestore {
         && request.auth.token.moderator == true;
     }
 
+    function isAnonymous() {
+      // Production Auth tokens always carry sign_in_provider; hand-minted
+      // test tokens may not. Reading a missing key errors rather than
+      // returning false, so guard it — an absent provider is treated as a
+      // permanent account, which is what tests (and any future custom-token
+      // path) intend.
+      return signedIn()
+        && ('sign_in_provider' in request.auth.token)
+        && request.auth.token.sign_in_provider == 'anonymous';
+    }
+
+    /// Community contributions require a permanent account.
+    ///
+    /// Anonymous accounts are free, unlimited and minted per device, so a
+    /// guest with write access to the archive is a spammer with an infinite
+    /// supply of identities. Guests can read and cook; publishing, vouching
+    /// and rating are for people who signed up.
+    function permanentUser() {
+      return signedIn() && !isAnonymous();
+    }
+
+    /// The display name pinned to the writer's public directory card.
+    ///
+    /// Social labels ("X vouched for your recipe") must come from the one
+    /// place the writer cannot diverge from: their own directory card, whose
+    /// `uid` field the rules bind to the signer. Reading it here means a
+    /// forged name cannot ride in on an otherwise valid write. A card is
+    /// optional, so an absent one falls back to the anonymous-but-honest
+    /// generic label.
+    function pinnedProfileName() {
+      let card = /databases/$(database)/documents/user_directory/$(request.auth.uid);
+      // Map.get(key, default) covers both a missing card and a malformed
+      // one without erroring; the card's own create rules guarantee the
+      // name is a bounded string when it exists.
+      return exists(card)
+        ? get(card).data.get('displayName', '')
+        : '';
+    }
+
     // --- users -----------------------------------------------------------
 
     match /users/{uid} {
@@ -84,9 +123,23 @@ service cloud.firestore {
       allow delete: if isOwner(uid);
 
       // Cooking sessions are private and client-written: they are a record of
-      // what happened, not of what it was worth.
+      // what happened, not of what it was worth. A COMPLETED session is
+      // frozen — every downstream check (reviews, weekly entries, versions'
+      // proof-of-cook) treats "completed" as having happened, so a client
+      // that could resurrect or rewrite one could launder a fake cook after
+      // the fact. In-progress sessions stay freely writable: advancing steps,
+      // pausing timers and finishing are all normal edits of the same doc.
+      // The outbox drops exhausted mutations rather than looping, so a
+      // queued step write landing after completion fails once and is
+      // discarded — the local record keeps the truth.
       match /cooking_sessions/{sessionId} {
-        allow read, write: if isOwner(uid);
+        allow read: if isOwner(uid);
+        allow create: if isOwner(uid)
+          && incoming().status in ['in_progress', 'completed'];
+        allow update: if isOwner(uid)
+          && (existing().status != 'completed'
+            || incoming().status == existing().status);
+        allow delete: if isOwner(uid);
       }
 
       // Everything the server grants is read-only to the client.
@@ -143,13 +196,21 @@ service cloud.firestore {
       match /notifications/{notificationId} {
         allow read: if isOwner(uid);
         allow update: if isOwner(uid);
-        allow delete: if false;
+        // The inbox is the owner's to prune: notifications are small but
+        // unbounded in number, and only the person they belong to can say
+        // which are noise. Deletes touch nobody else's data.
+        allow delete: if isOwner(uid);
 
         // The writer is the VOUCHING COOK, not the owner — vouchIsReal
         // pins the writer, the recipient (the recipe's author), and the
         // real vouch the note cites. The shape is exhaustive: no extra
-        // field can ride along.
-        allow create: if signedIn()
+        // field can ride along. The writer must hold a permanent account
+        // (see permanentUser) and the name on the note is PINNED to their
+        // directory card — a vouch note is a signature, not a free-text
+        // field, so an impersonated "Abeni T." cannot ride in on a real
+        // vouch. When the writer has no card the payload must carry the
+        // same empty generic label.
+        allow create: if permanentUser()
           && request.resource.data.keys().hasOnly(
             ['type', 'recipeId', 'otherUid', 'otherName', 'count',
              'createdAt', 'readAt'])
@@ -166,9 +227,8 @@ service cloud.firestore {
           && request.resource.data.otherUid is string
           && request.resource.data.otherUid.size() > 0
           && request.resource.data.otherUid.size() <= 60
-          && request.resource.data.otherName is string
-          && request.resource.data.otherName.size() > 0
-          && request.resource.data.otherName.size() <= 60
+          && request.resource.data.otherName
+            == pinnedProfileName()
           && request.resource.data.count is int
           && request.resource.data.count >= 1
           && request.resource.data.count <= 50
@@ -221,6 +281,7 @@ service cloud.firestore {
     match /user_directory/{uid} {
       allow read: if signedIn();
       allow create: if isOwner(uid)
+        && permanentUser()
         && incoming().keys().hasOnly(['uid', 'displayName', 'nameSearch', 'friendCode'])
         && incoming().uid == uid
         && incoming().displayName is string
@@ -232,6 +293,7 @@ service cloud.firestore {
         && incoming().friendCode is string
         && incoming().friendCode.size() == 8;
       allow update: if isOwner(uid)
+        && permanentUser()
         && incoming().uid == uid;
       allow delete: if isOwner(uid);
     }
@@ -251,7 +313,8 @@ service cloud.firestore {
         // session that you own. This is where "you can only rate what you
         // actually cooked" is enforced -- the client cannot fake it, because
         // the session document is checked here.
-        allow create, update: if isOwner(uid)
+        allow create, update: if permanentUser()
+          && isOwner(uid)
           && incoming().uid == uid
           && incoming().sessionId is string
           && exists(/databases/$(database)/documents/users/$(uid)/cooking_sessions/$(incoming().sessionId))
@@ -277,7 +340,7 @@ service cloud.firestore {
         || isOwner(existing().authorId)
         || isModerator();
 
-      allow create: if signedIn()
+      allow create: if permanentUser()
         && incoming().authorId == request.auth.uid
         && incoming().status in ['draft', 'pending']
         // Variants: a submission may declare the recipe it is a version of,
@@ -488,7 +551,8 @@ service cloud.firestore {
         // doc supplies the only XP figure an entry may carry. A fudged
         // device clock enters nothing: the deadline is compared against the
         // server's request.time.
-        allow create: if isOwner(uid)
+        allow create: if permanentUser()
+          && isOwner(uid)
           && weeklyEntryIsValid(weekId);
         // Entries are immutable once written: no edits, no withdrawals,
         // no re-entries under a different session.
@@ -510,10 +574,12 @@ service cloud.firestore {
       // Only the current week may be written — a device cannot claim last
       // week — and weekId parity with the client is proven by the rules
       // tests, which write a row through both implementations.
-      allow create: if isOwner(rowId.split('_')[1])
+      allow create: if permanentUser()
+        && isOwner(rowId.split('_')[1])
         && validWeeklyRowShape(rowId);
 
-      allow update: if isOwner(rowId.split('_')[1])
+      allow update: if permanentUser()
+        && isOwner(rowId.split('_')[1])
         && validWeeklyRowShape(rowId)
         && incoming().xp >= existing().xp
         && incoming().cooks > existing().cooks;

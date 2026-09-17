@@ -72,3 +72,6 @@ emulator-data/
 
 # Build outputs (belt and braces -- the Flutter template covers /build)
 /build/
+
+# Live credentials (demo-account passwords live here, never in git)
+config/production.env

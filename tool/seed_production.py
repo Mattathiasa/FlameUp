@@ -5,7 +5,8 @@ What goes in, in order:
   1. Content     25 recipes + regions (from assets/seed/recipes.json, plus
                  searchTokens for server-side text queries) and the config
                  documents (level curve, XP rules, featured picks).
-  2. Demo people Six demo accounts (password: flameup-demo, emails under
+  2. Demo people Six demo accounts (password from gitignored
+                 config/production.env: DEMO_PASSWORD, emails under
                  demo.flameup.app) with public profiles, opt-in directory
                  cards, XP/level/streak counters, mastery and completed
                  cooking sessions, reviews with honest aggregates, posts with
@@ -53,7 +54,35 @@ TOKEN_PATH = '/tmp/flameup_access_token.txt'
 CONFIGSTORE = ('/Users/mattathiasa/.config/configstore/'
                'firebase-tools.json')
 SEED = 'assets/seed/recipes.json'
-DEMO_PASSWORD = 'flameup-demo'
+
+
+def demo_password():
+    """The demo accounts' password, from gitignored config/production.env.
+
+    It is not a secret in the crypto sense — it opens throwaway demo
+    logins — but a known password for a *known* account list is an open
+    invitation to fill the archive with junk under those identities, so it
+    lives outside the repo. Copy production.env.example to production.env
+    and set DEMO_PASSWORD there; seed_production.py --setup-passwords
+    creates/updates the accounts to match.
+    """
+    import os
+    path = os.path.join(os.path.dirname(__file__), os.pardir,
+                        'config', 'production.env')
+    try:
+        for line in open(path):
+            line = line.strip()
+            if line.startswith('DEMO_PASSWORD=') and len(line) > 14:
+                return line.split('=', 1)[1].strip().strip("'\"")
+    except FileNotFoundError:
+        pass
+    raise SystemExit(
+        'config/production.env is missing or has no DEMO_PASSWORD.\n'
+        '  cp config/production.env.example config/production.env'
+        ' and set a private DEMO_PASSWORD (16+ characters).')
+
+
+DEMO_PASSWORD = demo_password()
 
 random.seed(7815)  # deterministic demo world
 
@@ -179,6 +208,64 @@ def ensure_demo_accounts():
         except RuntimeError as e:
             print(f'  WARN could not create {email}: {e}'.splitlines()[0])
     return uids
+
+
+def rotate_demo_passwords():
+    """Rotate every demo account to the configured password.
+
+    The CLI credential usually lacks Identity Platform IAM, so this uses the
+    public API-key surface instead: sign in with the known current password
+    (the retired default, or a password from an earlier rotation), then
+    change the password with the fresh idToken — the same "signed-in user
+    resets their own password" flow the app has, just scripted.
+    """
+    api_key = None
+    for line in open('lib/firebase_options.dart'):
+        if 'apiKey' in line and 'AIza' in line:
+            api_key = line.split("'")[1]
+            break
+    if not api_key:
+        raise SystemExit('no API key in lib/firebase_options.dart')
+
+    def id_token_for(email, password):
+        req = urllib.request.Request(
+            f'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={api_key}',
+            data=json.dumps({'email': email, 'password': password,
+                             'returnSecureToken': True}).encode(),
+            headers={'Content-Type': 'application/json'}, method='POST')
+        try:
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                return json.loads(resp.read())['idToken']
+        except urllib.error.HTTPError:
+            return None
+
+    updated = already = 0
+    for email, name, region in DEMO_USERS:
+        new_token = id_token_for(email, DEMO_PASSWORD)
+        if new_token:
+            already += 1
+            print(f'  ok {email} (already on the configured password)')
+            continue
+        old_token = id_token_for(email, 'flameup-demo')
+        if not old_token:
+            print(f'  WARN {email}: neither configured nor default password'
+                  ' works — rotate manually')
+            continue
+        req = urllib.request.Request(
+            f'https://identitytoolkit.googleapis.com/v1/accounts:update?key={api_key}',
+            data=json.dumps({'idToken': old_token,
+                             'password': DEMO_PASSWORD,
+                             'returnSecureToken': False}).encode(),
+            headers={'Content-Type': 'application/json'}, method='POST')
+        try:
+            with urllib.request.urlopen(req, timeout=20) as resp:
+                resp.read()
+            updated += 1
+            print(f'  rotated {email}')
+        except urllib.error.HTTPError as e:
+            print(f'  WARN rotate {email}: {e.code}'
+                  f' {e.read().decode()[:200]}'.splitlines()[0])
+    print(f'demo passwords: {updated} rotated, {already} already current.')
 
 
 def friend_code(uid):
@@ -659,7 +746,14 @@ def main():
                         help='seed recipes/regions/config only')
     parser.add_argument('--demo', action='store_true',
                         help='seed demo people only')
+    parser.add_argument('--rotate-passwords', action='store_true',
+                        help='force demo accounts to the DEMO_PASSWORD from '
+                             'config/production.env, then exit')
     args = parser.parse_args()
+
+    if args.rotate_passwords:
+        rotate_demo_passwords()
+        return
 
     if args.content or args.demo:
         if args.content:

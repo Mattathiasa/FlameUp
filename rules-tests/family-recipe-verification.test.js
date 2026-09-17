@@ -426,6 +426,16 @@ describe('vouch notifications', () => {
       title: 'Test recipe',
       verifiedBy: Array.from({ length: count }, (_, i) => `v-${i}`),
     });
+    // A vouch note pins its display name to the writer's directory card, so
+    // every vouching user here gets the card the app creates on signup.
+    for (let i = 0; i < count; i++) {
+      await setDoc(doc(db, 'user_directory', `v-${i}`), {
+        uid: `v-${i}`,
+        displayName: 'Dawit M.',
+        nameSearch: 'dawit m',
+        friendCode: `vouch00${i}`,
+      });
+    }
   }
 
   const note = (type, count) => ({
@@ -547,12 +557,18 @@ describe('vouch notifications', () => {
       // rules evaluates the recipe at post-batch state, so the note citing
       // the new vouch is validated against the write that carries it.
       await seed(env, async (db) => {
-        await setDoc(doc(db, 'family_recipes', RECIPE), {
-          authorId: AUTHOR,
-          status: 'pending',
-          title: 'Test recipe',
-          verifiedBy: ['v-0', 'v-1'],
-        });
+      await setDoc(doc(db, 'family_recipes', RECIPE), {
+        authorId: AUTHOR,
+        status: 'pending',
+        title: 'Test recipe',
+        verifiedBy: ['v-0', 'v-1'],
+      });
+      await setDoc(doc(db, 'user_directory', 'v-2'), {
+        uid: 'v-2',
+        displayName: 'Dawit M.',
+        nameSearch: 'dawit m',
+        friendCode: 'vouch002',
+      });
       });
       const sdk = asUser(env, 'v-2');
       await assertSucceeds(

@@ -18,6 +18,7 @@ Everything is keyed to this run and cleaned up at the end.
 """
 
 import json
+import os
 import subprocess
 import sys
 import urllib.request
@@ -25,7 +26,28 @@ import urllib.request
 PROJECT = 'flameup-78d15'
 FIRESTORE = f'https://firestore.googleapis.com/v1/projects/{PROJECT}/databases/(default)/documents'
 IDENTITY = f'https://identitytoolkit.googleapis.com/v1/projects/{PROJECT}'
-PASSWORD = 'flameup-demo'
+
+
+def _demo_password():
+    """Same contract as seed_production.py: DEMO_PASSWORD in the gitignored
+    config/production.env. The demo accounts only exist if the seeder ran,
+    so a missing file is a setup error, not a fallback situation."""
+    path = os.path.join(os.path.dirname(__file__), os.pardir,
+                        'config', 'production.env')
+    try:
+        for line in open(path):
+            line = line.strip()
+            if line.startswith('DEMO_PASSWORD=') and len(line) > 14:
+                return line.split('=', 1)[1].strip().strip("'\"")
+    except FileNotFoundError:
+        pass
+    raise SystemExit(
+        'config/production.env is missing or has no DEMO_PASSWORD.\n'
+        '  cp config/production.env.example config/production.env'
+        ' and set the same DEMO_PASSWORD the seeder used.')
+
+
+PASSWORD = _demo_password()
 
 RUN_TAG = 'lifefire-verify'
 
