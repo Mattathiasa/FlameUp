@@ -38,25 +38,31 @@ class WeeklyRepository {
       .orderBy('xp', descending: true)
       .limit(limit)
       .snapshots()
-      .map((snapshot) => snapshot.docs
-          .map((doc) => WeeklyXpRow.fromJson(doc.id, doc.data()))
-          .whereType<WeeklyXpRow>()
-          .toList(),);
+      .map(
+        (snapshot) => snapshot.docs
+            .map((doc) => WeeklyXpRow.fromJson(doc.id, doc.data()))
+            .whereType<WeeklyXpRow>()
+            .toList(),
+      );
 
   /// The week's entrants, joined earliest first — the leaderboard of the
   /// cook-off. Ordered by the entry's XP, which the rules tie to a real
   /// session's recipe reward.
-  Stream<List<WeeklyChallengeEntry>> watchEntries(String weekId,
-          {int limit = 50,}) =>
+  Stream<List<WeeklyChallengeEntry>> watchEntries(
+    String weekId, {
+    int limit = 50,
+  }) =>
       _fs
           .collection(FirestorePaths.weeklyChallengeEntries(weekId))
           .orderBy('completedAt', descending: false)
           .limit(limit)
           .snapshots()
-          .map((snapshot) => snapshot.docs
-              .map((doc) => WeeklyChallengeEntry.fromJson(doc.id, doc.data()))
-              .whereType<WeeklyChallengeEntry>()
-              .toList(),);
+          .map(
+            (snapshot) => snapshot.docs
+                .map((doc) => WeeklyChallengeEntry.fromJson(doc.id, doc.data()))
+                .whereType<WeeklyChallengeEntry>()
+                .toList(),
+          );
 
   /// The signed-in user's row for [weekId], so the UI can show their rank.
   Future<WeeklyXpRow?> rowFor(String weekId, String uid) async {
@@ -109,7 +115,11 @@ class WeeklyRepository {
     required String weekId,
     required WeeklyChallengeEntry entry,
   }) =>
-      ErrorMapper.guard(() => _fs
-          .doc('${FirestorePaths.weeklyChallengeEntries(weekId)}/${entry.uid}')
-          .set(entry.toJson()),);
+      ErrorMapper.guard(
+        () => _fs
+            .doc(
+              '${FirestorePaths.weeklyChallengeEntries(weekId)}/${entry.uid}',
+            )
+            .set(entry.toJson()),
+      );
 }

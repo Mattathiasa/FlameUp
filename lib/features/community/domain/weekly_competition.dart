@@ -208,7 +208,9 @@ class WeeklyChallengeEntry {
       };
 
   static WeeklyChallengeEntry? fromJson(
-      String uid, Map<String, dynamic>? json,) {
+    String uid,
+    Map<String, dynamic>? json,
+  ) {
     if (json == null) return null;
     final sessionId = json['sessionId'] as String?;
     if (sessionId == null) return null;

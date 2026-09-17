@@ -124,7 +124,8 @@ void main() {
         WeeklyChallengeEntry.fromJson(
           'u1',
           withPhoto.toJson()..['completedAt'] = null,
-        )!.photoUrl,
+        )!
+            .photoUrl,
         'https://example.invalid/a.jpg',
       );
 

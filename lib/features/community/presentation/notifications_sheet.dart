@@ -146,7 +146,9 @@ class _NotificationRow extends StatelessWidget {
       // The vouch count is stored in otherUid's slot for these types — the
       // row's only free string field — rendered as a number.
       AppNotificationType.recipeVouched => l10n.notifRecipeVouchedBody(
-          notification.otherUid, notification.otherName,),
+          notification.otherUid,
+          notification.otherName,
+        ),
       AppNotificationType.recipeVerified =>
         l10n.notifRecipeVerifiedBody(notification.otherName),
     };

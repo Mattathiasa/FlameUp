@@ -256,8 +256,11 @@ class _WeeklyCard extends ConsumerWidget {
             if (uid != null && entries.any((e) => e.uid == uid))
               Row(
                 children: [
-                  const Icon(Icons.check_circle,
-                      color: AppColors.green, size: 18,),
+                  const Icon(
+                    Icons.check_circle,
+                    color: AppColors.green,
+                    size: 18,
+                  ),
                   const SizedBox(width: AppSpacing.sm),
                   Text(
                     l10n.chWeeklyEntered,
