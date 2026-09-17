@@ -197,6 +197,12 @@ abstract class AppLocalizations {
   /// Application copy
   ///
   /// In en, this message translates to:
+  /// **'Add your version'**
+  String get addYourVersion;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
   /// **'Added to your shopping list'**
   String get addedToList;
 
@@ -1565,6 +1571,18 @@ abstract class AppLocalizations {
   /// Application copy
   ///
   /// In en, this message translates to:
+  /// **'Nothing is waiting for review right now.'**
+  String get reviewEmpty;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'In community review'**
+  String get reviewTitle;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
   /// **'Saved for later'**
   String get savedCookSub;
 
@@ -2137,6 +2155,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'At least 8 characters.'**
   String get validationPasswordShort;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'What makes yours different?'**
+  String get variantLabelField;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. my grandmother skips the butter'**
+  String get variantLabelHint;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Cook the original first — your version needs proof you have made it.'**
+  String get variantNeedsCook;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get verifiedBadge;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'You are telling the community you have cooked this yourself and it works. When three cooks vouch, the recipe publishes itself.'**
+  String get verifyConfirmBody;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Vouch for this recipe?'**
+  String get verifyConfirmTitle;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'3 cooks vouch for this'**
+  String get verifyCount;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'I cooked this'**
+  String get verifyCta;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'A version of'**
+  String get versionOf;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'No one has shared a version of this dish yet — yours could be first.'**
+  String get versionsEmpty;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Versions'**
+  String get versionsTitle;
 
   /// Design prototype copy
   ///

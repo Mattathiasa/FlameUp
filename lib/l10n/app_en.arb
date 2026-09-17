@@ -64,6 +64,10 @@
   "@addToList": {
     "description": "Application copy"
   },
+  "addYourVersion": "Add your version",
+  "@addYourVersion": {
+    "description": "Application copy"
+  },
   "addedToList": "Added to your shopping list",
   "@addedToList": {
     "description": "Application copy"
@@ -976,6 +980,14 @@
   "@retry": {
     "description": "Design prototype copy"
   },
+  "reviewEmpty": "Nothing is waiting for review right now.",
+  "@reviewEmpty": {
+    "description": "Application copy"
+  },
+  "reviewTitle": "In community review",
+  "@reviewTitle": {
+    "description": "Application copy"
+  },
   "savedCookSub": "Saved for later",
   "@savedCookSub": {
     "description": "Application copy"
@@ -1358,6 +1370,50 @@
   },
   "validationPasswordShort": "At least 8 characters.",
   "@validationPasswordShort": {
+    "description": "Application copy"
+  },
+  "variantLabelField": "What makes yours different?",
+  "@variantLabelField": {
+    "description": "Application copy"
+  },
+  "variantLabelHint": "e.g. my grandmother skips the butter",
+  "@variantLabelHint": {
+    "description": "Application copy"
+  },
+  "variantNeedsCook": "Cook the original first — your version needs proof you have made it.",
+  "@variantNeedsCook": {
+    "description": "Application copy"
+  },
+  "verifiedBadge": "Verified",
+  "@verifiedBadge": {
+    "description": "Application copy"
+  },
+  "verifyConfirmBody": "You are telling the community you have cooked this yourself and it works. When three cooks vouch, the recipe publishes itself.",
+  "@verifyConfirmBody": {
+    "description": "Application copy"
+  },
+  "verifyConfirmTitle": "Vouch for this recipe?",
+  "@verifyConfirmTitle": {
+    "description": "Application copy"
+  },
+  "verifyCount": "3 cooks vouch for this",
+  "@verifyCount": {
+    "description": "Application copy"
+  },
+  "verifyCta": "I cooked this",
+  "@verifyCta": {
+    "description": "Application copy"
+  },
+  "versionOf": "A version of",
+  "@versionOf": {
+    "description": "Application copy"
+  },
+  "versionsEmpty": "No one has shared a version of this dish yet — yours could be first.",
+  "@versionsEmpty": {
+    "description": "Application copy"
+  },
+  "versionsTitle": "Versions",
+  "@versionsTitle": {
     "description": "Application copy"
   },
   "viewAll": "View all",

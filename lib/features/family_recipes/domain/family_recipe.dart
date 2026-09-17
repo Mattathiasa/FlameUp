@@ -17,6 +17,9 @@ class FamilyRecipe {
     this.story = '',
     this.stepsText = '',
     this.ingredientsText = '',
+    this.verifiedBy = const [],
+    this.baseId,
+    this.variantLabel,
     this.mediaUrl,
     this.createdAt,
     this.updatedAt,
@@ -42,6 +45,12 @@ class FamilyRecipe {
       story: json['story'] as String? ?? '',
       stepsText: json['stepsText'] as String? ?? '',
       ingredientsText: json['ingredientsText'] as String? ?? '',
+      verifiedBy: [
+        for (final uid in (json['verifiedBy'] as List? ?? const []))
+          if (uid is String && uid.isNotEmpty) uid,
+      ],
+      baseId: json['baseId'] as String?,
+      variantLabel: json['variantLabel'] as String?,
       mediaUrl: json['mediaUrl'] as String?,
       createdAt: firestoreDate(json['createdAt']),
       updatedAt: firestoreDate(json['updatedAt']),
@@ -61,6 +70,29 @@ class FamilyRecipe {
   /// Free-form ingredient list, one ingredient per line or comma-separated —
   /// family recipes are dictated, not measured. Rendered verbatim.
   final String ingredientsText;
+
+  /// The uids of the cooks who vouched for this recipe — who made it
+  /// themselves and can say it works. The rules guarantee the array only ever
+  /// grows, one append per person, never by the author; at three the recipe
+  /// is trusted enough to publish itself.
+  final List<String> verifiedBy;
+
+  /// For a variant: the id of the recipe this is a version of — either a
+  /// catalogue dish or another family recipe. Null for originals.
+  final String? baseId;
+
+  /// For a variant: what is different about this one, in the author's words.
+  final String? variantLabel;
+
+  /// True when this recipe is a version of another recipe rather than an
+  /// original submission.
+  bool get isVariant => baseId != null && baseId!.isNotEmpty;
+
+  /// How many independent cooks back this recipe.
+  int get verificationCount => verifiedBy.length;
+
+  /// Whether [uid] has already vouched — one vouch per person, ever.
+  bool verifiedByUser(String? uid) => uid != null && verifiedBy.contains(uid);
 
   /// The steps as they were entered: one line per step. Older submissions
   /// (before the form had per-step fields) typed them into one blob and

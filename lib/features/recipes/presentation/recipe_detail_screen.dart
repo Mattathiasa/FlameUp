@@ -9,6 +9,8 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
+import '../../family_recipes/data/family_recipe_repository.dart';
+import '../../family_recipes/domain/family_recipe_providers.dart';
 import '../domain/recipe.dart';
 import '../domain/recipe_providers.dart';
 import 'dish_photo.dart';
@@ -51,7 +53,7 @@ class _Content extends ConsumerWidget {
     final servings = ref.watch(servingsProvider(recipe.servings));
 
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: NestedScrollView(
         headerSliverBuilder: (context, _) => [
           SliverAppBar(
@@ -110,6 +112,7 @@ class _Content extends ConsumerWidget {
                 Tab(text: l10n.ingredients),
                 Tab(text: l10n.steps),
                 Tab(text: l10n.story),
+                Tab(text: l10n.versionsTitle),
               ],
             ),
           ),
@@ -126,6 +129,7 @@ class _Content extends ConsumerWidget {
                   ),
                   _StepsTab(recipe: recipe, amharic: amharic),
                   _StoryTab(recipe: recipe, amharic: amharic),
+                  _VersionsTab(recipeId: recipe.id),
                 ],
               ),
             ),
@@ -371,6 +375,96 @@ class _StepsTab extends StatelessWidget {
       return minutes == 0 ? '${hours}h' : '${hours}h ${minutes}m';
     }
     return '${duration.inMinutes}m';
+  }
+}
+
+/// Household versions of this dish, plus the path to add your own — which
+/// the rules gate on proof-of-cook, so the button always works but the
+/// submitter needs a completed session of this dish behind them.
+class _VersionsTab extends ConsumerWidget {
+  const _VersionsTab({required this.recipeId});
+
+  final String recipeId;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final palette = AppPalette.of(context);
+    final l10n = AppLocalizations.of(context);
+    final variants =
+        ref.watch(catalogueVariantsOfProvider(recipeId)).valueOrNull;
+    final hasVariants = variants != null && variants.isNotEmpty;
+
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(20, 16, 20, AppSpacing.screenBottom),
+      children: [
+        GlassPanel(
+          blur: false,
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // The invite doubles as the empty state; once versions exist
+              // the cards below speak for themselves.
+              if (!hasVariants)
+                Text(
+                  l10n.versionsEmpty,
+                  style: AppTypography.bodyMedium
+                      .copyWith(color: palette.textSecondary),
+                ),
+              if (!hasVariants) const SizedBox(height: AppSpacing.md),
+              FlameButton(
+                label: l10n.addYourVersion,
+                onPressed: () =>
+                    context.push(Routes.familyRecipeVersionOf(recipeId)),
+              ),
+            ],
+          ),
+        ),
+        if (variants != null)
+          for (final variant in variants) ...[
+            const SizedBox(height: AppSpacing.md),
+            GlassPanel(
+              blur: false,
+              padding: const EdgeInsets.all(AppSpacing.lg),
+              child: InkWell(
+                onTap: () =>
+                    context.push(Routes.familyRecipeDetailOf(variant.id)),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            variant.displayName,
+                            style: AppTypography.titleSmall
+                                .copyWith(color: palette.textPrimary),
+                          ),
+                          if (variant.variantLabel?.isNotEmpty ?? false) ...[
+                            const SizedBox(height: AppSpacing.xxs),
+                            Text(
+                              variant.variantLabel!,
+                              style: AppTypography.bodySmall
+                                  .copyWith(color: palette.textSecondary),
+                            ),
+                          ],
+                        ],
+                      ),
+                    ),
+                    if (variant.verificationCount >=
+                        FamilyRecipeRepository.publishThreshold)
+                      const Icon(
+                        Icons.verified,
+                        size: 18,
+                        color: AppColors.green,
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+      ],
+    );
   }
 }
 

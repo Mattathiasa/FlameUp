@@ -61,7 +61,12 @@ service cloud.firestore {
     }
 
     function isModerator() {
-      return signedIn() && request.auth.token.moderator == true;
+      // The claim is usually absent, and reading a missing token key is an
+      // error rather than a false — which would deny paths that merely ask
+      // "is this a moderator?" as their last resort. Guard the read.
+      return signedIn()
+        && ('moderator' in request.auth.token)
+        && request.auth.token.moderator == true;
     }
 
     // --- users -----------------------------------------------------------
@@ -204,19 +209,41 @@ service cloud.firestore {
     // --- family recipes --------------------------------------------------
 
     match /family_recipes/{id} {
-      // A draft is private to its author until it is published, so nothing
-      // user-written is publicly readable before review.
+      // A draft is private to its author. A PENDING submission is in
+      // community review: any signed-in user may read it, because vouching
+      // for a recipe you cannot see is not verification, it is a stamp.
       allow read: if existing().status == 'published'
+        || existing().status == 'pending'
         || isOwner(existing().authorId)
         || isModerator();
 
       allow create: if signedIn()
         && incoming().authorId == request.auth.uid
-        && incoming().status in ['draft', 'pending'];
+        && incoming().status in ['draft', 'pending']
+        // Variants: a submission may declare the recipe it is a version of,
+        // and the label that says what is different. An original leaves both
+        // unset. The base must exist — and a variant of a catalogue dish
+        // additionally requires proof the submitter has actually cooked that
+        // dish here: a completed session in their OWN history, for exactly
+        // that recipe. Claiming to improve a classic you never made is what
+        // this blocks.
+        && variantFieldsAreValid()
+        && variantBaseIsValid();
 
-      // An author may edit their own work but cannot approve it.
-      allow update: if (isOwner(existing().authorId)
-          && incoming().status in ['draft', 'pending'])
+      // Three update paths, spelled out so none can masquerade as another:
+      //
+      // 1. The author edits their own still-unpublished work. They may set
+      //    everything EXCEPT verification — vouches are other people's
+      //    votes, and content edits cannot touch content review.
+      // 2. Community verification: anyone EXCEPT the author appends their
+      //    own uid to verifiedBy. The rules prove the append — the array
+      //    only grows, each vouch appears once, nothing else changes — and
+      //    at three vouches the recipe publishes itself. Moderation by
+      //    community, with no server in between.
+      // 3. The moderator path stays for takedowns and fixes; community
+      //    verification is ADDITIVE to moderation, not a replacement.
+      allow update: if authorContentEdit()
+        || communityVerification()
         || isModerator();
 
       allow delete: if isOwner(existing().authorId) || isModerator();
@@ -230,9 +257,108 @@ service cloud.firestore {
           return get(/databases/$(database)/documents/family_recipes/$(id)).data;
         }
         allow read: if parent().status == 'published'
+          || parent().status == 'pending'
           || isOwner(parent().authorId)
           || isModerator();
         allow write: if isOwner(parent().authorId) || isModerator();
+      }
+
+      // --- variant shape ---------------------------------------------------
+
+      function variantFieldsAreValid() {
+        // Either both fields or neither; when present, a real id to link to
+        // and a label someone could read out loud.
+        return (!('baseId' in request.resource.data)
+            && !('variantLabel' in request.resource.data))
+          || (('baseId' in request.resource.data)
+            && ('variantLabel' in request.resource.data)
+            && request.resource.data.baseId is string
+            && request.resource.data.baseId.size() > 0
+            && request.resource.data.baseId.size() <= 100
+            && request.resource.data.baseId != id
+            && request.resource.data.variantLabel is string
+            && request.resource.data.variantLabel.size() > 0
+            && request.resource.data.variantLabel.size() <= 200);
+      }
+
+      // Family-recipe ids are uuids; catalogue ids are slugs. The shape of
+      // the id is what tells the two worlds apart.
+      function isUuid(value) {
+        return value.matches('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$');
+      }
+
+      function variantBaseIsValid() {
+        return !('baseId' in request.resource.data)
+          // A family base: must exist in the archive. exists() reads the
+          // database directly, so a stranger's still-pending recipe is
+          // still checkable.
+          || (isUuid(request.resource.data.baseId)
+            && exists(/databases/$(database)/documents/family_recipes/$(request.resource.data.baseId)))
+          // A catalogue base: must exist, and the submitter must cite one of
+          // their own completed cooking sessions for exactly that dish —
+          // the proof-of-cook gate. The session path pins uid to the signer,
+          // so nobody can cite a friend's history.
+          || ('proofSessionId' in request.resource.data
+            && request.resource.data.proofSessionId is string
+            && request.resource.data.proofSessionId.size() > 0
+            && request.resource.data.proofSessionId.size() <= 100
+            && exists(/databases/$(database)/documents/recipes/$(request.resource.data.baseId))
+            && cookedProof());
+      }
+
+      function cookedProof() {
+        let session = get(/databases/$(database)/documents/users/$(request.auth.uid)/cooking_sessions/$(request.resource.data.proofSessionId)).data;
+        return session.status == 'completed'
+          && session.recipeId == request.resource.data.baseId;
+      }
+
+      // --- verification ----------------------------------------------------
+
+      // Path 1: the author's content edit. Author, still private, and the
+      // write touches everything but the vouches — the one field that is
+      // other people's to change.
+      function authorContentEdit() {
+        return isOwner(existing().authorId)
+          && existing().status in ['draft', 'pending']
+          && incoming().status in ['draft', 'pending']
+          && !incoming().diff(existing()).affectedKeys()
+            .hasAny(['verifiedBy']);
+      }
+
+      // Path 2: a community vouch. ONLY verifiedBy may change (plus the
+      // auto-publish status flip this same write may cause), the array may
+      // gain exactly one element — the signer's own uid, once — and the
+      // author can never vouch for their own work. The threshold lives here
+      // so no client can fake it.
+      function communityVerification() {
+        // A recipe may predate the verification feature: absent counts as
+        // an empty list on both sides of the diff.
+        let before = ('verifiedBy' in existing())
+          ? existing().verifiedBy : [];
+        let after = ('verifiedBy' in request.resource.data)
+          ? request.resource.data.verifiedBy : [];
+        return signedIn()
+          && request.auth.uid != existing().authorId
+          && existing().status in ['pending', 'published']
+          && incoming().diff(existing()).affectedKeys()
+            .hasOnly(['verifiedBy', 'status'])
+          && before is list
+          && after is list
+          // Exactly one new element, everything already there preserved.
+          && after.size() == before.size() + 1
+          && after.hasAll(before)
+          // The one new element is the signer: absent before, present after,
+          // with the size bound above — that can only be the appended one.
+          && !(request.auth.uid in before)
+          && request.auth.uid in after
+          // No runaway arrays.
+          && after.size() <= 50
+          // Publish at three vouches, only out of pending; a published
+          // recipe keeps collecting vouches but stays published.
+          && incoming().status == (after.size() >= 3
+              && existing().status == 'pending'
+                ? 'published'
+                : existing().status);
       }
     }
 

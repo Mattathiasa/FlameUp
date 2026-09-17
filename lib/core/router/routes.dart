@@ -53,6 +53,15 @@ abstract final class Routes {
   static String familyRecipeEditOf(String recipeId) =>
       '/discover/family-recipe/$recipeId/edit';
 
+  /// The detail view of one family recipe — where the community vouches for
+  /// it and where its versions are listed.
+  static String familyRecipeDetailOf(String recipeId) =>
+      '/discover/family-recipe/$recipeId';
+
+  /// The version form, prefilled with the recipe this is a version of.
+  static String familyRecipeVersionOf(String baseId) =>
+      '/discover/family-recipe/$baseId/version';
+
   static String regionOf(String regionId) => '/discover/region/$regionId';
 
   // --- social ------------------------------------------------------------

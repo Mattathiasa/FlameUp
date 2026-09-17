@@ -57,6 +57,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get addToList => 'Add to shopping list';
 
   @override
+  String get addYourVersion => 'Add your version';
+
+  @override
   String get addedToList => 'Added to your shopping list';
 
   @override
@@ -782,6 +785,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get retry => 'Try again';
 
   @override
+  String get reviewEmpty => 'Nothing is waiting for review right now.';
+
+  @override
+  String get reviewTitle => 'In community review';
+
+  @override
   String get savedCookSub => 'Saved for later';
 
   @override
@@ -1072,6 +1081,42 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get validationPasswordShort => 'At least 8 characters.';
+
+  @override
+  String get variantLabelField => 'What makes yours different?';
+
+  @override
+  String get variantLabelHint => 'e.g. my grandmother skips the butter';
+
+  @override
+  String get variantNeedsCook =>
+      'Cook the original first — your version needs proof you have made it.';
+
+  @override
+  String get verifiedBadge => 'Verified';
+
+  @override
+  String get verifyConfirmBody =>
+      'You are telling the community you have cooked this yourself and it works. When three cooks vouch, the recipe publishes itself.';
+
+  @override
+  String get verifyConfirmTitle => 'Vouch for this recipe?';
+
+  @override
+  String get verifyCount => '3 cooks vouch for this';
+
+  @override
+  String get verifyCta => 'I cooked this';
+
+  @override
+  String get versionOf => 'A version of';
+
+  @override
+  String get versionsEmpty =>
+      'No one has shared a version of this dish yet — yours could be first.';
+
+  @override
+  String get versionsTitle => 'Versions';
 
   @override
   String get viewAll => 'View all';

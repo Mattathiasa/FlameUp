@@ -57,6 +57,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get addToList => 'ወደ ግብይት ዝርዝር ጨምር';
 
   @override
+  String get addYourVersion => 'የእርስዎን እትም ያክሉ';
+
+  @override
   String get addedToList => 'ወደ ግብይት ዝርዝርዎ ተጨምሯል';
 
   @override
@@ -767,6 +770,12 @@ class AppLocalizationsAm extends AppLocalizations {
   String get retry => 'እንደገና ይሞክሩ';
 
   @override
+  String get reviewEmpty => 'እስካሁን ለግምገማ የሚጠብቅ ነገር የለም።';
+
+  @override
+  String get reviewTitle => 'በማህበረሰብ ግምገማ ላይ';
+
+  @override
   String get savedCookSub => 'ለኋላ በቀጠለ';
 
   @override
@@ -1055,6 +1064,41 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get validationPasswordShort => 'ቢያንስ 8 ቁምፊዎች።';
+
+  @override
+  String get variantLabelField => 'የእርስዎ ልዩነት ምንድን ነው?';
+
+  @override
+  String get variantLabelHint => 'ለምሳሌ፦ አያቴ ቅቤ አያጨምሩም';
+
+  @override
+  String get variantNeedsCook => 'መጀመሪያ ዋናውን ያብሉ — የእርስዎ እትም ማሳያ ያስፈልገዋል።';
+
+  @override
+  String get verifiedBadge => 'የተረጋገጠ';
+
+  @override
+  String get verifyConfirmBody =>
+      'ይህን ራስዎ እንደሚያዘጋጁ እና እንደሚሰራ ለማህበረሰቡ ይናገራሉ። ሦስት ሰው ሲደግፉት ምግቡ በራሱ ይታተማል።';
+
+  @override
+  String get verifyConfirmTitle => 'ለዚህ ምግብ ይደግፉት?';
+
+  @override
+  String get verifyCount => '3 ሰው ይደግፉታል';
+
+  @override
+  String get verifyCta => 'አዘጋጃለሁ';
+
+  @override
+  String get versionOf => 'የሚከተለው እትም';
+
+  @override
+  String get versionsEmpty =>
+      'እስካሁን ማንም የዚህ ምግብ እትም አልጋራም — የእርስዎ መጀመሪያ ሊሆን ይችላል።';
+
+  @override
+  String get versionsTitle => 'እትሞች';
 
   @override
   String get viewAll => 'ሁሉንም ይመልከቱ';

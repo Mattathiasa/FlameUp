@@ -26,12 +26,21 @@ class FamilyRecipeRepository {
     FirebaseFirestore? firestore,
     FirebaseStorage? storage,
   })  : _outbox = outbox,
-        _firestore = firestore ?? FirebaseFirestore.instance,
-        _storage = storage ?? FirebaseStorage.instance;
+        _firestore = firestore,
+        _injectedStorage = storage;
 
   final Outbox _outbox;
-  final FirebaseFirestore _firestore;
-  final FirebaseStorage _storage;
+
+  /// Resolved lazily: constructing the repository must not require Firebase
+  /// to be initialised — the outbox registration happens at startup, and a
+  /// test (or a fully offline moment) only ever touches the local store.
+  FirebaseFirestore? _firestore;
+
+  FirebaseFirestore get _fs => _firestore ??= FirebaseFirestore.instance;
+
+  FirebaseStorage? _injectedStorage;
+
+  FirebaseStorage get _storage => _injectedStorage ??= FirebaseStorage.instance;
 
   // --- submission ---------------------------------------------------------
 
@@ -72,7 +81,7 @@ class FamilyRecipeRepository {
   /// Applies a queued submission at drain time. Merge, so a re-run of the
   /// same content updates in place instead of duplicating.
   Future<void> applyMutation(PendingMutation mutation) async {
-    await _firestore.doc(mutation.path).set(
+    await _fs.doc(mutation.path).set(
       {
         ...mutation.payload,
         'updatedAt': FieldValue.serverTimestamp(),
@@ -85,7 +94,7 @@ class FamilyRecipeRepository {
   /// delete; a published recipe needs a moderator, and the failure surfaces
   /// through the [Result].
   Future<Result<void>> delete({required String recipeId}) => ErrorMapper.guard(
-        () => _firestore.doc(FirestorePaths.familyRecipe(recipeId)).delete(),
+        () => _fs.doc(FirestorePaths.familyRecipe(recipeId)).delete(),
       );
 
   // --- reads --------------------------------------------------------------
@@ -94,7 +103,7 @@ class FamilyRecipeRepository {
   ///
   /// Live on purpose: the moment a moderator publishes, the card flips from
   /// "in review" to "in the archive" without a refresh.
-  Stream<List<FamilyRecipe>> watchMine(String uid) => _firestore
+  Stream<List<FamilyRecipe>> watchMine(String uid) => _fs
       .collection(FirestorePaths.familyRecipes)
       .where('authorId', isEqualTo: uid)
       .orderBy('updatedAt', descending: true)
@@ -107,7 +116,7 @@ class FamilyRecipeRepository {
       );
 
   /// Published recipes, newest first -- the public archive.
-  Stream<List<FamilyRecipe>> watchPublished({int limit = 50}) => _firestore
+  Stream<List<FamilyRecipe>> watchPublished({int limit = 50}) => _fs
       .collection(FirestorePaths.familyRecipes)
       .where('status', isEqualTo: FamilyRecipeStatus.published.name)
       .orderBy('createdAt', descending: true)
@@ -119,6 +128,110 @@ class FamilyRecipeRepository {
             .whereType<FamilyRecipe>()
             .toList(),
       );
+
+  /// Submissions in community review, newest first — the queue behind the
+  /// review section on Grandma's Kitchen. Any signed-in user reads pending
+  /// recipes (the rules say so); vouching happens on the detail screen.
+  Stream<List<FamilyRecipe>> watchPending({int limit = 20}) => _fs
+      .collection(FirestorePaths.familyRecipes)
+      .where('status', isEqualTo: FamilyRecipeStatus.pending.name)
+      .orderBy('createdAt', descending: true)
+      .limit(limit)
+      .snapshots()
+      .map(
+        (snapshot) => snapshot.docs
+            .map((doc) => FamilyRecipe.fromJson(doc.id, doc.data()))
+            .whereType<FamilyRecipe>()
+            .toList(),
+      );
+
+  /// The published variants whose [baseId] is the given recipe, newest first.
+  ///
+  /// A base can live in either world — the archive's own ids, or a catalogue
+  /// `recipes/{slug}` id — but both are plain equality filters against this
+  /// one collection, so one query shape serves them both. [catalogueBase]
+  /// exists only to keep the two call sites self-documenting.
+  Stream<List<FamilyRecipe>> watchVariants(
+    String baseId, {
+    required bool catalogueBase,
+  }) =>
+      _fs
+          .collection(FirestorePaths.familyRecipes)
+          .where('baseId', isEqualTo: baseId)
+          .where('status', isEqualTo: FamilyRecipeStatus.published.name)
+          .orderBy('createdAt', descending: true)
+          .snapshots()
+          .map(
+            (snapshot) => snapshot.docs
+                .map((doc) => FamilyRecipe.fromJson(doc.id, doc.data()))
+                .whereType<FamilyRecipe>()
+                .toList(),
+          );
+
+  /// One family recipe by id, live. Null once deleted — the detail view
+  /// treats that as "gone", not as an error.
+  Stream<FamilyRecipe?> watchOne(String recipeId) => _fs
+      .doc(FirestorePaths.familyRecipe(recipeId))
+      .snapshots()
+      .map((snapshot) => FamilyRecipe.fromJson(snapshot.id, snapshot.data()));
+
+  // --- community verification ---------------------------------------------
+
+  /// The number of independent vouches a recipe needs to publish itself.
+  /// Deliberately small: the archive is young, and a threshold no submission
+  /// ever reaches is a gate, not a community.
+  static const int publishThreshold = 3;
+
+  /// Record that the signed-in cook vouches for this recipe: they have made
+  /// it themselves and can say it works.
+  ///
+  /// One document write, not a transaction. The rules make verification
+  /// append-only — the array may only grow, each element may only appear
+  /// once, and the author may never appear — so the write cannot corrupt the
+  /// set even when two vouches race: whichever lands second re-sends the
+  /// same would-be array and is rejected as a no-op by arrayUnion-free
+  /// validation. On the third independent vouch the recipe publishes itself.
+  Future<Result<void>> verify({
+    required String recipeId,
+    required String uid,
+  }) =>
+      ErrorMapper.guard(() async {
+        final docRef = _fs.doc(FirestorePaths.familyRecipe(recipeId));
+
+        try {
+          await _fs.runTransaction((tx) async {
+            final snapshot = await tx.get(docRef);
+            if (!snapshot.exists) {
+              throw const NotFoundFailure();
+            }
+            final verified = [
+              for (final v in (snapshot.data()!['verifiedBy'] as List?
+                  ?? const []))
+                if (v is String) v,
+            ];
+            if (verified.contains(uid)) {
+              throw const ValidationFailure(
+                messageKey: 'verifyAlready',
+              );
+            }
+            verified.add(uid);
+            final publishes =
+                verified.length >= publishThreshold;
+            tx.update(docRef, {
+              'verifiedBy': verified,
+              if (publishes) 'status': FamilyRecipeStatus.published.name,
+            });
+          });
+        } on FirebaseException catch (error) {
+          // The rules rejected the update — re-map as a permission failure so
+          // the UI can say "you cannot vouch for your own" rather than a
+          // generic server error.
+          if (error.code == 'permission-denied') {
+            throw const PermissionFailure();
+          }
+          rethrow;
+        }
+      });
 
   // --- media --------------------------------------------------------------
 

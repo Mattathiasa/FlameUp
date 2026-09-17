@@ -124,8 +124,15 @@ describe('family recipes stay private until moderation publishes them', () => {
     await seed(env, async (db) => {
       await setDoc(doc(db, 'family_recipes/draft-1'), {
         authorId: 'liya',
-        status: 'pending',
+        status: 'draft',
         title: "Grandmother's doro",
+      });
+      // In community review: readable by any signed-in user, because the
+      // archive is now verified by vouches, not only by moderators.
+      await setDoc(doc(db, 'family_recipes/review-1'), {
+        authorId: 'liya',
+        status: 'pending',
+        title: 'Shiro in a hurry',
       });
       await setDoc(doc(db, 'family_recipes/draft-1/generations/g1'), {
         name: 'Emahoy Tsehay',
@@ -148,6 +155,12 @@ describe('family recipes stay private until moderation publishes them', () => {
   it('a stranger cannot read an unpublished draft', async () => {
     await assertFails(
       getDoc(doc(asUser(env, 'dawit'), 'family_recipes/draft-1')),
+    );
+  });
+
+  it('a pending submission is community-readable — that is the review', async () => {
+    await assertSucceeds(
+      getDoc(doc(asUser(env, 'dawit'), 'family_recipes/review-1')),
     );
   });
 

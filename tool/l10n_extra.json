@@ -563,5 +563,61 @@
   "errCloudinaryConfig": {
     "en": "Photo hosting isn't set up for this build yet. Add the Cloudinary keys and try again.",
     "am": "የፎቶ ማስቀመጫ አሁንም አልተዋቀረም። የCloudinary ቁልፎችን ያክሉና እንደገና ይሞክሩ።"
+  },
+  "verifyCta": {
+    "en": "I cooked this",
+    "am": "አዘጋጃለሁ"
+  },
+  "verifyConfirmTitle": {
+    "en": "Vouch for this recipe?",
+    "am": "ለዚህ ምግብ ይደግፉት?"
+  },
+  "verifyConfirmBody": {
+    "en": "You are telling the community you have cooked this yourself and it works. When three cooks vouch, the recipe publishes itself.",
+    "am": "ይህን ራስዎ እንደሚያዘጋጁ እና እንደሚሰራ ለማህበረሰቡ ይናገራሉ። ሦስት ሰው ሲደግፉት ምግቡ በራሱ ይታተማል።"
+  },
+  "verifiedBadge": {
+    "en": "Verified",
+    "am": "የተረጋገጠ"
+  },
+  "verifyCount": {
+    "en": "3 cooks vouch for this",
+    "am": "3 ሰው ይደግፉታል"
+  },
+  "reviewTitle": {
+    "en": "In community review",
+    "am": "በማህበረሰብ ግምገማ ላይ"
+  },
+  "reviewEmpty": {
+    "en": "Nothing is waiting for review right now.",
+    "am": "እስካሁን ለግምገማ የሚጠብቅ ነገር የለም።"
+  },
+  "versionsTitle": {
+    "en": "Versions",
+    "am": "እትሞች"
+  },
+  "versionsEmpty": {
+    "en": "No one has shared a version of this dish yet — yours could be first.",
+    "am": "እስካሁን ማንም የዚህ ምግብ እትም አልጋራም — የእርስዎ መጀመሪያ ሊሆን ይችላል።"
+  },
+  "addYourVersion": {
+    "en": "Add your version",
+    "am": "የእርስዎን እትም ያክሉ"
+  },
+  "versionOf": {
+    "en": "A version of",
+    "am": "የሚከተለው እትም"
+  },
+  "variantLabelField": {
+    "en": "What makes yours different?",
+    "am": "የእርስዎ ልዩነት ምንድን ነው?"
+  },
+  "variantLabelHint": {
+    "en": "e.g. my grandmother skips the butter",
+    "am": "ለምሳሌ፦ አያቴ ቅቤ አያጨምሩም"
+  },
+  "variantNeedsCook": {
+    "en": "Cook the original first — your version needs proof you have made it.",
+    "am": "መጀመሪያ ዋናውን ያብሉ — የእርስዎ እትም ማሳያ ያስፈልገዋል።"
   }
 }

@@ -14,6 +14,7 @@ import '../../features/cooking/presentation/cook_done_screen.dart';
 import '../../features/cooking/presentation/cook_hub_screen.dart';
 import '../../features/cooking/presentation/cook_mode_screen.dart';
 import '../../features/cooking/presentation/cook_rate_screen.dart';
+import '../../features/family_recipes/presentation/family_recipe_detail_screen.dart';
 import '../../features/family_recipes/presentation/family_recipe_form.dart';
 import '../../features/family_recipes/presentation/grandma_screen.dart';
 import '../../features/gamification/presentation/achievements_screen.dart';
@@ -177,9 +178,21 @@ final appRouterProvider = Provider<GoRouter>((ref) {
                     builder: (_, __) => const FamilyRecipeForm(),
                   ),
                   GoRoute(
+                    path: 'family-recipe/:recipeId/version',
+                    builder: (_, state) => FamilyRecipeForm(
+                      versionOfId: state.pathParameters['recipeId'],
+                    ),
+                  ),
+                  GoRoute(
                     path: 'family-recipe/:recipeId/edit',
                     builder: (_, state) => FamilyRecipeForm(
                       editId: state.pathParameters['recipeId'],
+                    ),
+                  ),
+                  GoRoute(
+                    path: 'family-recipe/:recipeId',
+                    builder: (_, state) => FamilyRecipeDetailScreen(
+                      recipeId: state.pathParameters['recipeId']!,
                     ),
                   ),
                 ],

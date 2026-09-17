@@ -14,6 +14,8 @@ import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
 import '../../auth/domain/auth_providers.dart';
+import '../../cooking/data/cooking_repository.dart';
+import '../../cooking/domain/cooking_session.dart';
 import '../../recipes/domain/recipe_providers.dart';
 import '../../regions/presentation/taste_ethiopia_screen.dart';
 import '../data/family_recipe_repository.dart';
@@ -31,10 +33,20 @@ import '../domain/family_recipe_providers.dart';
 /// submissions; the rules gate the write). When editing, the local draft
 /// restore is skipped so an unfinished new recipe cannot clobber the one
 /// actually being edited.
+///
+/// And in [versionOfId] mode it records a VERSION of another recipe — a
+/// household's take on a catalogue classic or on someone's family dish. The
+/// base is loaded and shown on the form; for a catalogue base the rules
+/// demand proof-of-cook, so the submitter's own completed session for that
+/// dish is cited in the payload. No session, no version.
 class FamilyRecipeForm extends ConsumerStatefulWidget {
-  const FamilyRecipeForm({super.key, this.editId});
+  const FamilyRecipeForm({super.key, this.editId, this.versionOfId});
 
   final String? editId;
+
+  /// When set, the form submits a variant of this recipe instead of an
+  /// original.
+  final String? versionOfId;
 
   @override
   ConsumerState<FamilyRecipeForm> createState() => _FamilyRecipeFormState();
@@ -61,6 +73,29 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
   String? _regionId;
   String? _mediaPath;
 
+  // --- version mode -------------------------------------------------------
+  /// The recipe this is a version of (null in original mode).
+  String? get _baseId => widget.versionOfId;
+
+  /// What makes this version different, in the author's words.
+  final _variantLabel = TextEditingController();
+
+  /// The base's display title, for the "a version of" banner.
+  String _baseTitle = '';
+
+  /// True when the base is a catalogue dish (slug id) rather than a family
+  /// recipe (uuid) — which is when the rules demand proof-of-cook.
+  bool _baseIsCatalogue = false;
+
+  /// The completed session cited as proof, when the base is a catalogue dish
+  /// and the submitter has cooked it here.
+  String? _proofSessionId;
+
+  static final RegExp _uuidShape = RegExp(
+    r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
+    caseSensitive: false,
+  );
+
   /// Already-uploaded media URL carried over from an edit; re-submitting must
   /// not re-upload or drop it.
   String? _existingMediaUrl;
@@ -69,11 +104,42 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
   @override
   void initState() {
     super.initState();
-    if (widget.editId == null) {
+    if (widget.versionOfId != null) {
+      _loadForVersion(widget.versionOfId!);
+    } else if (widget.editId == null) {
       _restoreDraft();
     } else {
       _loadForEdit(widget.editId!);
     }
+  }
+
+  /// Version mode: resolve the base and, for a catalogue dish, find the
+  /// completed session the rules will demand. The form stays usable while
+  /// that resolves — the banner fills in when it lands.
+  Future<void> _loadForVersion(String baseId) async {
+    if (_uuidShape.hasMatch(baseId)) {
+      final base =
+          await ref.read(familyRecipeByIdProvider(baseId).future);
+      if (!mounted) return;
+      _baseIsCatalogue = false;
+      _baseTitle = base?.displayName ?? baseId;
+    } else {
+      final cached = await ref.read(recipeProvider(baseId).future);
+      if (!mounted) return;
+      _baseIsCatalogue = true;
+      _baseTitle = cached.value.title;
+      // Proof-of-cook: any completed session for exactly this dish, from the
+      // submitter's own device history (the rules re-verify server-side).
+      final sessions = ref.read(cookingRepositoryProvider).allLocal();
+      _proofSessionId = sessions
+          .where(
+            (s) =>
+                s.status == SessionStatus.completed && s.recipeId == baseId,
+          )
+          .map((s) => s.id)
+          .firstOrNull;
+    }
+    if (mounted) setState(() {});
   }
 
   Future<void> _loadForEdit(String recipeId) async {
@@ -184,6 +250,15 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
         'authorId': ref.read(currentUidProvider),
         'status': status,
         if (_existingMediaUrl != null) 'mediaUrl': _existingMediaUrl,
+        // Version mode: the rules accept a variant only when both fields are
+        // present, the base exists, and — for a catalogue base — the cited
+        // session is the submitter's own completed cook of that dish.
+        if (_baseId != null) ...{
+          'baseId': _baseId,
+          'variantLabel': _variantLabel.text.trim(),
+          if (_baseIsCatalogue && _proofSessionId != null)
+            'proofSessionId': _proofSessionId,
+        },
       };
 
   Future<void> _submit() async {
@@ -191,6 +266,18 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
 
     final uid = ref.read(currentUidProvider);
     if (uid == null) return;
+
+    // A version of a catalogue dish stands on the submitter's own cook of
+    // that dish. Without a completed session the rules would deny the write,
+    // so say why before even trying.
+    if (_baseId != null && _baseIsCatalogue && _proofSessionId == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(AppLocalizations.of(context).variantNeedsCook),
+        ),
+      );
+      return;
+    }
 
     setState(() => _submitting = true);
 
@@ -271,6 +358,7 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
     _teacher.dispose();
     _ingredients.dispose();
     _story.dispose();
+    _variantLabel.dispose();
     for (final controller in _steps) {
       controller.dispose();
     }
@@ -315,6 +403,53 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
                   style: AppTypography.bodyMedium
                       .copyWith(color: palette.textSecondary),
                 ),
+
+                // --- version mode: what this is a version of -------------
+                if (_baseId != null) ...[
+                  const SizedBox(height: AppSpacing.lg),
+                  GlassPanel(
+                    blur: false,
+                    padding: const EdgeInsets.all(AppSpacing.xl),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.account_tree_outlined,
+                          size: 18,
+                          color: AppColors.accent,
+                        ),
+                        const SizedBox(width: AppSpacing.sm),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                l10n.versionOf,
+                                style: AppTypography.label
+                                    .copyWith(color: palette.textSecondary),
+                              ),
+                              const SizedBox(height: AppSpacing.xxs),
+                              Text(
+                                _baseTitle.isEmpty ? '…' : _baseTitle,
+                                style: AppTypography.titleSmall.copyWith(
+                                  color: palette.textPrimary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: AppSpacing.md),
+                  _Field(
+                    fieldKey: const Key('fr-variant-label'),
+                    controller: _variantLabel,
+                    label: l10n.variantLabelField,
+                    hint: l10n.variantLabelHint,
+                    required: true,
+                    l10n: l10n,
+                  ),
+                ],
                 const SizedBox(height: AppSpacing.xxl),
                 _Field(
                   fieldKey: const Key('fr-name'),

@@ -9,6 +9,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
 import '../data/family_recipe_repository.dart';
+
 import '../domain/family_recipe.dart';
 import '../domain/family_recipe_providers.dart';
 
@@ -29,6 +30,7 @@ class GrandmaScreen extends ConsumerWidget {
     final palette = AppPalette.of(context);
     final l10n = AppLocalizations.of(context);
     final published = ref.watch(publishedFamilyRecipesProvider).valueOrNull;
+    final pending = ref.watch(pendingFamilyRecipesProvider).valueOrNull;
     final mine = ref.watch(myFamilyRecipesProvider).valueOrNull;
 
     return Scaffold(
@@ -99,7 +101,47 @@ class GrandmaScreen extends ConsumerWidget {
                 EmptyView(title: l10n.archiveTitle, message: l10n.archiveEmpty)
               else
                 for (final recipe in published)
-                  _RecipeCard(recipe: recipe, l10n: l10n, palette: palette),
+                  _RecipeCard(
+                    recipe: recipe,
+                    l10n: l10n,
+                    palette: palette,
+                    onTap: () =>
+                        context.push(Routes.familyRecipeDetailOf(recipe.id)),
+                  ),
+
+              // --- community review ------------------------------------
+              // Pending submissions any signed-in user can open and vouch
+              // for; three vouches publish the recipe. This is the queue
+              // that makes the archive self-moderating.
+              const SizedBox(height: AppSpacing.xxxl),
+              Text(
+                l10n.reviewTitle,
+                style: AppTypography.titleMedium
+                    .copyWith(color: palette.textPrimary),
+              ),
+              const SizedBox(height: AppSpacing.md),
+              if (pending == null)
+                const Padding(
+                  padding: EdgeInsets.all(AppSpacing.xl),
+                  child: Center(child: CircularProgressIndicator()),
+                )
+              else if (pending.isEmpty)
+                Text(
+                  l10n.reviewEmpty,
+                  style: AppTypography.bodyMedium
+                      .copyWith(color: palette.textSecondary),
+                )
+              else
+                for (final recipe in pending)
+                  _RecipeCard(
+                    recipe: recipe,
+                    l10n: l10n,
+                    palette: palette,
+                    showStatus: false,
+                    showVouchCount: true,
+                    onTap: () =>
+                        context.push(Routes.familyRecipeDetailOf(recipe.id)),
+                  ),
 
               // --- the visitor's own submissions ------------------------
               const SizedBox(height: AppSpacing.xxxl),
@@ -179,6 +221,8 @@ class _RecipeCard extends StatelessWidget {
     required this.l10n,
     required this.palette,
     this.showStatus = false,
+    this.showVouchCount = false,
+    this.onTap,
     this.onEdit,
     this.onDelete,
   });
@@ -187,6 +231,11 @@ class _RecipeCard extends StatelessWidget {
   final AppLocalizations l10n;
   final AppPalette palette;
   final bool showStatus;
+
+  /// Review-queue cards show how many vouches the submission has so far —
+  /// the whole point of the queue is watching that number.
+  final bool showVouchCount;
+  final VoidCallback? onTap;
   final VoidCallback? onEdit;
   final VoidCallback? onDelete;
 
@@ -197,69 +246,105 @@ class _RecipeCard extends StatelessWidget {
       blur: false,
       margin: const EdgeInsets.only(bottom: AppSpacing.sm),
       padding: const EdgeInsets.all(AppSpacing.xl),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  recipe.displayName,
-                  style: AppTypography.titleSmall
-                      .copyWith(color: palette.textPrimary),
-                ),
-                if (recipe.teacherName.isNotEmpty) ...[
-                  const SizedBox(height: AppSpacing.xxs),
+      child: InkWell(
+        onTap: onTap,
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Text(
-                    recipe.teacherName,
-                    style: AppTypography.bodySmall
-                        .copyWith(color: palette.textSecondary),
+                    recipe.displayName,
+                    style: AppTypography.titleSmall
+                        .copyWith(color: palette.textPrimary),
                   ),
+                  if (recipe.teacherName.isNotEmpty) ...[
+                    const SizedBox(height: AppSpacing.xxs),
+                    Text(
+                      recipe.teacherName,
+                      style: AppTypography.bodySmall
+                          .copyWith(color: palette.textSecondary),
+                    ),
+                  ],
                 ],
-              ],
+              ),
             ),
-          ),
-          if (showStatus) ...[
-            const SizedBox(width: AppSpacing.sm),
-            _StatusChip(status: recipe.status, l10n: l10n),
-          ],
-          if (hasActions) ...[
-            const SizedBox(width: AppSpacing.xs),
-            PopupMenuButton<String>(
-              tooltip: MaterialLocalizations.of(context).moreButtonTooltip,
-              iconColor: palette.textSecondary,
-              itemBuilder: (menuContext) => [
-                if (onEdit != null)
-                  PopupMenuItem(
-                    value: 'edit',
-                    child: Row(
-                      children: [
-                        const Icon(Icons.edit_outlined, size: 18),
-                        const SizedBox(width: AppSpacing.sm),
-                        Text(l10n.fEditRecipe),
-                      ],
+            if (showStatus) ...[
+              const SizedBox(width: AppSpacing.sm),
+              _StatusChip(status: recipe.status, l10n: l10n),
+            ],
+            if (hasActions) ...[
+              const SizedBox(width: AppSpacing.xs),
+              PopupMenuButton<String>(
+                tooltip: MaterialLocalizations.of(context).moreButtonTooltip,
+                iconColor: palette.textSecondary,
+                itemBuilder: (menuContext) => [
+                  if (onEdit != null)
+                    PopupMenuItem(
+                      value: 'edit',
+                      child: Row(
+                        children: [
+                          const Icon(Icons.edit_outlined, size: 18),
+                          const SizedBox(width: AppSpacing.sm),
+                          Text(l10n.fEditRecipe),
+                        ],
+                      ),
                     ),
-                  ),
-                if (onDelete != null)
-                  PopupMenuItem(
-                    value: 'delete',
-                    child: Row(
-                      children: [
-                        const Icon(Icons.delete_outline, size: 18),
-                        const SizedBox(width: AppSpacing.sm),
-                        Text(l10n.actionDelete),
-                      ],
+                  if (onDelete != null)
+                    PopupMenuItem(
+                      value: 'delete',
+                      child: Row(
+                        children: [
+                          const Icon(Icons.delete_outline, size: 18),
+                          const SizedBox(width: AppSpacing.sm),
+                          Text(l10n.actionDelete),
+                        ],
+                      ),
                     ),
-                  ),
-              ],
-              onSelected: (value) => switch (value) {
-                'edit' => onEdit?.call(),
-                'delete' => onDelete?.call(),
-                _ => null,
-              },
-            ),
+                ],
+                onSelected: (value) => switch (value) {
+                  'edit' => onEdit?.call(),
+                  'delete' => onDelete?.call(),
+                  _ => null,
+                },
+              ),
+            ],
+            if (showVouchCount) ...[
+              const SizedBox(width: AppSpacing.sm),
+              _VouchCountChip(recipe: recipe),
+            ],
           ],
-        ],
+        ),
+      ),
+    );
+  }
+}
+
+/// How many independent cooks have vouched, on a review-queue card.
+class _VouchCountChip extends StatelessWidget {
+  const _VouchCountChip({required this.recipe});
+
+  final FamilyRecipe recipe;
+
+  @override
+  Widget build(BuildContext context) {
+    final count = recipe.verificationCount;
+    const threshold = FamilyRecipeRepository.publishThreshold;
+    final color = count >= threshold ? AppColors.green : AppColors.gold;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.sm,
+        vertical: AppSpacing.xxs,
+      ),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(AppRadii.xs),
+      ),
+      child: Text(
+        '$count/$threshold',
+        style: AppTypography.caption.copyWith(color: color),
       ),
     );
   }
