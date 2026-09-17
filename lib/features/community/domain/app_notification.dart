@@ -5,7 +5,13 @@
 // one more client case -- no function redeploy to fix wording.
 import '../../../core/utils/firestore_date.dart';
 
-enum AppNotificationType { friendRequest, friendAdded, recipePublished }
+enum AppNotificationType {
+  friendRequest,
+  friendAdded,
+  recipePublished,
+  recipeVouched,
+  recipeVerified,
+}
 
 class AppNotification {
   const AppNotification({

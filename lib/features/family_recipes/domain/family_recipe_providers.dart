@@ -31,8 +31,8 @@ final pendingFamilyRecipesProvider =
 });
 
 /// One family recipe by id, live. Null when gone.
-final familyRecipeByIdProvider = StreamProvider.autoDispose
-    .family<FamilyRecipe?, String>((ref, id) {
+final familyRecipeByIdProvider =
+    StreamProvider.autoDispose.family<FamilyRecipe?, String>((ref, id) {
   return ref.watch(familyRecipeRepositoryProvider).watchOne(id);
 });
 

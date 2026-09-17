@@ -158,6 +158,16 @@ class CommunityRepository {
         }
       });
 
+  /// One directory card, or null when that person has never published one.
+  /// Used to label social writes (who vouched, who sent what) without
+  /// round-tripping through a list query.
+  Future<DirectoryUser?> directoryEntry(String uid) async {
+    final snapshot =
+        await _firestore.doc(FirestorePaths.directoryEntry(uid)).get();
+    if (!snapshot.exists) return null;
+    return DirectoryUser.fromJson(uid, snapshot.data());
+  }
+
   Stream<List<Friend>> watchFriends(String uid) =>
       _firestore.collection(FirestorePaths.userFriends(uid)).snapshots().map(
             (snapshot) => snapshot.docs

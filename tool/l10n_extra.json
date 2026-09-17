@@ -619,5 +619,25 @@
   "variantNeedsCook": {
     "en": "Cook the original first — your version needs proof you have made it.",
     "am": "መጀመሪያ ዋናውን ያብሉ — የእርስዎ እትም ማሳያ ያስፈልገዋል።"
+  },
+  "notifRecipeVouched": {
+    "en": "Someone vouched for your recipe",
+    "am": "ሰው ለምግብዎ ተደግፏል"
+  },
+  "notifRecipeVouchedBody": {
+    "en": "{name} cooked your recipe and says it works — {count} of 3 vouches so far.",
+    "am": "{name} ምግብዎን አዝግቦ እንደሚሰራ አሳውቋል — እስከ አሁን {count} ከ 3 ድጋፍ።"
+  },
+  "notifRecipeVerified": {
+    "en": "Your recipe is verified",
+    "am": "ምግብዎ ተረጋግጧል"
+  },
+  "notifRecipeVerifiedBody": {
+    "en": "Three cooks vouched for {name} — it is now in the public archive.",
+    "am": "ሦስት ሰው ለ{name} ደግፈዋል — አሁን በሕዝብ ማከማቻ ውስጥ ነው።"
+  },
+  "genericCookName": {
+    "en": "A cook",
+    "am": "አንድ አዘጋጅ"
   }
 }

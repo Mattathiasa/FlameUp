@@ -471,6 +471,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get generateList => 'Build shopping list from plan';
 
   @override
+  String get genericCookName => 'A cook';
+
+  @override
   String get getStarted => 'Create an account';
 
   @override
@@ -645,6 +648,22 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String notifRecipePublishedBody(Object name) {
     return '“$name” is now in Grandma\'s Kitchen. Thank you for sharing it.';
+  }
+
+  @override
+  String get notifRecipeVerified => 'Your recipe is verified';
+
+  @override
+  String notifRecipeVerifiedBody(Object name) {
+    return 'Three cooks vouched for $name — it is now in the public archive.';
+  }
+
+  @override
+  String get notifRecipeVouched => 'Someone vouched for your recipe';
+
+  @override
+  String notifRecipeVouchedBody(Object count, Object name) {
+    return '$name cooked your recipe and says it works — $count of 3 vouches so far.';
   }
 
   @override

@@ -185,15 +185,19 @@ class FamilyRecipeRepository {
   /// Record that the signed-in cook vouches for this recipe: they have made
   /// it themselves and can say it works.
   ///
-  /// One document write, not a transaction. The rules make verification
-  /// append-only — the array may only grow, each element may only appear
-  /// once, and the author may never appear — so the write cannot corrupt the
-  /// set even when two vouches race: whichever lands second re-sends the
-  /// same would-be array and is rejected as a no-op by arrayUnion-free
-  /// validation. On the third independent vouch the recipe publishes itself.
+  /// One transaction, two writes: the append-only vouch on the recipe, and —
+  /// same commit — the notification into the author's collection, so a
+  /// vouch and the "someone cooked your recipe" note can never drift apart.
+  /// The rules re-verify everything server-side: the append shape, the
+  /// threshold, the author exclusion, and the notification's shape and its
+  /// deterministic id.
+  ///
+  /// [vouchingName] is the vouching cook's display name for the
+  /// notification; the caller resolves it from the profile.
   Future<Result<void>> verify({
     required String recipeId,
     required String uid,
+    required String vouchingName,
   }) =>
       ErrorMapper.guard(() async {
         final docRef = _fs.doc(FirestorePaths.familyRecipe(recipeId));
@@ -204,9 +208,10 @@ class FamilyRecipeRepository {
             if (!snapshot.exists) {
               throw const NotFoundFailure();
             }
+            final authorId = snapshot.data()!['authorId'] as String? ?? '';
             final verified = [
-              for (final v in (snapshot.data()!['verifiedBy'] as List?
-                  ?? const []))
+              for (final v
+                  in (snapshot.data()!['verifiedBy'] as List? ?? const []))
                 if (v is String) v,
             ];
             if (verified.contains(uid)) {
@@ -215,12 +220,36 @@ class FamilyRecipeRepository {
               );
             }
             verified.add(uid);
-            final publishes =
-                verified.length >= publishThreshold;
+            final publishes = verified.length >= publishThreshold;
             tx.update(docRef, {
               'verifiedBy': verified,
               if (publishes) 'status': FamilyRecipeStatus.published.name,
             });
+
+            // The author's note, written in the same commit. The id is
+            // deterministic (vouch_{recipeId}_{vouchingUid}) so a retried
+            // transaction overwrites the same slot instead of stacking
+            // copies — and the rules re-check the vouch is real before
+            // letting it land. recipeId rides in the payload: the rules
+            // verify the id by concatenation, never by splitting, so ids
+            // with underscores work.
+            tx.set(
+              _fs.doc(
+                '${FirestorePaths.userNotifications(authorId)}'
+                '/vouch_${recipeId}_$uid',
+              ),
+              {
+                'type': publishes ? 'recipeVerified' : 'recipeVouched',
+                'recipeId': recipeId,
+                // For vouched notes the count rides in otherUid's slot —
+                // the row model's only spare string field.
+                'otherUid': '${verified.length}',
+                'otherName': vouchingName,
+                'count': verified.length,
+                'createdAt': FieldValue.serverTimestamp(),
+                'readAt': null,
+              },
+            );
           });
         } on FirebaseException catch (error) {
           // The rules rejected the update — re-map as a permission failure so

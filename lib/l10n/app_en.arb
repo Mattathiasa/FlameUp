@@ -592,6 +592,10 @@
   "@generateList": {
     "description": "Application copy"
   },
+  "genericCookName": "A cook",
+  "@genericCookName": {
+    "description": "Application copy"
+  },
   "getStarted": "Create an account",
   "@getStarted": {
     "description": "Design prototype copy"
@@ -810,6 +814,22 @@
   },
   "notifRecipePublishedBody": "“{name}” is now in Grandma's Kitchen. Thank you for sharing it.",
   "@notifRecipePublishedBody": {
+    "description": "Application copy"
+  },
+  "notifRecipeVerified": "Your recipe is verified",
+  "@notifRecipeVerified": {
+    "description": "Application copy"
+  },
+  "notifRecipeVerifiedBody": "Three cooks vouched for {name} — it is now in the public archive.",
+  "@notifRecipeVerifiedBody": {
+    "description": "Application copy"
+  },
+  "notifRecipeVouched": "Someone vouched for your recipe",
+  "@notifRecipeVouched": {
+    "description": "Application copy"
+  },
+  "notifRecipeVouchedBody": "{name} cooked your recipe and says it works — {count} of 3 vouches so far.",
+  "@notifRecipeVouchedBody": {
     "description": "Application copy"
   },
   "notificationsTitle": "Activity",

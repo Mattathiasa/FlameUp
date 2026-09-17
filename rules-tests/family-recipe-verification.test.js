@@ -1,5 +1,11 @@
 import { afterAll, beforeAll, beforeEach, describe, it } from 'vitest';
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  runTransaction,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
 
 import {
   asModerator,
@@ -388,6 +394,204 @@ describe('recipe versions', () => {
         baseId: 'variant-8',
         variantLabel: 'Me, but me',
       }),
+    );
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Vouch notifications — the one client-written carve-out into another user's
+// notifications. The vouching cook drops a note into the AUTHOR's collection;
+// the rules prove the note cites a real vouch.
+// ---------------------------------------------------------------------------
+
+describe('vouch notifications', () => {
+  let env;
+
+  beforeAll(async () => {
+    env = await createTestEnv();
+  });
+
+  afterAll(async () => {
+    await env.cleanup();
+  });
+
+  const AUTHOR = 'author-uid-1';
+  const VOUCHER = 'voucher-uid-1';
+  const RECIPE = 'recipe-1';
+
+  async function seedVouched(db, count) {
+    await setDoc(doc(db, 'family_recipes', RECIPE), {
+      authorId: AUTHOR,
+      status: count >= 3 ? 'published' : 'pending',
+      title: 'Test recipe',
+      verifiedBy: Array.from({ length: count }, (_, i) => `v-${i}`),
+    });
+  }
+
+  const note = (type, count) => ({
+    type,
+    recipeId: RECIPE,
+    otherUid: `${count}`,
+    otherName: 'Dawit M.',
+    count,
+  });
+
+  beforeEach(async () => {
+    await env.clearFirestore();
+  });
+
+  it('the vouching cook can create the note in the author collection', async () => {
+    await seed(env, async (db) => {
+      await seedVouched(db, 1);
+    });
+    await assertSucceeds(
+      setDoc(
+        doc(asUser(env, 'v-0'), `users/${AUTHOR}/notifications`, `vouch_${RECIPE}_v-0`),
+        note('recipeVouched', 1),
+      ),
+    );
+  });
+
+  it('a note citing a vouch that does not exist is denied', async () => {
+    await seed(env, async (db) => {
+      await seedVouched(db, 1);
+    });
+    // 'impostor' is not in verifiedBy — the rules read the recipe and deny.
+    await assertFails(
+      setDoc(
+        doc(asUser(env, 'impostor'), `users/${AUTHOR}/notifications`, `vouch_${RECIPE}_impostor`),
+        note('recipeVouched', 1),
+      ),
+    );
+  });
+
+  it('the count must match the recipe real vouch count', async () => {
+    await seed(env, async (db) => {
+      await seedVouched(db, 2);
+    });
+    await assertFails(
+      setDoc(
+        doc(asUser(env, 'v-0'), `users/${AUTHOR}/notifications`, `vouch_${RECIPE}_v-0`),
+        note('recipeVouched', 3),
+      ),
+    );
+    await assertSucceeds(
+      setDoc(
+        doc(asUser(env, 'v-1'), `users/${AUTHOR}/notifications`, `vouch_${RECIPE}_v-1`),
+        note('recipeVouched', 2),
+      ),
+    );
+  });
+
+  it('the celebration type is only allowed on the threshold vouch', async () => {
+    await seed(env, async (db) => {
+      await seedVouched(db, 3);
+    });
+    await assertSucceeds(
+      setDoc(
+        doc(asUser(env, 'v-2'), `users/${AUTHOR}/notifications`, `vouch_${RECIPE}_v-2`),
+        note('recipeVerified', 3),
+      ),
+    );
+    await seed(env, async (db) => {
+      await seedVouched(db, 1);
+    });
+    await assertFails(
+      setDoc(
+        doc(asUser(env, 'v-0'), `users/${AUTHOR}/notifications`, `vouch_${RECIPE}_v-0`),
+        note('recipeVerified', 1),
+      ),
+    );
+  });
+
+  it('the author cannot mint a note claiming someone vouched', async () => {
+    await seed(env, async (db) => {
+      await seedVouched(db, 1);
+    });
+    // The author is not in verifiedBy, so their note cannot cite a real vouch.
+    await assertFails(
+      setDoc(
+        doc(asUser(env, AUTHOR), `users/${AUTHOR}/notifications`, `vouch_${RECIPE}_${AUTHOR}`),
+        note('recipeVouched', 1),
+      ),
+    );
+  });
+
+  it('a stranger cannot write into a third party notifications', async () => {
+    await seed(env, async (db) => {
+      await seedVouched(db, 1);
+    });
+    await assertFails(
+      setDoc(
+        doc(asUser(env, 'v-0'), 'users/some-third-party/notifications', `vouch_${RECIPE}_v-0`),
+        note('recipeVouched', 1),
+      ),
+    );
+  });
+
+  it('a note with junk fields is denied', async () => {
+    await seed(env, async (db) => {
+      await seedVouched(db, 1);
+    });
+    await assertFails(
+      setDoc(
+        doc(asUser(env, 'v-0'), `users/${AUTHOR}/notifications`, `vouch_${RECIPE}_v-0`),
+        { ...note('recipeVouched', 1), injected: 'field' },
+      ),
+    );
+  });
+
+  it('the honest flow: vouch + note in ONE transaction passes together',
+    async () => {
+      // The app writes both in a single transaction. getAfter() in the
+      // rules evaluates the recipe at post-batch state, so the note citing
+      // the new vouch is validated against the write that carries it.
+      await seed(env, async (db) => {
+        await setDoc(doc(db, 'family_recipes', RECIPE), {
+          authorId: AUTHOR,
+          status: 'pending',
+          title: 'Test recipe',
+          verifiedBy: ['v-0', 'v-1'],
+        });
+      });
+      const sdk = asUser(env, 'v-2');
+      await assertSucceeds(
+        runTransaction(sdk, async (tx) => {
+          const ref = doc(sdk, 'family_recipes', RECIPE);
+          const snap = await tx.get(ref);
+          const verifiedBy = snap.data().verifiedBy;
+          verifiedBy.push('v-2');
+          tx.update(ref, {
+            verifiedBy,
+            ...(verifiedBy.length >= 3 ? { status: 'published' } : {}),
+          });
+          tx.set(
+            doc(sdk, `users/${AUTHOR}/notifications`, `vouch_${RECIPE}_v-2`),
+            {
+              type: 'recipeVerified',
+              recipeId: RECIPE,
+              otherUid: '3',
+              otherName: 'Dawit M.',
+              count: 3,
+            },
+          );
+        }),
+      );
+    });
+
+  it('notes are owner-read, and nobody can delete them', async () => {
+    await seed(env, async (db) => {
+      await seedVouched(db, 1);
+      await setDoc(doc(db, `users/${AUTHOR}/notifications/n1`), {
+        type: 'recipeVouched', recipeId: RECIPE, otherUid: '1',
+        otherName: 'x', count: 1,
+      });
+    });
+    await assertSucceeds(
+      getDoc(doc(asUser(env, AUTHOR), `users/${AUTHOR}/notifications/n1`)),
+    );
+    await assertFails(
+      getDoc(doc(asUser(env, 'v-0'), `users/${AUTHOR}/notifications/n1`)),
     );
   });
 });

@@ -124,10 +124,70 @@ service cloud.firestore {
         allow read, write: if isOwner(uid);
       }
 
+      // Notifications are server-written — EXCEPT the vouch notification,
+      // which by definition must come from the peer who just vouched. The
+      // rules make that one shape safe:
+      //   · id is 'vouch_' + recipeId + '_' + vouchingUid — deterministic, so
+      //     a replayed or double-tapped write lands on the same document
+      //     instead of spamming copies (overwrites can only rewind the
+      //     count, never forge a new kind of message). The rules verify the
+      //     id by CONCATENATION against the payload's recipeId — never by
+      //     splitting, which breaks on ids that contain underscores (most
+      //     catalogue ids do: doro_wat, kitfo_gursha, …).
+      //   · the type is fixed, every string is bounded, the count matches
+      //     the array cap verification enforces (50);
+      //   · the claimed vouch must actually exist: the cited recipe's
+      //     verifiedBy must contain the signer. No session, no notification.
+      //   · the recipe must not be the author's own (rules elsewhere block
+      //     author vouches; this keeps a forged notice from implying one).
       match /notifications/{notificationId} {
         allow read: if isOwner(uid);
         allow update: if isOwner(uid);
-        allow create, delete: if false;
+        allow delete: if false;
+
+        // The writer is the VOUCHING COOK, not the owner — vouchIsReal
+        // pins the writer, the recipient (the recipe's author), and the
+        // real vouch the note cites. The shape is exhaustive: no extra
+        // field can ride along.
+        allow create: if signedIn()
+          && request.resource.data.keys().hasOnly(
+            ['type', 'recipeId', 'otherUid', 'otherName', 'count',
+             'createdAt', 'readAt'])
+          && request.resource.data.type in ['recipeVouched', 'recipeVerified']
+          // The verified celebration only fires on the threshold vouch.
+          && (request.resource.data.type == 'recipeVouched'
+            || request.resource.data.count == 3)
+          && request.resource.data.recipeId is string
+          && request.resource.data.recipeId.size() > 0
+          && request.resource.data.recipeId.size() <= 120
+          // Deterministic id, rebuilt from the payload — no parsing.
+          && notificationId == 'vouch_' + request.resource.data.recipeId
+            + '_' + request.auth.uid
+          && request.resource.data.otherUid is string
+          && request.resource.data.otherUid.size() > 0
+          && request.resource.data.otherUid.size() <= 60
+          && request.resource.data.otherName is string
+          && request.resource.data.otherName.size() > 0
+          && request.resource.data.otherName.size() <= 60
+          && request.resource.data.count is int
+          && request.resource.data.count >= 1
+          && request.resource.data.count <= 50
+          && vouchIsReal();
+      }
+
+      // Is the claimed vouch real? Read the recipe the payload names —
+      // with getAfter, because the app writes the vouch and the note in ONE
+      // transaction: get() would see the pre-batch recipe (vouch not yet
+      // appended, count one short) and deny the very notification the
+      // honest flow produces. getAfter evaluates against post-batch state;
+      // standalone writes behave the same either way.
+      function vouchIsReal() {
+        let recipe = getAfter(
+          /databases/$(database)/documents/family_recipes/$(request.resource.data.recipeId)).data;
+        return request.auth.uid in recipe.verifiedBy
+          && recipe.verifiedBy.size() == request.resource.data.count
+          && recipe.authorId == uid
+          && request.auth.uid != uid;
       }
 
       // A friendship belongs to both people: accepting a request or removing

@@ -60,7 +60,7 @@ void main() {
     test('the first vouch writes only the array', () async {
       await seedRecipe('r1');
 
-      await repo.verify(recipeId: 'r1', uid: 'dawit');
+      await repo.verify(recipeId: 'r1', uid: 'dawit', vouchingName: 'Dawit M.');
 
       final doc = await firestore.collection('family_recipes').doc('r1').get();
       expect(doc.data()!['verifiedBy'], ['dawit']);
@@ -71,18 +71,17 @@ void main() {
         () async {
       await seedRecipe('r2', verifiedBy: ['dawit', 'selam']);
 
-      await repo.verify(recipeId: 'r2', uid: 'abeni');
+      await repo.verify(recipeId: 'r2', uid: 'abeni', vouchingName: 'Abeni T.');
 
       final doc = await firestore.collection('family_recipes').doc('r2').get();
       expect(doc.data()!['verifiedBy'], ['dawit', 'selam', 'abeni']);
       expect(doc.data()!['status'], 'published');
     });
 
-    test('a vouch on an already-published recipe keeps it published',
-        () async {
+    test('a vouch on an already-published recipe keeps it published', () async {
       await seedRecipe('r3', status: 'published', verifiedBy: ['dawit']);
 
-      await repo.verify(recipeId: 'r3', uid: 'selam');
+      await repo.verify(recipeId: 'r3', uid: 'selam', vouchingName: 'Selam G.');
 
       final doc = await firestore.collection('family_recipes').doc('r3').get();
       expect(doc.data()!['verifiedBy'], ['dawit', 'selam']);
@@ -90,9 +89,63 @@ void main() {
     });
 
     test('verifying a missing recipe surfaces not-found', () async {
-      final result = await repo.verify(recipeId: 'ghost', uid: 'dawit');
+      final result = await repo.verify(
+        recipeId: 'ghost',
+        uid: 'dawit',
+        vouchingName: 'Dawit M.',
+      );
 
       expect(result.isErr, isTrue);
+    });
+
+    test('the vouch writes the author notification in the same commit',
+        () async {
+      await seedRecipe('r5', verifiedBy: ['dawit', 'selam']);
+      // The author's uid must be known for the notification path.
+      await firestore.collection('family_recipes').doc('r5').update({
+        'authorId': 'liya',
+      });
+
+      await repo.verify(
+        recipeId: 'r5',
+        uid: 'abeni',
+        vouchingName: 'Abeni T.',
+      );
+
+      // Threshold vouch: the celebration type, count 3.
+      final note = await firestore
+          .collection('users')
+          .doc('liya')
+          .collection('notifications')
+          .get();
+      expect(note.docs, hasLength(1));
+      final data = note.docs.single.data();
+      expect(data['type'], 'recipeVerified');
+      expect(data['recipeId'], 'r5');
+      expect(data['count'], 3);
+      expect(data['otherName'], 'Abeni T.');
+      expect(note.docs.single.id, startsWith('vouch_r5_abeni'));
+    });
+
+    test('a non-threshold vouch writes the smaller note', () async {
+      await seedRecipe('r6');
+      await firestore.collection('family_recipes').doc('r6').update({
+        'authorId': 'liya',
+      });
+
+      await repo.verify(
+        recipeId: 'r6',
+        uid: 'dawit',
+        vouchingName: 'Dawit M.',
+      );
+
+      final note = await firestore
+          .collection('users')
+          .doc('liya')
+          .collection('notifications')
+          .get();
+      expect(note.docs.single.data()['type'], 'recipeVouched');
+      expect(note.docs.single.data()['count'], 1);
     });
 
     test('the domain parses vouches and variant fields', () async {

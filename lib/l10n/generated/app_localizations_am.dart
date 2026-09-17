@@ -460,6 +460,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get generateList => 'ከእቅዱ የግብይት ዝርዝር ይሥሩ';
 
   @override
+  String get genericCookName => 'አንድ አዘጋጅ';
+
+  @override
   String get getStarted => 'አካውንት ይፍጠሩ';
 
   @override
@@ -630,6 +633,22 @@ class AppLocalizationsAm extends AppLocalizations {
   @override
   String notifRecipePublishedBody(Object name) {
     return '“$name” አሁን በአያት ምግብ ቤት ውስጥ ነው። ስለተጋሩት እናመሰግናለን።';
+  }
+
+  @override
+  String get notifRecipeVerified => 'ምግብዎ ተረጋግጧል';
+
+  @override
+  String notifRecipeVerifiedBody(Object name) {
+    return 'ሦስት ሰው ለ$name ደግፈዋል — አሁን በሕዝብ ማከማቻ ውስጥ ነው።';
+  }
+
+  @override
+  String get notifRecipeVouched => 'ሰው ለምግብዎ ተደግፏል';
+
+  @override
+  String notifRecipeVouchedBody(Object count, Object name) {
+    return '$name ምግብዎን አዝግቦ እንደሚሰራ አሳውቋል — እስከ አሁን $count ከ 3 ድጋፍ።';
   }
 
   @override

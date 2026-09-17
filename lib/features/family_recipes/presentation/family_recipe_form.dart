@@ -118,8 +118,7 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
   /// that resolves — the banner fills in when it lands.
   Future<void> _loadForVersion(String baseId) async {
     if (_uuidShape.hasMatch(baseId)) {
-      final base =
-          await ref.read(familyRecipeByIdProvider(baseId).future);
+      final base = await ref.read(familyRecipeByIdProvider(baseId).future);
       if (!mounted) return;
       _baseIsCatalogue = false;
       _baseTitle = base?.displayName ?? baseId;
@@ -133,8 +132,7 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
       final sessions = ref.read(cookingRepositoryProvider).allLocal();
       _proofSessionId = sessions
           .where(
-            (s) =>
-                s.status == SessionStatus.completed && s.recipeId == baseId,
+            (s) => s.status == SessionStatus.completed && s.recipeId == baseId,
           )
           .map((s) => s.id)
           .firstOrNull;

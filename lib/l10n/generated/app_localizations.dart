@@ -986,6 +986,12 @@ abstract class AppLocalizations {
   /// **'Build shopping list from plan'**
   String get generateList;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'A cook'**
+  String get genericCookName;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1315,6 +1321,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'“{name}” is now in Grandma\'s Kitchen. Thank you for sharing it.'**
   String notifRecipePublishedBody(Object name);
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Your recipe is verified'**
+  String get notifRecipeVerified;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Three cooks vouched for {name} — it is now in the public archive.'**
+  String notifRecipeVerifiedBody(Object name);
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Someone vouched for your recipe'**
+  String get notifRecipeVouched;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'{name} cooked your recipe and says it works — {count} of 3 vouches so far.'**
+  String notifRecipeVouchedBody(Object count, Object name);
 
   /// Application copy
   ///

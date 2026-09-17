@@ -92,10 +92,13 @@ class NotificationsSheet extends ConsumerWidget {
                       Navigator.of(context).pop();
                       unawaited(
                         context.push(
-                          notification.type ==
-                                  AppNotificationType.recipePublished
-                              ? Routes.grandmasKitchen
-                              : Routes.friends,
+                          switch (notification.type) {
+                            AppNotificationType.recipePublished ||
+                            AppNotificationType.recipeVouched ||
+                            AppNotificationType.recipeVerified =>
+                              Routes.grandmasKitchen,
+                            _ => Routes.friends,
+                          },
                         ),
                       );
                     }
@@ -130,6 +133,8 @@ class _NotificationRow extends StatelessWidget {
       AppNotificationType.friendRequest => l10n.notifFriendRequest,
       AppNotificationType.friendAdded => l10n.notifFriendAdded,
       AppNotificationType.recipePublished => l10n.notifRecipePublished,
+      AppNotificationType.recipeVouched => l10n.notifRecipeVouched,
+      AppNotificationType.recipeVerified => l10n.notifRecipeVerified,
     };
     final body = switch (notification.type) {
       AppNotificationType.friendRequest =>
@@ -138,6 +143,12 @@ class _NotificationRow extends StatelessWidget {
         l10n.notifFriendAddedBody(notification.otherName),
       AppNotificationType.recipePublished =>
         l10n.notifRecipePublishedBody(notification.otherName),
+      // The vouch count is stored in otherUid's slot for these types — the
+      // row's only free string field — rendered as a number.
+      AppNotificationType.recipeVouched => l10n.notifRecipeVouchedBody(
+          notification.otherUid, notification.otherName,),
+      AppNotificationType.recipeVerified =>
+        l10n.notifRecipeVerifiedBody(notification.otherName),
     };
 
     return GlassPanel(
@@ -155,7 +166,10 @@ class _NotificationRow extends StatelessWidget {
               switch (notification.type) {
                 AppNotificationType.friendRequest => Icons.person_add_alt_1,
                 AppNotificationType.friendAdded => Icons.group,
-                AppNotificationType.recipePublished => Icons.restaurant_menu,
+                AppNotificationType.recipePublished ||
+                AppNotificationType.recipeVouched ||
+                AppNotificationType.recipeVerified =>
+                  Icons.restaurant_menu,
               },
               size: 18,
               color: notification.isUnread

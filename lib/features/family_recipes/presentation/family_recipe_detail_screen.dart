@@ -11,6 +11,7 @@ import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
 import '../../auth/domain/auth_providers.dart';
+import '../../community/data/community_repository.dart';
 import '../../recipes/domain/recipe_providers.dart' show isAmharicProvider;
 import '../data/family_recipe_repository.dart';
 import '../domain/family_recipe.dart';
@@ -114,8 +115,8 @@ class _Content extends ConsumerWidget {
           const SizedBox(height: AppSpacing.xs),
           Text(
             recipe.teacherName,
-            style: AppTypography.bodyMedium
-                .copyWith(color: palette.textSecondary),
+            style:
+                AppTypography.bodyMedium.copyWith(color: palette.textSecondary),
           ),
         ],
         const SizedBox(height: AppSpacing.lg),
@@ -185,8 +186,8 @@ class _Content extends ConsumerWidget {
           const SizedBox(height: AppSpacing.sm),
           Text(
             recipe.story,
-            style: AppTypography.bodyLarge
-                .copyWith(color: palette.textSecondary),
+            style:
+                AppTypography.bodyLarge.copyWith(color: palette.textSecondary),
           ),
         ],
 
@@ -240,8 +241,8 @@ class _VersionsSection extends ConsumerWidget {
         else if (variants.isEmpty)
           Text(
             l10n.versionsEmpty,
-            style: AppTypography.bodyMedium
-                .copyWith(color: palette.textSecondary),
+            style:
+                AppTypography.bodyMedium.copyWith(color: palette.textSecondary),
           )
         else
           for (final variant in variants)
@@ -333,7 +334,8 @@ class _VouchBadge extends StatelessWidget {
             recipe.verificationCount >= FamilyRecipeRepository.publishThreshold
                 ? l10n.verifiedBadge
                 : l10n.verifyCount.replaceAll(
-                    '3', '${recipe.verificationCount}',
+                    '3',
+                    '${recipe.verificationCount}',
                   ),
             style: AppTypography.caption.copyWith(color: AppColors.green),
           ),
@@ -427,12 +429,11 @@ class _VerificationPanel extends ConsumerWidget {
               ],
               const SizedBox(width: AppSpacing.sm),
               Text(
-                count >= threshold
-                    ? l10n.verifiedBadge
-                    : '$count / $threshold',
+                count >= threshold ? l10n.verifiedBadge : '$count / $threshold',
                 style: AppTypography.label.copyWith(
-                  color:
-                      count >= threshold ? AppColors.green : palette.textSecondary,
+                  color: count >= threshold
+                      ? AppColors.green
+                      : palette.textSecondary,
                 ),
               ),
             ],
@@ -477,9 +478,16 @@ class _VerificationPanel extends ConsumerWidget {
     final uid = ref.read(currentUidProvider);
     if (uid == null) return;
 
+    // Resolve the vouching cook's name for the notification. A missing
+    // directory card (guests, fresh accounts) degrades to a generic label
+    // rather than blocking the vouch.
+    final directory =
+        await ref.read(communityRepositoryProvider).directoryEntry(uid);
+    final name = directory?.displayName ?? l10n.genericCookName;
+
     final result = await ref
         .read(familyRecipeRepositoryProvider)
-        .verify(recipeId: recipe.id, uid: uid);
+        .verify(recipeId: recipe.id, uid: uid, vouchingName: name);
 
     if (!context.mounted) return;
     final message = switch (result) {

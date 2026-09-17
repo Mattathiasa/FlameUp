@@ -5,15 +5,20 @@ Exactly the writes the app makes, under the deployed rules:
   1. Sign in as demo.liya  -> submit a pending family recipe (the payload
      shape the app's form writes).
   2. Sign in as dawit/meron/yonas -> vouch, one per person, the same write
-     the verify() repository method sends.
+     the verify() repository method sends — plus the author notification
+     the same transaction drops into the author's inbox.
   3. Dawit (already vouched) tries again -> must be DENIED by the rules.
   4. Liya (the author) tries to vouch for her own -> must be DENIED.
-  5. After the third vouch, the recipe must have published ITSELF.
+  5. A forged notification (wrong count, or citing a vouch that is not
+     the writer's) -> must be DENIED by the rules.
+  6. After the third vouch, the recipe must have published ITSELF and the
+     author's inbox must hold the vouched/vouched/verified note sequence.
 
 Everything is keyed to this run and cleaned up at the end.
 """
 
 import json
+import subprocess
 import sys
 import urllib.request
 
@@ -116,6 +121,23 @@ def expect(condition, label):
         sys.exit(1)
 
 
+def author_note(recipe_id, vouching_uid, name, count):
+    """The exact notification the verify() transaction writes."""
+    return {
+        'type': to_value('recipeVerified' if count >= 3 else 'recipeVouched'),
+        'recipeId': to_value(recipe_id),
+        'otherUid': to_value(str(count)),
+        'otherName': to_value(name),
+        'count': to_value(count),
+        'createdAt': {'timestampValue': '2026-09-17T12:00:00.000Z'},
+        'readAt': {'nullValue': None},
+    }
+
+
+def note_id(recipe_id, vouching_uid):
+    return f'vouch_{recipe_id}_{vouching_uid}'
+
+
 def main():
     # 1. Author signs in and submits a pending recipe.
     liya_token, liya_uid = sign_in('demo.liya@demo.flameup.app')
@@ -143,6 +165,9 @@ def main():
     # On the threshold vouch the write also flips status to published: the
     # rules verify (never mutate) the transition, so the client must send it.
     vouched = []
+    names = {"demo.dawit@demo.flameup.app": 'Dawit M.',
+             "demo.meron@demo.flameup.app": 'Meron A.',
+             "demo.yonas@demo.flameup.app": 'Yonas K.'}
     for email in ('demo.dawit@demo.flameup.app',
                   'demo.meron@demo.flameup.app',
                   'demo.yonas@demo.flameup.app'):
@@ -156,6 +181,30 @@ def main():
             fields['status'] = to_value('published')
         patch_doc(f'family_recipes/{recipe_id}', fields, token)
         print(f'  vouch {len(vouched)}/3 by {email.split("@")[0]} ({uid[:8]}…)')
+
+        # The author note rides in the same transaction in the app; here it
+        # follows the vouch under the same deployed rules.
+        count = len(vouched)
+        create_doc(
+            f'users/{liya_uid}/notifications'
+            f'?documentId={note_id(recipe_id, uid)}',
+            author_note(recipe_id, uid, names[email], count),
+            token,
+        )
+        print(f'  note {count}/3 delivered to the author')
+
+        # A forged note — the count does not match the recipe's real vouch
+        # array — must be denied.
+        try:
+            create_doc(
+                f'users/{liya_uid}/notifications'
+                f'?documentId={note_id(recipe_id, uid)}forged',
+                author_note(recipe_id, uid, names[email], 50),
+                token,
+            )
+            expect(False, 'forged note (wrong count) must be denied')
+        except RuntimeError:
+            expect(True, 'forged note denied by rules')
 
         # Double-vouch must be denied.
         if len(vouched) == 1:
@@ -187,9 +236,28 @@ def main():
     expect(status == 'published', f'auto-published on 3rd vouch (status={status})')
     expect(verified == vouched, f'vouches preserved exactly: {verified}')
 
-    # 5. Cleanup: author deletes the proof document.
+    # 5. The author's inbox holds the note sequence: vouched, vouched, verified.
+    inbox = get_doc(f'users/{liya_uid}/notifications', liya_token)
+    notes = sorted(
+        from_value(d['fields']['type'])
+        for d in inbox.get('documents', [])
+        if recipe_id in d['name']
+    )
+    expect(notes == ['recipeVerified', 'recipeVouched', 'recipeVouched'],
+           f'author inbox holds vouched/vouched/verified: {notes}')
+
+    # 6. Cleanup: author deletes the proof document; the CLI's admin
+    #    credentials remove the notes (rules make notifications append-only
+    #    even for their owner).
     rest(doc_path(f'family_recipes/{recipe_id}'), 'DELETE', {}, liya_token)
-    print(f'cleaned up {recipe_id}')
+    for uid in vouched:
+        subprocess.run(
+            ['firebase', 'firestore:delete',
+             f'users/{liya_uid}/notifications/{note_id(recipe_id, uid)}',
+             '--project', PROJECT, '--force'],
+            capture_output=True, text=True,
+        )
+    print(f'cleaned up {recipe_id} and its notes')
     print('LIVE FIRE: ALL GREEN')
 
 
