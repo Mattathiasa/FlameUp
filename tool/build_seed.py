@@ -27,6 +27,53 @@ OUT = os.path.join(ROOT, 'assets', 'seed', 'recipes.json')
 
 SPICE, FRESH, MEAT, PANTRY = 'spice', 'fresh', 'meatDairy', 'pantry'
 
+# Equipment a dish genuinely demands beyond a generic pot and pan. Only
+# listed where it is true: an injera mitad, a coffee jebena. The detail
+# screen hides the section when the list is empty.
+EQUIPMENT = {
+    'doro': ['Large pot', 'Mortar and pestle'],
+    'injera': ['Mitad (clay griddle)', 'Large fermentation bowl',
+               'Muslin cloth'],
+    'buna': ['Jebena (clay coffee pot)', 'Sini cups', 'Rekebot (tray)'],
+    'kitfo': ['Mortar and pestle (mukecha)'],
+    'chechebsa': ['Flat griddle'],
+    'genfo': ['Wooden spatula (meleqa)'],
+    'tihlo': ['Tihlo stone pot', 'Two-pronged wooden forks'],
+    'dabo': ['Round baking pan'],
+}
+# Dish photos, sourced from Wikimedia Commons (free to hotlink). Each was
+# verified to actually show that dish; dishes without a photo stay on their
+# gradient. Keyed here so a regeneration cannot silently drop them.
+IMAGE_URLS = {
+    'ayib':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kitfo%20with%20Ayibe..JPG?width=800',
+    'buna':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Ethiopian%20coffee%20ceremony.jpg?width=800',
+    'dabo':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/MulMul%20Dabo.jpg?width=800',
+    'doro':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Injera%20and%20doro%20wat.jpg?width=800',
+    'ful':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Ful%20medames.jpg?width=800',
+    'genfo':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Porage%20from%20Northern%20Ethiopia.jpg?width=800',
+    'gomen':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kitfo%2C%20gomen%20and%20aybe.jpg?width=800',
+    'injera':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Injera.jpg?width=800',
+    'kitfo':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Kitfo.jpg?width=800',
+    'misir':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Misir%20Wat%20in%20Pot.jpg?width=800',
+    'shiro':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Taita%20and%20shiro.jpg?width=800',
+    'tibs':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Tibs%20and%20Injera.jpg?width=800',
+    'tihlo':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Eating%20Traditional%20Tihlo%2C%20Ethiopia.jpg?width=800',
+}
+
+
 
 def ing(name, name_am, qty, unit, unit_am, aisle=PANTRY, optional=False):
     return {
@@ -801,6 +848,7 @@ def main():
 
         recipes[key] = {
             'title': dish['en'], 'titleAm': dish['am'],
+            **({'imageUrl': IMAGE_URLS[key]} if key in IMAGE_URLS else {}),
             'subtitle': dish['se'], 'subtitleAm': dish['sa'],
             'story': detail.get('story', ''), 'storyAm': detail.get('storyAm', ''),
             'regionId': detail.get('region', 'amhara'),
@@ -809,7 +857,8 @@ def main():
             'totalMinutes': dish['min'], 'servings': 6, 'xpReward': dish['xp'],
             'heatLevel': detail.get('heat', 2),
             'tags': [detail.get('category', 'wat'), detail.get('region', 'amhara')],
-            'ingredients': ingredients, 'equipment': [], 'steps': steps,
+            'ingredients': ingredients, 'equipment': EQUIPMENT.get(key, []),
+            'steps': steps,
             'gradientA': dish['a'], 'gradientB': dish['b'],
             'isFasting': detail.get('fasting', False),
             'isVegan': detail.get('vegan', False),
@@ -823,13 +872,15 @@ def main():
     for key, dish in EXTRA.items():
         recipes[key] = {
             'title': dish['en'], 'titleAm': dish['am'],
+            **({'imageUrl': IMAGE_URLS[key]} if key in IMAGE_URLS else {}),
             'subtitle': dish['se'], 'subtitleAm': dish['sa'],
             'story': dish['story'], 'storyAm': dish['storyAm'],
             'regionId': dish['region'], 'category': dish['category'],
             'difficulty': dish['lv'], 'totalMinutes': dish['min'],
             'servings': 6, 'xpReward': dish['xp'], 'heatLevel': dish['heat'],
             'tags': [dish['category'], dish['region']],
-            'ingredients': dish['ingredients'], 'equipment': [],
+            'ingredients': dish['ingredients'],
+            'equipment': EQUIPMENT.get(key, []),
             'steps': [step(n, s[0], s[1], s[2])
                       for n, s in enumerate(dish['steps'])],
             'gradientA': dish['a'], 'gradientB': dish['b'],
@@ -850,7 +901,7 @@ def main():
     payload = {'recipes': recipes, 'regions': regions}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, 'w', encoding='utf-8') as fh:
-        json.dump(payload, fh, ensure_ascii=False, indent=1)
+        json.dump(payload, fh, ensure_ascii=False, indent=2)
         fh.write('\n')
 
     detailed = sum(1 for r in recipes.values() if r['steps'])

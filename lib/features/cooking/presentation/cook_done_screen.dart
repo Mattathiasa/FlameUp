@@ -8,6 +8,7 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
+import '../../family_recipes/domain/family_recipe_cookable.dart';
 import '../../recipes/domain/recipe_providers.dart';
 import '../data/cooking_repository.dart';
 
@@ -27,6 +28,8 @@ class CookDoneScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final amharic = ref.watch(isAmharicProvider);
     final session = ref.watch(cookingRepositoryProvider).byId(sessionId);
+    final isFamilyCook =
+        FamilyRecipeAsCookable.isFamilyId(session?.recipeId ?? '');
 
     if (session == null) {
       return Scaffold(
@@ -74,7 +77,10 @@ class CookDoneScreen extends ConsumerWidget {
                   // The reward is granted server-side. Showing a figure the
                   // client made up would be a lie the moment the two
                   // disagreed, so this states what is pending instead.
-                  if (recipe != null)
+                  // A family recipe carries no reward (xpReward 0): its cooks
+                  // are not earning XP, they are proving a dish — so the
+                  // panel hides rather than promising a fake zero.
+                  if (recipe != null && recipe.xpReward > 0)
                     GlassPanel(
                       blur: false,
                       padding: const EdgeInsets.all(AppSpacing.xl),
@@ -95,19 +101,27 @@ class CookDoneScreen extends ConsumerWidget {
                     ),
 
                   const Spacer(),
+                  // Family dishes are rated by VOUCHES, not stars — the
+                  // catalogue rating flow has no meaning here and would
+                  // strand reviews under a recipe id the catalogue does not
+                  // know. A family cook heads home; the completed session
+                  // still counts for history and for proof-of-cook.
                   FlameButton(
-                    label: l10n.rateIt,
-                    onPressed: () =>
-                        context.pushReplacement(Routes.cookRateOf(sessionId)),
+                    label: isFamilyCook ? l10n.errBack : l10n.rateIt,
+                    onPressed: isFamilyCook
+                        ? () => context.go(Routes.home)
+                        : () => context
+                            .pushReplacement(Routes.cookRateOf(sessionId)),
                   ),
                   const SizedBox(height: AppSpacing.md),
-                  SizedBox(
-                    height: 50,
-                    child: OutlinedButton(
-                      onPressed: () => context.go(Routes.home),
-                      child: Text(l10n.errBack),
+                  if (!isFamilyCook)
+                    SizedBox(
+                      height: 50,
+                      child: OutlinedButton(
+                        onPressed: () => context.go(Routes.home),
+                        child: Text(l10n.errBack),
+                      ),
                     ),
-                  ),
                   const SizedBox(height: AppSpacing.xxl),
                 ],
               ),

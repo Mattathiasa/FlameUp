@@ -376,6 +376,10 @@
   "@empSub": {
     "description": "Design prototype copy"
   },
+  "equipmentTitle": "You will need",
+  "@equipmentTitle": {
+    "description": "Application copy"
+  },
   "errBack": "Back to Today",
   "@errBack": {
     "description": "Design prototype copy"
@@ -1184,6 +1188,10 @@
   "@skip": {
     "description": "Design prototype copy"
   },
+  "skipStep": "Skip",
+  "@skipStep": {
+    "description": "Application copy"
+  },
   "stDishes": "Dishes cooked",
   "@stDishes": {
     "description": "Design prototype copy"
@@ -1215,6 +1223,10 @@
   "stepOf": "Step",
   "@stepOf": {
     "description": "Design prototype copy"
+  },
+  "stepOptionalTag": "Optional",
+  "@stepOptionalTag": {
+    "description": "Application copy"
   },
   "steps": "Steps",
   "@steps": {

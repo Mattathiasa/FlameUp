@@ -3,6 +3,7 @@
     "doro": {
       "title": "Doro Wat",
       "titleAm": "ዶሮ ወጥ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Injera%20and%20doro%20wat.jpg?width=800",
       "subtitle": "Chicken · berbere · 12 spices",
       "subtitleAm": "ዶሮ · በርበሬ · 12 ቅመሞች",
       "story": "Doro wat is what you make when someone is worth a whole day. Four onions, cooked dry until they give up their water -- that is the whole secret, and it cannot be hurried. In much of Ethiopia it is the dish that ends a fast, carried to the table whole, the eggs scored so the sauce gets inside.",
@@ -92,7 +93,10 @@
           "optional": false
         }
       ],
-      "equipment": [],
+      "equipment": [
+        "Large pot",
+        "Mortar and pestle"
+      ],
       "steps": [
         {
           "index": 0,
@@ -169,12 +173,12 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Injera%20and%20doro%20wat.jpg?width=800"
+      "numberOfCooks": 0
     },
     "shiro": {
       "title": "Shiro",
       "titleAm": "ሽሮ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Taita%20and%20shiro.jpg?width=800",
       "subtitle": "Chickpea flour · garlic · kibbeh",
       "subtitleAm": "የሽምብራ ዱቄት · ነጭ ሽንኩርት",
       "story": "Ground chickpea flour cooked into a loose, savoury stew. The dish most often described as the everyday meal -- fast to make, and eaten across the country in both fasting and non-fasting versions.",
@@ -294,12 +298,12 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Taita%20and%20shiro.jpg?width=800"
+      "numberOfCooks": 0
     },
     "tibs": {
       "title": "Tibs",
       "titleAm": "ጥብስ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tibs%20and%20Injera.jpg?width=800",
       "subtitle": "Beef · rosemary · awaze",
       "subtitleAm": "የበሬ ሥጋ · ጽጌረዳ · አዋዜ",
       "story": "Meat cut small and seared hard and fast, often finished at the table on a clay brazier so it keeps sizzling while it is eaten.",
@@ -412,12 +416,12 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Tibs%20and%20Injera.jpg?width=800"
+      "numberOfCooks": 0
     },
     "misir": {
       "title": "Misir Wat",
       "titleAm": "ምስር ወጥ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Misir%20Wat%20in%20Pot.jpg?width=800",
       "subtitle": "Red lentils · berbere",
       "subtitleAm": "ቀይ ምስር · በርበሬ",
       "story": "Red lentils cooked down with berbere until they hold their shape on the spoon. A fasting-table anchor.",
@@ -521,12 +525,12 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Misir%20Wat%20in%20Pot.jpg?width=800"
+      "numberOfCooks": 0
     },
     "injera": {
       "title": "Injera",
       "titleAm": "እንጀራ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Injera.jpg?width=800",
       "subtitle": "Teff · three-day ferment",
       "subtitleAm": "ጤፍ · የሦስት ቀን ማሸት",
       "story": "Teff batter left to ferment for days, then poured in a spiral onto a hot mitad. The sourness comes from time, not from an ingredient -- which is why it cannot be hurried.",
@@ -571,7 +575,11 @@
           "optional": true
         }
       ],
-      "equipment": [],
+      "equipment": [
+        "Mitad (clay griddle)",
+        "Large fermentation bowl",
+        "Muslin cloth"
+      ],
       "steps": [
         {
           "index": 0,
@@ -630,12 +638,12 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Injera.jpg?width=800"
+      "numberOfCooks": 0
     },
     "kitfo": {
       "title": "Kitfo",
       "titleAm": "ክትፎ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Kitfo.jpg?width=800",
       "subtitle": "Minced beef · mitmita · ayib",
       "subtitleAm": "የተከተፈ ሥጋ · ሚጥሚጣ · አይብ",
       "story": "Beef minced very fine and warmed -- not cooked -- through spiced butter and mitmita. Associated with Gurage cooking, and traditionally eaten the day the animal is slaughtered.",
@@ -698,7 +706,9 @@
           "optional": true
         }
       ],
-      "equipment": [],
+      "equipment": [
+        "Mortar and pestle (mukecha)"
+      ],
       "steps": [
         {
           "index": 0,
@@ -738,12 +748,12 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Kitfo.jpg?width=800"
+      "numberOfCooks": 0
     },
     "gomen": {
       "title": "Gomen",
       "titleAm": "ጎመን",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Kitfo%2C%20gomen%20and%20aybe.jpg?width=800",
       "subtitle": "Collards · ginger · garlic",
       "subtitleAm": "ጎመን · ዝንጅብል · ነጭ ሽንኩርት",
       "story": "Collard greens cooked slowly with ginger and garlic until they give up their bite.",
@@ -847,12 +857,12 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Kitfo%2C%20gomen%20and%20aybe.jpg?width=800"
+      "numberOfCooks": 0
     },
     "buna": {
       "title": "Buna Ceremony",
       "titleAm": "የቡና ሥነ ሥርዓት",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Ethiopian%20coffee%20ceremony.jpg?width=800",
       "subtitle": "Roast · grind · three rounds",
       "subtitleAm": "ማቁላት · መፍጨት · ሦስት ዙር",
       "story": "The coffee ceremony: green beans roasted, ground and brewed in front of the people who will drink them, served in three rounds. It is not a fast process, and it is not meant to be.",
@@ -906,7 +916,11 @@
           "optional": true
         }
       ],
-      "equipment": [],
+      "equipment": [
+        "Jebena (clay coffee pot)",
+        "Sini cups",
+        "Rekebot (tray)"
+      ],
       "steps": [
         {
           "index": 0,
@@ -960,8 +974,7 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Ethiopian%20coffee%20ceremony.jpg?width=800"
+      "numberOfCooks": 0
     },
     "beyay": {
       "title": "Beyaynetu",
@@ -1478,7 +1491,9 @@
           "optional": true
         }
       ],
-      "equipment": [],
+      "equipment": [
+        "Flat griddle"
+      ],
       "steps": [
         {
           "index": 0,
@@ -1535,6 +1550,7 @@
     "genfo": {
       "title": "Genfo",
       "titleAm": "ገንፎ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Porage%20from%20Northern%20Ethiopia.jpg?width=800",
       "subtitle": "Barley porridge · kibbeh well · berbere",
       "subtitleAm": "የገብስ ገንፎ · የቅቤ ጉድጓድ · በርበሬ",
       "story": "A stiff barley porridge shaped into a mound with a well of spiced butter in the middle. Often served to new mothers and on cold mornings, it is eaten from the outside in.",
@@ -1597,7 +1613,9 @@
           "optional": false
         }
       ],
-      "equipment": [],
+      "equipment": [
+        "Wooden spatula (meleqa)"
+      ],
       "steps": [
         {
           "index": 0,
@@ -1651,8 +1669,7 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Porage%20from%20Northern%20Ethiopia.jpg?width=800"
+      "numberOfCooks": 0
     },
     "atakilt": {
       "title": "Atakilt Wat",
@@ -2138,6 +2155,7 @@
     "ayib": {
       "title": "Ayib",
       "titleAm": "አይብ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Kitfo%20with%20Ayibe..JPG?width=800",
       "subtitle": "Fresh cheese · pressed curd",
       "subtitleAm": "ትኩስ አይብ · የተጨመቀ",
       "story": "A mild fresh cheese, crumbly and barely salted. Its job is to sit next to something fierce -- kitfo, or a hot wat -- and cool it down.",
@@ -2213,8 +2231,7 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Kitfo%20with%20Ayibe..JPG?width=800"
+      "numberOfCooks": 0
     },
     "awaze": {
       "title": "Awaze",
@@ -2301,6 +2318,7 @@
     "tihlo": {
       "title": "Tihlo",
       "titleAm": "ጥሕሎ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Eating%20Traditional%20Tihlo%2C%20Ethiopia.jpg?width=800",
       "subtitle": "Roasted barley dough · fork-eaten",
       "subtitleAm": "የተጠበሰ የገብስ ሊጥ · በሹካ",
       "story": "Balls of roasted barley dough, speared on a small wooden fork and dipped in a spiced sauce. Associated with Tigray, and eaten communally from one dish.",
@@ -2363,7 +2381,10 @@
           "optional": true
         }
       ],
-      "equipment": [],
+      "equipment": [
+        "Tihlo stone pot",
+        "Two-pronged wooden forks"
+      ],
       "steps": [
         {
           "index": 0,
@@ -2403,8 +2424,7 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Eating%20Traditional%20Tihlo%2C%20Ethiopia.jpg?width=800"
+      "numberOfCooks": 0
     },
     "shorba": {
       "title": "Shorba",
@@ -2609,6 +2629,7 @@
     "ful": {
       "title": "Ful",
       "titleAm": "ፉል",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Ful%20medames.jpg?width=800",
       "subtitle": "Fava beans · onion · chilli · bread",
       "subtitleAm": "ባቄላ · ሽንኩርት · ቃሪያ · ዳቦ",
       "story": "Stewed fava beans mashed at the table, eaten from a shared bowl with bread. Common in Harar and across the east, and a fixture of morning eating houses.",
@@ -2719,12 +2740,12 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Ful%20medames.jpg?width=800"
+      "numberOfCooks": 0
     },
     "dabo": {
       "title": "Ambasha",
       "titleAm": "አንባሻ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/MulMul%20Dabo.jpg?width=800",
       "subtitle": "Celebration bread · scored top",
       "subtitleAm": "የበዓል ዳቦ · የተቀረጸ ላይ",
       "story": "A round, slightly sweet bread scored across the top before baking. Made for holidays and guests; the pattern is cut so it can be torn into even shares.",
@@ -2787,7 +2808,9 @@
           "optional": false
         }
       ],
-      "equipment": [],
+      "equipment": [
+        "Round baking pan"
+      ],
       "steps": [
         {
           "index": 0,
@@ -2835,8 +2858,7 @@
       "isFamilyRecipe": false,
       "averageRating": 0.0,
       "ratingCount": 0,
-      "numberOfCooks": 0,
-      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/MulMul%20Dabo.jpg?width=800"
+      "numberOfCooks": 0
     }
   },
   "regions": [

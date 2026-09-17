@@ -16,6 +16,7 @@ import '../../../shared/widgets/widgets.dart';
 import '../../ai_assistant/presentation/assistant_sheet.dart';
 import '../../recipes/domain/recipe.dart';
 import '../../recipes/domain/recipe_providers.dart';
+import '../domain/cookable_recipe_provider.dart';
 import '../domain/cooking_controller.dart';
 import '../domain/cooking_session.dart';
 
@@ -29,7 +30,9 @@ class CookModeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final recipe = ref.watch(recipeProvider(recipeId));
+    // One resolver for both archives: a family uuid bridges into the
+    // cookable shape, a catalogue slug reads the published cache.
+    final recipe = ref.watch(cookableRecipeProvider(recipeId));
 
     return recipe.when(
       loading: () =>
@@ -37,7 +40,7 @@ class CookModeScreen extends ConsumerWidget {
       error: (error, _) => Scaffold(
         body: ErrorView(
           failure: error is Failure ? error : const UnknownFailure(),
-          onRetry: () => ref.invalidate(recipeProvider(recipeId)),
+          onRetry: () => ref.invalidate(cookableRecipeProvider(recipeId)),
         ),
       ),
       data: (cached) => _CookMode(recipe: cached.value),
@@ -194,6 +197,16 @@ class _CookModeState extends ConsumerState<_CookMode> {
                               style: AppTypography.headlineMedium
                                   .copyWith(color: palette.textPrimary),
                             ),
+                            if (step.optional) ...[
+                              const SizedBox(height: AppSpacing.sm),
+                              Text(
+                                l10n.stepOptionalTag,
+                                style: AppTypography.label.copyWith(
+                                  color: palette.textTertiary,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
                           ],
                           if (step.localisedTip(amharic: amharic) != null &&
                               !expired) ...[
@@ -458,6 +471,17 @@ class _Controls extends StatelessWidget {
               ),
             ],
           ),
+          // An optional step is a promise to the cook: take it or leave it.
+          // Skipping records the decline on the session and cancels any timer
+          // the step had running, so no alert fires for a step left behind.
+          if (step.optional && !session.isOnLastStep) ...[
+            const SizedBox(height: AppSpacing.sm),
+            TextButton.icon(
+              onPressed: () => controller.skipStep(recipe),
+              icon: const Icon(Icons.skip_next, size: 18),
+              label: Text(l10n.skipStep),
+            ),
+          ],
         ],
       ),
     );

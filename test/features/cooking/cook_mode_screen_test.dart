@@ -8,10 +8,12 @@ import 'package:flameup/core/services/timer_completion_alert.dart';
 import 'package:flameup/core/theme/app_theme.dart';
 import 'package:flameup/features/auth/domain/auth_providers.dart';
 import 'package:flameup/features/cooking/data/cooking_repository.dart';
+import 'package:flameup/features/cooking/domain/cookable_recipe_provider.dart';
 import 'package:flameup/features/cooking/domain/cooking_session.dart';
 import 'package:flameup/features/cooking/presentation/cook_mode_screen.dart';
 import 'package:flameup/features/recipes/domain/recipe.dart';
-import 'package:flameup/features/recipes/domain/recipe_providers.dart';
+import 'package:flameup/features/recipes/domain/recipe_providers.dart'
+    show isAmharicProvider;
 import 'package:flameup/l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -79,9 +81,10 @@ List<Override> _overrides({
   required _RecordingAlert alert,
 }) =>
     [
-      // The screen resolves the recipe through recipeProvider; feeding it a
-      // ready stream keeps the Firestore-backed repository out of the test.
-      recipeProvider.overrideWith(
+      // The screen resolves the recipe through cookableRecipeProvider
+      // (family ids and catalogue ids alike); feeding it a ready stream
+      // keeps the Firestore-backed repository out of the test.
+      cookableRecipeProvider.overrideWith(
         (ref, id) => Stream.value(
           Cached(value: recipe, origin: DataOrigin.network),
         ),

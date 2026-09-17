@@ -29,6 +29,7 @@ class CookingSession {
     DateTime? lastActiveAt,
     this.stepDeadlines = const {},
     this.pausedRemaining = const {},
+    this.skippedSteps = const [],
     this.offlineCreated = false,
   })  : id = id ?? const Uuid().v4(),
         // Minted when the session starts, not when it completes, so a retry
@@ -57,6 +58,11 @@ class CookingSession {
   /// Seconds left on a paused step, keyed by step index. A paused timer has no
   /// deadline, because the clock is not running.
   final Map<int, int> pausedRemaining;
+
+  /// Step indexes the cook declined. Optional steps only — cook mode offers
+  /// the skip for exactly those — but recorded rather than forgotten, so the
+  /// history reflects the dish as it was actually made.
+  final List<int> skippedSteps;
 
   /// One reward grant per session, ever.
   final String idempotencyKey;
@@ -101,6 +107,7 @@ class CookingSession {
     DateTime? lastActiveAt,
     Map<int, DateTime>? stepDeadlines,
     Map<int, int>? pausedRemaining,
+    List<int>? skippedSteps,
     int? servings,
   }) =>
       CookingSession(
@@ -115,6 +122,7 @@ class CookingSession {
         lastActiveAt: lastActiveAt ?? DateTime.now(),
         stepDeadlines: stepDeadlines ?? this.stepDeadlines,
         pausedRemaining: pausedRemaining ?? this.pausedRemaining,
+        skippedSteps: skippedSteps ?? this.skippedSteps,
         idempotencyKey: idempotencyKey,
         offlineCreated: offlineCreated,
       );
@@ -137,6 +145,7 @@ class CookingSession {
           for (final entry in pausedRemaining.entries)
             entry.key.toString(): entry.value,
         },
+        'skippedSteps': skippedSteps,
         'idempotencyKey': idempotencyKey,
         'offlineCreated': offlineCreated,
       };
@@ -177,6 +186,10 @@ class CookingSession {
             int.parse(entry.key.toString()):
                 int.tryParse(entry.value.toString()) ?? 0,
       },
+      skippedSteps: [
+        for (final value in (json['skippedSteps'] as List? ?? const []))
+          if (value is int) value,
+      ],
       idempotencyKey: key,
       offlineCreated: json['offlineCreated'] as bool? ?? false,
     );

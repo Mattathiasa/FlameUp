@@ -124,6 +124,19 @@ class _Content extends ConsumerWidget {
         // --- verification -------------------------------------------------
         _VerificationPanel(recipe: recipe, isAuthor: isAuthor),
 
+        // --- cook it --------------------------------------------------------
+        // A recipe nobody can cook is a photograph. Cook mode bridges this
+        // recipe into the full step-by-step pipeline (timers excluded — the
+        // free-text form has no durations), and the completed session is what
+        // proves a cook for versions and review.
+        if (recipe.stepLines.isNotEmpty) ...[
+          const SizedBox(height: AppSpacing.lg),
+          FlameButton(
+            label: l10n.startCooking,
+            onPressed: () => context.push(Routes.cookModeOf(recipe.id)),
+          ),
+        ],
+
         // --- ingredients ---------------------------------------------------
         if (ingredients.isNotEmpty) ...[
           const SizedBox(height: AppSpacing.xxl),
@@ -478,12 +491,12 @@ class _VerificationPanel extends ConsumerWidget {
     final uid = ref.read(currentUidProvider);
     if (uid == null) return;
 
-    // Resolve the vouching cook's name for the notification. A missing
-    // directory card (guests, fresh accounts) degrades to a generic label
-    // rather than blocking the vouch.
+    // The vouch note's name must match the writer's directory card: the
+    // rules pin otherName to the card's displayName (empty when there is no
+    // card), so a name invented on the client would be denied, not stored.
     final directory =
         await ref.read(communityRepositoryProvider).directoryEntry(uid);
-    final name = directory?.displayName ?? l10n.genericCookName;
+    final name = directory?.displayName ?? '';
 
     final result = await ref
         .read(familyRecipeRepositoryProvider)

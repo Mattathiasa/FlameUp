@@ -297,6 +297,9 @@ class AppLocalizationsAm extends AppLocalizations {
       'በማንኛውም አዘገጃጀት ላይ ምልክቱን ይንኩ፤ እዚህ ይመጣል፣ ከመስመር ውጭም ዝግጁ ይሆናል።';
 
   @override
+  String get equipmentTitle => 'የሚያስፈልጋቸው';
+
+  @override
   String get errBack => 'ወደ ዛሬ ተመለስ';
 
   @override
@@ -927,6 +930,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get skip => 'ዝለል';
 
   @override
+  String get skipStep => 'ዝለል';
+
+  @override
   String get stDishes => 'የበሰሉ ምግቦች';
 
   @override
@@ -949,6 +955,9 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get stepOf => 'ደረጃ';
+
+  @override
+  String get stepOptionalTag => 'አማራጭ';
 
   @override
   String get steps => 'ደረጃዎች';

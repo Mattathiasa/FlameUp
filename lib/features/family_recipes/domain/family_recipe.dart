@@ -103,6 +103,15 @@ class FamilyRecipe {
       .where((line) => line.isNotEmpty)
       .toList(growable: false);
 
+  /// The ingredient lines as entered: one per line, blanks dropped. The
+  /// detail screen inlines this same parse; having it here means cook mode
+  /// and the bridge read the same list rather than a second copy.
+  List<String> get ingredientLines => ingredientsText
+      .split('\n')
+      .map((line) => line.trim())
+      .where((line) => line.isNotEmpty)
+      .toList(growable: false);
+
   /// Download URL of the uploaded photo/video, if any. Media lives in
   /// Storage under the author's path; Firestore stores only the URL.
   final String? mediaUrl;

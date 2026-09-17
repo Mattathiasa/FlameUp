@@ -306,6 +306,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Tap the bookmark on any recipe and it lands here, ready offline.';
 
   @override
+  String get equipmentTitle => 'You will need';
+
+  @override
   String get errBack => 'Back to Today';
 
   @override
@@ -943,6 +946,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get skip => 'Skip';
 
   @override
+  String get skipStep => 'Skip';
+
+  @override
   String get stDishes => 'Dishes cooked';
 
   @override
@@ -965,6 +971,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get stepOf => 'Step';
+
+  @override
+  String get stepOptionalTag => 'Optional';
 
   @override
   String get steps => 'Steps';

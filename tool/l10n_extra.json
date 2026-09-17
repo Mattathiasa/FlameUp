@@ -639,5 +639,17 @@
   "genericCookName": {
     "en": "A cook",
     "am": "አንድ አዘጋጅ"
+  },
+  "stepOptionalTag": {
+    "en": "Optional",
+    "am": "አማራጭ"
+  },
+  "skipStep": {
+    "en": "Skip",
+    "am": "ዝለል"
+  },
+  "equipmentTitle": {
+    "en": "You will need",
+    "am": "የሚያስፈልጋቸው"
   }
 }

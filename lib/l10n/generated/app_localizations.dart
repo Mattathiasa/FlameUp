@@ -662,6 +662,12 @@ abstract class AppLocalizations {
   /// **'Tap the bookmark on any recipe and it lands here, ready offline.'**
   String get empSub;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'You will need'**
+  String get equipmentTitle;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1874,6 +1880,12 @@ abstract class AppLocalizations {
   /// **'Skip'**
   String get skip;
 
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skipStep;
+
   /// Design prototype copy
   ///
   /// In en, this message translates to:
@@ -1921,6 +1933,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Step'**
   String get stepOf;
+
+  /// Application copy
+  ///
+  /// In en, this message translates to:
+  /// **'Optional'**
+  String get stepOptionalTag;
 
   /// Design prototype copy
   ///

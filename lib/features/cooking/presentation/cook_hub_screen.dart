@@ -8,11 +8,13 @@ import '../../../core/theme/app_dimens.dart';
 import '../../../core/theme/app_typography.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/widgets/widgets.dart';
+import '../../family_recipes/domain/family_recipe_cookable.dart';
 import '../../recipes/data/recipe_seed_source.dart';
 import '../../recipes/domain/recipe.dart';
 import '../../recipes/domain/recipe_providers.dart';
 import '../../recipes/presentation/dish_card.dart';
 import '../../recipes/presentation/saved_screen.dart';
+import '../domain/cookable_recipe_provider.dart';
 import '../domain/cooking_controller.dart';
 import 'resume_card.dart';
 
@@ -41,6 +43,16 @@ class CookHubScreen extends ConsumerWidget {
               builder: (context, snapshot) {
                 final catalogue = snapshot.data ?? const <Recipe>[];
                 final byId = {for (final r in catalogue) r.id: r};
+                // A family-recipe session resolves through the household
+                // archive instead of the catalogue; its card renders from
+                // the bridged recipe below.
+                final resumableRecipe = (resumable == null)
+                    ? null
+                    : (byId[resumable.recipeId] ??
+                        ref
+                            .watch(cookableRecipeProvider(resumable.recipeId))
+                            .valueOrNull
+                            ?.value);
 
                 return ListView(
                   padding: const EdgeInsets.only(
@@ -48,7 +60,7 @@ class CookHubScreen extends ConsumerWidget {
                     bottom: AppSpacing.screenBottom,
                   ),
                   children: [
-                    if (resumable != null && byId[resumable.recipeId] != null)
+                    if (resumable != null && resumableRecipe != null)
                       Padding(
                         padding: const EdgeInsets.fromLTRB(
                           AppSpacing.gutter,
@@ -57,7 +69,7 @@ class CookHubScreen extends ConsumerWidget {
                           AppSpacing.sm,
                         ),
                         child: ResumeCard(
-                          recipe: byId[resumable.recipeId]!,
+                          recipe: resumableRecipe,
                           step: resumable.currentStep + 1,
                           total: resumable.totalSteps,
                           progress: resumable.progress,
@@ -158,9 +170,18 @@ class _CookedRecently extends ConsumerWidget {
     if (history.isEmpty) return const SizedBox.shrink();
 
     final byId = {for (final r in catalogue) r.id: r};
+    // Family dishes appear alongside catalogue ones: their history rows
+    // resolve through the cookable bridge rather than being silently
+    // dropped for not being catalogue slugs.
     final rows = <MapEntry<Recipe, int>>[
       for (final entry in history.entries)
-        if (byId[entry.key] != null) MapEntry(byId[entry.key]!, entry.value),
+        if (byId[entry.key] != null)
+          MapEntry(byId[entry.key]!, entry.value)
+        else if (FamilyRecipeAsCookable.isFamilyId(entry.key))
+          MapEntry(
+            ref.watch(cookableRecipeProvider(entry.key)).valueOrNull!.value,
+            entry.value,
+          ),
     ]..sort((a, b) => b.value.compareTo(a.value));
 
     return _Section(

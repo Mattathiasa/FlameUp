@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flameup/core/cache/outbox.dart';
 import 'package:flameup/core/cache/pending_mutation.dart';
 import 'package:flameup/core/services/local_store.dart';
@@ -8,6 +9,7 @@ import 'package:flameup/core/theme/app_theme.dart';
 import 'package:flameup/features/cooking/data/cooking_repository.dart';
 import 'package:flameup/features/cooking/domain/cooking_session.dart';
 import 'package:flameup/features/cooking/presentation/cook_hub_screen.dart';
+import 'package:flameup/features/family_recipes/data/family_recipe_repository.dart';
 import 'package:flameup/features/recipes/data/recipe_seed_source.dart';
 import 'package:flameup/features/recipes/domain/recipe.dart';
 import 'package:flameup/l10n/generated/app_localizations.dart';
@@ -19,7 +21,10 @@ import 'package:flutter_test/flutter_test.dart';
 Recipe _recipe(String id) {
   final raw = File('assets/seed/recipes.json').readAsStringSync();
   final json = jsonDecode(raw) as Map<String, dynamic>;
-  return Recipe.fromJson(id, ((json['recipes'] as Map)[id] as Map).cast<String, dynamic>());
+  return Recipe.fromJson(
+    id,
+    ((json['recipes'] as Map)[id] as Map).cast<String, dynamic>(),
+  );
 }
 
 Widget _host(Widget child, {List<Override> overrides = const []}) {
@@ -100,6 +105,56 @@ void main() {
 
       expect(find.text('PICK UP WHERE YOU LEFT'), findsOneWidget);
       expect(find.textContaining('Doro Wat'), findsWidgets);
+    });
+
+    testWidgets('surfaces an in-progress FAMILY cook as a resume card too',
+        (tester) async {
+      final store = _MemoryStore();
+      final repo = CookingRepository(store: store, outbox: _NoOutbox());
+      const familyId = '0b9e6c1e-1111-2222-3333-444455556666';
+      await repo.save(
+        CookingSession(
+          recipeId: familyId,
+          totalSteps: 3,
+          servings: 1,
+          currentStep: 1,
+        ),
+        uid: 'u1',
+      );
+
+      final fakeFs = FakeFirebaseFirestore();
+      await fakeFs.collection('family_recipes').doc(familyId).set({
+        'authorId': 'author-1',
+        'status': 'published',
+        'title': 'Emahoy shiro fen',
+        'stepsText': 'Step a.\\nStep b.\\nStep c.',
+        'ingredientsText': 'flour',
+      });
+
+      await tester.pumpWidget(
+        _host(
+          const CookHubScreen(),
+          overrides: [
+            recipeSeedSourceProvider.overrideWith(
+              // The catalogue does not know this id — the archive does.
+              (ref) => _StubSeedSource(const []),
+            ),
+            cookingRepositoryProvider.overrideWithValue(repo),
+            localStoreProvider.overrideWithValue(store),
+            familyRecipeRepositoryProvider.overrideWithValue(
+              FamilyRecipeRepository(
+                outbox: _NoOutbox(),
+                firestore: fakeFs,
+              ),
+            ),
+          ],
+        ),
+      );
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+
+      expect(find.text('PICK UP WHERE YOU LEFT'), findsOneWidget);
+      expect(find.textContaining('Emahoy'), findsWidgets);
     });
 
     testWidgets('lists saved recipes in the saved section', (tester) async {

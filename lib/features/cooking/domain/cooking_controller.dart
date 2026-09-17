@@ -138,6 +138,38 @@ class CookingController extends AutoDisposeNotifier<CookingSession?> {
   Future<void> nextStep(Recipe recipe) =>
       goToStep(state!.currentStep + 1, recipe: recipe);
 
+  /// Advance past an optional step without completing it.
+  ///
+  /// "Optional" is a promise the pipeline has to keep everywhere: the detail
+  /// screen marks the step, so cook mode must let a cook decline it. The
+  /// skipped step is recorded on the session (an honest history — "I made
+  /// this without the berbere bullion") and any running timer for it is
+  /// cancelled, since leaving one alive would fire an alert for a step the
+  /// cook stepped over.
+  Future<void> skipStep(Recipe recipe) async {
+    final session = state;
+    final uid = _uid;
+    if (session == null || uid == null) return;
+
+    final step = session.currentStep;
+    if (!recipe.steps[step].optional) return;
+
+    final deadlines = Map<int, DateTime>.from(session.stepDeadlines)
+      ..remove(step);
+    final paused = Map<int, int>.from(session.pausedRemaining)..remove(step);
+    await _alerts.cancel(TimerNotifications.idFor(session.id, step));
+
+    final next = session.copyWith(
+      skippedSteps: [...session.skippedSteps, step],
+      stepDeadlines: deadlines,
+      pausedRemaining: paused,
+    );
+    state = next;
+    await _repo.save(next, uid: uid);
+
+    await nextStep(recipe);
+  }
+
   Future<void> previousStep(Recipe recipe) =>
       goToStep(state!.currentStep - 1, recipe: recipe);
 

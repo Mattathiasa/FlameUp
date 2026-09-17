@@ -252,6 +252,60 @@ class _IngredientsTab extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: AppSpacing.xl),
+        // Equipment, when the dish demands it: an injera mitad, a coffee
+        // jebena. Listed before the ingredients because gathering it is the
+        // step before gathering anything else.
+        if (recipe.equipment.isNotEmpty) ...[
+          GlassPanel(
+            blur: false,
+            padding: const EdgeInsets.all(AppSpacing.lg),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.restaurant_outlined,
+                      size: 16,
+                      color: palette.textSecondary,
+                    ),
+                    const SizedBox(width: AppSpacing.xs),
+                    Text(
+                      l10n.equipmentTitle,
+                      style: AppTypography.titleSmall
+                          .copyWith(color: palette.textPrimary),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Wrap(
+                  spacing: AppSpacing.xs,
+                  runSpacing: AppSpacing.xs,
+                  children: [
+                    for (final item in recipe.equipment)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppSpacing.sm,
+                          vertical: AppSpacing.xxs,
+                        ),
+                        decoration: BoxDecoration(
+                          color: palette.glassRaised,
+                          borderRadius: BorderRadius.circular(AppRadii.sm),
+                        ),
+                        child: Text(
+                          item,
+                          style: AppTypography.label.copyWith(
+                            color: palette.textSecondary,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: AppSpacing.xl),
+        ],
         for (final ingredient in scaled)
           Padding(
             padding: const EdgeInsets.only(bottom: AppSpacing.md),
@@ -296,6 +350,7 @@ class _StepsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = AppPalette.of(context);
+    final l10n = AppLocalizations.of(context);
 
     return ListView.builder(
       padding: const EdgeInsets.fromLTRB(20, 16, 20, AppSpacing.screenBottom),
@@ -348,6 +403,14 @@ class _StepsTab extends StatelessWidget {
                                 .copyWith(color: palette.textTertiary),
                           ),
                         ],
+                      ),
+                    ],
+                    if (step.optional) ...[
+                      const SizedBox(height: AppSpacing.xs),
+                      Text(
+                        l10n.stepOptionalTag,
+                        style: AppTypography.label
+                            .copyWith(color: palette.textTertiary),
                       ),
                     ],
                     if (step.localisedTip(amharic: amharic) != null) ...[

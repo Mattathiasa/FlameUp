@@ -48,8 +48,10 @@ class RecipeStep {
   Duration? get duration =>
       hasTimer ? Duration(seconds: durationSeconds!) : null;
 
-  String localisedText({required bool amharic}) => amharic ? textAm : text;
-  String? localisedTip({required bool amharic}) => amharic ? tipAm : tip;
+  String localisedText({required bool amharic}) =>
+      amharic && textAm.isNotEmpty ? textAm : text;
+  String? localisedTip({required bool amharic}) =>
+      amharic && (tipAm?.isNotEmpty ?? false) ? tipAm : tip;
 
   Map<String, dynamic> toJson() => {
         'index': index,
@@ -153,7 +155,8 @@ class Recipe {
   String localisedTitle({required bool amharic}) => amharic ? titleAm : title;
   String localisedSubtitle({required bool amharic}) =>
       amharic ? subtitleAm : subtitle;
-  String localisedStory({required bool amharic}) => amharic ? storyAm : story;
+  String localisedStory({required bool amharic}) =>
+      amharic && storyAm.isNotEmpty ? storyAm : story;
 
   /// `2h 30m`, `45m`, or `3d` for a multi-day ferment like injera.
   String formattedTime({required bool amharic}) {
