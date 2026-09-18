@@ -4,7 +4,6 @@ import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 
 import '../../firebase_options.dart';
@@ -62,8 +61,6 @@ abstract final class FirebaseBootstrap {
         .useAuthEmulator(host, AppConstants.emulatorAuthPort);
     FirebaseFirestore.instance
         .useFirestoreEmulator(host, AppConstants.emulatorFirestorePort);
-    await FirebaseStorage.instance
-        .useStorageEmulator(host, AppConstants.emulatorStoragePort);
     FirebaseFunctions.instanceFor(region: AppConstants.functionsRegion)
         .useFunctionsEmulator(host, AppConstants.emulatorFunctionsPort);
     debugPrint('[firebase] using emulator suite at $host');

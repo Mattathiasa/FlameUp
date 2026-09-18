@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../core/services/analytics_service.dart';
-import '../../../core/services/cloudinary_service.dart';
 import '../../../core/services/local_store.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_dimens.dart';
@@ -284,16 +283,12 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
 
     // Media first, when there is any: the URL is part of the document, and
     // an upload failure should stop the submission rather than strand a
-    // recipe pointing at nothing. Photos go to Cloudinary (a free-tier CDN
-    // that also resizes for us); videos stay on Firebase Storage.
+    // recipe pointing at nothing. Photos and clips alike go to Cloudinary —
+    // the project keeps no Firebase Storage bucket (new buckets are
+    // Blaze-only), so the free CDN carries everything.
     final mediaPath = _mediaPath;
     if (mediaPath != null) {
-      final isVideo = _mediaIsVideo(mediaPath);
-      final upload = isVideo
-          ? await repo.uploadMedia(uid: uid, file: File(mediaPath))
-          : await ref
-              .read(cloudinaryServiceProvider)
-              .uploadImage(uid: uid, file: File(mediaPath));
+      final upload = await repo.uploadMedia(uid: uid, file: File(mediaPath));
       final url = upload.valueOrNull;
       if (url == null) {
         if (!mounted) return;
@@ -342,11 +337,6 @@ class _FamilyRecipeFormState extends ConsumerState<FamilyRecipeForm> {
   /// same transition — and it keeps this testable without a GoRouter.
   Future<void> maybePop(BuildContext context) async {
     if (context.mounted) Navigator.of(context).maybePop();
-  }
-
-  bool _mediaIsVideo(String path) {
-    final extension = path.split('.').last.toLowerCase();
-    return extension == 'mp4' || extension == 'mov' || extension == 'm4v';
   }
 
   @override

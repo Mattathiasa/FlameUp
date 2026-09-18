@@ -237,6 +237,9 @@ class _CapturingRepo implements FamilyRecipeRepository {
       );
 
   @override
+  set cloudinary(dynamic value) {}
+
+  @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 

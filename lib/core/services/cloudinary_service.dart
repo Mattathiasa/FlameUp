@@ -8,15 +8,17 @@ import '../errors/error_mapper.dart';
 import '../errors/failure.dart';
 import '../result/result.dart';
 
-/// Uploads images to Cloudinary over its unsigned-upload REST API.
+/// Uploads dish media — photos and short clips — to Cloudinary over its
+/// unsigned-upload REST API.
 ///
-/// Cloudinary hosts the pictures so a photo cannot blow the free Firebase
-/// Storage quota, and transformation (resizing, format negotiation) happens
-/// on their CDN instead of in the app. The upload target is an *unsigned*
-/// preset created in the Cloudinary console (Settings → Upload → Upload
-/// presets, signing mode "Unsigned", folder `flameup`): the client never
-/// holds the API secret, and the preset is the only thing that can write
-/// into that folder. Configure per profile in the launch flags:
+/// Cloudinary hosts the media so a video cannot blow any free Firebase
+/// quota (the project keeps no Storage bucket at all), and transformation
+/// (resizing, format negotiation) happens on their CDN instead of in the
+/// app. The upload target is an *unsigned* preset created in the Cloudinary
+/// console (Settings → Upload → Upload presets, signing mode "Unsigned",
+/// folder `flameup`, video uploads allowed): the client never holds the API
+/// secret, and the preset is the only thing that can write into that folder.
+/// Configure per profile in the launch flags:
 ///
 ///     --dart-define=CLOUDINARY_CLOUD_NAME=your-cloud
 ///     --dart-define=CLOUDINARY_UPLOAD_PRESET=your-unsigned-preset
@@ -25,7 +27,7 @@ import '../result/result.dart';
 /// instead of attempting a doomed network call — a build without the flags
 /// stays launchable, and the failure is a config error, not a crash.
 class CloudinaryService {
-  CloudinaryService({
+  const CloudinaryService({
     this.cloudName = const String.fromEnvironment('CLOUDINARY_CLOUD_NAME'),
     this.uploadPreset = const String.fromEnvironment(
       'CLOUDINARY_UPLOAD_PRESET',
@@ -43,9 +45,10 @@ class CloudinaryService {
 
   /// Upload [file] into the preset's folder, returning the delivery URL.
   ///
-  /// Images only: the family-recipe video path stays on Firebase Storage,
-  /// which already handles its content types and rules.
-  Future<Result<String>> uploadImage({
+  /// The resource type — image or video — is derived from the file's
+  /// extension and picks Cloudinary's matching endpoint; anything outside
+  /// the app's allowlist fails fast without a network call.
+  Future<Result<String>> uploadMedia({
     required File file,
     required String uid,
   }) async {
@@ -58,8 +61,23 @@ class CloudinaryService {
       );
     }
 
+    final extension = file.path.split('.').last.toLowerCase();
+    const videoTypes = {'mp4', 'mov', 'm4v'};
+    const imageTypes = {'jpg', 'jpeg', 'png', 'webp', 'gif', 'heic'};
+    if (!videoTypes.contains(extension) && !imageTypes.contains(extension)) {
+      return const Err(
+        ValidationFailure(
+          messageKey: 'unsupported_media_type',
+          field: 'media',
+        ),
+      );
+    }
+    final isVideo = videoTypes.contains(extension);
+
     return ErrorMapper.guard(() async {
-      final uri = Uri.parse('$endpoint/$cloudName/image/upload');
+      final uri = Uri.parse(
+        '$endpoint/$cloudName/${isVideo ? 'video' : 'image'}/upload',
+      );
       final request = MultipartRequest('POST', uri)
         ..fields['upload_preset'] = uploadPreset
         ..fields['folder'] = 'flameup'
@@ -68,8 +86,10 @@ class CloudinaryService {
           await MultipartFile.fromPath('file', file.path),
         );
 
+      // Clips are larger than photos; give them a longer window before the
+      // socket gives up.
       final response = await request.send().timeout(
-            const Duration(seconds: 60),
+            Duration(seconds: isVideo ? 180 : 60),
           );
       final body = await response.transform(utf8.decoder).join();
 
@@ -153,6 +173,9 @@ class MultipartFile {
       'webp' => 'image/webp',
       'gif' => 'image/gif',
       'heic' => 'image/heic',
+      'mp4' => 'video/mp4',
+      'mov' => 'video/quicktime',
+      'm4v' => 'video/x-m4v',
       _ => 'application/octet-stream',
     };
     return MultipartFile._(field, path.split('/').last, contentType, () async {
@@ -170,4 +193,4 @@ class MultipartFile {
 }
 
 final cloudinaryServiceProvider =
-    Provider<CloudinaryService>((ref) => CloudinaryService());
+    Provider<CloudinaryService>((ref) => const CloudinaryService());

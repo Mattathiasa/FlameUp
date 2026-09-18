@@ -22,7 +22,6 @@ abstract final class AppConstants {
 
   static const int emulatorAuthPort = 9099;
   static const int emulatorFirestorePort = 8080;
-  static const int emulatorStoragePort = 9199;
   static const int emulatorFunctionsPort = 5001;
 
   /// Cloud Functions region. Kept in one place so client and functions agree.

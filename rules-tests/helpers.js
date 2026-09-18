@@ -22,20 +22,11 @@ export async function createTestEnv() {
       host: '127.0.0.1',
       port: 8080,
     },
-    storage: {
-      rules: readFileSync('../storage.rules', 'utf8'),
-      host: '127.0.0.1',
-      port: 9199,
-    },
   });
 }
 
 /** Firestore for a signed-in user. */
 export const asUser = (env, uid) => env.authenticatedContext(uid).firestore();
-
-/** Storage bucket bound to a signed-in user's rules context. */
-export const storageAsUser = (env, uid) =>
-  env.authenticatedContext(uid).storage();
 
 /** Firestore for a signed-out visitor. */
 export const asVisitor = (env) => env.unauthenticatedContext().firestore();

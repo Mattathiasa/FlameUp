@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
@@ -11,6 +10,7 @@ import '../../../core/constants/firestore_paths.dart';
 import '../../../core/errors/error_mapper.dart';
 import '../../../core/errors/failure.dart';
 import '../../../core/result/result.dart';
+import '../../../core/services/cloudinary_service.dart';
 import '../domain/family_recipe.dart';
 
 /// Grandma's Kitchen data layer: submissions, my recipes, media.
@@ -24,10 +24,8 @@ class FamilyRecipeRepository {
   FamilyRecipeRepository({
     required Outbox outbox,
     FirebaseFirestore? firestore,
-    FirebaseStorage? storage,
   })  : _outbox = outbox,
-        _firestore = firestore,
-        _injectedStorage = storage;
+        _firestore = firestore;
 
   final Outbox _outbox;
 
@@ -37,10 +35,6 @@ class FamilyRecipeRepository {
   FirebaseFirestore? _firestore;
 
   FirebaseFirestore get _fs => _firestore ??= FirebaseFirestore.instance;
-
-  FirebaseStorage? _injectedStorage;
-
-  FirebaseStorage get _storage => _injectedStorage ??= FirebaseStorage.instance;
 
   // --- submission ---------------------------------------------------------
 
@@ -264,35 +258,22 @@ class FamilyRecipeRepository {
 
   // --- media --------------------------------------------------------------
 
-  /// Upload a photo or video of the dish, returning its download URL.
+  /// Upload a photo or clip of the dish, returning its delivery URL.
   ///
-  /// Files live under the author's own path -- the storage rules derive
-  /// ownership from that path, so nothing else needs checking here. The id
-  /// (uuid) prefixes the filename to keep re-uploads apart.
+  /// Cloudinary carries all family-recipe media — the project keeps no
+  /// Firebase Storage bucket at all, so [file] goes to the unsigned preset
+  /// tagged with the author's uid. The extension is validated upstream in
+  /// [CloudinaryService.uploadMedia]; here only the hand-off happens.
   Future<Result<String>> uploadMedia({
     required String uid,
     required File file,
   }) =>
-      ErrorMapper.guard(() async {
-        final extension = file.path.split('.').last.toLowerCase();
-        final contentType = switch (extension) {
-          'jpg' || 'jpeg' => 'image/jpeg',
-          'png' => 'image/png',
-          'webp' => 'image/webp',
-          'gif' => 'image/gif',
-          'heic' => 'image/heic',
-          'mp4' => 'video/mp4',
-          'mov' => 'video/quicktime',
-          'm4v' => 'video/x-m4v',
-          _ => throw const FormatException('unsupported_media_type'),
-        };
-        final ref = _storage.ref().child(
-              'users/$uid/family_recipes/'
-              '${const Uuid().v4()}.$extension',
-            );
-        await ref.putFile(file, SettableMetadata(contentType: contentType));
-        return ref.getDownloadURL();
-      });
+      _cloudinary.uploadMedia(file: file, uid: uid);
+
+  /// Injectable so tests can stub uploads without any network.
+  CloudinaryService _cloudinary = const CloudinaryService();
+
+  set cloudinary(CloudinaryService value) => _cloudinary = value;
 }
 
 final familyRecipeRepositoryProvider = Provider<FamilyRecipeRepository>((ref) {
