@@ -45,16 +45,30 @@ EQUIPMENT = {
 # verified to actually show that dish; dishes without a photo stay on their
 # gradient. Keyed here so a regeneration cannot silently drop them.
 IMAGE_URLS = {
+    'alicha':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Alicha%201.jpg?width=800',
     'ayib':
         'https://commons.wikimedia.org/wiki/Special:FilePath/Kitfo%20with%20Ayibe..JPG?width=800',
     'buna':
         'https://commons.wikimedia.org/wiki/Special:FilePath/Ethiopian%20coffee%20ceremony.jpg?width=800',
+    'beyay':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Beyaynetu.JPG?width=800',
     'dabo':
         'https://commons.wikimedia.org/wiki/Special:FilePath/MulMul%20Dabo.jpg?width=800',
+    'dabo-kolo':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/'
+        'Dabo%20kolo%2C%20an%20Ethiopian%20dish%20-%20'
+        'Afrika-Studiecentrum%20Leiden%20-%2023%20juni%202022.jpg?width=800',
     'doro':
         'https://commons.wikimedia.org/wiki/Special:FilePath/Injera%20and%20doro%20wat.jpg?width=800',
+    'firfir':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/'
+        'Person%20enjoying%20firfir..JPG?width=800',
     'ful':
         'https://commons.wikimedia.org/wiki/Special:FilePath/Ful%20medames.jpg?width=800',
+    'kik':
+        'https://commons.wikimedia.org/wiki/Special:FilePath/'
+        'KIK%20ALICHA%2C%20MISIR%2C%20GOMEN%20and%20TIKIL%20GOMEN.jpg?width=800',
     'genfo':
         'https://commons.wikimedia.org/wiki/Special:FilePath/Porage%20from%20Northern%20Ethiopia.jpg?width=800',
     'gomen':

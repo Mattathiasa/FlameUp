@@ -11,6 +11,7 @@ family-recipe upload path uses Cloudinary instead (see .env.example).
 Run:  python3 tool/fetch_recipe_images.py [--dry]
 """
 import json
+import re
 import sys
 import time
 import urllib.parse
@@ -80,15 +81,57 @@ def search_commons(dish: str):
         return []
 
 
-def resolve(dish: str) -> Optional[str]:
+# The search fallback is greedy: "beso ethiopian food" once matched a
+# 19th-century Italian painting, "kinche" a Bible PDF. These checks keep the
+# honesty rule: only a plausibly dish-specific IMAGE may be written.
+IMAGE_EXT = re.compile(r'\.(jpe?g|png|webp)$', re.IGNORECASE)
+DENY_WORDS = ('bible', 'testament', 'crops', 'market', 'el beso', 'kiss',
+              'painting', 'statue', 'pinacoteca', 'menu', 'logo', 'map',
+              'resto', 'restaurant', 'paris', 'hotel', 'sign', 'cover',
+              'poster', 'flag')
+SYNONYMS = {
+    'firfir': ('firfir', 'fir-fir', 'fir fir'),
+    'kik': ('kik',),
+    'kinche': ('kinche', 'kinch'),
+    'awaze': ('awaze',),
+    'beso': ('beso',),
+    'beyay': ('beyay', 'beyainatu', 'beyaynetu'),
+    'dulet': ('dulet',),
+    'chechebsa': ('chechebsa', 'chechebs'),
+    'atakilt': ('atakilt',),
+    'bozena': ('bozena',),
+    'fosolia': ('fosolia', 'fossolia'),
+    'alicha': ('alicha',),
+    'shorba': ('shorba',),
+    'dabo': ('dabo',),
+    'dabo-kolo': ('dabo kolo', 'dabo-kolo', 'dabokolo'),
+}
+
+
+def relevant(dish: str, filename: str) -> bool:
+    """Filename must be an image, name the dish, and not be a false friend."""
+    low = filename.lower()
+    if not IMAGE_EXT.search(low):
+        return False
+    if any(w in low for w in DENY_WORDS):
+        return False
+    words = SYNONYMS.get(dish, (dish,))
+    return any(re.search(rf'\b{re.escape(w)}\b', low) for w in words)
+
+
+def resolve(dish: str, taken: set[str]) -> Optional[str]:
     tried = list(CANDIDATES.get(dish, []))
     tried += [f'{dish} ethiopian.jpg']
     for name in tried:
         url = file_url(name)
         if head_ok(url):
             return url
-    for name in search_commons(dish)[:3]:
+    for name in search_commons(dish):
+        if not relevant(dish, name):
+            continue
         url = file_url(name)
+        if url in taken:
+            continue  # two dishes never share one photo
         if head_ok(url):
             return url
     return None
@@ -97,16 +140,19 @@ def resolve(dish: str) -> Optional[str]:
 def main() -> None:
     dry = '--dry' in sys.argv
     data = json.load(open(SEED))
+    taken = {r.get('imageUrl') for r in data['recipes'].values()
+             if r.get('imageUrl')}
     missing = []
     for rid, recipe in data['recipes'].items():
         if recipe.get('imageUrl'):
             print(f'{rid:10} already has an image, skipping')
             continue
-        url = resolve(rid)
+        url = resolve(rid, taken)
         if url is None:
             missing.append(rid)
             print(f'{rid:10} NO IMAGE FOUND')
         else:
+            taken.add(url)
             print(f'{rid:10} {url}')
             if not dry:
                 recipe['imageUrl'] = url

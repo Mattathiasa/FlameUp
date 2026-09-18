@@ -979,6 +979,7 @@
     "beyay": {
       "title": "Beyaynetu",
       "titleAm": "በያይነቱ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Beyaynetu.JPG?width=800",
       "subtitle": "Seven fasting dishes, one plate",
       "subtitleAm": "ሰባት የጾም ምግቦች በአንድ ሰሃን",
       "story": "Not one dish but a plate of them -- shiro, misir, gomen, kik and more, arranged on injera so no two mouthfuls are the same. The fasting table at its fullest.",
@@ -1111,6 +1112,7 @@
     "firfir": {
       "title": "Firfir",
       "titleAm": "ፍርፍር",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Person%20enjoying%20firfir..JPG?width=800",
       "subtitle": "Torn injera · awaze · kibbeh",
       "subtitleAm": "የተቀደደ እንጀራ · አዋዜ",
       "story": "Injera torn up and stirred through a spiced sauce -- the dish that turns yesterday's bread into today's breakfast.",
@@ -1212,6 +1214,7 @@
     "kik": {
       "title": "Kik Alicha",
       "titleAm": "ክክ አልጫ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/KIK%20ALICHA%2C%20MISIR%2C%20GOMEN%20and%20TIKIL%20GOMEN.jpg?width=800",
       "subtitle": "Split peas · turmeric",
       "subtitleAm": "ክክ · እርድ",
       "story": "Yellow split peas cooked with turmeric and no chilli -- the mild dish on a fasting plate that otherwise runs hot.",
@@ -2038,6 +2041,7 @@
     "alicha": {
       "title": "Alicha Wat",
       "titleAm": "አልጫ ወጥ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Alicha%201.jpg?width=800",
       "subtitle": "Beef · turmeric · no berbere",
       "subtitleAm": "የበሬ ሥጋ · እርድ · በርበሬ የለም",
       "story": "The mild counterpart to a berbere wat: turmeric instead of chilli, cooked long and gently. Often the dish put in front of children and elders at the same table.",
@@ -2863,6 +2867,7 @@
     "dabo-kolo": {
       "title": "Dabo Kolo",
       "titleAm": "ዳቦ ቆሎ",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:FilePath/Dabo%20kolo%2C%20an%20Ethiopian%20dish%20-%20Afrika-Studiecentrum%20Leiden%20-%2023%20juni%202022.jpg?width=800",
       "subtitle": "Crunchy spiced dough bites · berbere",
       "subtitleAm": "የተበሰለ ቆሎ · በርበሬ",
       "story": "Small knots of spiced dough baked until they crunch, carried in paper cones on errands and set out for guests in many households. They keep for days, which made them the classic travel food.",
