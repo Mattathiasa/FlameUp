@@ -1,0 +1,70 @@
+{
+  "dabo-kolo": {
+    "en": "Dabo Kolo",
+    "am": "ዳቦ ቆሎ",
+    "se": "Crunchy spiced dough bites · berbere",
+    "sa": "የተበሰለ ቆሎ · በርበሬ",
+    "story": "Small knots of spiced dough baked until they crunch, carried in paper cones on errands and set out for guests in many households. They keep for days, which made them the classic travel food.",
+    "storyAm": "በቅመም የተሸፈነ ዱቄት እስከሚክሰስ ድረስ ይጠበሳል፤ በብዙ ቤቶች ለእንግዶች ይቀርባል። ለቀናት ስለሚቆይ የጉዞ ምግብ ነው።",
+    "region": "amhara",
+    "category": "bread",
+    "lv": 0,
+    "min": 45,
+    "xp": 60,
+    "heat": 2,
+    "fasting": true,
+    "vegan": true,
+    "gf": false,
+    "df": true,
+    "a": "#8A4A16",
+    "b": "#D98F3C",
+    "equipment": ["Baking sheet"],
+    "imageUrl": "",
+    "ingredients": [
+      { "name": "Flour", "nameAm": "ዱቄት", "qty": 2, "unit": "cups", "unitAm": "ኩባያ", "aisle": "pantry", "optional": false },
+      { "name": "Berbere", "nameAm": "በርበሬ", "qty": 1, "unit": "tbsp", "unitAm": "የሾርባ ማንኪያ", "aisle": "spice", "optional": false },
+      { "name": "Salt", "nameAm": "ጨው", "qty": 0.5, "unit": "tsp", "unitAm": "የሻይ ማንኪያ", "aisle": "pantry", "optional": false },
+      { "name": "Sugar", "nameAm": "ስኳር", "qty": 1, "unit": "tsp", "unitAm": "የሻይ ማንኪያ", "aisle": "pantry", "optional": true },
+      { "name": "Oil", "nameAm": "ዘይት", "qty": 0.25, "unit": "cup", "unitAm": "ኩባያ", "aisle": "pantry", "optional": false },
+      { "name": "Water", "nameAm": "ውሃ", "qty": 0.5, "unit": "cup", "unitAm": "ኩባያ", "aisle": "pantry", "optional": false }
+    ],
+    "steps": [
+      { "text": "Mix flour, salt, sugar and berbere, then work in the oil.", "textAm": "ዱቄት፣ ጨው፣ ስኳርና በርበሬ ቀልቀለው ዘይቱን ይጨምሩ።", "seconds": null, "tip": "The oil should coat every grain before the water goes in.", "tipAm": "ውሃ ከመጨመሩ በፊት ዘይቱ እያንዳንዱን ጥቅል ይሸፍን ይገባል።" },
+      { "text": "Add water bit by bit and knead to a stiff dough.", "textAm": "ውሃውን በትንሹ አክለው ጠንካራ እንጅ ይሥሩ።", "seconds": 300, "tip": "", "tipAm": "" },
+      { "text": "Roll into ropes and cut into pea-sized pieces.", "textAm": "እንደ ገበታ ገራሙትና የአኩሪ አተር መጠን ቆረጡ።", "seconds": 600, "tip": "", "tipAm": "" },
+      { "text": "Bake, shaking the pan, until deep gold and crunchy.", "textAm": "እስከሚክሰስ ድረስ በሙቅ ምጣድ ላይ ይጠብሱ።", "seconds": 1200, "tip": "Shake every few minutes so the pieces colour evenly.", "tipAm": "በእኩልነት እስኪበስሉ በየጥቂቱ ይንከትከቱ።" }
+    ]
+  },
+  "beso": {
+    "en": "Beso (Roasted Barley)",
+    "am": "በሶ",
+    "se": "Roasted barley · the walker's snack",
+    "sa": "የተጠበስ ገብስ · የጉዞ ምግብ",
+    "story": "Roasted barley eaten by the handful, mixed with oil or honey, or stirred into water for a drink. For generations it has been the food people carry on long walks — light, filling, and it keeps.",
+    "storyAm": "የተጠበስ ገብስ በእጅ ተነስቶ የሚበላ ሲሆን ከዘይት ወይም ከማር ጋር ይቀላቃላል። ለትውልድ በጉልምኝ ላይ የሚሸከሙት ምግብ ነው — ቀላል፣ የሚያሟላ እና የሚቆይ።",
+    "region": "amhara",
+    "category": "grain",
+    "lv": 0,
+    "min": 30,
+    "xp": 50,
+    "heat": 1,
+    "fasting": true,
+    "vegan": true,
+    "gf": true,
+    "df": true,
+    "a": "#7A5C1E",
+    "b": "#C9A227",
+    "equipment": ["Wide flat pan"],
+    "imageUrl": "",
+    "ingredients": [
+      { "name": "Barley grains", "nameAm": "ገብስ", "qty": 2, "unit": "cups", "unitAm": "ኩባያ", "aisle": "pantry", "optional": false },
+      { "name": "Salt", "nameAm": "ጨው", "qty": 0.5, "unit": "tsp", "unitAm": "የሻይ ማንኪያ", "aisle": "pantry", "optional": true },
+      { "name": "Niter kibbeh or oil", "nameAm": "ንጥር ቅቤ ወይም ዘይት", "qty": 1, "unit": "tbsp", "unitAm": "የሾርባ ማንኪያ", "aisle": "pantry", "optional": true }
+    ],
+    "steps": [
+      { "text": "Rinse the barley and drain it well.", "textAm": "ገብሱን አጥበው ያስደምሙት።", "seconds": 120, "tip": "", "tipAm": "" },
+      { "text": "Toast in a wide pan over medium heat, stirring, until it pops and smells nutty.", "textAm": "በሰፊ መጥበሻ ላይ እየቀላቀሉ እስከሚፍንና ስመት እስኪስማ ይጠብሱ።", "seconds": 900, "tip": "Listen for the popping — that is the doneness signal.", "tipAm": "ለመፍንንቱ ያዳምጡ — የተጠናቀቀበት ምልክት ነው።" },
+      { "text": "Salt while warm, and toss with oil or honey if you like.", "textAm": "በሙቅ ላይ ጨው ይቆርጡና ከፈለጉ በዘይት ወይም በማር ይቀላቅሉ።", "seconds": null, "tip": "", "tipAm": "" }
+    ]
+  }
+}

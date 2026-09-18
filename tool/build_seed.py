@@ -790,6 +790,34 @@ DESIGN_DETAIL = {
     },
 }
 
+# Dishes added without editing Python — tool/recipes_extra.json, managed by
+# tool/push_recipes.py (validate → build → push). Loaded after EXTRA so the
+# JSON file wins on an id collision: it is the easier place to iterate.
+_EXTRA_JSON = os.path.join(ROOT, 'tool', 'recipes_extra.json')
+if os.path.exists(_EXTRA_JSON):
+    with open(_EXTRA_JSON, encoding='utf-8') as _fh:
+        for _rid, _dish in json.load(_fh).items():
+            # Normalize the JSON file's friendly shape into what the extras
+            # loop below consumes: ingredient dicts with 'quantity', and
+            # steps as (text, textAm, seconds[, tip, tipAm]) tuples.
+            _dish['ingredients'] = [
+                {'name': _i['name'], 'nameAm': _i['nameAm'],
+                 'quantity': _i['qty'], 'unit': _i['unit'],
+                 'unitAm': _i['unitAm'], 'aisle': _i['aisle'],
+                 'optional': _i.get('optional', False)}
+                for _i in _dish['ingredients']
+            ]
+            _dish['steps'] = [
+                (_s['text'], _s['textAm'], _s.get('seconds'),
+                 _s.get('tip') or None, _s.get('tipAm') or None)
+                for _s in _dish['steps']
+            ]
+            if _dish.get('equipment'):
+                EQUIPMENT[_rid] = _dish['equipment']
+            if _dish.get('imageUrl'):
+                IMAGE_URLS[_rid] = _dish['imageUrl']
+            EXTRA[_rid] = _dish
+
 REGION_MAP = {
     'Gurage': 'gurage', 'Amhara': 'amhara', 'Tigray': 'tigray',
     'Oromia': 'oromia', 'Harar': 'harar', 'Sidama': 'sidama',
@@ -881,7 +909,8 @@ def main():
             'tags': [dish['category'], dish['region']],
             'ingredients': dish['ingredients'],
             'equipment': EQUIPMENT.get(key, []),
-            'steps': [step(n, s[0], s[1], s[2])
+            'steps': [step(n, s[0], s[1], s[2],
+                           *(s[3:5] if len(s) > 4 else (None, None)))
                       for n, s in enumerate(dish['steps'])],
             'gradientA': dish['a'], 'gradientB': dish['b'],
             'isFasting': dish['fasting'], 'isVegan': dish['vegan'],

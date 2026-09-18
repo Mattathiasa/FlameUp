@@ -153,9 +153,13 @@ newer build is dropped rather than crashed on.
 - Text search uses a stored `searchTokens` array (`array-contains-any`), with
   `SearchService` left as the seam for a dedicated backend later.
 
-**The catalogue: 25 recipes**, built by `tool/build_seed.py` from the design's
-12 plus 13 written for this project — Chechebsa, Genfo, Atakilt Wat, Bozena
-Shiro, Fosolia, Alicha Wat, Ayib, Awaze, Tihlo, Shorba, Kinche, Ful, Ambasha.
+**The catalogue: 27 recipes**, built by `tool/build_seed.py` from the design's
+12 plus 15 written for this project — Chechebsa, Genfo, Atakilt Wat, Bozena
+Shiro, Fosolia, Alicha Wat, Ayib, Awaze, Tihlo, Shorba, Kinche, Ful, Ambasha,
+Dabo Kolo, Beso. New dishes are easiest added through `tool/recipes_extra.json`
+plus `python3 tool/push_recipes.py` (validate → build → push → verify), which
+enforces the catalogue's vocabularies and the seed tests' honesty rules before
+anything reaches production.
 Every one has full ingredients and steps **in both languages**, 97 of 115 steps
 carry a duration so cook mode can time them, and each has a cultural note
 written as *tradition rather than asserted history* — no dish is dated and no

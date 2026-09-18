@@ -2859,6 +2859,214 @@
       "averageRating": 0.0,
       "ratingCount": 0,
       "numberOfCooks": 0
+    },
+    "dabo-kolo": {
+      "title": "Dabo Kolo",
+      "titleAm": "ዳቦ ቆሎ",
+      "subtitle": "Crunchy spiced dough bites · berbere",
+      "subtitleAm": "የተበሰለ ቆሎ · በርበሬ",
+      "story": "Small knots of spiced dough baked until they crunch, carried in paper cones on errands and set out for guests in many households. They keep for days, which made them the classic travel food.",
+      "storyAm": "በቅመም የተሸፈነ ዱቄት እስከሚክሰስ ድረስ ይጠበሳል፤ በብዙ ቤቶች ለእንግዶች ይቀርባል። ለቀናት ስለሚቆይ የጉዞ ምግብ ነው።",
+      "regionId": "amhara",
+      "category": "bread",
+      "difficulty": 0,
+      "totalMinutes": 45,
+      "servings": 6,
+      "xpReward": 60,
+      "heatLevel": 2,
+      "tags": [
+        "bread",
+        "amhara"
+      ],
+      "ingredients": [
+        {
+          "name": "Flour",
+          "nameAm": "ዱቄት",
+          "quantity": 2,
+          "unit": "cups",
+          "unitAm": "ኩባያ",
+          "aisle": "pantry",
+          "optional": false
+        },
+        {
+          "name": "Berbere",
+          "nameAm": "በርበሬ",
+          "quantity": 1,
+          "unit": "tbsp",
+          "unitAm": "የሾርባ ማንኪያ",
+          "aisle": "spice",
+          "optional": false
+        },
+        {
+          "name": "Salt",
+          "nameAm": "ጨው",
+          "quantity": 0.5,
+          "unit": "tsp",
+          "unitAm": "የሻይ ማንኪያ",
+          "aisle": "pantry",
+          "optional": false
+        },
+        {
+          "name": "Sugar",
+          "nameAm": "ስኳር",
+          "quantity": 1,
+          "unit": "tsp",
+          "unitAm": "የሻይ ማንኪያ",
+          "aisle": "pantry",
+          "optional": true
+        },
+        {
+          "name": "Oil",
+          "nameAm": "ዘይት",
+          "quantity": 0.25,
+          "unit": "cup",
+          "unitAm": "ኩባያ",
+          "aisle": "pantry",
+          "optional": false
+        },
+        {
+          "name": "Water",
+          "nameAm": "ውሃ",
+          "quantity": 0.5,
+          "unit": "cup",
+          "unitAm": "ኩባያ",
+          "aisle": "pantry",
+          "optional": false
+        }
+      ],
+      "equipment": [
+        "Baking sheet"
+      ],
+      "steps": [
+        {
+          "index": 0,
+          "text": "Mix flour, salt, sugar and berbere, then work in the oil.",
+          "textAm": "ዱቄት፣ ጨው፣ ስኳርና በርበሬ ቀልቀለው ዘይቱን ይጨምሩ።",
+          "optional": false,
+          "tip": "The oil should coat every grain before the water goes in.",
+          "tipAm": "ውሃ ከመጨመሩ በፊት ዘይቱ እያንዳንዱን ጥቅል ይሸፍን ይገባል።"
+        },
+        {
+          "index": 1,
+          "text": "Add water bit by bit and knead to a stiff dough.",
+          "textAm": "ውሃውን በትንሹ አክለው ጠንካራ እንጅ ይሥሩ።",
+          "optional": false,
+          "durationSeconds": 300
+        },
+        {
+          "index": 2,
+          "text": "Roll into ropes and cut into pea-sized pieces.",
+          "textAm": "እንደ ገበታ ገራሙትና የአኩሪ አተር መጠን ቆረጡ።",
+          "optional": false,
+          "durationSeconds": 600
+        },
+        {
+          "index": 3,
+          "text": "Bake, shaking the pan, until deep gold and crunchy.",
+          "textAm": "እስከሚክሰስ ድረስ በሙቅ ምጣድ ላይ ይጠብሱ።",
+          "optional": false,
+          "durationSeconds": 1200,
+          "tip": "Shake every few minutes so the pieces colour evenly.",
+          "tipAm": "በእኩልነት እስኪበስሉ በየጥቂቱ ይንከትከቱ።"
+        }
+      ],
+      "gradientA": "#8A4A16",
+      "gradientB": "#D98F3C",
+      "isFasting": true,
+      "isVegan": true,
+      "isGlutenFree": false,
+      "isDairyFree": true,
+      "isTraditional": true,
+      "isFamilyRecipe": false,
+      "averageRating": 0.0,
+      "ratingCount": 0,
+      "numberOfCooks": 0
+    },
+    "beso": {
+      "title": "Beso (Roasted Barley)",
+      "titleAm": "በሶ",
+      "subtitle": "Roasted barley · the walker's snack",
+      "subtitleAm": "የተጠበስ ገብስ · የጉዞ ምግብ",
+      "story": "Roasted barley eaten by the handful, mixed with oil or honey, or stirred into water for a drink. For generations it has been the food people carry on long walks — light, filling, and it keeps.",
+      "storyAm": "የተጠበስ ገብስ በእጅ ተነስቶ የሚበላ ሲሆን ከዘይት ወይም ከማር ጋር ይቀላቃላል። ለትውልድ በጉልምኝ ላይ የሚሸከሙት ምግብ ነው — ቀላል፣ የሚያሟላ እና የሚቆይ።",
+      "regionId": "amhara",
+      "category": "grain",
+      "difficulty": 0,
+      "totalMinutes": 30,
+      "servings": 6,
+      "xpReward": 50,
+      "heatLevel": 1,
+      "tags": [
+        "grain",
+        "amhara"
+      ],
+      "ingredients": [
+        {
+          "name": "Barley grains",
+          "nameAm": "ገብስ",
+          "quantity": 2,
+          "unit": "cups",
+          "unitAm": "ኩባያ",
+          "aisle": "pantry",
+          "optional": false
+        },
+        {
+          "name": "Salt",
+          "nameAm": "ጨው",
+          "quantity": 0.5,
+          "unit": "tsp",
+          "unitAm": "የሻይ ማንኪያ",
+          "aisle": "pantry",
+          "optional": true
+        },
+        {
+          "name": "Niter kibbeh or oil",
+          "nameAm": "ንጥር ቅቤ ወይም ዘይት",
+          "quantity": 1,
+          "unit": "tbsp",
+          "unitAm": "የሾርባ ማንኪያ",
+          "aisle": "pantry",
+          "optional": true
+        }
+      ],
+      "equipment": [
+        "Wide flat pan"
+      ],
+      "steps": [
+        {
+          "index": 0,
+          "text": "Rinse the barley and drain it well.",
+          "textAm": "ገብሱን አጥበው ያስደምሙት።",
+          "optional": false,
+          "durationSeconds": 120
+        },
+        {
+          "index": 1,
+          "text": "Toast in a wide pan over medium heat, stirring, until it pops and smells nutty.",
+          "textAm": "በሰፊ መጥበሻ ላይ እየቀላቀሉ እስከሚፍንና ስመት እስኪስማ ይጠብሱ።",
+          "optional": false,
+          "durationSeconds": 900,
+          "tip": "Listen for the popping — that is the doneness signal.",
+          "tipAm": "ለመፍንንቱ ያዳምጡ — የተጠናቀቀበት ምልክት ነው።"
+        },
+        {
+          "index": 2,
+          "text": "Salt while warm, and toss with oil or honey if you like.",
+          "textAm": "በሙቅ ላይ ጨው ይቆርጡና ከፈለጉ በዘይት ወይም በማር ይቀላቅሉ።",
+          "optional": false
+        }
+      ],
+      "gradientA": "#7A5C1E",
+      "gradientB": "#C9A227",
+      "isFasting": true,
+      "isVegan": true,
+      "isGlutenFree": true,
+      "isDairyFree": true,
+      "isTraditional": true,
+      "isFamilyRecipe": false,
+      "averageRating": 0.0,
+      "ratingCount": 0,
+      "numberOfCooks": 0
     }
   },
   "regions": [
