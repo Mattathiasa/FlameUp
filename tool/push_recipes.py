@@ -295,9 +295,17 @@ def get_doc(path):
 
 
 def push(rid, doc):
+    """MERGE the dish into Firestore via updateMask.
+
+    A bare REST PATCH replaces the whole document — an earlier image-only
+    push wiped ingredients/steps/servings from production. The mask makes
+    this write touch exactly the fields the dish carries and nothing else.
+    """
     fields = {k: to_value(v) for k, v in doc.items()}
+    mask = '&'.join(f'updateMask.fieldPaths={name}' for name in fields)
     req = urllib.request.Request(
-        f'{BASE}/recipes/{rid}', data=json.dumps({'fields': fields}).encode(),
+        f'{BASE}/recipes/{rid}?{mask}',
+        data=json.dumps({'fields': fields}).encode(),
         method='PATCH', headers={
             'Authorization': f'Bearer {TOKEN}',
             'Content-Type': 'application/json',

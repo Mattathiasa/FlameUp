@@ -134,9 +134,18 @@ def rest(url, method='GET', body=None):
 
 
 def write_doc(path, data):
-    """PATCH = create-or-merge at a deterministic id. Idempotent seeding."""
+    """Create-or-merge at a deterministic id. Idempotent seeding.
+
+    The PATCH carries an explicit updateMask so it MERGES fields into the
+    document instead of replacing it: a bare Firestore REST PATCH deletes
+    every field not present in the body, which is how an image-only update
+    once wiped ingredients/steps from live recipe docs. With the mask, a
+    write that touches one field leaves the rest of the doc standing."""
     fields = to_firestore(data)
-    rest(f'{BASE}/{path}', 'PATCH', {'fields': fields})
+    if not fields:
+        raise ValueError(f'write_doc({path}): empty field set would be a no-op')
+    mask = '&'.join(f'updateMask.fieldPaths={name}' for name in fields)
+    rest(f'{BASE}/{path}?{mask}', 'PATCH', {'fields': fields})
 
 
 def to_value(v):
