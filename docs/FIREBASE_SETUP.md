@@ -40,7 +40,6 @@ FlameUp needs functions for work that must not be client-trusted:
   cooking session completes
 - recomputing `averageRating` / `ratingCount` on a recipe
 - aggregating leaderboards on a schedule
-- proxying the AI cooking assistant so no provider key ships in the app
 - push notification triggers
 
 ### How this is handled, and what is genuinely not done

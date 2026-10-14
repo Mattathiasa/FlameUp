@@ -31,6 +31,7 @@ The live Firebase project (`flameup-78d15`) identifiers are compiled into
 
 ## Secrets
 
-No secret belongs in these files: `ANTHROPIC_API_KEY` for the AI assistant is a
-**Cloud Functions secret**, set with `firebase functions:secrets:set`. See
-`docs/DEPLOYMENT.md` and `../ENVIRONMENT_VARIABLES.md`.
+No secret belongs in these files. Functions secrets are set server-side with
+`firebase functions:secrets:set`; the AI assistant needs none — it answers
+on-device from the bundled catalogue. See `docs/DEPLOYMENT.md` and
+`../ENVIRONMENT_VARIABLES.md`.

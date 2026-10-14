@@ -1,22 +1,30 @@
-import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/constants/app_constants.dart';
 import '../../../core/errors/error_mapper.dart';
 import '../../../core/result/result.dart';
+import '../../recipes/data/recipe_seed_source.dart';
+import '../../recipes/domain/recipe_providers.dart';
+import '../domain/assistant_engine.dart';
 import '../domain/assistant_message.dart';
 
-/// Talks to the assistant.
+/// Answers cooking questions on the device.
 ///
-/// A callable Cloud Function, never the provider directly: the API key stays
-/// server-side, because a key in the app binary is a key anyone can pull out
-/// of the APK.
+/// The assistant's entire knowledge is the catalogue the app already bundles
+/// — no network call, no Cloud Function, no provider key. That is what makes
+/// it work in a kitchen with no signal and cost nothing to run, and why it
+/// can only ever claim what the recipes themselves say: every answer passes
+/// through [AssistantEngine] and is split into labelled claims by
+/// [AssistantMessage.fromAnswer], so the UI's claim-labelling contract is
+/// kept on this path too.
 class AssistantService {
-  AssistantService([FirebaseFunctions? functions])
-      : _functions = functions ??
-            FirebaseFunctions.instanceFor(region: AppConstants.functionsRegion);
+  AssistantService({RecipeSeedSource? seedSource, bool Function()? isAmharic})
+      : _seedSource = seedSource ?? RecipeSeedSource(),
+        _isAmharic = isAmharic ?? _defaultAmharic;
 
-  final FirebaseFunctions _functions;
+  final RecipeSeedSource _seedSource;
+  final bool Function() _isAmharic;
+
+  static bool _defaultAmharic() => false;
 
   Future<Result<AssistantMessage>> ask({
     required String question,
@@ -24,22 +32,22 @@ class AssistantService {
     int? stepIndex,
   }) =>
       ErrorMapper.guard(() async {
-        final callable = _functions.httpsCallable(
-          'askAssistant',
-          options: HttpsCallableOptions(timeout: const Duration(seconds: 45)),
+        final recipes = await _seedSource.load();
+
+        final answer = AssistantEngine(recipes).answer(
+          question: question,
+          recipeId: recipeId,
+          stepIndex: stepIndex,
+          amharic: _isAmharic(),
         );
 
-        final response = await callable.call<Map<String, dynamic>>({
-          'question': question,
-          if (recipeId != null) 'recipeId': recipeId,
-          if (stepIndex != null) 'stepIndex': stepIndex,
-        });
-
-        return AssistantMessage.fromAnswer(
-          response.data['answer'] as String? ?? '',
-        );
+        return AssistantMessage.fromAnswer(answer);
       });
 }
 
-final assistantServiceProvider =
-    Provider<AssistantService>((ref) => AssistantService());
+final assistantServiceProvider = Provider<AssistantService>(
+  (ref) => AssistantService(
+    seedSource: ref.watch(recipeSeedSourceProvider),
+    isAmharic: () => ref.read(isAmharicProvider),
+  ),
+);

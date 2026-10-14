@@ -182,8 +182,9 @@ Cloud Functions cannot be deployed until the project moves to the Blaze plan
 suite** — the client code path is identical, and the rules already reject
 client-side XP writes, so nothing is faked.
 
-No provider API key ships in the binary. The AI assistant talks to a callable
-function that holds the key in Functions config.
+No provider API key ships in the binary. The AI assistant answers on-device
+from the bundled recipe catalogue — no network call, no function, no key —
+so it also works with no signal, which is where cooking happens.
 
 App Check attests requests: Play Integrity / App Attest in release, debug
 providers in debug builds.

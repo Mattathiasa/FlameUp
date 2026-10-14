@@ -28,7 +28,7 @@ producing a visible error.
 | Core | 53 | `Result`, `ErrorMapper`, localisation completeness |
 | Auth | 14 | guest upgrade links in place, errors never leak |
 | **Firestore rules** | **61** | **run against the emulator — see below** |
-| AI assistant | 9 | claims are never promoted to a higher authority |
+| AI assistant | 32 | on-device answers, pantry search, claims never promoted |
 
 ---
 

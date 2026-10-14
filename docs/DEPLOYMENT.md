@@ -33,19 +33,6 @@ cd functions && npm install && npm run build && cd ..
 firebase deploy --only functions
 ```
 
-### The AI assistant key
-
-Never in the app binary. Set it as a Functions secret:
-
-```bash
-firebase functions:secrets:set ANTHROPIC_API_KEY
-```
-
-Without it, `askAssistant` returns `failed-precondition` and the UI says the
-assistant is not configured. That is deliberate: a stubbed answer would be
-indistinguishable from a real one to the user, which is the worst possible
-failure for a feature whose entire job is being trustworthy.
-
 ---
 
 ## Android
@@ -136,7 +123,6 @@ the app launching. The backend still enforces its own rules.
 - [ ] Firebase Storage set up, `storage.rules` deployed
 - [ ] `firestore.rules` deployed — **before** any real user
 - [ ] Blaze upgrade and functions deployed, or XP silently never moves
-- [ ] `ANTHROPIC_API_KEY` set as a Functions secret
 - [ ] Release keystore created and **backed up off this machine**
 - [ ] App icon and splash replaced (currently the Flutter default)
 - [ ] Privacy policy — the app collects cooking history, photos and an optional

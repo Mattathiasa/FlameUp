@@ -10,9 +10,9 @@ Written after a verified end-to-end run (app ↔ emulators) on 2026-09-14.
 | Piece | Where | Status |
 |---|---|---|
 | Firebase project | `flameup-78d15` (`.firebaserc`) | baked into `lib/firebase_options.dart` |
-| Cloud Functions (TS) | `functions/src/` — `askAssistant`, `claimCookingReward`, `onReviewWritten`, `rebuildLeaderboards`, `onUserDeleted` | build ✓ (`npm run build`) |
+| Cloud Functions (TS) | `functions/src/` — `claimCookingReward`, `onReviewWritten`, `rebuildLeaderboards`, `onUserDeleted` | build ✓ (`npm run build`) |
 | Emulator suite | `firebase.json` — Auth :9099, Firestore :8080, Functions :5001, Storage :9199, UI :4000 | **working locally now** |
-| AI assistant secret | `ANTHROPIC_API_KEY` as a Functions **secret** (`functions/src/assistant.ts` declares it) | needs `firebase login` + Blaze for deploy |
+| AI assistant | on-device (`lib/features/ai_assistant/domain/assistant_engine.dart`) — no function, no key | ✓ works offline |
 | Client profiles | `config/emulator.env`, `config/emulator.android.env` | ✓ committed |
 
 ## Running the backend locally (works right now)
@@ -34,8 +34,8 @@ Then run the app against it:
 ```
 
 Verified: the app logs `[firebase] using emulator suite at localhost` and stays
-connected; functions initialize (`askAssistant` at
-`http://127.0.0.1:5001/flameup-78d15/us-central1/askAssistant`).
+connected; functions initialize (`claimCookingReward` at
+`http://127.0.0.1:5001/flameup-78d15/us-central1/claimCookingReward`).
 
 ### ⚠️ Two machine-specific fixes that made this work (already applied)
 
@@ -74,10 +74,7 @@ firebase deploy --only firestore:rules,firestore:indexes,storage
 # 4. Blaze plan is required for Cloud Functions — then deploy them
 firebase deploy --only functions
 
-# 5. The AI assistant's key — server-side only, NEVER in the app binary
-firebase functions:secrets:set ANTHROPIC_API_KEY
-
-# 6. Optional: seed the recipe catalogue (see docs/ in repo)
+# 5. Optional: seed the recipe catalogue (see docs/ in repo)
 ```
 
 > The emulator warning "You are not currently authenticated" is exactly what
@@ -89,5 +86,5 @@ firebase functions:secrets:set ANTHROPIC_API_KEY
   project config; a bare `flutter run` targets production.
 - **Emulators**: `--dart-define-from-file=config/emulator.env` (or the
   launcher profiles) sets `USE_FIREBASE_EMULATOR=true` and the host.
-- **Secrets**: none belong client-side. `ANTHROPIC_API_KEY` is a Functions
-  secret (step 5). `.env.example` at the repo root documents this.
+- **Secrets**: none belong client-side, and none are needed for the
+  assistant — it answers from the bundled catalogue on-device.
